@@ -3,28 +3,35 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<!-- Bootstrap core CSS -->
-	    <link href="css/bootstrap.min.css" rel="stylesheet" >
-	    <!-- Bootstrap theme -->
-	    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+	    <link href="css/w3s.css" rel="stylesheet">
+	    <link href="css/estilos.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	</head>
-	<body>
-		<div class = "container">
-			<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+	<body class="container-body-login">
+		<div class="w3-container container-home">
+			<div id="loginbox" class="loginbox">
 				<%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
 				<%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
 					<%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto --%>
-				<form:form action="validar-login" method="POST" modelAttribute="datosLogin">
-			    	<h3 class="form-signin-heading">Taller Web I</h3>
+
+				<form:form cssClass="w3-container" action="validar-login" method="POST" modelAttribute="datosLogin">
+			    	<h3 class="titulo-login">MISSING PETS</h3>
 					<hr class="colorgraph"><br>
 
 					<%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
-					<form:input path="email" id="email" type="email" class="form-control" />
-					<form:input path="password" type="password" id="password" class="form-control"/>     		  
-					
-					<button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Login</button>
+					<label>Usuario</label>
+					<form:input cssClass="w3-input" path="email" id="email" type="email" class="form-control" />
+					<label>Password</label>
+					<form:input cssClass="w3-input" path="password" type="password" id="password" class="form-control"/>
+					<div class="w3-row l12 w3-center btn-login">
+					<button class="w3-button w3-green" Type="Submit"/>Ingresar al sistema</button>
+					</div>
 				</form:form>
-				<a href="registrar-usuario"	>Registrarme</a>
+				<hr class="colorgraph">
+				<div class="w3-row l12 w3-center">
+				<span>Todavia no tenes una cuenta?</span>
+				<a href="registrar-usuario">Registrarme</a>
+				</div>
 				<%--Bloque que es visible si el elemento error no esta vacio	--%>
 				<c:if test="${not empty error}">
 			        <h4><span>${error}</span></h4>
