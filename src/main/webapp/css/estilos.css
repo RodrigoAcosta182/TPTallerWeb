@@ -24,8 +24,15 @@
 
 .titulo-login{
     text-align: center;
+    margin-bottom: 40px;
 }
 
 .btn-login{
     padding-top: 60px ;
+}
+.login-registro-usuario{
+    color: black;
+}
+.login-registro-usuario:hover{
+    color: red;
 }

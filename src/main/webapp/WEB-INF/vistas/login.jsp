@@ -5,7 +5,7 @@
 	<head>
 	    <link href="css/w3s.css" rel="stylesheet">
 	    <link href="css/estilos.css" rel="stylesheet">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<%--		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">--%>
 	</head>
 	<body class="container-body-login">
 		<div class="w3-container container-home">
@@ -16,21 +16,20 @@
 
 				<form:form cssClass="w3-container" action="validar-login" method="POST" modelAttribute="datosLogin">
 			    	<h3 class="titulo-login">MISSING PETS</h3>
-					<hr class="colorgraph"><br>
-
 					<%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
 					<label>Usuario</label>
 					<form:input cssClass="w3-input" path="email" id="email" type="email" class="form-control" />
 					<label>Password</label>
 					<form:input cssClass="w3-input" path="password" type="password" id="password" class="form-control"/>
 					<div class="w3-row l12 w3-center btn-login">
-					<button class="w3-button w3-green" Type="Submit"/>Ingresar al sistema</button>
+					<button class="w3-button w3-deep-purple
+" Type="Submit"/>Ingresar al sistema</button>
 					</div>
 				</form:form>
 				<hr class="colorgraph">
 				<div class="w3-row l12 w3-center">
 				<span>Todavia no tenes una cuenta?</span>
-				<a href="registrar-usuario">Registrarme</a>
+				<a href="registrar-usuario" class="login-registro-usuario">Registrarme</a>
 				</div>
 				<%--Bloque que es visible si el elemento error no esta vacio	--%>
 				<c:if test="${not empty error}">
