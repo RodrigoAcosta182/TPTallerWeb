@@ -12,7 +12,7 @@
 			<div id="loginbox" class="loginbox">
 				<%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
 				<%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
-					<%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto --%>
+					<%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto--%>
 
 				<form:form cssClass="w3-container" action="validar-login" method="POST" modelAttribute="datosLogin">
 			    	<h3 class="titulo-login">MISSING PETS</h3>
