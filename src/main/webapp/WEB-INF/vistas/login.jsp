@@ -18,9 +18,9 @@
 			    	<h3 class="titulo-login">MISSING PETS</h3>
 					<%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
 					<label>Usuario</label>
-					<form:input cssClass="w3-input" path="email" id="email" type="email" class="form-control" />
+					<form:input cssClass="w3-input" path="email" id="email" type="email"/>
 					<label>Password</label>
-					<form:input cssClass="w3-input" path="password" type="password" id="password" class="form-control"/>
+					<form:input cssClass="w3-input" path="password" type="password" id="password"/>
 					<div class="w3-row l12 w3-center btn-login">
 					<button class="w3-button w3-deep-purple
 " Type="Submit"/>Ingresar al sistema</button>

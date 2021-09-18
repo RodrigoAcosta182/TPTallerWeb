@@ -28,5 +28,9 @@ public class ServicioLoginImpl implements ServicioLogin {
 	public Usuario consultarUsuario (String email, String password) {
 		return servicioLoginDao.buscarUsuario(email, password);
 	}
+	@Override
+	public void registrar(String email, String password) throws Exception {
+		throw new RuntimeException();
+	}
 
 }
