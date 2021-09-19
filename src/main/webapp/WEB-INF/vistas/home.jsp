@@ -23,10 +23,10 @@
 	}
 
 	/* First image (Logo. Full height) */
-	.bgimg-1 {
-		/*background-image: url('../webapp/img/logo-wallpaper.jpeg');*/
-		min-height: 100%;
-	}
+	/*.bgimg-1 {*/
+	/*	!*background-image: url('../webapp/img/logo-wallpaper.jpeg');*!*/
+	/*	min-height: 100%;*/
+	/*}*/
 
 	/* Second image (Portfolio) */
 	.bgimg-2 {
