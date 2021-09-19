@@ -23,10 +23,10 @@
 	}
 
 	/* First image (Logo. Full height) */
-	/*.bgimg-1 {*/
-	/*	!*background-image: url('../webapp/img/logo-wallpaper.jpeg');*!*/
-	/*	min-height: 100%;*/
-	/*}*/
+	.bgimg-1 {
+		background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSupwi8XFAZnBtoSbavlse_HYrKeSqi-oXBZxAOS3Bk8krZLpfsUZXuLQGKF1aJzy36J24&usqp=CAU');
+		min-height: 100%;
+	}
 
 	/* Second image (Portfolio) */
 	.bgimg-2 {
@@ -60,10 +60,7 @@
 			<i class="fa fa-bars"></i>
 		</a>
 		<a href="#home" class="w3-bar-item w3-button">HOME</a>
-		<a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ABOUT</a>
-		<a href="#portfolio" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> PORTFOLIO</a>
-		<a href="#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
-		<a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+		<a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Servicios</a>
 			<i class="fa fa-search"></i>
 		</a>
 	</div>
@@ -79,45 +76,41 @@
 
 <!-- First Parallax Image with Logo Text -->
 <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
-	<img src="/TPTallerWeb/src/main/webapp/img/logo-wallpaper.jpeg" alt="">
-	<img src="/img/logoWallpaper.jpeg" alt="">
-
 	<div class="w3-display-middle" style="white-space:nowrap;">
-		<span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">MY <span class="w3-hide-small">WEBSITE</span> LOGO</span>
+		<span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">MISSING <span class="w3-hide-small">PETS</span>
 	</div>
 </div>
 
 <!-- Container (About Section) -->
 <div class="w3-content w3-container w3-padding-64" id="about">
-	<h3 class="w3-center">ABOUT ME</h3>
-	<p class="w3-center"><em>I love photography</em></p>
-	<p>We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-		qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-	<div class="w3-row">
-		<div class="w3-col m6 w3-center w3-padding-large">
-			<p><b><i class="fa fa-user w3-margin-right"></i>My Name</b></p><br>
-			<img src="/w3images/avatar_hat.jpg" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="Photo of Me" width="500" height="333">
-		</div>
+	<h3 class="w3-center">Quienes somos?</h3>
+	<p>Bienvenidos a Missing Pets!!! Le damos la bienvenida a nuestra nueva pagina web, la misma tiene nuevas funcionalidades con las que esperamos podamos ayudar a reencontrarlo con su mascota en caso de que la haya extraviado o que realice una adopcion si es que desea un nuevo amigo en su casa.
 
-		<!-- Hide this text on small devices -->
-		<div class="w3-col m6 w3-hide-small w3-padding-large">
-			<p>Welcome to my website. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-				dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-				incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+	<p>	Ponemos a su disposicion las nuevas funcionalidades de nuestra pagina web.
+	Esperamos que nuestro esfuerzo en su mejoramiento los ayude mas rapidamente en el reencuentro con su mascota.</p>
+
+	<p>Tambien queremos lograr, que haya mas posibilidades para encontrarle hogar a las mascotas sin familia,y mayor seguridad en la concrecion de las adopciones,tanto del que pone en adopcion como del que desea un nuevo amigo en su casa. Los animales publicados en ADOPCION, deberan estar CASTRADOS tanto hembras como machos, a EXCEPCION de CACHORROS, VIEJITOS Y ANIMALES EN SERIO RIESGO.</p>
+	<div class="w3-row">
+		<div class="w3-col m6 w3-center w3-padding-large" style="width: 50%;background-color: #F0E9E7">
+			<h3 style="color: #8bc34a"><b>Perdiste tu mascota?</b></h3>
+			<a href="#"> Haz click aca y llena un breve formulario</a>
+		</div>
+		<div class="w3-col m6 w3-center w3-padding-large" style="width: 50%;background-color: #F0E9E7">
+			<h3 style=" color: #00bcd4"><b>Encontraste una mascota perdida?</b></h3>
+			<a href="#"> haz click aca y llena un breve formulario</a>
 		</div>
 	</div>
 
 
 <!-- Container (Portfolio Section) -->
 <div class="w3-content w3-container w3-padding-64" id="portfolio">
-	<h3 class="w3-center">MY WORK</h3>
-	<p class="w3-center"><em>Here are some of my latest lorem work ipsum tipsum.<br> Click on the images to make them bigger</em></p><br>
+	<h3 class="w3-center">Reencuentros</h3>
+	<p class="w3-center"><em>Mas de 500 mascotas en su hogar gracias a Missing Pets</em></p><br>
 
 	<!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
 	<div class="w3-row-padding w3-center">
 		<div class="w3-col m3">
-			<img src="/w3images/p1.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="The mist over the mountains">
+			<img src="../../img/logoWallpaper.jpeg" style="width:100%"  class="w3-hover-opacity" alt="The mist over the mountains">
 		</div>
 
 		<div class="w3-col m3">
@@ -149,7 +142,6 @@
 		<div class="w3-col m3">
 			<img src="/w3images/p8.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Sailing">
 		</div>
-		<button class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px">LOAD MORE</button>
 	</div>
 </div>
 
