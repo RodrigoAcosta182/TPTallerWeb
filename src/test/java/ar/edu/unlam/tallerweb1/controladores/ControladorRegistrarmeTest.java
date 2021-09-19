@@ -62,3 +62,4 @@ public class ControladorRegistrarmeTest {
         assertThat(mav.getModel().get("msg")).isEqualTo("Registro Fallido por mail incorrecto");
     }
 }
+//subir
