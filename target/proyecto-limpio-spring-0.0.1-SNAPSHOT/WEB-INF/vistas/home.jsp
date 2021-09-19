@@ -23,10 +23,10 @@
 	}
 
 	/* First image (Logo. Full height) */
-	.bgimg-1 {
-		/*background-image: url('../webapp/img/logo-wallpaper.jpeg');*/
-		min-height: 100%;
-	}
+	/*.bgimg-1 {*/
+	/*	!*background-image: url('../webapp/img/logo-wallpaper.jpeg');*!*/
+	/*	min-height: 100%;*/
+	/*}*/
 
 	/* Second image (Portfolio) */
 	.bgimg-2 {
@@ -81,7 +81,7 @@
 <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
 	<img src="/TPTallerWeb/src/main/webapp/img/logo-wallpaper.jpeg" alt="">
 	<img src="/img/logoWallpaper.jpeg" alt="">
-	
+
 	<div class="w3-display-middle" style="white-space:nowrap;">
 		<span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">MY <span class="w3-hide-small">WEBSITE</span> LOGO</span>
 	</div>
