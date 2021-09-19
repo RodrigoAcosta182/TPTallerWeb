@@ -6,5 +6,6 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 public interface ServicioLogin {
 
 	Usuario consultarUsuario(String email, String password);
-	void registrar(String email, String password) throws Exception;
+
+	Usuario registrar(String email, String password) throws Exception;
 }

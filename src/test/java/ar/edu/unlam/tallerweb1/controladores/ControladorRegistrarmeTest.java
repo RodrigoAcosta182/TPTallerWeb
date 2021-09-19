@@ -40,7 +40,7 @@ public class ControladorRegistrarmeTest {
     }
 
     private void givenQueElUsuarioExiste(DatosRegistro usuario) throws Exception {
-    doThrow(Exception.class).when(servicioLogin).registrar(anyString(),anyString());
+    doThrow(Exception.class).when(servicioLogin).registrar(USUARIO.getEmail(),USUARIO.getClave());
     }
 
     private void givenQueElUsuarioNoExiste(DatosRegistro usuario){

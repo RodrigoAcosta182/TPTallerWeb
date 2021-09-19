@@ -17,20 +17,27 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 @Transactional
 public class ServicioLoginImpl implements ServicioLogin {
 
-	private RepositorioUsuario servicioLoginDao;
+	private RepositorioUsuario repositorioUsuario;
 
 	@Autowired
 	public ServicioLoginImpl(RepositorioUsuario servicioLoginDao){
-		this.servicioLoginDao = servicioLoginDao;
+		this.repositorioUsuario = servicioLoginDao;
 	}
 
 	@Override
 	public Usuario consultarUsuario (String email, String password) {
-		return servicioLoginDao.buscarUsuario(email, password);
+		return repositorioUsuario.buscarUsuario(email, password);
 	}
 	@Override
-	public void registrar(String email, String password) throws Exception {
-		throw new RuntimeException();
+	public Usuario registrar(String email, String password) throws Exception {
+		Usuario buscado = repositorioUsuario.buscar(email);
+		if (buscado != null)
+			throw new Exception();
+		Usuario nuevo = new Usuario();
+		nuevo.setEmail(email);
+		nuevo.setPassword(password);
+		repositorioUsuario.guardar(nuevo);
+		return nuevo;
 	}
 
 }

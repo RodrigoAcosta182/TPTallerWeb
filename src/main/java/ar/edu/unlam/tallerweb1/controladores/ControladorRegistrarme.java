@@ -38,8 +38,12 @@ public class ControladorRegistrarme {
         ModelMap model = new ModelMap();
 
         if (esValidoMail(datos.getEmail() )  ) {
-            if (esValidoContraseña(datos.getClave(), datos.getRepiteClave())){
-                servicioLogin.registrar(datos.getEmail(),datos.getClave());
+                try {
+                    servicioLogin.registrar(datos.getEmail(),datos.getClave());
+                } catch (Exception e) {
+                    model.put("msg", "Registro Fallido por mail incorrecto");
+                    return new ModelAndView("registro-usuario", model);
+                }
                 model.put("email", datos.getEmail());
                 model.put("msg", "Registro Exitoso");
 
@@ -47,10 +51,7 @@ public class ControladorRegistrarme {
                 datosLogin.setEmail(datos.getEmail());
                 model.put("datosLogin", datosLogin);
                 return new ModelAndView("redirect:/login", model);
-            }else{
-                model.put("msg", "Registro Fallido contraseñas no identicas");
-                return new ModelAndView("registro-usuario", model);
-            }
+
         }else{
             model.put("msg", "Registro Fallido por mail incorrecto");
             return new ModelAndView("registro-usuario", model);
