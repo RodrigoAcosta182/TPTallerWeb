@@ -50,7 +50,7 @@ public class ControladorRegistrarme {
 
                 DatosLogin datosLogin = new DatosLogin();
                 datosLogin.setEmail(datos.getEmail());
-                model.put("datosLogin", datosLogin);
+                model.put("datos", datos);
                 return new ModelAndView("redirect:/login", model);
             } else {
                 model.put("msg", "Registro Fallido por contraseñas no identicas");
