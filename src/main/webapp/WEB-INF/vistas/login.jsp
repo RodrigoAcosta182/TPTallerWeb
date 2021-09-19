@@ -21,22 +21,20 @@
 					<form:input cssClass="w3-input" path="email" id="email" type="email"/>
 					<label>Password</label>
 					<form:input cssClass="w3-input" path="password" type="password" id="password"/>
+					<%--Bloque que es visible si el elemento error no esta vacio	--%>
+					<c:if test="${not empty error}">
+						<h4><span>${error}</span></h4>
+					</c:if>
+					${msg}
 					<div class="w3-row l12 w3-center btn-login">
-					<button class="w3-button w3-deep-purple
-" Type="Submit"/>Ingresar al sistema</button>
+					<button class="w3-button w3-deep-purple" Type="Submit"/>Ingresar al sistema</button>
 					</div>
 				</form:form>
 				<hr class="colorgraph">
 				<div class="w3-row l12 w3-center">
 				<span>Todavia no tenes una cuenta?</span>
-				<a href="registrar-usuario" class="login-registro-usuario">Registrarme</a>
+				<a href="ir-a-registrarme" class="login-registro-usuario">Registrarme</a>
 				</div>
-				<%--Bloque que es visible si el elemento error no esta vacio	--%>
-				<c:if test="${not empty error}">
-			        <h4><span>${error}</span></h4>
-			        <br>
-		        </c:if>
-				${msg}
 			</div>
 		</div>
 		
