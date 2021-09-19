@@ -4,21 +4,25 @@
 <html>
 <head>
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" >
-    <!-- Bootstrap theme -->
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/w3s.css" rel="stylesheet">
+    <link href="css/estilos.css" rel="stylesheet">
 </head>
-<body>
-<div class = "container">
-    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <form:form action="registrarme" method="POST" modelAttribute="datos">
-            <h3 class="form-signin-heading">Nuevo Usuario</h3>
-            <hr class="colorgraph"><br>
-            <label>Usuario</label>
-            <form:input path="email" id="email" class="form-control" />
+<body class="container-body-login">
+<div class = "w3-container container-home">
+    <div id="loginbox" class="loginbox">
+        <form:form action="registrarme" method="POST" modelAttribute="datos" cssClass="w3-container">
+            <h3 class="titulo-login">Nuevo Usuario</h3>
+
+            <label>Mail</label>
+            <form:input cssClass="w3-input" path="email" id="email"/>
             <label>Clave</label>
-            <form:input path="clave" type="password" id="clave" class="form-control"/>
-            <button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit"/>Registrarme</button>
+            <form:input cssClass="w3-input" path="clave" type="password" id="clave"/>
+            <label>Repite clave</label>
+            <form:input cssClass="w3-input" path="repiteClave" type="password" id="clave"/>
+            <div class="w3-row l12 w3-center btn-login">
+                <button id="btn-registrarme"  class="w3-button w3-deep-purple"  Type="Submit"/>Registrarme</button>
+            </div>
+
         </form:form>
 
         <c:if test="${not empty msg}">
