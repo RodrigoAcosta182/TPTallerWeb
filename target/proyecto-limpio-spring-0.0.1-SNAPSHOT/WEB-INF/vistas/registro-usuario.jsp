@@ -22,13 +22,14 @@
             <div class="w3-row l12 w3-center btn-login">
                 <button id="btn-registrarme"  class="w3-button w3-deep-purple"  Type="Submit"/>Registrarme</button>
             </div>
+            <c:if test="${not empty error}">
+                <h4><span>${error}</span></h4>
+                <br>
+            </c:if>
 
         </form:form>
 
-        <c:if test="${not empty msg}">
-            <h4><span>${msg}</span></h4>
-            <br>
-        </c:if>
+
     </div>
 </div>
 
