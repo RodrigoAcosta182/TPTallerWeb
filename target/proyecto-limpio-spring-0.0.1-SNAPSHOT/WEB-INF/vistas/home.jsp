@@ -24,7 +24,7 @@
 
 	/* First image (Logo. Full height) */
 	.bgimg-1 {
-		background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSupwi8XFAZnBtoSbavlse_HYrKeSqi-oXBZxAOS3Bk8krZLpfsUZXuLQGKF1aJzy36J24&usqp=CAU');
+		background-image: url('https://www.happyhousesitters.com.au/blog/wp-content/uploads/2021/07/sepax3-1-1140x641.png');
 		min-height: 100%;
 	}
 
@@ -60,8 +60,12 @@
 			<i class="fa fa-bars"></i>
 		</a>
 		<a href="#home" class="w3-bar-item w3-button">HOME</a>
+		<a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Perdidos</a>
+		<a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Encontrados</a>
+		<a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Reencontrados</a>
 		<a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Servicios</a>
-			<i class="fa fa-search"></i>
+
+
 		</a>
 	</div>
 
@@ -93,7 +97,7 @@
 	<div class="w3-row">
 		<div class="w3-col m6 w3-center w3-padding-large" style="width: 50%;background-color: #F0E9E7">
 			<h3 style="color: #8bc34a"><b>Perdiste tu mascota?</b></h3>
-			<a href="#"> Haz click aca y llena un breve formulario</a>
+			<a href="ir-a-formulario"> Haz click aca y llena un breve formulario</a>
 		</div>
 		<div class="w3-col m6 w3-center w3-padding-large" style="width: 50%;background-color: #F0E9E7">
 			<h3 style=" color: #00bcd4"><b>Encontraste una mascota perdida?</b></h3>
