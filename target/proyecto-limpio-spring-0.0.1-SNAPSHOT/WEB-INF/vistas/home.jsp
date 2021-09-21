@@ -60,10 +60,10 @@
 			<i class="fa fa-bars"></i>
 		</a>
 		<a href="#home" class="w3-bar-item w3-button">HOME</a>
-		<a href="" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Perdidos</a>
-		<a href="" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Encontrados</a>
-		<a href="" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Reencontrados</a>
-		<a href="" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Servicios</a>
+		<a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Perdidos</a>
+		<a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Encontrados</a>
+		<a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Reencontrados</a>
+		<a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Servicios</a>
 
 
 		</a>
@@ -71,10 +71,10 @@
 
 	<!-- Navbar on small screens -->
 	<div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-		<a href="" class="w3-bar-item w3-button" onclick="toggleFunction()">Perdidos</a>
-		<a href="" class="w3-bar-item w3-button" onclick="toggleFunction()">Encontrados</a>
-		<a href="" class="w3-bar-item w3-button" onclick="toggleFunction()">Reencontrados</a>
-		<a href="" class="w3-bar-item w3-button" onclick="toggleFunction()">Servicios</a>
+		<a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
+		<a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">PORTFOLIO</a>
+		<a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+		<a href="#" class="w3-bar-item w3-button">SEARCH</a>
 	</div>
 </div>
 
