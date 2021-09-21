@@ -17,7 +17,7 @@ public class ControladorRegistrarMascota {
         model.put("datosMascota",datosMascota);
         return new ModelAndView("form-mascota-perdida");
     }
-
+    @RequestMapping(method = RequestMethod.GET,path = "/registrarMascota")
     public ModelAndView registrarMascota(DatosRegistroMascota mascota) {
         ModelMap model = new ModelMap();
         model.put("msg", "Mascota Registrada Exitosamente");
