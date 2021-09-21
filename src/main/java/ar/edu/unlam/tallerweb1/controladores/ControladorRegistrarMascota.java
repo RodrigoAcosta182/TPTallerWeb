@@ -10,12 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ControladorRegistrarMascota {
 
-    public ModelAndView registrarMascota(DatosRegistroMascota mascota) {
-        ModelMap model = new ModelMap();
-        model.put("msg", "Mascota Registrada Exitosamente");
-        return new ModelAndView("home",model);
-    }
-
     @RequestMapping(method = RequestMethod.GET,path = "/ir-a-registrar-mascota-perdida")
     public ModelAndView irARegistrarMascotaPerdida() {
         ModelMap model = new ModelMap();
@@ -23,4 +17,11 @@ public class ControladorRegistrarMascota {
         model.put("datosMascota",datosMascota);
         return new ModelAndView("form-mascota-perdida");
     }
+
+    public ModelAndView registrarMascota(DatosRegistroMascota mascota) {
+        ModelMap model = new ModelMap();
+        model.put("msg", "Mascota Registrada Exitosamente");
+        return new ModelAndView("home",model);
+    }
+
 }
