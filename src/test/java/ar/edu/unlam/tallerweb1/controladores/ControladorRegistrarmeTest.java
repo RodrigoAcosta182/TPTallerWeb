@@ -33,7 +33,7 @@ public class ControladorRegistrarmeTest {
     }
 
     @Test
-    public void noPuedoRegistrarmeConContraseñasNoIdenticas(){
+    public void noPuedoRegistrarmeConContraseniasNoIdenticas(){
         ModelAndView mav = whenRegistroElUsuario(USUARIO_CON_CLAVE_DISTINTA);
         thenElRegistroFallaConError(mav,"Registro Fallido por contraseñas no identicas");
     }
@@ -65,7 +65,7 @@ public class ControladorRegistrarmeTest {
 
     private void thenElRegistroFallaConError(ModelAndView mav, String error) {
         assertThat(mav.getViewName()).isEqualTo("registro-usuario");
-        assertThat(mav.getModel().get("msg")).isEqualTo(error);
+        assertThat(mav.getModel().get("error")).isEqualTo(error);
     }
 }
 //subir
