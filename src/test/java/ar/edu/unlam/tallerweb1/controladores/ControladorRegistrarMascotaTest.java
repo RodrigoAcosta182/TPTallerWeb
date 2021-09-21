@@ -8,32 +8,52 @@ import org.springframework.web.servlet.ModelAndView;
 public class ControladorRegistrarMascotaTest {
 
     ControladorRegistrarMascota controladorRegistrarMascota = new ControladorRegistrarMascota();
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota();
 
     @Test
-    public void registroUnaMascotaPerdidaSatisfactoriamente(){
-        DatosRegistroMascota mascota = givenRegistroUnaMascota();
-        thenElRegistroDeMascoaEsSatisfactorio(mascota);
+    public void registroMascotaExitoso(){
+        givenQueLaMascotaNoExiste(MASCOTA);
+        ModelAndView mav = whenRegistroLaMascota(MASCOTA);
+        thenElRegistroDeMascotaEsExitoso(mav);
     }
 
     @Test
-    public void registroUnaMascotaPerdidaFallido(){
-        DatosRegistroMascota mascota = givenRegistroUnaMascota();
-        thenElRegistroDeMascotaFalla(mascota);
+    public void registroMascotaFallido(){
+        givenQueLaMascotaNoExiste(MASCOTA);
+        ModelAndView mav = whenRegistroLaMascota(MASCOTA);
+        thenElRegistroDeMascotaEsFallido(mav);
     }
 
-    private void thenElRegistroDeMascotaFalla(DatosRegistroMascota mascota) {
-        assertThat(controladorRegistrarMascota.registroDeMascotaFallido()).isTrue();
+    @Test
+    public void irARegistrarMascotaPerdida(){
+        ModelAndView mav = whenIrARegistroMascotaPerdida();
+        thenIrARegistrarMascotaPerdida(mav);
     }
 
-    private void thenElRegistroDeMascoaEsSatisfactorio(DatosRegistroMascota mascota) {
-        assertThat(controladorRegistrarMascota.registroDeMascotaExitoso()).isTrue();
+    private void thenIrARegistrarMascotaPerdida(ModelAndView mav) {
+        assertThat(mav.getViewName()).isEqualTo("form-mascota-perdida");
+    }
+
+    private ModelAndView whenIrARegistroMascotaPerdida() {
+        return controladorRegistrarMascota.irARegistrarMascotaPerdida();
     }
 
 
-    private DatosRegistroMascota givenRegistroUnaMascota() {
-        return new DatosRegistroMascota();
+    private void givenQueLaMascotaNoExiste(DatosRegistroMascota mascota) {
     }
 
+    private ModelAndView whenRegistroLaMascota(DatosRegistroMascota mascota) {
+        return controladorRegistrarMascota.registrarMascota(mascota);
+    }
+
+    private void thenElRegistroDeMascotaEsExitoso(ModelAndView mav) {
+        assertThat(mav.getViewName()).isEqualTo("home");
+        assertThat(mav.getModel().get("msg")).isEqualTo("Mascota Registrada Exitosamente");
+    }
+    private void thenElRegistroDeMascotaEsFallido(ModelAndView mav) {
+        assertThat(mav.getViewName()).isEqualTo("home");
+//        assertThat(mav.getModel().get("msg")).isEqualTo("No se pudo registrar");
+    }
 
 
 }
