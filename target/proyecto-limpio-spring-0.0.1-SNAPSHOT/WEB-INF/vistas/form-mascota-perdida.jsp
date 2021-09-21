@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <link href="css/w3s.css" rel="stylesheet">
     <link href="css/estilos.css" rel="stylesheet">
     <%--		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">--%>
@@ -17,23 +18,52 @@
         <form:form cssClass="w3-container" action="validar-login" method="POST" modelAttribute="datosLogin">
             <h3 class="titulo-login">DATOS DE LA MASCOTA</h3>
             <%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
-            <label>Usuario</label>
+            <label>Tipo</label>
+            <select value="" class="w3-input">
+                <option name="" id="perro">Perro</option>
+                <option name="" id="gato">Gato</option>
+            </select><br>
 <%--            <form:input cssClass="w3-input" path="email" id="email" type="email"/>--%>
-            <label>Password</label>
+            <label>Nombre</label>
+            <input type="text" class="w3-input"><br>
 <%--            <form:input cssClass="w3-input" path="password" type="password" id="password"/>--%>
+            <label>Edad</label>
+            <input type="number" class="w3-input"><br>
+
+            <label>Raza</label>
+            <select value="" class="w3-input">
+                <option name="" id="1">Boxer</option>
+                <option name="" id="2">Caniche</option>
+                <option name="" id="3">Beagle</option>
+            </select><br>
+
+            <label>Color</label>
+            <input type="text" class="w3-input"><br>
+
+            <label>Tamaño</label>
+            <select value="" class="w3-input">
+                <option name="" id="peq">Pequeño</option>
+                <option name="" id="med">Mediano</option>
+                <option name="" id="gra">Grande</option>
+            </select><br>
+
+            <label>Detalle</label>
+            <input type="text" class="w3-input"><br>
+
+            <label>Fecha De Desaparicion</label>
+            <input type="date" class="w3-input">
             <%--Bloque que es visible si el elemento error no esta vacio	--%>
             <c:if test="${not empty msg}">
                 <h4><span>${msg}</span></h4>
                 <br>
             </c:if>
             <div class="w3-row l12 w3-center btn-login">
-                <button class="w3-button w3-deep-purple" Type="Submit"/>Ingresar al sistema</button>
+                <button class="w3-button w3-deep-purple" Type="Submit"/>Subir Publicacion</button>
             </div>
         </form:form>
         <hr class="colorgraph">
         <div class="w3-row l12 w3-center">
-            <span>Todavia no tenes una cuenta?</span>
-            <a href="ir-a-registrarme" class="login-registro-usuario">Registrarme</a>
+            <a href="ir-a-registrarme" class="login-registro-usuario">Volver a la página principal</a>
         </div>
     </div>
 </div>

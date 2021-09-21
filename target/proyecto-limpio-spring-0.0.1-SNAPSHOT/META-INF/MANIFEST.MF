@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
-<<<<<<< HEAD
 Built-By: Lenovo
 Build-Jdk: 16.0.2
-=======
-Built-By: emili
-Build-Jdk: version 11.0.12
->>>>>>> 4e5a81edf1ba9995b9ab34ede92077f1eb78877b
 
