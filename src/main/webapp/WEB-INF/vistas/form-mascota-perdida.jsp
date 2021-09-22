@@ -46,6 +46,7 @@
                     </c:if>
                     <div class="w3-row l12 w3-center btn-login">
                         <button class="w3-button w3-deep-purple" Type="Submit"/>Subir datos</button>
+                        <a class="w3-button w3-deep-purple" href="home">Ir al Home</a>
                     </div>
                 </form:form>
             </div>
