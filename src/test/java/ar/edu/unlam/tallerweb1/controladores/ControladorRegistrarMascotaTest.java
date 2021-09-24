@@ -25,6 +25,12 @@ public class ControladorRegistrarMascotaTest {
     }
 
     @Test
+    public void irALaHomeDedeElFormulario(){
+        ModelAndView mav = whenVolverAlHomeDesdeElFormulario();
+        thenVolverAlHomeDesdeElFormularioEsExitoso(mav);
+    }
+
+    @Test
     public void irARegistrarMascotaPerdida(){
         ModelAndView mav = whenIrARegistroMascotaPerdida();
         thenIrARegistrarMascotaPerdida(mav);
@@ -53,6 +59,15 @@ public class ControladorRegistrarMascotaTest {
     private void thenElRegistroDeMascotaEsFallido(ModelAndView mav) {
         assertThat(mav.getViewName()).isEqualTo("home");
 //        assertThat(mav.getModel().get("msg")).isEqualTo("No se pudo registrar");
+    }
+
+    private ModelAndView whenVolverAlHomeDesdeElFormulario() {
+        return controladorRegistrarMascota.irALaHomeDeLaPagina();
+    }
+
+    private void thenVolverAlHomeDesdeElFormularioEsExitoso(ModelAndView mav) {
+        assertThat(mav.getViewName()).isEqualTo("home");
+        assertThat(mav.getModel().get("msg")).isEqualTo("Se volvio a la home exitosamente");
     }
 
 

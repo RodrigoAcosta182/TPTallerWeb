@@ -24,4 +24,11 @@ public class ControladorRegistrarMascota {
         return new ModelAndView("home",model);
     }
 
+    @RequestMapping(method = RequestMethod.GET,path = "/ir-a-registrar-mascota-perdida")
+    public ModelAndView irALaHomeDeLaPagina() {
+        ModelMap model = new ModelMap();
+        model.put("msg","Se volvio a la home exitosamente");
+        return new ModelAndView("home",model);
+    }
+
 }
