@@ -97,7 +97,7 @@
 	<div class="w3-row">
 		<div class="w3-col m6 w3-center w3-padding-large" style="width: 50%;background-color: #F0E9E7">
 			<h3 style="color: #8bc34a"><b>Perdiste tu mascota?</b></h3>
-			<a href="ir-a-formulario"> Haz click aca y llena un breve formulario</a>
+			<a href="ir-a-registrar-mascota-perdida"> Haz click aca y llena un breve formulario</a>
 		</div>
 		<div class="w3-col m6 w3-center w3-padding-large" style="width: 50%;background-color: #F0E9E7">
 			<h3 style=" color: #00bcd4"><b>Encontraste una mascota perdida?</b></h3>

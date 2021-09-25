@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
+//Puntita latorre
 @Controller
 public class ControladorRegistrarMascota {
 
@@ -23,5 +23,12 @@ public class ControladorRegistrarMascota {
         model.put("msg", "Mascota Registrada Exitosamente");
         return new ModelAndView("home",model);
     }
+    @RequestMapping(method = RequestMethod.GET,path = "/ir-a-registrar-mascota-perdida")
+    public ModelAndView irALaHomeDeLaPagina() {
+        ModelMap model = new ModelMap();
+        model.put("msg","Se volvio a la home exitosamente");
+        return new ModelAndView("home",model);
+    }
+
 
 }
