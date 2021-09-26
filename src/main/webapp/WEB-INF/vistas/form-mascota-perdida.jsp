@@ -35,10 +35,23 @@
                 <%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto--%>
                 <form:form cssClass="w3-container" action="registrarMascota" method="POST" modelAttribute="datosMascota">
                     <%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
-                    <label style="float: left">Nombre</label>
-<%--                    <form:input cssClass="w3-input" path="nombre" id="nombre" type="name"/>--%>
-                    <label style="float: left">Tipo</label>
-<%--                    <form:input cssClass="w3-input" path="tipo" type="password" id="password"/>--%>
+                    <label style="float: left; margin-top: 6px">Tipo</label>
+                    <form:input cssClass="w3-input" path="tipo" type="text" id="tipo"/>
+                    <label style="float: left; margin-top: 6px">Nombre</label>
+                    <form:input cssClass="w3-input" path="nombre" type="text" id="nombre" />
+                    <label style="float: left; margin-top: 6px">Edad</label>
+                    <form:input cssClass="w3-input" path="edad" type="number" id="edad"/>
+                    <label style="float: left; margin-top: 6px">Raza</label>
+                    <form:input cssClass="w3-input" path="raza" type="text" id="raza"/>
+                    <label style="float: left; margin-top: 6px">Detalles</label>
+                    <form:input cssClass="w3-input" path="detalle" type="text" id="detalle"/>
+                    <label style="float: left">Color</label>
+                    <form:input cssClass="w3-input" path="color" type="text" id="color"/>
+                    <label style="float: left">Tama&ntilde;o</label>
+                    <form:input cssClass="w3-input" path="tamanio" type="text" id="tamanio"/>
+                    <label style="float: left">Fecha Perdido</label>
+                    <form:input cssClass="w3-input" path="fechaPerdido" type="text" id="fechaPerdido"/>
+
                     <%--Bloque que es visible si el elemento error no esta vacio	--%>
                     <c:if test="${not empty error}">
                         <h4><span>${error}</span></h4>
