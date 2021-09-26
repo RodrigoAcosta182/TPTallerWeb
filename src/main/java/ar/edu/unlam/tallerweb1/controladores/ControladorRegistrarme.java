@@ -38,7 +38,7 @@ public class ControladorRegistrarme {
         ModelMap model = new ModelMap();
 
         if (esValidoMail(datos.getEmail())) {
-            if (esValidoContraseña(datos.getClave(), datos.getRepiteClave())) {
+            if (esValidoContrasenia(datos.getClave(), datos.getRepiteClave())) {
                 try {
                     servicioLogin.registrar(datos.getEmail(), datos.getClave());
                 } catch (Exception e) {
@@ -46,7 +46,7 @@ public class ControladorRegistrarme {
                     return new ModelAndView("registro-usuario", model);
                 }
                 model.put("email", datos.getEmail());
-                model.put("error", "Registro Exitoso");
+                model.put("msg", "Registro Exitoso");
 
                 DatosLogin datosLogin = new DatosLogin();
                 datosLogin.setEmail(datos.getEmail());
@@ -66,7 +66,7 @@ public class ControladorRegistrarme {
     private boolean esValidoMail(String email) {
         return email.endsWith(".com") && email.contains("@");
     }
-    private boolean esValidoContraseña(String clave, String repiteClave) {
+    private boolean esValidoContrasenia(String clave, String repiteClave) {
         return clave.equals(repiteClave)  ;
     }
 

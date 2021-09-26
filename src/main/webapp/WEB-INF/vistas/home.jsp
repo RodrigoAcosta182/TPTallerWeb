@@ -17,7 +17,7 @@
         color: #777;
         line-height: 1.8;
     }
-
+  
     .imagen-fondo{
         background-image: url('https://www.happyhousesitters.com.au/blog/wp-content/uploads/2021/07/sepax3-1-1140x641.png');
         background-size: cover;
@@ -35,7 +35,7 @@
     .bgimg-1 {
         min-height: 100%;
     }
-
+  
     .w3-wide {
         letter-spacing: 10px;
     }

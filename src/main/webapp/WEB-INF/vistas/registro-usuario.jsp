@@ -1,41 +1,62 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
-<head>
-    <!-- Bootstrap core CSS -->
-    <link href="css/w3s.css" rel="stylesheet">
-    <link href="css/estilos.css" rel="stylesheet">
-</head>
-<body class="container-body-login">
-<div class = "w3-container container-home">
-    <div id="loginbox" class="loginbox">
-        <form:form action="registrarme" method="POST" modelAttribute="datos" cssClass="w3-container">
-            <h3 class="titulo-login">Nuevo Usuario</h3>
+<title>Login Missing Pets</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/w3s.css" rel="stylesheet">
+<link href="css/estilos.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body,h1 {font-family: "Raleway", sans-serif}
+    body, html {height: 100%}
+    .bgimg {
+        background-image: linear-gradient(to right top, #051937, #3a2e5d, #75407b, #b6528e, #f66793);
+        min-height: 100%;
+        background-position: center;
+        background-size: cover;
+    }
+</style>
+<body>
 
-            <label>Mail</label>
-            <form:input cssClass="w3-input" path="email" id="email"/>
-            <label>Clave</label>
-            <form:input cssClass="w3-input" path="clave" type="password" id="clave"/>
-            <label>Repite clave</label>
-            <form:input cssClass="w3-input" path="repiteClave" type="password" id="clave"/>
-            <div class="w3-row l12 w3-center btn-login">
-                <button id="btn-registrarme"  class="w3-button w3-deep-purple"  Type="Submit"/>Registrarme</button>
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+    <div class="w3-display-topleft w3-padding-large w3-xlarge">
+        Missing Pets
+    </div>
+    <div class="w3-display-middle">
+        <div class="w3-jumbo w3-animate-top ">
+            <div class="loginbox w3-text-black">
+                <%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
+                <%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
+                <%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto--%>
+                <form:form action="registrarme" method="POST" modelAttribute="datos" cssClass="w3-container">
+                    <h3 class="titulo-login">Nuevo Usuario</h3>
+
+                    <label style="float: left">Mail</label>
+                    <form:input cssClass="w3-input" path="email" id="email"/>
+                    <label style="float: left">Clave</label>
+                    <form:input cssClass="w3-input" path="clave" type="password" id="clave"/>
+                    <label style="float: left">Repite clave</label>
+                    <form:input cssClass="w3-input" path="repiteClave" type="password" id="clave"/>
+                    <div class="w3-row l12 w3-center btn-login">
+                        <button id="btn-registrarme"  class="w3-button w3-deep-purple"  Type="Submit"/>Registrarme</button>
+                    </div>
+                    <c:if test="${not empty error}">
+                        <h4><span>${error}</span></h4>
+                        <br>
+                    </c:if>
+                </form:form>
+
             </div>
-            <c:if test="${not empty error}">
-                <h4><span>${error}</span></h4>
-                <br>
-            </c:if>
-
-        </form:form>
-
-
+        </div>
+    </div>
+    <div class="w3-display-bottomleft w3-padding-large">
+        Powered by <a href="https://www.youtube.com/watch?v=yG7MPEQm1-w" target="_blank">Garlopa Company</a>
     </div>
 </div>
 
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 </html>
