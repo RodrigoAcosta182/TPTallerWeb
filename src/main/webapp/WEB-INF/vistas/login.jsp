@@ -27,7 +27,7 @@
 	<div class="w3-display-topleft w3-padding-large w3-xlarge">
 		Missing Pets
 	</div>
-	<div class="w3-display-left">
+	<div class="w3-display-left loginBox-center">
 		<div class="w3-jumbo w3-animate-top">
 			<div class="loginbox w3-text-black">
 				<div class="titulo-login">Ingresar al sistema</div>
@@ -62,7 +62,7 @@
 		<h1>Un nuevo concepto de b&uacute;squeda</h1>
 		<h3><i class="fa fa-check-circle login-icono-tilde"></i>Es simple, f&aacute;cil de usar</h3>
 		<h3><i class="fa fa-check-circle login-icono-tilde"></i>Encontr&aacute; a tu mascota de la manera m&aacute;s rapida</h3>
-		<h3><i class="fa fa-check-circle login-icono-tilde"></i>M&aacute;s de 5000 mascotas volvieron a su hogar y m&aacute;s de 7000 fueron adoptadas</h3>
+		<h3><i class="fa fa-check-circle login-icono-tilde"></i>M&aacute;s de 5000 mascotas volvieron a su hogar</h3>
 		<h3><i class="fa fa-check-circle login-icono-tilde"></i>Miles de descuentos en servicios para tu mascota</h3>
 		</div>
 	</div>

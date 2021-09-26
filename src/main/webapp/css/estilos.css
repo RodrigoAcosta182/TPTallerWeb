@@ -30,10 +30,11 @@
     0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
 }
 
-.titulo-login{
+.titulo-login, titulo-registrar-mascota-perdida{
     text-align: center;
     margin-bottom: 40px;
 }
+
 
 .btn-login{
     padding-top: 30px ;
@@ -103,4 +104,22 @@
     font-size: 14px;
     color: red;
     font-weight: bold;
+}
+
+@media (max-width: 1378px) {
+    .login-info-lista{
+        margin-right: 60px;
+    }
+}
+
+@media (max-width: 1278px) {
+    .login-info-lista{
+        display: none;
+    }
+
+    .loginBox-center{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
 }

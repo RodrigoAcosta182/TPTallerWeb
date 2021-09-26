@@ -11,8 +11,14 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <style>
-    body,h1 {font-family: "Raleway", sans-serif}
-    body, html {height: 100%}
+    body, h1 {
+        font-family: "Raleway", sans-serif
+    }
+
+    body, html {
+        height: 100%
+    }
+
     .bgimg {
         background-image: linear-gradient(to right top, #051937, #3a2e5d, #75407b, #b6528e, #f66793);
         min-height: 100%;
@@ -29,16 +35,22 @@
     <div class="w3-display-middle">
         <div class="w3-jumbo w3-animate-top ">
             <div class="loginbox w3-text-black">
-                <div class="titulo-login">Datos de la mascota perdida</div>
+                <div class="noselect" style="height: 20px">
+                    <a href="home" style="float: right; cursor: pointer;text-decoration: none">X</a>
+                </div>
+                <div class="titulo-registrar-mascota-perdida">
+                    <span>Datos de la mascota perdida</span>
+                </div>
                 <%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
                 <%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
                 <%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto--%>
-                <form:form cssClass="w3-container" action="registrarMascota" method="POST" modelAttribute="datosMascota">
+                <form:form cssClass="w3-container" action="registrarMascota" method="POST"
+                           modelAttribute="datosMascota">
                     <%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
                     <label style="float: left; margin-top: 6px">Tipo</label>
                     <form:input cssClass="w3-input" path="tipo" type="text" id="tipo"/>
                     <label style="float: left; margin-top: 6px">Nombre</label>
-                    <form:input cssClass="w3-input" path="nombre" type="text" id="nombre" />
+                    <form:input cssClass="w3-input" path="nombre" type="text" id="nombre"/>
                     <label style="float: left; margin-top: 6px">Edad</label>
                     <form:input cssClass="w3-input" path="edad" type="number" id="edad"/>
                     <label style="float: left; margin-top: 6px">Raza</label>
@@ -58,7 +70,8 @@
                         <br>
                     </c:if>
                     <div class="w3-row l12 w3-center btn-login">
-                        <button class="w3-button w3-deep-purple" Type="Submit"/>Subir datos</button>
+                        <button class="w3-button w3-deep-purple" Type="Submit"/>
+                        Subir datos</button>
                     </div>
                 </form:form>
             </div>
