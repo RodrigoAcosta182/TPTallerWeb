@@ -122,4 +122,8 @@
         display: flex;
         justify-content: center;
     }
+
+    .loginbox{
+        margin-left: 0px;
+    }
 }
