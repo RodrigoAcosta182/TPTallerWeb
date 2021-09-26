@@ -17,9 +17,14 @@
         color: #777;
         line-height: 1.8;
     }
+  
+    .imagen-fondo{
+        background-image: url('https://www.happyhousesitters.com.au/blog/wp-content/uploads/2021/07/sepax3-1-1140x641.png');
+        background-size: cover;
+    }
 
     /* Create a Parallax Effect */
-    .bgimg-1, .bgimg-2, .bgimg-3 {
+    .bgimg-1{
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
@@ -28,22 +33,9 @@
 
     /* First image (Logo. Full height) */
     .bgimg-1 {
-        background-image: url('https://www.happyhousesitters.com.au/blog/wp-content/uploads/2021/07/sepax3-1-1140x641.png');
         min-height: 100%;
     }
-
-    /* Second image (Portfolio) */
-    .bgimg-2 {
-        background-image: url("/w3images/parallax2.jpg");
-        min-height: 400px;
-    }
-
-    /* Third image (Contact) */
-    .bgimg-3 {
-        background-image: url("/w3images/parallax3.jpg");
-        min-height: 400px;
-    }
-
+  
     .w3-wide {
         letter-spacing: 10px;
     }
@@ -60,7 +52,7 @@
         }
     }
 </style>
-<body>
+<body class="imagen-fondo">
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
