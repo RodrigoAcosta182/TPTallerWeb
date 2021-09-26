@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Home Missing Pets</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="css/w3s.css" rel="stylesheet">
+<link href="css/estilos.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
@@ -79,73 +80,18 @@
 </div>
 
 <!-- First Parallax Image with Logo Text -->
-<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
-	<div class="w3-display-middle" style="white-space:nowrap;">
-		<span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">MISSING <span class="w3-hide-small">PETS</span>
-	</div>
-</div>
-
-<!-- Container (About Section) -->
-<div class="w3-content w3-container w3-padding-64" id="about">
-	<h3 class="w3-center">Quienes somos?</h3>
-	<p>Bienvenidos a Missing Pets!!! Le damos la bienvenida a nuestra nueva pagina web, la misma tiene nuevas funcionalidades con las que esperamos podamos ayudar a reencontrarlo con su mascota en caso de que la haya extraviado o que realice una adopcion si es que desea un nuevo amigo en su casa.
-
-	<p>	Ponemos a su disposicion las nuevas funcionalidades de nuestra pagina web.
-	Esperamos que nuestro esfuerzo en su mejoramiento los ayude mas rapidamente en el reencuentro con su mascota.</p>
-
-	<p>Tambien queremos lograr, que haya mas posibilidades para encontrarle hogar a las mascotas sin familia,y mayor seguridad en la concrecion de las adopciones,tanto del que pone en adopcion como del que desea un nuevo amigo en su casa. Los animales publicados en ADOPCION, deberan estar CASTRADOS tanto hembras como machos, a EXCEPCION de CACHORROS, VIEJITOS Y ANIMALES EN SERIO RIESGO.</p>
-	<div class="w3-row">
-		<div class="w3-col m6 w3-center w3-padding-large" style="width: 50%;background-color: #F0E9E7">
-			<h3 style="color: #8bc34a"><b>Perdiste tu mascota?</b></h3>
-			<a href="ir-a-formulario"> Haz click aca y llena un breve formulario</a>
+<div class="bgimg-1 w3-display-container" id="home">
+	<div class="w3-display-middle w3-row home-botones-container noselect" >
+		<div class="homeBotonBox w3-col">
+			<span>Perdiste tu mascota?</span>
 		</div>
-		<div class="w3-col m6 w3-center w3-padding-large" style="width: 50%;background-color: #F0E9E7">
-			<h3 style=" color: #00bcd4"><b>Encontraste una mascota perdida?</b></h3>
-			<a href="#"> haz click aca y llena un breve formulario</a>
+		<div class="homeBotonBox w3-col">
+			<span>Encontraste una mascota perdida?</span>
 		</div>
-	</div>
-
-
-<!-- Container (Portfolio Section) -->
-<div class="w3-content w3-container w3-padding-64" id="portfolio">
-	<h3 class="w3-center">Reencuentros</h3>
-	<p class="w3-center"><em>Mas de 500 mascotas en su hogar gracias a Missing Pets</em></p><br>
-
-	<!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
-	<div class="w3-row-padding w3-center">
-		<div class="w3-col m3">
-			<img src="../../img/logoWallpaper.jpeg" style="width:100%"  class="w3-hover-opacity" alt="The mist over the mountains">
+		<div class="homeBotonBox w3-col">
+			<span>Buscar a tu mascota</span>
 		</div>
 
-		<div class="w3-col m3">
-			<img src="/w3images/p2.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Coffee beans">
-		</div>
-
-		<div class="w3-col m3">
-			<img src="/w3images/p3.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Bear closeup">
-		</div>
-
-		<div class="w3-col m3">
-			<img src="/w3images/p4.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Quiet ocean">
-		</div>
-	</div>
-
-	<div class="w3-row-padding w3-center w3-section">
-		<div class="w3-col m3">
-			<img src="/w3images/p5.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="The mist">
-		</div>
-
-		<div class="w3-col m3">
-			<img src="/w3images/p6.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="My beloved typewriter">
-		</div>
-
-		<div class="w3-col m3">
-			<img src="/w3images/p7.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Empty ghost train">
-		</div>
-
-		<div class="w3-col m3">
-			<img src="/w3images/p8.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Sailing">
-		</div>
 	</div>
 </div>
 
@@ -157,22 +103,6 @@
 		<p id="caption" class="w3-opacity w3-large"></p>
 	</div>
 </div>
-
-
-
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
-	<a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-	<div class="w3-xlarge w3-section">
-		<i class="fa fa-facebook-official w3-hover-opacity"></i>
-		<i class="fa fa-instagram w3-hover-opacity"></i>
-		<i class="fa fa-snapchat w3-hover-opacity"></i>
-		<i class="fa fa-pinterest-p w3-hover-opacity"></i>
-		<i class="fa fa-twitter w3-hover-opacity"></i>
-		<i class="fa fa-linkedin w3-hover-opacity"></i>
-	</div>
-	<p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-</footer>
 
 <script>
 	// Modal Image Gallery

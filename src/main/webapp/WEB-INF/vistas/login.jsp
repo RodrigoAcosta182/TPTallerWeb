@@ -10,6 +10,7 @@
 	    <link href="css/estilos.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 	body,h1 {font-family: "Raleway", sans-serif}
 	body, html {height: 100%}
@@ -26,8 +27,8 @@
 	<div class="w3-display-topleft w3-padding-large w3-xlarge">
 		Missing Pets
 	</div>
-	<div class="w3-display-middle">
-		<div class="w3-jumbo w3-animate-top ">
+	<div class="w3-display-left">
+		<div class="w3-jumbo w3-animate-top">
 			<div class="loginbox w3-text-black">
 				<div class="titulo-login">Ingresar al sistema</div>
 				<%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
@@ -41,8 +42,7 @@
 					<form:input cssClass="w3-input" path="password" type="password" id="password"/>
 					<%--Bloque que es visible si el elemento error no esta vacio	--%>
 					<c:if test="${not empty error}">
-						<h4><span>${error}</span></h4>
-						<br>
+						<span class="login-mensaje-error">${error}</span>
 					</c:if>
 					<div class="w3-row l12 w3-center btn-login">
 						<button class="w3-button w3-deep-purple" Type="Submit"/>Ingresar al sistema</button>
@@ -51,9 +51,19 @@
 				<hr class="colorgraph">
 				<div class="w3-row l12 w3-center">
 					<span>Todavia no tenes una cuenta?</span>
-					<a href="ir-a-registrarme" class="login-registro-usuario">Registrarme</a>
+					<a href="ir-a-registrarme" class="login-registro-usuario">Registrate</a>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="w3-display-right login-info-lista noselect">
+		<div class="w3-jumbo w3-animate-top">
+
+		<h1>Un nuevo concepto de b&uacute;squeda</h1>
+		<h3><i class="fa fa-check-circle login-icono-tilde"></i>Es simple, f&aacute;cil de usar</h3>
+		<h3><i class="fa fa-check-circle login-icono-tilde"></i>Encontr&aacute; a tu mascota de la manera m&aacute;s rapida</h3>
+		<h3><i class="fa fa-check-circle login-icono-tilde"></i>M&aacute;s de 5000 mascotas volvieron a su hogar y m&aacute;s de 7000 fueron adoptadas</h3>
+		<h3><i class="fa fa-check-circle login-icono-tilde"></i>Miles de descuentos en servicios para tu mascota</h3>
 		</div>
 	</div>
 	<div class="w3-display-bottomleft w3-padding-large">
