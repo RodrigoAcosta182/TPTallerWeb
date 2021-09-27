@@ -4,8 +4,10 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import java.util.List;
 
 // implelemtacion del repositorio de usuarios, la anotacion @Repository indica a Spring que esta clase es un componente que debe
 // ser manejado por el framework, debe indicarse en applicationContext que busque en el paquete ar.edu.unlam.tallerweb1.dao
@@ -50,6 +52,28 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 	@Override
 	public void modificar(Usuario usuario) {
 		sessionFactory.getCurrentSession().update(usuario);
+	}
+
+	@Override
+	public List<Usuario> buscarUsuarioPorRol(String rol) {
+		final Session session = sessionFactory.getCurrentSession();
+//		final Query namedQuery = session.getNamedQuery("userByRol");
+//		namedQuery.setParameter("rol", rol);
+//		return namedQuery.list();
+		return session.createCriteria(Usuario.class)
+				.add(Restrictions.eq("rol", rol))
+				.list();
+	}
+
+	@Override
+	public List<Usuario> buscarUsuarioConMailLikePorRol(String mail) {
+		final Session session = sessionFactory.getCurrentSession();
+//		final Query namedQuery = session.getNamedQuery("userByRol");
+//		namedQuery.setParameter("rol", rol);
+//		return namedQuery.list();
+		return session.createCriteria(Usuario.class)
+				.add(Restrictions.like("email", "%"+mail+"%"))
+				.list();
 	}
 
 }
