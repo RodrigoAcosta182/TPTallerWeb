@@ -50,7 +50,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 
         List<Usuario> usuarios = whenBuscoUsuarioConMailDe(ADMIN);
 
-        thenEncuentro(usuarios, 0);
+        thenEncuentro(usuarios, 2);
     }
 
     private List<Usuario> whenBuscoUsuarioConMailDe(String mail){
