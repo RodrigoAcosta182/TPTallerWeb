@@ -86,7 +86,7 @@
         <a class="homeBotonBox w3-col" href="ir-a-registrar-mascota-perdida">
             <span>Perdiste tu mascota?</span>
         </a>
-        <a class="homeBotonBox w3-col">
+        <a class="homeBotonBox w3-col" href="ir-a-mascota-encontrada">
             <span>Encontraste una mascota perdida?</span>
         </a>
         <a class="homeBotonBox w3-col">
