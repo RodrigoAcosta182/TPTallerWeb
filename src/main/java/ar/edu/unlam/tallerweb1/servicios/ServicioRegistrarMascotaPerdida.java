@@ -6,5 +6,7 @@ import java.util.Date;
 
 public interface ServicioRegistrarMascotaPerdida {
 
+//    Mascota guardarMascotaPerdida();
+
     Mascota registrarMascotaPerdida(String nombre, String tipo, Integer edad, String raza, String detalle, String color, String tamanio, Date fechaPerdido);
 }
