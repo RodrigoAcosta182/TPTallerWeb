@@ -39,7 +39,7 @@
                     <a href="home" style="float: right; cursor: pointer;text-decoration: none">X</a>
                 </div>
                 <div class="titulo-registrar-mascota-perdida">
-                    <span>Datos de la mascota perdida</span>
+                    <span style="font-size: 22px">Datos de la mascota perdida</span>
                 </div>
                 <%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
                 <%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
@@ -47,22 +47,49 @@
                 <form:form cssClass="w3-container" action="registrarMascota" method="POST"
                            modelAttribute="datosMascota">
                     <%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
-                    <label style="float: left; margin-top: 6px">Tipo</label>
-                    <form:input cssClass="w3-input" path="tipo" type="text" id="tipo"/>
-                    <label style="float: left; margin-top: 6px">Nombre</label>
-                    <form:input cssClass="w3-input" path="nombre" type="text" id="nombre"/>
-                    <label style="float: left; margin-top: 6px">Edad</label>
-                    <form:input cssClass="w3-input" path="edad" type="number" id="edad"/>
-                    <label style="float: left; margin-top: 6px">Raza</label>
-                    <form:input cssClass="w3-input" path="raza" type="text" id="raza"/>
-                    <label style="float: left; margin-top: 6px">Detalles</label>
-                    <form:input cssClass="w3-input" path="detalle" type="text" id="detalle"/>
-                    <label style="float: left">Color</label>
-                    <form:input cssClass="w3-input" path="color" type="text" id="color"/>
-                    <label style="float: left">Tama&ntilde;o</label>
-                    <form:input cssClass="w3-input" path="tamanio" type="text" id="tamanio"/>
-                    <label style="float: left">Fecha Perdido</label>
-                    <form:input cssClass="w3-input" path="fechaPerdido" type="text" id="fechaPerdido"/>
+                    <div class="w3-row">
+                        <div class="w3-col l5">
+                            <label style="float: left; margin-top: 6px">Nombre</label>
+                            <form:input cssClass="w3-input" path="nombre" type="text" id="nombre"/>
+                        </div>
+                        <div class="w3-col l5" style="margin-left: 18px">
+                            <label style="float: left; margin-top: 6px">Tipo</label>
+                            <form:input cssClass="w3-input" path="tipo" type="text" id="tipo"/>
+                        </div>
+                    </div>
+
+                    <div class="w3-row">
+                        <div class="w3-col l5">
+                            <label style="float: left; margin-top: 6px">Edad</label>
+                            <form:input cssClass="w3-input" path="edad" type="number" id="edad"/>
+                        </div>
+                        <div class="w3-col l5" style="margin-left: 18px">
+                            <label style="float: left; margin-top: 6px">Raza</label>
+                            <form:input cssClass="w3-input" path="raza" type="text" id="raza"/>
+                        </div>
+                    </div>
+
+                    <div class="w3-row">
+                        <div class="w3-col l5">
+                            <label style="float: left; margin-top: 6px">Detalles</label>
+                            <form:input cssClass="w3-input" path="detalle" type="text" id="detalle"/>
+                        </div>
+                        <div class="w3-col l5" style="margin-left: 18px">
+                            <label style="float: left ; margin-top: 6px">Color</label>
+                            <form:input cssClass="w3-input" path="color" type="text" id="color"/>
+                        </div>
+                    </div>
+
+                    <div class="w3-row">
+                        <div class="w3-col l5">
+                            <label style="float: left">Tama&ntilde;o</label>
+                            <form:input cssClass="w3-input" path="tamanio" type="text" id="tamanio"/>
+                        </div>
+                        <div class="w3-col l5" style="margin-left: 18px">
+                            <label style="float: left" >Fecha Perdido</label>
+                            <form:input cssClass="w3-input" path="fechaPerdido" type="text" id="fechaPerdido"/>
+                        </div>
+                    </div>
 
                     <%--Bloque que es visible si el elemento error no esta vacio	--%>
                     <c:if test="${not empty error}">
