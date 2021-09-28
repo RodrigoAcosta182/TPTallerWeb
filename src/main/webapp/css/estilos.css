@@ -40,6 +40,8 @@
 .btn-login{
     padding-top: 30px ;
 }
+s
+
 .login-registro-usuario{
     color: black;
 }
@@ -48,7 +50,12 @@
 }
 
 .login-info-lista{
-    margin-right: 140px;
+    margin-right: 300px;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
 }
 
 .homeBotonBox{
@@ -107,7 +114,7 @@
     font-weight: bold;
 }
 
-@media (max-width: 1378px) {
+@media (max-width: 1578px) {
     .login-info-lista{
         margin-right: 60px;
     }

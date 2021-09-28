@@ -47,7 +47,7 @@
                 <form:form cssClass="w3-container" action="registrarMascota" method="POST"
                            modelAttribute="datosMascota">
                     <%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
-                    <div class="w3-row">
+                    <div class="w3-row flex-center">
                         <div class="w3-col l5">
                             <label style="float: left; margin-top: 6px">Nombre</label>
                             <form:input cssClass="w3-input" path="nombre" type="text" id="nombre"/>
@@ -58,7 +58,7 @@
                         </div>
                     </div>
 
-                    <div class="w3-row">
+                    <div class="w3-row flex-center">
                         <div class="w3-col l5">
                             <label style="float: left; margin-top: 6px">Edad</label>
                             <form:input cssClass="w3-input" path="edad" type="number" id="edad"/>
@@ -69,7 +69,7 @@
                         </div>
                     </div>
 
-                    <div class="w3-row">
+                    <div class="w3-row flex-center">
                         <div class="w3-col l5">
                             <label style="float: left; margin-top: 6px">Detalles</label>
                             <form:input cssClass="w3-input" path="detalle" type="text" id="detalle"/>
@@ -80,7 +80,7 @@
                         </div>
                     </div>
 
-                    <div class="w3-row">
+                    <div class="w3-row flex-center">
                         <div class="w3-col l5">
                             <label style="float: left">Tama&ntilde;o</label>
                             <form:input cssClass="w3-input" path="tamanio" type="text" id="tamanio"/>
