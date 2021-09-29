@@ -35,6 +35,6 @@ public class ServicioRegistrarMascotaPerdidaImpl implements ServicioRegistrarMas
         newPet.setFechaPerdido(fechaPerdido);
 
 
-        return null;
+        return newPet;
     }
 }
