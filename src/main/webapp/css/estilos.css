@@ -1,6 +1,7 @@
 /*theme*/
 :root{
     --main-bg-pink: linear-gradient(to right top, #051937, #3a2e5d, #75407b, #b6528e, #f66793);
+   --main-bg-green: linear-gradient(155deg, #ff9348 0, #ff8649 12.5%, #ff7447 25%, #ff5d43 37.5%, #f23c3c 50%, #e30037 62.5%, #d80037 75%, #cf003a 87.5%, #c90041 100%);
 }
 
 *{
@@ -78,8 +79,8 @@ s
 
 .homeBotonBox:hover{
     cursor: pointer;
-    background: linear-gradient(to right top, #051937, #3a2e5d, #75407b, #b6528e, #f66793);
-    color: white;
+    background: var(--main-bg-green);
+    color: black;
     font-weight: bold;
 }
 

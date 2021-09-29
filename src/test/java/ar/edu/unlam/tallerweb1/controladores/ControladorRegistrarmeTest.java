@@ -68,4 +68,3 @@ public class ControladorRegistrarmeTest {
         assertThat(mav.getModel().get("error")).isEqualTo(error);
     }
 }
-//subir

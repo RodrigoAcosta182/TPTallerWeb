@@ -4,6 +4,9 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistrarMascotaPerdida;
 import org.junit.Test;
 import static  org.assertj.core.api.Assertions.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 
 import org.springframework.web.servlet.ModelAndView;
@@ -23,16 +26,25 @@ public class ControladorRegistrarMascotaTest {
     }
 
     @Test
-    public void registroMascotaFallido(){
-        givenQueLaMascotaNoExiste(MASCOTA);
-        ModelAndView mav = whenRegistroLaMascota(MASCOTA);
-        thenElRegistroDeMascotaEsFallido(mav);
-    }
-
-    @Test
     public void irARegistrarMascotaPerdida(){
         ModelAndView mav = whenIrARegistroMascotaPerdida();
         thenIrARegistrarMascotaPerdida(mav);
+    }
+
+    @Test
+    public void alRegistrarUnaMascotaPerdidaDaError() throws Exception{
+        givenQueLaMascotaExiste();
+        ModelAndView mav = whenRegistroLaMascota(MASCOTA);
+        thenElRegistroDeMascotaFallaConError(mav, "Error al registrar mascota");
+    }
+
+    private void thenElRegistroDeMascotaFallaConError(ModelAndView mav, String mensaje) {
+        assertThat(mav.getViewName()).isEqualTo("form-mascota-perdida");
+    }
+
+
+    private void givenQueLaMascotaExiste() {
+        doThrow(Exception.class).when(servicioRegistrarMascotaPerdida).registrarMascotaPerdida(any(),any(),any(),any(),any(),any(),any(),any());
     }
 
     private void thenIrARegistrarMascotaPerdida(ModelAndView mav) {
@@ -55,10 +67,7 @@ public class ControladorRegistrarMascotaTest {
         assertThat(mav.getViewName()).isEqualTo("home");
         assertThat(mav.getModel().get("msg")).isEqualTo("Mascota Registrada Exitosamente");
     }
-    private void thenElRegistroDeMascotaEsFallido(ModelAndView mav) {
-        assertThat(mav.getViewName()).isEqualTo("home");
-//        assertThat(mav.getModel().get("msg")).isEqualTo("No se pudo registrar");
-    }
+
 
 
 }

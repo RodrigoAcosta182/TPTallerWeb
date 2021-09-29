@@ -19,8 +19,9 @@
     }
   
     .imagen-fondo{
-        background-image: url('https://www.happyhousesitters.com.au/blog/wp-content/uploads/2021/07/sepax3-1-1140x641.png');
+        /*background-image: url('https://www.happyhousesitters.com.au/blog/wp-content/uploads/2021/07/sepax3-1-1140x641.png');*/
         background-size: cover;
+        background: linear-gradient(to right top, #051937, #3a2e5d, #75407b, #b6528e, #f66793);
     }
 
     /* Create a Parallax Effect */

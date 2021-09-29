@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class ControladorRegistrarMascota {
 
     private ServicioRegistrarMascotaPerdida servicioRegistrarMascotaPerdida;
-
     @Autowired
     public ControladorRegistrarMascota(ServicioRegistrarMascotaPerdida servicioRegistrarMascotaPerdida){
         this.servicioRegistrarMascotaPerdida = servicioRegistrarMascotaPerdida;
@@ -30,6 +29,7 @@ public class ControladorRegistrarMascota {
     }
     @RequestMapping(method = RequestMethod.GET,path = "/registrarMascota")
     public ModelAndView registrarMascota(DatosRegistroMascota mascota) {
+        servicioRegistrarMascotaPerdida.registrarMascotaPerdida(mascota.getNombre(), mascota.getTipo(), mascota.getEdad(), mascota.getRaza(), mascota.getDetalle(), mascota.getColor(), mascota.getTamanio(),mascota.getFechaPerdido());
         ModelMap model = new ModelMap();
         model.put("msg", "Mascota Registrada Exitosamente");
         return new ModelAndView("home",model);

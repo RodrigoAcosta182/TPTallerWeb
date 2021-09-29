@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.util.Date;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
 public class ServicioRegistroMascotaPerdidaTest {
@@ -18,7 +19,12 @@ public class ServicioRegistroMascotaPerdidaTest {
     @Test
     public void queElFormularioSeGuardeExitosamente() throws Exception {
         Mascota mascota = whenLlenoElFormularioDeMascotaPerdida();
+        thenElformularioSeGuardoCorrectamente(mascota);
 
+    }
+
+    private void thenElformularioSeGuardoCorrectamente(Mascota mascota) {
+        assertThat(mascota).isNull();
     }
 
     private Mascota whenLlenoElFormularioDeMascotaPerdida() throws Exception{
