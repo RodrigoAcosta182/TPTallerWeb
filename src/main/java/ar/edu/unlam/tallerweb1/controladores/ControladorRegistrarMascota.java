@@ -28,9 +28,15 @@ public class ControladorRegistrarMascota {
         return new ModelAndView("form-mascota-perdida",model);
     }
     @RequestMapping(method = RequestMethod.GET,path = "/registrarMascota")
-    public ModelAndView registrarMascota(DatosRegistroMascota mascota) {
-        servicioRegistrarMascotaPerdida.registrarMascotaPerdida(mascota.getNombre(), mascota.getTipo(), mascota.getEdad(), mascota.getRaza(), mascota.getDetalle(), mascota.getColor(), mascota.getTamanio(),mascota.getFechaPerdido());
+    public ModelAndView registrarMascota(DatosRegistroMascota mascota) throws Exception{
         ModelMap model = new ModelMap();
+        try {
+        servicioRegistrarMascotaPerdida.registrarMascotaPerdida(mascota.getNombre(), mascota.getTipo(), mascota.getEdad(),
+                mascota.getRaza(), mascota.getDetalle(), mascota.getColor(), mascota.getTamanio(),mascota.getFechaPerdido());
+        }catch (Exception e){
+            model.put("error","Fallo el registro de la mascota");
+            return new ModelAndView("home",model);
+        }
         model.put("msg", "Mascota Registrada Exitosamente");
         return new ModelAndView("home",model);
     }

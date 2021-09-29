@@ -27,4 +27,17 @@ public class RepositorioMascotaPerdidaImpl implements RepositorioMascotaPerdida 
                 .add(Restrictions.eq("tipo", tipo))
                 .list();
     }
+
+    @Override
+    public void guardarMascota(Mascota mascota) {
+        sessionFactory.getCurrentSession().save(mascota);
+    }
+
+    @Override
+    public List<Mascota> buscarPorId(Long id) {
+        final Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(Mascota.class)
+                .add(Restrictions.eq("id", id))
+                .list();
+    }
 }

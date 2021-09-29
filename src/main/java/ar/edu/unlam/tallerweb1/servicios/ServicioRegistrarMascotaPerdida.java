@@ -7,5 +7,7 @@ import java.util.Date;
 public interface ServicioRegistrarMascotaPerdida {
 
 
-    Mascota registrarMascotaPerdida(String nombre, String tipo, Integer edad, String raza, String detalle, String color, String tamanio, Date fechaPerdido);
+    Mascota registrarMascotaPerdida(String nombre, String tipo, Integer edad,
+                                    String raza, String detalle, String color,
+                                    String tamanio, Date fechaPerdido) throws Exception;
 }

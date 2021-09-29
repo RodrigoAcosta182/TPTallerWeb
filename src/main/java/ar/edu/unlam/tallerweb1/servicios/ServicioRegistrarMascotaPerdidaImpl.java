@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+
 @Service("servicioRegistrarMascotaPerdida")
 @Transactional
 public class ServicioRegistrarMascotaPerdidaImpl implements ServicioRegistrarMascotaPerdida {
@@ -17,13 +18,13 @@ public class ServicioRegistrarMascotaPerdidaImpl implements ServicioRegistrarMas
     private RepositorioMascotaPerdida repositorioMascotaPerdida;
 
     @Autowired
-    public ServicioRegistrarMascotaPerdidaImpl(RepositorioMascotaPerdida repositorioMascotaPerdida){
+    public ServicioRegistrarMascotaPerdidaImpl(RepositorioMascotaPerdida repositorioMascotaPerdida) {
         this.repositorioMascotaPerdida = repositorioMascotaPerdida;
     }
 
 
     @Override
-    public Mascota registrarMascotaPerdida(String nombre, String tipo, Integer edad, String raza, String detalle, String color, String tamanio, Date fechaPerdido) {
+    public Mascota registrarMascotaPerdida(String nombre, String tipo, Integer edad, String raza, String detalle, String color, String tamanio, Date fechaPerdido) throws Exception {
         Mascota newPet = new Mascota();
         newPet.setNombre(nombre);
         newPet.setTipo(tipo);
@@ -33,8 +34,6 @@ public class ServicioRegistrarMascotaPerdidaImpl implements ServicioRegistrarMas
         newPet.setColor(color);
         newPet.setTamanio(tamanio);
         newPet.setFechaPerdido(fechaPerdido);
-
-
-        return null;
+        return newPet;
     }
 }
