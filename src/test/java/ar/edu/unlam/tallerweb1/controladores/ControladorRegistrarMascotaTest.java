@@ -1,6 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import ar.edu.unlam.tallerweb1.servicios.ServicioRegistrarMascotaPerdida;
+import ar.edu.unlam.tallerweb1.servicios.ServicioRegistrarMascota;
 import org.junit.Test;
 import static  org.assertj.core.api.Assertions.*;
 import static org.mockito.Matchers.any;
@@ -11,8 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class ControladorRegistrarMascotaTest {
 
-    private ServicioRegistrarMascotaPerdida servicioRegistrarMascotaPerdida = mock(ServicioRegistrarMascotaPerdida.class);
-    private ControladorMascotaPerdida controladorRegistrarMascota = new ControladorMascotaPerdida(servicioRegistrarMascotaPerdida);
+    private ServicioRegistrarMascota servicioRegistrarMascota = mock(ServicioRegistrarMascota.class);
+    private ControladorRegistrarMascota controladorRegistrarMascota = new ControladorRegistrarMascota(servicioRegistrarMascota);
 
     private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota();
 
@@ -37,7 +37,7 @@ public class ControladorRegistrarMascotaTest {
     }
 
     private void givenQueLaMascotaExiste() throws Exception {
-       doThrow(Exception.class).when(servicioRegistrarMascotaPerdida).registrarMascotaPerdida(any(),any(),any(),any(),any(),any(),any(),any());
+       doThrow(Exception.class).when(servicioRegistrarMascota).registrarMascotaPerdida(any(),any(),any(),any(),any(),any(),any(),any());
     }
     private void givenQueLaMascotaNoExiste(DatosRegistroMascota mascota) {
     }
@@ -51,7 +51,7 @@ public class ControladorRegistrarMascotaTest {
     }
 
     private void thenIrARegistrarMascotaPerdida(ModelAndView mav) {
-        assertThat(mav.getViewName()).isEqualTo("form-mascota-perdida");
+        assertThat(mav.getViewName()).isEqualTo("form-registro-mascota");
     }
     private void thenElRegistroDeMascotaEsExitoso(ModelAndView mav) {
         assertThat(mav.getViewName()).isEqualTo("home");

@@ -4,7 +4,7 @@ import ar.edu.unlam.tallerweb1.modelo.Mascota;
 
 import java.util.Date;
 
-public interface ServicioRegistrarMascotaPerdida {
+public interface ServicioRegistrarMascota {
 
 
     Mascota registrarMascotaPerdida(String nombre, String tipo, Integer edad,

@@ -12,13 +12,17 @@ public class DatosRegistroMascota {
     private String tamanio;
     private Date fechaPerdido;
     private Date fechaEncontrado;
+    private String localidad;
+    private String provincia;
     private String imagen;
+    private String estado;
 
 
     public DatosRegistroMascota(){}
 
     public DatosRegistroMascota(String tipo, String nombre, Integer edad, String raza, String detalle, String color,
-                                String tamanio, Date fechaPerdido, Date fechaEncontrado, String imagen) {
+                                String tamanio, Date fechaPerdido, Date fechaEncontrado, String localidad,
+                                String provincia, String imagen, String estado) {
         this.tipo = tipo;
         this.nombre = nombre;
         this.edad = edad;
@@ -28,7 +32,10 @@ public class DatosRegistroMascota {
         this.tamanio = tamanio;
         this.fechaPerdido = fechaPerdido;
         this.fechaEncontrado = fechaEncontrado;
+        this.localidad = localidad;
+        this.provincia = provincia;
         this.imagen = imagen;
+        this.estado = estado;
     }
 
     public String getTipo() {
@@ -103,11 +110,35 @@ public class DatosRegistroMascota {
         this.fechaEncontrado = fechaEncontrado;
     }
 
+    public String getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
+
+    public String getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
+
     public String getImagen() {
         return imagen;
     }
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

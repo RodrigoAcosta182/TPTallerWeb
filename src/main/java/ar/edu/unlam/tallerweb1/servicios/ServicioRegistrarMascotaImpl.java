@@ -1,10 +1,8 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import ar.edu.unlam.tallerweb1.modelo.Cuenta;
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioMascotaPerdida;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistrarMascota;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,13 +11,13 @@ import java.util.Date;
 
 @Service("servicioRegistrarMascotaPerdida")
 @Transactional
-public class ServicioRegistrarMascotaPerdidaImpl implements ServicioRegistrarMascotaPerdida {
+public class ServicioRegistrarMascotaImpl implements ServicioRegistrarMascota {
 
-    private RepositorioMascotaPerdida repositorioMascotaPerdida;
+    private RepositorioRegistrarMascota repositorioRegistrarMascota;
 
     @Autowired
-    public ServicioRegistrarMascotaPerdidaImpl(RepositorioMascotaPerdida repositorioMascotaPerdida) {
-        this.repositorioMascotaPerdida = repositorioMascotaPerdida;
+    public ServicioRegistrarMascotaImpl(RepositorioRegistrarMascota repositorioRegistrarMascota) {
+        this.repositorioRegistrarMascota = repositorioRegistrarMascota;
     }
 
 
@@ -36,7 +34,7 @@ public class ServicioRegistrarMascotaPerdidaImpl implements ServicioRegistrarMas
         newPet.setFechaPerdido(fechaPerdido);
         Usuario usuario = new Usuario();
         newPet.setUsuario(usuario);
-        repositorioMascotaPerdida.guardarMascota(newPet);
+        repositorioRegistrarMascota.guardarMascota(newPet);
         return newPet;
     }
 }
