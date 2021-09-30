@@ -18,8 +18,9 @@ public class Mascota {
     private String tamanio;
     private Date fechaPerdido;
     private Date fechaEncontrado;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Usuario usuario;
 
-//    @OneToOne(cascade = CascadeType.ALL)
 
 
     public Long getId() {
@@ -100,6 +101,14 @@ public class Mascota {
 
     public void setFechaEncontrado(Date fechaEncontrado) {
         this.fechaEncontrado = fechaEncontrado;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 }
 

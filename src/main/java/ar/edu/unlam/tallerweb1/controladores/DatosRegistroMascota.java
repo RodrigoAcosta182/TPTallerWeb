@@ -12,12 +12,13 @@ public class DatosRegistroMascota {
     private String tamanio;
     private Date fechaPerdido;
     private Date fechaEncontrado;
+    private String imagen;
 
 
     public DatosRegistroMascota(){}
 
     public DatosRegistroMascota(String tipo, String nombre, Integer edad, String raza, String detalle, String color,
-                                String tamanio, Date fechaPerdido, Date fechaEncontrado) {
+                                String tamanio, Date fechaPerdido, Date fechaEncontrado, String imagen) {
         this.tipo = tipo;
         this.nombre = nombre;
         this.edad = edad;
@@ -27,6 +28,7 @@ public class DatosRegistroMascota {
         this.tamanio = tamanio;
         this.fechaPerdido = fechaPerdido;
         this.fechaEncontrado = fechaEncontrado;
+        this.imagen = imagen;
     }
 
     public String getTipo() {
@@ -99,5 +101,13 @@ public class DatosRegistroMascota {
 
     public void setFechaEncontrado(Date fechaEncontrado) {
         this.fechaEncontrado = fechaEncontrado;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

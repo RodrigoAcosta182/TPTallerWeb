@@ -12,11 +12,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-public class ControladorRegistrarMascota {
+public class ControladorMascotaPerdida {
 
     private ServicioRegistrarMascotaPerdida servicioRegistrarMascotaPerdida;
+
     @Autowired
-    public ControladorRegistrarMascota(ServicioRegistrarMascotaPerdida servicioRegistrarMascotaPerdida){
+    public ControladorMascotaPerdida(ServicioRegistrarMascotaPerdida servicioRegistrarMascotaPerdida){
         this.servicioRegistrarMascotaPerdida = servicioRegistrarMascotaPerdida;
     }
 
@@ -27,7 +28,7 @@ public class ControladorRegistrarMascota {
         model.put("datosMascota",datosMascota);
         return new ModelAndView("form-mascota-perdida",model);
     }
-    @RequestMapping(method = RequestMethod.GET,path = "/registrarMascota")
+    @RequestMapping(method = RequestMethod.POST,path = "/registrarMascota")
     public ModelAndView registrarMascota(DatosRegistroMascota mascota) throws Exception{
         ModelMap model = new ModelMap();
         try {
