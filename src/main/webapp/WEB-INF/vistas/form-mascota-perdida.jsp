@@ -44,17 +44,21 @@
                 <%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
                 <%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
                 <%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto--%>
-                <form:form cssClass="w3-container" action="registrarMascota" method="POST"
-                           modelAttribute="datosMascota">
+                <form:form cssClass="w3-container" action="registrarMascota" method="POST" modelAttribute="datosMascota">
                     <%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
                     <div class="w3-row flex-center">
                         <div class="w3-col l5">
                             <label style="float: left; margin-top: 6px">Nombre</label>
                             <form:input cssClass="w3-input" path="nombre" type="text" id="nombre"/>
                         </div>
-                        <div class="w3-col l5" style="margin-left: 18px">
+                        <div class="w3-half w3-padding">
                             <label style="float: left; margin-top: 6px">Tipo</label>
-                            <form:input cssClass="w3-input" path="tipo" type="text" id="tipo"/>
+                            <form:select path="tipo" cssClass="w3-select">
+                                <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
+                                <form:option value="perro">Perro</form:option>
+                                <form:option value="gato">Gato</form:option>
+                                <form:option value="otro">Otro</form:option>
+                            </form:select>
                         </div>
                     </div>
 
@@ -88,6 +92,14 @@
                         <div class="w3-col l5" style="margin-left: 18px">
                             <label style="float: left" >Fecha Perdido</label>
                             <form:input cssClass="w3-input" path="fechaPerdido" type="text" id="fechaPerdido"/>
+                        </div>
+                    </div>
+
+                    <!-- SEXTA FILA -->
+                    <div class="w3-row">
+                        <div class="w3-padding">
+                            <label style="float: left">Agregar Foto </label>
+                            <form:input path="imagen" name="imagen" id="imagen" cssClass="w3-input" type="file"/>
                         </div>
                     </div>
 

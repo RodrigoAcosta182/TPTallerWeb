@@ -1,11 +1,9 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistrarMascotaPerdida;
 import org.junit.Test;
 import static  org.assertj.core.api.Assertions.*;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 
@@ -14,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ControladorRegistrarMascotaTest {
 
     private ServicioRegistrarMascotaPerdida servicioRegistrarMascotaPerdida = mock(ServicioRegistrarMascotaPerdida.class);
-    private ControladorRegistrarMascota controladorRegistrarMascota = new ControladorRegistrarMascota(servicioRegistrarMascotaPerdida);
+    private ControladorMascotaPerdida controladorRegistrarMascota = new ControladorMascotaPerdida(servicioRegistrarMascotaPerdida);
 
     private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota();
 

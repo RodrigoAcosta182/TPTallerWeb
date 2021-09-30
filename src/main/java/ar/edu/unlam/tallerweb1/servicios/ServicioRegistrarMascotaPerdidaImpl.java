@@ -34,6 +34,9 @@ public class ServicioRegistrarMascotaPerdidaImpl implements ServicioRegistrarMas
         newPet.setColor(color);
         newPet.setTamanio(tamanio);
         newPet.setFechaPerdido(fechaPerdido);
+        Usuario usuario = new Usuario();
+        newPet.setUsuario(usuario);
+        repositorioMascotaPerdida.guardarMascota(newPet);
         return newPet;
     }
 }
