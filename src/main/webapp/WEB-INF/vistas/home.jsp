@@ -7,57 +7,10 @@
 <link href="css/estilos.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-    body, h1, h2, h3, h4, h5, h6 {
-        font-family: "Lato", sans-serif;
-    }
-
-    body, html {
-        height: 100%;
-        color: #777;
-        line-height: 1.8;
-    }
-  
-    .imagen-fondo{
-        /*background-image: url('https://www.happyhousesitters.com.au/blog/wp-content/uploads/2021/07/sepax3-1-1140x641.png');*/
-        background-size: cover;
-        background: linear-gradient(to right top, #051937, #3a2e5d, #75407b, #b6528e, #f66793);
-    }
-
-    /* Create a Parallax Effect */
-    .bgimg-1{
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    /* First image (Logo. Full height) */
-    .bgimg-1 {
-        min-height: 100%;
-    }
-  
-    .w3-wide {
-        letter-spacing: 10px;
-    }
-
-    .w3-hover-opacity {
-        cursor: pointer;
-    }
-
-    /* Turn off parallax scrolling for tablets and phones */
-    @media only screen and (max-device-width: 1600px) {
-        .bgimg-1, .bgimg-2, .bgimg-3 {
-            background-attachment: scroll;
-            min-height: 400px;
-        }
-    }
-</style>
 <body class="imagen-fondo">
-
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
-    <div class="w3-bar" id="myNavbar">
+    <div class="w3-bar home-navegador" id="myNavbar">
         <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);"
            onclick="toggleFunction()" title="Toggle Navigation Menu">
             <i class="fa fa-bars"></i>
@@ -82,16 +35,16 @@
 </div>
 
 <!-- First Parallax Image with Logo Text -->
-<div class="bgimg-1 w3-display-container" id="home">
+<div class="bgimg-1 w3-display-container" style="height: 100%" id="home">
     <div class="w3-display-middle w3-row home-botones-container noselect">
-        <a class="homeBotonBox w3-col" href="ir-a-registrar-mascota-perdida">
-            <span>Perdiste tu mascota?</span>
-        </a>
-        <a class="homeBotonBox w3-col" href="ir-a-mascota-encontrada">
-            <span>Encontraste una mascota perdida?</span>
+        <a class="homeBotonBox w3-col" href="ir-a-registrar-mascota">
+            <span>Perdiste o encontraste una mascota?</span>
         </a>
         <a class="homeBotonBox w3-col">
             <span>Buscar a tu mascota</span>
+        </a>
+        <a class="homeBotonBox w3-col">
+            <span>Servicios</span>
         </a>
 
     </div>

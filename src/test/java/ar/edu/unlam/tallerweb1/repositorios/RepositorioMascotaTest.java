@@ -1,15 +1,12 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
-import ar.edu.unlam.tallerweb1.modelo.Cuenta;
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,7 +17,7 @@ public class RepositorioMascotaTest extends SpringTest {
     private static final String PERRO = "PERRO";
 
     @Autowired
-    private RepositorioMascotaPerdida repositorioMascotaPerdida;
+    private RepositorioRegistrarMascota repositorioRegistrarMascota;
 
     @Test
     @Rollback @Transactional
@@ -44,7 +41,7 @@ public class RepositorioMascotaTest extends SpringTest {
     }
 
     private List<Mascota> whenBuscoMascotaPorTipo(String tipo) {
-        return repositorioMascotaPerdida.buscarMascotaPorTipo(tipo);
+        return repositorioRegistrarMascota.buscarMascotaPorTipo(tipo);
     }
 
     private void thenEncuentro(List<Mascota> mascotas, int mascotasEncontradas) {

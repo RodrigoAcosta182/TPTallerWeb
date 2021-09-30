@@ -1,8 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioMascotaPerdida;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistrarMascota;
 import org.junit.Test;
 
 import java.util.Date;
@@ -16,9 +15,9 @@ public class ServicioRegistroMascotaPerdidaTest {
 
     private static final Long ID = Long.valueOf(4516);
     private static final String NOMBRE = "Cormier";
-    private RepositorioMascotaPerdida repositorioMascotaPerdida = mock(RepositorioMascotaPerdida.class);
+    private RepositorioRegistrarMascota repositorioRegistrarMascota = mock(RepositorioRegistrarMascota.class);
 
-    private ServicioRegistrarMascotaPerdida servicioRegistrarMascotaPerdida = new ServicioRegistrarMascotaPerdidaImpl(repositorioMascotaPerdida);
+    private ServicioRegistrarMascota servicioRegistrarMascota = new ServicioRegistrarMascotaImpl(repositorioRegistrarMascota);
 
     @Test
     public void queSeRegistreUnaMascotaExitosamente() throws Exception {
@@ -28,12 +27,12 @@ public class ServicioRegistroMascotaPerdidaTest {
     }
 
     private void givenMascotaNoExiste(Long id) {
-        when(repositorioMascotaPerdida.buscarPorId(id)).thenReturn(null);
+        when(repositorioRegistrarMascota.buscarPorId(id)).thenReturn(null);
     }
 
     private Mascota whenRegistroMascotaCon(Long id) throws Exception {
 
-        return servicioRegistrarMascotaPerdida.registrarMascotaPerdida("Cormier", "Raza", 7, "American Bully", "gordo y petizo"
+        return servicioRegistrarMascota.registrarMascotaPerdida("Cormier", "Raza", 7, "American Bully", "gordo y petizo"
                 , "Marron", "mediano", new Date()) ;
     }
 

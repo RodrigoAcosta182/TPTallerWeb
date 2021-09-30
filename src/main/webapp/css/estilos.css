@@ -31,6 +31,19 @@
     0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
 }
 
+.registroMascotaBox{
+    width: 600px;
+    text-align: center;
+    font-size: 18px;
+    background-color: white;
+    border-radius: 24px;
+    padding: 12px;
+    margin-left: 90px;
+    box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198),
+    0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035),
+    0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
+}
+
 .titulo-login, .titulo-registrar-mascota-perdida{
     text-align: center;
     margin-bottom: 20px;
@@ -57,6 +70,7 @@ s
 .flex-center{
     display: flex;
     justify-content: center;
+    gap: 36px;
 }
 
 .homeBotonBox{
@@ -113,6 +127,56 @@ s
     font-size: 14px;
     color: red;
     font-weight: bold;
+}
+
+.home-navegador{
+    color: white;
+}
+
+
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: "Lato", sans-serif;
+}
+
+body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
+}
+
+.imagen-fondo{
+    background-size: cover;
+    background: linear-gradient(to right top, #051937, #3a2e5d, #75407b, #b6528e, #f66793);
+    /*background-image: url('https://fotos.perfil.com/2021/03/08/trim/1280/720/0308perros-lindos-1138532.jpg');*/
+}
+
+/* Create a Parallax Effect */
+.bgimg-1{
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+    min-height: 100%;
+}
+
+.w3-wide {
+    letter-spacing: 10px;
+}
+
+.w3-hover-opacity {
+    cursor: pointer;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1600px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+        min-height: 400px;
+    }
 }
 
 @media (max-width: 1578px) {

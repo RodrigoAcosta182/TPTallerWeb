@@ -1,7 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -11,12 +10,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository("repositorioMascotaPerdida")
-public class RepositorioMascotaPerdidaImpl implements RepositorioMascotaPerdida {
+public class RepositorioRegistrarMascotaImpl implements RepositorioRegistrarMascota {
 
     private SessionFactory sessionFactory;
 
     @Autowired
-    public RepositorioMascotaPerdidaImpl(SessionFactory sessionFactory){
+    public RepositorioRegistrarMascotaImpl(SessionFactory sessionFactory){
         this.sessionFactory = sessionFactory;
     }
 
