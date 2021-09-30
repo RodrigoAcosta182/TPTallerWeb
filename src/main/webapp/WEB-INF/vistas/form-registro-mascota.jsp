@@ -48,8 +48,12 @@
                     <%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
                     <div class="w3-row flex-center">
                         <div class="w3-col l5">
-                            <label style="float: left">Nombre</label>
-                            <form:input cssClass="w3-input" path="nombre" type="text" id="nombre"/>
+                            <label style="float: left">Estado</label>
+                            <form:select path="estado" cssClass="w3-select" >
+                                <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
+                                <form:option value="perdido">Perdido</form:option>
+                                <form:option value="encontrado">Encontrado</form:option>
+                            </form:select>
                         </div>
                         <div class="w3-col l5">
                             <label style="float: left; margin-bottom: 2px">Tipo</label>
