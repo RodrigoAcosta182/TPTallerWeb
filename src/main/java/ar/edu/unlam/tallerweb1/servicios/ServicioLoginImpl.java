@@ -34,7 +34,7 @@ public class ServicioLoginImpl implements ServicioLogin {
 	@Override
 	public Usuario registrar(String email, String password) throws Exception {
 		Usuario buscado = repositorioUsuario.buscar(email);
-		if (buscado != null) 
+		if (buscado != null)
 			throw new Exception();
 		Usuario nuevo = new Usuario();
 		nuevo.setEmail(email);
