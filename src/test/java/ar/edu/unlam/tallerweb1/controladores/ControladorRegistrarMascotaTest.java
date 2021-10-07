@@ -15,6 +15,7 @@ public class ControladorRegistrarMascotaTest {
     private ServicioRegistrarMascota servicioRegistrarMascota = mock(ServicioRegistrarMascota.class);
     private ControladorRegistrarMascota controladorRegistrarMascota = new ControladorRegistrarMascota(servicioRegistrarMascota);
 
+
     private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota();
 
     @Test
@@ -38,7 +39,7 @@ public class ControladorRegistrarMascotaTest {
     }
 
     private void givenQueLaMascotaExiste() throws Exception {
-        doThrow(Exception.class).when(servicioRegistrarMascota).registrarMascotaPerdida(any(), any(), any(), any(), any(), any(), any(), any());
+        doThrow(Exception.class).when(servicioRegistrarMascota).registrarMascotaPerdida(MASCOTA);
     }
 
     private void givenQueLaMascotaNoExiste(DatosRegistroMascota mascota) {

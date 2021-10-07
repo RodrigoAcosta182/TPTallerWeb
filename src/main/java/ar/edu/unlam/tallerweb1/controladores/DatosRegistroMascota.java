@@ -4,38 +4,30 @@ import java.util.Date;
 
 public class DatosRegistroMascota {
     private String tipo;
-    private String nombre;
-    private Integer edad;
+//    private String nombre;
+    private String edad;
     private String raza;
+
     private String detalle;
+
     private String color;
     private String tamanio;
-    private Date fechaPerdido;
-    private Date fechaEncontrado;
-    private String localidad;
-    private String provincia;
-    private String imagen;
-    private String estado;
-
+    private Date fecha;
+//    private String localidad;
+//    private String provincia;
+//    private String imagen;
+//    private String estado;
 
     public DatosRegistroMascota(){}
 
-    public DatosRegistroMascota(String tipo, String nombre, Integer edad, String raza, String detalle, String color,
-                                String tamanio, Date fechaPerdido, Date fechaEncontrado, String localidad,
-                                String provincia, String imagen, String estado) {
+    public DatosRegistroMascota(String tipo, String edad, String raza, String detalle, String color, String tamanio, Date fecha) {
         this.tipo = tipo;
-        this.nombre = nombre;
         this.edad = edad;
         this.raza = raza;
         this.detalle = detalle;
         this.color = color;
         this.tamanio = tamanio;
-        this.fechaPerdido = fechaPerdido;
-        this.fechaEncontrado = fechaEncontrado;
-        this.localidad = localidad;
-        this.provincia = provincia;
-        this.imagen = imagen;
-        this.estado = estado;
+        this.fecha = fecha;
     }
 
     public String getTipo() {
@@ -46,19 +38,11 @@ public class DatosRegistroMascota {
         this.tipo = tipo;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Integer getEdad() {
+    public String getEdad() {
         return edad;
     }
 
-    public void setEdad(Integer edad) {
+    public void setEdad(String edad) {
         this.edad = edad;
     }
 
@@ -94,51 +78,11 @@ public class DatosRegistroMascota {
         this.tamanio = tamanio;
     }
 
-    public Date getFechaPerdido() {
-        return fechaPerdido;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setFechaPerdido(Date fechaPerdido) {
-        this.fechaPerdido = fechaPerdido;
-    }
-
-    public Date getFechaEncontrado() {
-        return fechaEncontrado;
-    }
-
-    public void setFechaEncontrado(Date fechaEncontrado) {
-        this.fechaEncontrado = fechaEncontrado;
-    }
-
-    public String getLocalidad() {
-        return localidad;
-    }
-
-    public void setLocalidad(String localidad) {
-        this.localidad = localidad;
-    }
-
-    public String getProvincia() {
-        return provincia;
-    }
-
-    public void setProvincia(String provincia) {
-        this.provincia = provincia;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 }

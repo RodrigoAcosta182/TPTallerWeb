@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistrarMascota;
 import org.junit.Test;
@@ -14,9 +15,9 @@ import static org.mockito.Mockito.*;
 public class ServicioRegistroMascotaPerdidaTest {
 
     private static final Long ID = Long.valueOf(4516);
-    private static final String NOMBRE = "Cormier";
+    private static final String RAZA = "Pekines";
     private RepositorioRegistrarMascota repositorioRegistrarMascota = mock(RepositorioRegistrarMascota.class);
-
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Perro","5","Pekines","Le falta una pata","Blanco","Chico", new Date());
     private ServicioRegistrarMascota servicioRegistrarMascota = new ServicioRegistrarMascotaImpl(repositorioRegistrarMascota);
 
     @Test
@@ -32,13 +33,12 @@ public class ServicioRegistroMascotaPerdidaTest {
 
     private Mascota whenRegistroMascotaCon(Long id) throws Exception {
 
-        return servicioRegistrarMascota.registrarMascotaPerdida("Cormier", "Raza", 7, "American Bully", "gordo y petizo"
-                , "Marron", "mediano", new Date()) ;
+        return servicioRegistrarMascota.registrarMascotaPerdida(MASCOTA) ;
     }
 
     private void thenRegistroExitoso(Mascota mascota) {
         assertThat(mascota).isNotNull();
-        assertThat(mascota.getNombre()).isEqualTo(NOMBRE);
+        assertThat(mascota.getRaza()).isEqualTo(RAZA);
         //verify(repositorioMascotaPerdida, times(1)).guardarMascota(any()); falla: dice wanted but not invoked
     }
 

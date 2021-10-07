@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistrarMascota;
@@ -22,19 +23,18 @@ public class ServicioRegistrarMascotaImpl implements ServicioRegistrarMascota {
 
 
     @Override
-    public Mascota registrarMascotaPerdida(String nombre, String tipo, Integer edad, String raza, String detalle, String color, String tamanio, Date fechaPerdido) throws Exception {
-        Mascota newPet = new Mascota();
-        newPet.setNombre(nombre);
-        newPet.setTipo(tipo);
-        newPet.setEdad(edad);
-        newPet.setRaza(raza);
-        newPet.setDetalle(detalle);
-        newPet.setColor(color);
-        newPet.setTamanio(tamanio);
-        newPet.setFechaPerdido(fechaPerdido);
+    public Mascota registrarMascotaPerdida(DatosRegistroMascota mascota) throws Exception {
+        Mascota nuevaMascota = new Mascota();
+        nuevaMascota.setTipo(mascota.getTipo());
+        nuevaMascota.setEdad(mascota.getEdad());
+        nuevaMascota.setRaza(mascota.getRaza());
+        nuevaMascota.setDetalle(mascota.getDetalle());
+        nuevaMascota.setColor(mascota.getColor());
+        nuevaMascota.setTamanio(mascota.getTamanio());
+        nuevaMascota.setFecha(mascota.getFecha());
         Usuario usuario = new Usuario();
-        newPet.setUsuario(usuario);
-        repositorioRegistrarMascota.guardarMascota(newPet);
-        return newPet;
+//        nuevaMascota.setUsuario(usuario);
+        repositorioRegistrarMascota.guardarMascota(nuevaMascota);
+        return nuevaMascota;
     }
 }

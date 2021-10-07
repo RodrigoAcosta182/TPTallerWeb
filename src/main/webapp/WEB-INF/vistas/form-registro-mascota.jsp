@@ -47,21 +47,21 @@
                 <form:form cssClass="w3-container" action="registrarMascota" method="POST" modelAttribute="datosMascota">
                     <%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
                     <div class="w3-row flex-center">
-                        <div class="w3-col l5">
-                            <label style="float: left">Estado</label>
-                            <form:select path="estado" cssClass="w3-select" >
-                                <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
-                                <form:option value="perdido">Perdido</form:option>
-                                <form:option value="encontrado">Encontrado</form:option>
-                            </form:select>
-                        </div>
+<%--                        <div class="w3-col l5">--%>
+<%--                            <label style="float: left">Estado</label>--%>
+<%--                            <form:select path="estado" cssClass="w3-select" >--%>
+<%--                                <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>--%>
+<%--                                <form:option value="perdido">Perdido</form:option>--%>
+<%--                                <form:option value="encontrado">Encontrado</form:option>--%>
+<%--                            </form:select>--%>
+<%--                        </div>--%>
                         <div class="w3-col l5">
                             <label style="float: left; margin-bottom: 2px">Tipo</label>
                             <form:select path="tipo" cssClass="w3-select">
                                 <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
-                                <form:option value="perro">Perro</form:option>
-                                <form:option value="gato">Gato</form:option>
-                                <form:option value="otro">Otro</form:option>
+                                <form:option value="1">Perro</form:option>
+                                <form:option value="2">Gato</form:option>
+                                <form:option value="3">Otro</form:option>
                             </form:select>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                     <div class="w3-row flex-center" style=" margin-top: 6px">
                         <div class="w3-col l5" >
                             <label style="float: left">Edad</label>
-                            <form:input cssClass="w3-input" path="edad" type="number" id="edad"/>
+                            <form:input cssClass="w3-input" path="edad" type="text" id="edad"/>
                         </div>
                         <div class="w3-col l5">
                             <label style="float: left">Raza</label>
@@ -89,35 +89,35 @@
                     </div>
 
                     <div class="w3-row flex-center" style=" margin-top: 6px">
-                        <div class="w3-col l5">
+                        <div class="w3-col l12">
                             <label style="float: left; margin-top: 2px" >Tama&ntilde;o</label>
                             <form:input cssClass="w3-input" path="tamanio" type="text" id="tamanio"/>
                         </div>
-                        <div class="w3-col l5" >
-                            <label style="float: left">Fecha</label>
-                            <form:input cssClass="w3-input" path="fechaEncontrado" type="date" id="fechaEncontrado"/>
-                        </div>
+                                                    <div class="w3-col l5" >
+                                                        <label style="float: left">Fecha</label>
+<%--                                                        <form:input cssClass="w3-input" path="fecha" type="date" id="fecha"/>--%>
+                                                    </div>
                     </div>
 
-                    <!-- CUARTA FILA -->
-                    <div class="w3-row flex-center" style=" margin-top: 6px">
-                        <div class="w3-col l5">
-                            <label style="float: left">Provincia</label>
-                            <form:input cssClass="w3-input" path="provincia" type="text" id="provincia"/>
-                        </div>
-                        <div class="w3-col l5">
-                            <label style="float: left">Localidad</label>
-                            <form:input cssClass="w3-input" path="localidad" type="text" id="localidad"/>
-                        </div>
-                    </div>
+                    <%--                    <!-- CUARTA FILA -->--%>
+                    <%--                    <div class="w3-row flex-center" style=" margin-top: 6px">--%>
+                    <%--                        <div class="w3-col l5">--%>
+                    <%--                            <label style="float: left">Provincia</label>--%>
+                    <%--                            <form:input cssClass="w3-input" path="provincia" type="text" id="provincia"/>--%>
+                    <%--                        </div>--%>
+                    <%--                        <div class="w3-col l5">--%>
+                    <%--                            <label style="float: left">Localidad</label>--%>
+                    <%--                            <form:input cssClass="w3-input" path="localidad" type="text" id="localidad"/>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
 
                     <!-- SEXTA FILA -->
-                    <div class="w3-row flex-center">
-                        <div class="w3-col" style="width: 100%">
-                            <label style="float: left">Agregar Foto </label>
-                            <form:input path="imagen" name="imagen" id="imagen" cssClass="w3-input" type="file"/>
-                        </div>
-                    </div>
+                    <%--                    <div class="w3-row flex-center">--%>
+                    <%--                        <div class="w3-col" style="width: 100%">--%>
+                    <%--                            <label style="float: left">Agregar Foto </label>--%>
+                    <%--                            <form:input path="imagen" name="imagen" id="imagen" cssClass="w3-input" type="file"/>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
 
                     <%--Bloque que es visible si el elemento error no esta vacio	--%>
                     <c:if test="${not empty error}">
