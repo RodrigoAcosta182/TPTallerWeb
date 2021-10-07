@@ -11,13 +11,13 @@ public class Mascota {
 
     private String nombre;
     private String tipo;
-    private Integer edad;
+    private String edad;
     private String raza;
     private String detalle;
     private String color;
     private String tamanio;
-    private Date fechaPerdido;
-    private Date fechaEncontrado;
+    private Date fecha;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Usuario usuario;
 
@@ -47,11 +47,11 @@ public class Mascota {
         this.tipo = tipo;
     }
 
-    public Integer getEdad() {
+    public String getEdad() {
         return edad;
     }
 
-    public void setEdad(Integer edad) {
+    public void setEdad(String edad) {
         this.edad = edad;
     }
 
@@ -87,21 +87,14 @@ public class Mascota {
         this.tamanio = tamanio;
     }
 
-    public Date getFechaPerdido() {
-        return fechaPerdido;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setFechaPerdido(Date fechaPerdido) {
-        this.fechaPerdido = fechaPerdido;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public Date getFechaEncontrado() {
-        return fechaEncontrado;
-    }
-
-    public void setFechaEncontrado(Date fechaEncontrado) {
-        this.fechaEncontrado = fechaEncontrado;
-    }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
