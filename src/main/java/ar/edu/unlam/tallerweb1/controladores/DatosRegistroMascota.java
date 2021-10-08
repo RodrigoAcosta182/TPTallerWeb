@@ -8,8 +8,9 @@ import javax.persistence.OneToOne;
 import java.util.Date;
 
 public class DatosRegistroMascota {
-    private String nombre;
     private String tipo;
+    private String nombre;
+    private String estado;
     private String edad;
     private String raza;
 
@@ -30,9 +31,10 @@ public class DatosRegistroMascota {
 
     public DatosRegistroMascota(){}
 
-    public DatosRegistroMascota(String nombre,String tipo, String edad, String raza, String detalle, String color, String tamanio, Date fecha, Usuario usuario) {
+    public DatosRegistroMascota(String nombre,String tipo,String estado, String edad, String raza, String detalle, String color, String tamanio, Date fecha, Usuario usuario) {
         this.nombre = nombre;
         this.tipo = tipo;
+        this.estado = estado;
         this.edad = edad;
         this.raza = raza;
         this.detalle = detalle;
@@ -112,5 +114,13 @@ public class DatosRegistroMascota {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

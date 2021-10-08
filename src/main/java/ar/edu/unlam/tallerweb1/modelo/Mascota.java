@@ -13,6 +13,7 @@ public class Mascota {
 
     private String nombre;
     private String tipo;
+    private String estado;
     private String edad;
     private String raza;
     private String detalle;
@@ -103,6 +104,14 @@ public class Mascota {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }
 

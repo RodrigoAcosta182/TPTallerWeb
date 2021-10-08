@@ -25,8 +25,12 @@ public class ServicioRegistrarMascotaImpl implements ServicioRegistrarMascota {
     @Override
     public Mascota registrarMascotaPerdida(DatosRegistroMascota mascota) throws Exception {
         Mascota nuevaMascota = new Mascota();
-        nuevaMascota.setNombre(mascota.getNombre());
+        if (mascota.getTipo() == null || mascota.getEstado() == null)
+            throw new Exception();
+
+        nuevaMascota.setEstado(mascota.getEstado());
         nuevaMascota.setTipo(mascota.getTipo());
+        nuevaMascota.setNombre(mascota.getNombre());
         nuevaMascota.setEdad(mascota.getEdad());
         nuevaMascota.setRaza(mascota.getRaza());
         nuevaMascota.setDetalle(mascota.getDetalle());
