@@ -18,7 +18,9 @@ public class Mascota {
     private String detalle;
     private String color;
     private String tamanio;
+
     @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
+
     private Date fecha;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -91,6 +93,7 @@ public class Mascota {
 
     public Date getFecha() {
         return fecha;
+
     }
 
     public void setFecha(Date fecha) {
@@ -100,6 +103,7 @@ public class Mascota {
     public Usuario getUsuario() {
         return usuario;
     }
+
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
