@@ -94,14 +94,19 @@
                             <label style="float: left; margin-top: 2px" >Tama&ntilde;o</label>
                             <form:input cssClass="w3-input" path="tamanio" type="text" id="tamanio"/>
                         </div>
+
                         <div class="w3-col l5" >
                             <label style="float: left">Edad</label>
                             <form:input cssClass="w3-input" path="edad" type="text" id="edad"/>
                         </div>
+
 <%--                        <div class="w3-col l5" >--%>
 <%--                            <label style="float: left">Fecha</label>--%>
 <%--                            <form:input cssClass="w3-input" path="fecha" type="date" id="fecha"/>--%>
 <%--                        </div>--%>
+
+
+
                     </div>
 
                     <%--                    <!-- CUARTA FILA -->--%>

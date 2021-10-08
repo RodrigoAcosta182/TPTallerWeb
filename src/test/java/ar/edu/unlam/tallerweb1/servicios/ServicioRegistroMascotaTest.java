@@ -18,8 +18,11 @@ public class ServicioRegistroMascotaTest {
     private static final Long ID = Long.valueOf(4516);
     private static final String RAZA = "Pekines";
     private RepositorioRegistrarMascota repositorioRegistrarMascota = mock(RepositorioRegistrarMascota.class);
+
     private static final Usuario usuario = new Usuario();
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo","Perro","1","5","Pekines","Le falta una pata","Blanco","Chico", new Date(),usuario );
+
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo","Perro","1","nada","Pekines","Le falta una pata","Blanco","Chico", new Date(),usuario );
+
     private ServicioRegistrarMascota servicioRegistrarMascota = new ServicioRegistrarMascotaImpl(repositorioRegistrarMascota);
 
     @Test

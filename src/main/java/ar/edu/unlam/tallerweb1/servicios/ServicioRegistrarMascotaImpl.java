@@ -27,7 +27,6 @@ public class ServicioRegistrarMascotaImpl implements ServicioRegistrarMascota {
         Mascota nuevaMascota = new Mascota();
         if (mascota.getTipo() == null || mascota.getEstado() == null)
             throw new Exception();
-
         nuevaMascota.setEstado(mascota.getEstado());
         nuevaMascota.setTipo(mascota.getTipo());
         nuevaMascota.setNombre(mascota.getNombre());
@@ -37,7 +36,9 @@ public class ServicioRegistrarMascotaImpl implements ServicioRegistrarMascota {
         nuevaMascota.setColor(mascota.getColor());
         nuevaMascota.setTamanio(mascota.getTamanio());
         nuevaMascota.setFecha(mascota.getFecha());
+
 //        nuevaMascota.getUsuario();
+
 
         repositorioRegistrarMascota.guardarMascota(nuevaMascota);
         return nuevaMascota;

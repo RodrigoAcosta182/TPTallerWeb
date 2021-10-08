@@ -13,9 +13,7 @@ public class DatosRegistroMascota {
     private String estado;
     private String edad;
     private String raza;
-
     private String detalle;
-
     private String color;
     private String tamanio;
 
@@ -23,16 +21,17 @@ public class DatosRegistroMascota {
     private Date fecha;
     private Usuario usuario;
 
+
 //    private String localidad;
 //    private String provincia;
 //    private String imagen;
 //    private String estado;
 
-
     public DatosRegistroMascota(){}
 
     public DatosRegistroMascota(String nombre,String tipo,String estado, String edad, String raza, String detalle, String color, String tamanio, Date fecha, Usuario usuario) {
         this.nombre = nombre;
+
         this.tipo = tipo;
         this.estado = estado;
         this.edad = edad;
@@ -41,6 +40,7 @@ public class DatosRegistroMascota {
         this.color = color;
         this.tamanio = tamanio;
         this.fecha = fecha;
+
         this.usuario = usuario;
     }
 
@@ -59,6 +59,7 @@ public class DatosRegistroMascota {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
 
     public String getEdad() {
         return edad;
@@ -102,6 +103,7 @@ public class DatosRegistroMascota {
 
     public Date getFecha() {
         return fecha;
+
     }
 
     public void setFecha(Date fecha) {
@@ -114,6 +116,7 @@ public class DatosRegistroMascota {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+
     }
 
     public String getEstado() {
