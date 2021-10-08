@@ -33,8 +33,8 @@ public class ControladorRegistrarMascota {
         try {
             servicioRegistrarMascota.registrarMascotaPerdida(mascota);
         }catch (Exception e){
-            model.put("error","Fallo el registro de la mascota");
-            return new ModelAndView("home",model);
+            model.put("error","El campo tipo y estado es obligatorio");
+            return new ModelAndView("form-registro-mascota",model);
         }
         model.put("msg", "Mascota Registrada Exitosamente");
         return new ModelAndView("home",model);
