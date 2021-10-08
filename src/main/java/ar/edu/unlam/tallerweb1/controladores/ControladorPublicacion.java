@@ -1,6 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import ar.edu.unlam.tallerweb1.servicios.ServicioRegistrarMascota;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,18 +11,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ControladorPublicacion {
 
-    private ServicioRegistrarMascota servicioRegistrarMascota;
 
+    private  ServicioPublicacion servicioPublicacion;
     @Autowired
-    public ControladorPublicacion(ServicioRegistrarMascota servicioRegistrarMascota){
-        this.servicioRegistrarMascota = servicioRegistrarMascota;
+    public ControladorPublicacion(ServicioPublicacion servicioPublicacion){
+        this.servicioPublicacion = servicioPublicacion;
     }
 
     @RequestMapping(method = RequestMethod.GET,path = "/ir-a-publicacion-mascota-perdida")
     public ModelAndView irAPublicacionMascotaPerdida() {
         ModelMap model = new ModelMap();
-        DatosRegistroMascota datosMascota = new DatosRegistroMascota();
-        model.put("datosMascota",datosMascota);
+        model.put("publicaciones","publicaciones de mascotas");
         return new ModelAndView("publicaciones-perdidos",model);
+
     }
 }
