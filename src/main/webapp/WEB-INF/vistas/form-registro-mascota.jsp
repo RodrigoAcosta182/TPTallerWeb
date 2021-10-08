@@ -64,9 +64,14 @@
                                 <form:option value="3">Otro</form:option>
                             </form:select>
                         </div>
+                        <div class="w3-col l5" >
+                            <label style="float: left">Nombre</label>
+                            <form:input cssClass="w3-input" path="nombre" type="text" id="nombre"/>
+                        </div>
                     </div>
 
                     <div class="w3-row flex-center" style=" margin-top: 6px">
+
                         <div class="w3-col l5" >
                             <label style="float: left">Edad</label>
                             <form:input cssClass="w3-input" path="edad" type="text" id="edad"/>
@@ -93,10 +98,12 @@
                             <label style="float: left; margin-top: 2px" >Tama&ntilde;o</label>
                             <form:input cssClass="w3-input" path="tamanio" type="text" id="tamanio"/>
                         </div>
-                                                    <div class="w3-col l5" >
-                                                        <label style="float: left">Fecha</label>
-<%--                                                        <form:input cssClass="w3-input" path="fecha" type="date" id="fecha"/>--%>
-                                                    </div>
+
+                        <div class="w3-col l5" >
+                            <label style="float: left">Fecha</label>
+                            <form:input cssClass="w3-input" path="fecha" type="date" id="fecha"/>
+                        </div>
+
                     </div>
 
                     <%--                    <!-- CUARTA FILA -->--%>

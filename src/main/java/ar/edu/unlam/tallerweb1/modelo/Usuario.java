@@ -6,7 +6,7 @@ import javax.persistence.*;
 // el paquete ar.edu.unlam.tallerweb1.modelo esta indicado en el archivo hibernateCOntext.xml para que hibernate
 // busque entities en el
 @Entity
-@NamedQueries(@NamedQuery(name = "userByRol", query = "from Usuario where rol =:rol"))
+//@NamedQueries(@NamedQuery(name = "userByRol", query = "from Usuario where rol =:rol"))
 public class Usuario {
 
 	// La anotacion id indica que este atributo es el utilizado como clave primaria de la entity, se indica que el valor es autogenerado.

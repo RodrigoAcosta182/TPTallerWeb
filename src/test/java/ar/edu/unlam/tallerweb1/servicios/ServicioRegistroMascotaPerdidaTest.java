@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistrarMascota;
 import org.junit.Test;
 
@@ -17,7 +18,10 @@ public class ServicioRegistroMascotaPerdidaTest {
     private static final Long ID = Long.valueOf(4516);
     private static final String RAZA = "Pekines";
     private RepositorioRegistrarMascota repositorioRegistrarMascota = mock(RepositorioRegistrarMascota.class);
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Perro","5","Pekines","Le falta una pata","Blanco","Chico", new Date());
+
+    private static final Usuario usuario = new Usuario();
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo","Perro","5","Pekines","Le falta una pata","Blanco","Chico", new Date(),usuario );
+
     private ServicioRegistrarMascota servicioRegistrarMascota = new ServicioRegistrarMascotaImpl(repositorioRegistrarMascota);
 
     @Test
