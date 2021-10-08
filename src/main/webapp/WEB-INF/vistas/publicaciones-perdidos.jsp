@@ -7,8 +7,8 @@
 <link href="css/estilos.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<body class="imagen-fondo">
-<div class="w3-top">
+<body class="imagen-fondo" style="background: white">
+<div class="header-publicaciones" style="background: linear-gradient(to right top, #051937, #3a2e5d, #75407b, #b6528e, #f66793);">
     <div class="w3-bar home-navegador" id="myNavbar">
         <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);"
            onclick="toggleFunction()" title="Toggle Navigation Menu">
@@ -34,7 +34,6 @@
 </div>
 
 <!-- First Parallax Image with Logo Text -->
-<div class="w3-display-container" style="height: 50%" id="home">
     <div class="container-publicaciones noselect">
         <div class="tarjeta-publicacion-mascota">
             <img class="imagen-publicacion-mascota" src="https://cadenapolitica.com/wp-content/uploads/2021/08/schnauzer.jpg" alt="Alps">
@@ -54,10 +53,79 @@
                 <p>Descripcion de la mascota perdida</p>
             </div>
         </div>
+        <div class="tarjeta-publicacion-mascota">
+            <img class="imagen-publicacion-mascota"  src="https://hips.hearstapps.com/es.h-cdn.co/mcres/images/mi-casa/terraza-jardines-porche/razas-pequenas-de-perros-blancos/bichon-frise/1722987-1-esl-ES/bichon-frise.jpg?crop=1xw:0.9377289377289377xh;center,top&resize=480:*" alt="Alps">
+            <div class="w3-container w3-center">
+                <p>Descripcion de la mascota perdida</p>
+            </div>
+        </div>
+        <div class="tarjeta-publicacion-mascota">
+            <img class="imagen-publicacion-mascota"  src="https://hips.hearstapps.com/es.h-cdn.co/mcres/images/mi-casa/terraza-jardines-porche/razas-pequenas-de-perros-blancos/bichon-frise/1722987-1-esl-ES/bichon-frise.jpg?crop=1xw:0.9377289377289377xh;center,top&resize=480:*" alt="Alps">
+            <div class="w3-container w3-center">
+                <p>Descripcion de la mascota perdida</p>
+            </div>
+        </div>
+        <div class="tarjeta-publicacion-mascota">
+            <img class="imagen-publicacion-mascota"  src="https://hips.hearstapps.com/es.h-cdn.co/mcres/images/mi-casa/terraza-jardines-porche/razas-pequenas-de-perros-blancos/bichon-frise/1722987-1-esl-ES/bichon-frise.jpg?crop=1xw:0.9377289377289377xh;center,top&resize=480:*" alt="Alps">
+            <div class="w3-container w3-center">
+                <p>Descripcion de la mascota perdida</p>
+            </div>
+        </div>
+        <div class="tarjeta-publicacion-mascota">
+            <img class="imagen-publicacion-mascota"  src="https://hips.hearstapps.com/es.h-cdn.co/mcres/images/mi-casa/terraza-jardines-porche/razas-pequenas-de-perros-blancos/bichon-frise/1722987-1-esl-ES/bichon-frise.jpg?crop=1xw:0.9377289377289377xh;center,top&resize=480:*" alt="Alps">
+            <div class="w3-container w3-center">
+                <p>Descripcion de la mascota perdida</p>
+            </div>
+        </div>
+        <div class="tarjeta-publicacion-mascota">
+            <img class="imagen-publicacion-mascota"  src="https://hips.hearstapps.com/es.h-cdn.co/mcres/images/mi-casa/terraza-jardines-porche/razas-pequenas-de-perros-blancos/bichon-frise/1722987-1-esl-ES/bichon-frise.jpg?crop=1xw:0.9377289377289377xh;center,top&resize=480:*" alt="Alps">
+            <div class="w3-container w3-center">
+                <p>Descripcion de la mascota perdida</p>
+            </div>
+        </div>
+        <div class="tarjeta-publicacion-mascota">
+            <img class="imagen-publicacion-mascota"  src="https://hips.hearstapps.com/es.h-cdn.co/mcres/images/mi-casa/terraza-jardines-porche/razas-pequenas-de-perros-blancos/bichon-frise/1722987-1-esl-ES/bichon-frise.jpg?crop=1xw:0.9377289377289377xh;center,top&resize=480:*" alt="Alps">
+            <div class="w3-container w3-center">
+                <p>Descripcion de la mascota perdida</p>
+            </div>
+        </div>
+        <div class="tarjeta-publicacion-mascota">
+            <img class="imagen-publicacion-mascota"  src="https://hips.hearstapps.com/es.h-cdn.co/mcres/images/mi-casa/terraza-jardines-porche/razas-pequenas-de-perros-blancos/bichon-frise/1722987-1-esl-ES/bichon-frise.jpg?crop=1xw:0.9377289377289377xh;center,top&resize=480:*" alt="Alps">
+            <div class="w3-container w3-center">
+                <p>Descripcion de la mascota perdida</p>
+            </div>
+        </div>
+        <div class="tarjeta-publicacion-mascota">
+            <img class="imagen-publicacion-mascota"  src="https://hips.hearstapps.com/es.h-cdn.co/mcres/images/mi-casa/terraza-jardines-porche/razas-pequenas-de-perros-blancos/bichon-frise/1722987-1-esl-ES/bichon-frise.jpg?crop=1xw:0.9377289377289377xh;center,top&resize=480:*" alt="Alps">
+            <div class="w3-container w3-center">
+                <p>Descripcion de la mascota perdida</p>
+            </div>
+        </div>
+        <div class="tarjeta-publicacion-mascota">
+            <img class="imagen-publicacion-mascota"  src="https://hips.hearstapps.com/es.h-cdn.co/mcres/images/mi-casa/terraza-jardines-porche/razas-pequenas-de-perros-blancos/bichon-frise/1722987-1-esl-ES/bichon-frise.jpg?crop=1xw:0.9377289377289377xh;center,top&resize=480:*" alt="Alps">
+            <div class="w3-container w3-center">
+                <p>Descripcion de la mascota perdida</p>
+            </div>
+        </div>
+        <div class="tarjeta-publicacion-mascota">
+            <img class="imagen-publicacion-mascota"  src="https://hips.hearstapps.com/es.h-cdn.co/mcres/images/mi-casa/terraza-jardines-porche/razas-pequenas-de-perros-blancos/bichon-frise/1722987-1-esl-ES/bichon-frise.jpg?crop=1xw:0.9377289377289377xh;center,top&resize=480:*" alt="Alps">
+            <div class="w3-container w3-center">
+                <p>Descripcion de la mascota perdida</p>
+            </div>
+        </div>
+        <div class="tarjeta-publicacion-mascota">
+            <img class="imagen-publicacion-mascota"  src="https://hips.hearstapps.com/es.h-cdn.co/mcres/images/mi-casa/terraza-jardines-porche/razas-pequenas-de-perros-blancos/bichon-frise/1722987-1-esl-ES/bichon-frise.jpg?crop=1xw:0.9377289377289377xh;center,top&resize=480:*" alt="Alps">
+            <div class="w3-container w3-center">
+                <p>Descripcion de la mascota perdida</p>
+            </div>
+        </div>
+        <div class="tarjeta-publicacion-mascota">
+            <img class="imagen-publicacion-mascota"  src="https://hips.hearstapps.com/es.h-cdn.co/mcres/images/mi-casa/terraza-jardines-porche/razas-pequenas-de-perros-blancos/bichon-frise/1722987-1-esl-ES/bichon-frise.jpg?crop=1xw:0.9377289377289377xh;center,top&resize=480:*" alt="Alps">
+            <div class="w3-container w3-center">
+                <p>Descripcion de la mascota perdida</p>
+            </div>
+        </div>
+
     </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 </html>

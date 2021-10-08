@@ -7,7 +7,7 @@
 <link href="css/estilos.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<body class="imagen-fondo">
+<body class="imagen-fondo" >
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
     <div class="w3-bar home-navegador" id="myNavbar">
