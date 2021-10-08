@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistrarMascota;
 import org.junit.Test;
 
@@ -10,6 +11,8 @@ import static org.mockito.Mockito.mock;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
+
 public class ControladorRegistrarMascotaTest {
 
     private ServicioRegistrarMascota servicioRegistrarMascota = mock(ServicioRegistrarMascota.class);
@@ -17,6 +20,8 @@ public class ControladorRegistrarMascotaTest {
 
 
     private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota();
+    private static final DatosRegistroMascota MASCOTACONTIPOYESTADONULL = new DatosRegistroMascota( "nombre",null, null," String raza"," String detalle"," String color"," String tamanio", null,null, null);
+
 
     @Test
     public void registroMascotaExitoso() throws Exception {
@@ -32,15 +37,17 @@ public class ControladorRegistrarMascotaTest {
     }
 
     @Test
-    public void alRegistrarUnaMascotaPerdidaDaError() throws Exception {
+    public void alRegistrarUnaMascotaConTipoNull() throws Exception {
         givenQueLaMascotaExiste();
-        ModelAndView mav = whenRegistroLaMascota(MASCOTA);
-        thenElRegistroDeMascotaFallaConError(mav, "Fallo el registro de la mascota");
+        ModelAndView mav = whenRegistroLaMascota(MASCOTACONTIPOYESTADONULL);
+        thenElRegistroDeMascotaFallaTipoNull(mav, "El campo tipo y estado es obligatorio");
     }
 
+
     private void givenQueLaMascotaExiste() throws Exception {
-        doThrow(Exception.class).when(servicioRegistrarMascota).registrarMascotaPerdida(MASCOTA);
+        doThrow(Exception.class).when(servicioRegistrarMascota).registrarMascotaPerdida(MASCOTACONTIPOYESTADONULL);
     }
+
 
     private void givenQueLaMascotaNoExiste(DatosRegistroMascota mascota) {
     }
@@ -63,8 +70,8 @@ public class ControladorRegistrarMascotaTest {
 
     }
 
-    private void thenElRegistroDeMascotaFallaConError(ModelAndView mav, String mensaje) {
-        assertThat(mav.getViewName()).isEqualTo("home");
+    private void thenElRegistroDeMascotaFallaTipoNull(ModelAndView mav, String mensaje) {
+        assertThat(mav.getViewName()).isEqualTo("form-registro-mascota");
         assertThat(mav.getModel().get("error")).isEqualTo(mensaje);
     }
 }
