@@ -1,10 +1,15 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.CascadeType;
+import javax.persistence.OneToOne;
 import java.util.Date;
 
 public class DatosRegistroMascota {
+    private String nombre;
     private String tipo;
-//    private String nombre;
     private String edad;
     private String raza;
 
@@ -12,15 +17,21 @@ public class DatosRegistroMascota {
 
     private String color;
     private String tamanio;
+
+    @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
     private Date fecha;
+    private Usuario usuario;
+
 //    private String localidad;
 //    private String provincia;
 //    private String imagen;
 //    private String estado;
 
+
     public DatosRegistroMascota(){}
 
-    public DatosRegistroMascota(String tipo, String edad, String raza, String detalle, String color, String tamanio, Date fecha) {
+    public DatosRegistroMascota(String nombre,String tipo, String edad, String raza, String detalle, String color, String tamanio, Date fecha, Usuario usuario) {
+        this.nombre = nombre;
         this.tipo = tipo;
         this.edad = edad;
         this.raza = raza;
@@ -28,6 +39,15 @@ public class DatosRegistroMascota {
         this.color = color;
         this.tamanio = tamanio;
         this.fecha = fecha;
+        this.usuario = usuario;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getTipo() {
@@ -84,5 +104,13 @@ public class DatosRegistroMascota {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

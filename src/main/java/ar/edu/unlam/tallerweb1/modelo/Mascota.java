@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -16,11 +18,11 @@ public class Mascota {
     private String detalle;
     private String color;
     private String tamanio;
+    @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
     private Date fecha;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Usuario usuario;
-
 
 
     public Long getId() {
@@ -95,13 +97,12 @@ public class Mascota {
         this.fecha = fecha;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
     }
 }
 
