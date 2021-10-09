@@ -26,7 +26,6 @@ public class ControladorPublicacionesPerdidosTest {
 
 
     private ModelAndView whenIrAPublicaciones() {
-
         return controladorPublicacion.irAPublicacionMascotaPerdida();
     }
 
