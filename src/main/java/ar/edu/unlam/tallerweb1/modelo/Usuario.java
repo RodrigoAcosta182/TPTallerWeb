@@ -22,6 +22,13 @@ public class Usuario {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Cuenta cuenta;
 
+	public Usuario(){}
+
+	public Usuario(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
+
 	public Cuenta getCuenta() {
 		return cuenta;
 	}

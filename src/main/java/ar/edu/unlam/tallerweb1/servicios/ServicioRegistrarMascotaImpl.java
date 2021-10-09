@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
+import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistrarMascota;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,12 @@ public class ServicioRegistrarMascotaImpl implements ServicioRegistrarMascota {
         nuevaMascota.setColor(mascota.getColor());
         nuevaMascota.setTamanio(mascota.getTamanio());
         nuevaMascota.setFecha(mascota.getFecha());
+
+        Publicacion publicacion = new Publicacion();
+//        publicacion.setUsuarioId();
+//        publicacion.setMascotaid();
+
+
 
 //        nuevaMascota.getUsuario();
 
