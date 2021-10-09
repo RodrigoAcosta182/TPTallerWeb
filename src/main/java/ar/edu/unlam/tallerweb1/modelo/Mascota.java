@@ -28,6 +28,7 @@ public class Mascota {
     private Usuario usuario;
 
 
+
     public Long getId() {
         return id;
     }
