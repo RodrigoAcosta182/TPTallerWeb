@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,7 +20,7 @@ public class DatosRegistroMascota {
 
     @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
     private Date fecha;
-    private Usuario usuario;
+    private Publicacion publicacionId;
 
 
 //    private String localidad;
@@ -29,7 +30,7 @@ public class DatosRegistroMascota {
 
     public DatosRegistroMascota(){}
 
-    public DatosRegistroMascota(String nombre,String tipo,String estado, String edad, String raza, String detalle, String color, String tamanio, Date fecha, Usuario usuario) {
+    public DatosRegistroMascota(String nombre,String tipo,String estado, String edad, String raza, String detalle, String color, String tamanio, Date fecha, Publicacion publicacionId) {
         this.nombre = nombre;
 
         this.tipo = tipo;
@@ -41,7 +42,7 @@ public class DatosRegistroMascota {
         this.tamanio = tamanio;
         this.fecha = fecha;
 
-        this.usuario = usuario;
+        this.publicacionId = publicacionId;
     }
 
     public String getNombre() {
@@ -110,13 +111,12 @@ public class DatosRegistroMascota {
         this.fecha = fecha;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Publicacion getPublicacionId() {
+        return publicacionId;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-
+    public void setPublicacionId(Publicacion publicacionId) {
+        this.publicacionId = publicacionId;
     }
 
     public String getEstado() {
