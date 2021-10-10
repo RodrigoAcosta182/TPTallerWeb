@@ -35,7 +35,7 @@ public class ControladorBuscarPublicacion {
         try {
             servicioBuscarPublicacion.buscarPublicacion(mascota);
         } catch (Exception e) {
-            model.put("mensajeBusqueda", "No hay publicaciones");
+            model.put("mensajeBusquedaError", "No hay publicaciones");
         }
         model.put("mensajeBusqueda", "Se encontraron publicaciones");
         return new ModelAndView("home", model);
