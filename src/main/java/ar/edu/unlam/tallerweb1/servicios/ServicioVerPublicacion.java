@@ -4,5 +4,7 @@ import javax.mail.MessagingException;
 
 public interface ServicioVerPublicacion {
 
-    void enviarCorreo(String receptor) throws MessagingException;
+
+    void enviarCorreo(String receptor, String comentario) throws MessagingException;
+
 }

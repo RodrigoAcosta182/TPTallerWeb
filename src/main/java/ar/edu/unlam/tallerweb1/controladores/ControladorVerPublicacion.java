@@ -15,20 +15,25 @@ import javax.mail.MessagingException;
 public class ControladorVerPublicacion {
 
     ServicioVerPublicacion servicioVerPublicacion;
+
     @Autowired
-    public ControladorVerPublicacion(ServicioVerPublicacion servicioVerPublicacion){
+    public ControladorVerPublicacion(ServicioVerPublicacion servicioVerPublicacion) {
         this.servicioVerPublicacion = servicioVerPublicacion;
     }
 
-    @RequestMapping(method = RequestMethod.GET,path = "/ir-a-ver-publicacion")
+    @RequestMapping(method = RequestMethod.GET, path = "/ir-a-ver-publicacion")
     public ModelAndView irAVerPublicacion() {
-        return new ModelAndView("ver-publicacion");
+        ModelMap model = new ModelMap();
+        DatosCorreo datosCorreo = new DatosCorreo();
+        model.put("datosCorreo", datosCorreo);
+        return new ModelAndView("ver-publicacion",model);
     }
 
 
-    @RequestMapping(method = RequestMethod.POST,path = "/enviarCorreo")
-    public ModelAndView enviarCorreo(@ModelAttribute("datosCorreo") DatosCorreo datosCorreo ) throws Exception {
-       servicioVerPublicacion.enviarCorreo(datosCorreo.getReceptor());
+    @RequestMapping(method = RequestMethod.POST, path = "/enviarCorreo")
+    public ModelAndView enviarCorreo(@ModelAttribute("datosCorreo") DatosCorreo datosCorreo) throws Exception {
+        servicioVerPublicacion.enviarCorreo(datosCorreo.getReceptor(),datosCorreo.getComentario());
+
         return new ModelAndView("ver-publicacion");
     }
 }

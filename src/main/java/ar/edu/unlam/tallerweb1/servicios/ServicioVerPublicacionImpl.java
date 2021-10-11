@@ -13,7 +13,8 @@ import javax.mail.internet.MimeMessage;
 public class ServicioVerPublicacionImpl implements ServicioVerPublicacion {
 
     @Override
-    public void enviarCorreo(String receptor) throws MessagingException {
+    public void enviarCorreo(String receptor, String comentario) throws MessagingException {
+
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -30,17 +31,19 @@ public class ServicioVerPublicacionImpl implements ServicioVerPublicacion {
             }
         });
 
-        Message mensaje = prepararMensaje(session, miCuenta,receptor);
-        Transport.send(mensaje);
+        Message mensaje = prepararMensaje(session, miCuenta, receptor, comentario);
+        Transport.send(mensaje, mensaje.getRecipients(Message.RecipientType.TO));
     }
 
-    private static Message prepararMensaje(Session session, String receptor, String miCuenta) {
+    private static Message prepararMensaje(Session session, String receptor, String miCuenta, String comentario) {
         try {
-            Message mensaje = new MimeMessage(session);
+            MimeMessage mensaje = new MimeMessage(session);
             mensaje.setFrom(new InternetAddress(miCuenta));
-            mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(receptor));
+            mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(receptor));
+            //mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(receptor));
             mensaje.setSubject("Missing Pets");
-            mensaje.setText("Este es un comentario que te hicieron en Missing Pets. \n Saludos!");
+            mensaje.setText(comentario);
+
             return mensaje;
         } catch (Exception e) {
             e.printStackTrace();

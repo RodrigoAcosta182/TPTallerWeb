@@ -40,18 +40,19 @@
 <div class="container-publicaciones noselect">
     <div class="tarjeta-publicacion-ver-publicacion">
         <div class="w3-container w3-center">
-            <p>Escribir un comentario</p>
-            <textarea class="ver-publicacion-escribir-comentario"></textarea>
-            <div>
-                <button class="w3-btn w3-purple" type="submit">Comentar</button>
-            </div>
+            <p>Foto + Descripcion de la publicacion</p>
+            <%--            <textarea class="ver-publicacion-escribir-comentario"></textarea>--%>
+            <form:form action="enviarCorreo" method="POST" modelAttribute="datosCorreo" cssClass="w3-container">
+                <label class="w3-left">Correo creador de la publicacion</label>
+                <form:input cssClass="w3-input" path="receptor" id="receptor"/>
+                <form:textarea cssClass="ver-publicacion-escribir-comentario" path="comentario" id="receptor"/>
+                <div>
+                    <button class="w3-btn w3-purple" type="submit">Comentar</button>
+                </div>
+            </form:form>
         </div>
     </div>
 </div>
 </body>
 </html>
 
-
-<form:form action="registrarme" method="POST" modelAttribute="datosCorreo" cssClass="w3-container">
-    <form:input cssClass="w3-input" path="email" id="email"/>
-</form:form>
