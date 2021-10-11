@@ -14,6 +14,7 @@ public class ServicioBuscarPublicacionTest {
     private ServicioBuscarPublicacion servicioBuscarPublicacion = new ServicioBuscarPublicacionImpl(repositorioBuscarPublicacion);
 
     private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota();
+
     @Test
     public void queSeBuscaUnaPublicacionCorrectamente(){
         givenLaPublicacionExiste(MASCOTA);
@@ -25,7 +26,6 @@ public class ServicioBuscarPublicacionTest {
     }
 
     private Publicacion whenBuscoUnaPublicacionCorrectamente(DatosRegistroMascota mascota) {
-
         return repositorioBuscarPublicacion.buscarPublicacionPorTipo(mascota.getTipo());
     }
 

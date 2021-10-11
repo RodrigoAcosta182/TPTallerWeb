@@ -4,27 +4,32 @@ import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistrarMascota;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Service("servicioRegistrarMascotaPerdida")
 @Transactional
 public class ServicioRegistrarMascotaImpl implements ServicioRegistrarMascota {
 
+    private  RepositorioPublicacion repositorioPublicacion;
     private RepositorioRegistrarMascota repositorioRegistrarMascota;
 
     @Autowired
-    public ServicioRegistrarMascotaImpl(RepositorioRegistrarMascota repositorioRegistrarMascota) {
+    public ServicioRegistrarMascotaImpl(RepositorioRegistrarMascota repositorioRegistrarMascota, RepositorioPublicacion repositorioPublicacion) {
         this.repositorioRegistrarMascota = repositorioRegistrarMascota;
+        this.repositorioPublicacion = repositorioPublicacion;
     }
 
 
     @Override
     public Mascota registrarMascotaPerdida(DatosRegistroMascota mascota) throws Exception {
+
         Mascota nuevaMascota = new Mascota();
         if (mascota.getTipo() == null || mascota.getEstado() == null)
             throw new Exception();
@@ -46,7 +51,7 @@ public class ServicioRegistrarMascotaImpl implements ServicioRegistrarMascota {
 
 //        nuevaMascota.getUsuario();
 
-
+        repositorioPublicacion.guardarPublicacion(nuevaMascota);
         repositorioRegistrarMascota.guardarMascota(nuevaMascota);
         return nuevaMascota;
     }

@@ -10,7 +10,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body class="imagen-fondo" style="background: white">
-<div class="header-publicaciones" style="background: linear-gradient(to right top, #051937, #3a2e5d, #75407b, #b6528e, #f66793);">
+<div class="header-publicaciones"
+     style="background: linear-gradient(to right top, #051937, #3a2e5d, #75407b, #b6528e, #f66793);">
     <div class="w3-bar home-navegador" id="myNavbar">
         <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);"
            onclick="toggleFunction()" title="Toggle Navigation Menu">
@@ -36,25 +37,21 @@
 </div>
 
 <!-- First Parallax Image with Logo Text -->
-    <div class="container-publicaciones noselect">
-        <div class="tarjeta-publicacion-mascota">
-            <img class="imagen-publicacion-mascota" src="https://cadenapolitica.com/wp-content/uploads/2021/08/schnauzer.jpg" alt="Alps">
-            <div class="w3-container w3-center">
-                <p>Descripcion de la mascota perdida</p>
-            </div>
-        </div>
-        <div class="tarjeta-publicacion-mascota">
-            <img class="imagen-publicacion-mascota"  src="https://images.clarin.com/2021/06/20/el-caniche-arriba-en-las___6JQOYiC4y_340x340__1.jpg" alt="Alps">
-            <div class="w3-container w3-center">
-                <p>Descripcion de la mascota perdida</p>
-            </div>
-        </div>
-        <div class="tarjeta-publicacion-mascota">
-            <img class="imagen-publicacion-mascota"  src="https://hips.hearstapps.com/es.h-cdn.co/mcres/images/mi-casa/terraza-jardines-porche/razas-pequenas-de-perros-blancos/bichon-frise/1722987-1-esl-ES/bichon-frise.jpg?crop=1xw:0.9377289377289377xh;center,top&resize=480:*" alt="Alps">
-            <div class="w3-container w3-center">
-                <p>Descripcion de la mascota perdida</p>
+<div class="container-publicaciones noselect">
+    <div class="tarjeta-publicacion-ver-publicacion">
+        <div class="w3-container w3-center">
+            <p>Escribir un comentario</p>
+            <textarea class="ver-publicacion-escribir-comentario"></textarea>
+            <div>
+                <button class="w3-btn w3-purple" type="submit">Comentar</button>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>
+
+
+<form:form action="registrarme" method="POST" modelAttribute="datosCorreo" cssClass="w3-container">
+    <form:input cssClass="w3-input" path="email" id="email"/>
+</form:form>

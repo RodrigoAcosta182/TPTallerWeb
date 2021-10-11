@@ -15,8 +15,8 @@
            onclick="toggleFunction()" title="Toggle Navigation Menu">
             <i class="fa fa-bars"></i>
         </a>
-        <a href="#home" class="w3-bar-item w3-button">HOME</a>
-        <a href="" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Perdidos</a>
+        <a href="home" class="w3-bar-item w3-button">HOME</a>
+        <a href="ir-a-publicacion-mascota-perdida" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Perdidos</a>
         <a href="" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Encontrados</a>
         <a href="" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Reencontrados</a>
         <a href="" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Servicios</a>
