@@ -7,5 +7,5 @@ import java.util.List;
 public interface RepositorioRegistrarMascota {
     List<Mascota> buscarMascotaPorTipo(String tipo);
     void guardarMascota(Mascota mascota);
-    List<Mascota> buscarPorId(Long id);
+    List<Mascota> buscarPorNombre(String nombre);
 }

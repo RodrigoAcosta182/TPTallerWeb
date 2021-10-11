@@ -33,10 +33,10 @@ public class RepositorioRegistrarMascotaImpl implements RepositorioRegistrarMasc
     }
 
     @Override
-    public List<Mascota> buscarPorId(Long id) {
+    public List<Mascota> buscarPorNombre(String nombre) {
         final Session session = sessionFactory.getCurrentSession();
         return session.createCriteria(Mascota.class)
-                .add(Restrictions.eq("id", id))
+                .add(Restrictions.eq("nombre", nombre))
                 .list();
     }
 }
