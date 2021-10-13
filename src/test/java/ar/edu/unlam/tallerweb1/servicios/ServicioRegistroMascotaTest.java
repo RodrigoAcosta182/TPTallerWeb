@@ -4,6 +4,7 @@ import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistrarMascota;
 import org.junit.Test;
 

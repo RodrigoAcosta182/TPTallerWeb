@@ -14,6 +14,7 @@ public class ServicioVerPublicacionImpl implements ServicioVerPublicacion {
 
     @Override
     public void enviarCorreo(String receptor, String comentario) throws MessagingException {
+
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -29,18 +30,20 @@ public class ServicioVerPublicacionImpl implements ServicioVerPublicacion {
                 return new PasswordAuthentication(miCuenta, password);
             }
         });
+
         Message mensaje = prepararMensaje(session, miCuenta, receptor, comentario);
         Transport.send(mensaje, mensaje.getRecipients(Message.RecipientType.TO));
     }
 
-    private static Message prepararMensaje(Session session, String receptor, String miCuenta, String comentario) {
+    private static Message prepararMensaje(Session session, String miCuenta,String receptor,  String comentario) {
         try {
             MimeMessage mensaje = new MimeMessage(session);
             mensaje.setFrom(new InternetAddress(miCuenta));
             mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(receptor));
             //mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(receptor));
             mensaje.setSubject("Missing Pets");
-            mensaje.setText(comentario);
+            mensaje.setText("Recibiste un mensaje de la APP Missing Pets:" + comentario);
+
             return mensaje;
         } catch (Exception e) {
             e.printStackTrace();

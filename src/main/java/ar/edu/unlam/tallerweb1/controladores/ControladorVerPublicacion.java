@@ -33,6 +33,7 @@ public class ControladorVerPublicacion {
     @RequestMapping(method = RequestMethod.POST, path = "/enviarCorreo")
     public ModelAndView enviarCorreo(@ModelAttribute("datosCorreo") DatosCorreo datosCorreo) throws Exception {
         servicioVerPublicacion.enviarCorreo(datosCorreo.getReceptor(),datosCorreo.getComentario());
+
         return new ModelAndView("ver-publicacion");
     }
 }

@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.SessionFactory;
@@ -20,5 +21,10 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion{
         return sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
                 .add(Restrictions.eq("usuarioId", usuario))
                 .list();
+    }
+
+    @Override
+    public void guardarPublicacion(Mascota nuevaMascota) {
+
     }
 }
