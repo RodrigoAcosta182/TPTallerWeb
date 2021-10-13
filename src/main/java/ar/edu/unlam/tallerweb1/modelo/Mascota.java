@@ -24,9 +24,9 @@ public class Mascota {
 
     private Date fecha;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Usuario usuario;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Publicacion publicacion;
 
 
     public Long getId() {
@@ -102,14 +102,6 @@ public class Mascota {
         this.fecha = fecha;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
     public String getEstado() {
         return estado;
@@ -117,6 +109,14 @@ public class Mascota {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Publicacion getPublicacion() {
+        return publicacion;
+    }
+
+    public void setPublicacion(Publicacion publicacion) {
+        this.publicacion = publicacion;
     }
 }
 

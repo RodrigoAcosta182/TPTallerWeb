@@ -35,14 +35,14 @@ public class ServicioVerPublicacionImpl implements ServicioVerPublicacion {
         Transport.send(mensaje, mensaje.getRecipients(Message.RecipientType.TO));
     }
 
-    private static Message prepararMensaje(Session session, String receptor, String miCuenta, String comentario) {
+    private static Message prepararMensaje(Session session, String miCuenta,String receptor,  String comentario) {
         try {
             MimeMessage mensaje = new MimeMessage(session);
             mensaje.setFrom(new InternetAddress(miCuenta));
             mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(receptor));
             //mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(receptor));
             mensaje.setSubject("Missing Pets");
-            mensaje.setText(comentario);
+            mensaje.setText("Recibiste un mensaje de la APP Missing Pets:" + comentario);
 
             return mensaje;
         } catch (Exception e) {

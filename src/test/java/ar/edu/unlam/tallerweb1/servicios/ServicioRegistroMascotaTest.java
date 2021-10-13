@@ -25,8 +25,7 @@ public class ServicioRegistroMascotaTest {
 
     private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo","Perro","1","nada","Pekines","Le falta una pata","Blanco","Chico", new Date(), new Publicacion());
 
-    private RepositorioPublicacion repositorioPublicacion = mock(RepositorioPublicacion.class);;
-    private ServicioRegistrarMascota servicioRegistrarMascota = new ServicioRegistrarMascotaImpl(repositorioRegistrarMascota, repositorioPublicacion);
+    private ServicioRegistrarMascota servicioRegistrarMascota = new ServicioRegistrarMascotaImpl(repositorioRegistrarMascota);
 
     @Test
     public void queSeRegistreUnaMascotaExitosamente() throws Exception {

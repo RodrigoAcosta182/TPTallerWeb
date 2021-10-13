@@ -17,13 +17,12 @@ import java.util.Date;
 @Transactional
 public class ServicioRegistrarMascotaImpl implements ServicioRegistrarMascota {
 
-    private  RepositorioPublicacion repositorioPublicacion;
     private RepositorioRegistrarMascota repositorioRegistrarMascota;
 
     @Autowired
-    public ServicioRegistrarMascotaImpl(RepositorioRegistrarMascota repositorioRegistrarMascota, RepositorioPublicacion repositorioPublicacion) {
+    public ServicioRegistrarMascotaImpl(RepositorioRegistrarMascota repositorioRegistrarMascota) {
         this.repositorioRegistrarMascota = repositorioRegistrarMascota;
-        this.repositorioPublicacion = repositorioPublicacion;
+
     }
 
 
@@ -44,14 +43,13 @@ public class ServicioRegistrarMascotaImpl implements ServicioRegistrarMascota {
         nuevaMascota.setFecha(mascota.getFecha());
 
         Publicacion publicacion = new Publicacion();
+        nuevaMascota.setPublicacion(publicacion);
 //        publicacion.setUsuarioId();
 //        publicacion.setMascotaid();
 
 
 
 //        nuevaMascota.getUsuario();
-
-        repositorioPublicacion.guardarPublicacion(nuevaMascota);
         repositorioRegistrarMascota.guardarMascota(nuevaMascota);
         return nuevaMascota;
     }
