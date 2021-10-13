@@ -19,14 +19,13 @@ public class Mascota {
     private String detalle;
     private String color;
     private String tamanio;
-
-    @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
-
     private Date fecha;
-
-
     @OneToOne(cascade = CascadeType.ALL)
     private Publicacion publicacion;
+
+
+
+    public Mascota() {}
 
 
     public Long getId() {
