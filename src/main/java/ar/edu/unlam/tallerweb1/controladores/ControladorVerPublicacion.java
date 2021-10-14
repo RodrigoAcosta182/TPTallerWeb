@@ -21,7 +21,7 @@ public class ControladorVerPublicacion {
         this.servicioVerPublicacion = servicioVerPublicacion;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/ir-a-ver-publicacion")
+    @RequestMapping(method = RequestMethod.GET, path = "/ir-a-ver-publicacion/")
     public ModelAndView irAVerPublicacion() {
         ModelMap model = new ModelMap();
         DatosCorreo datosCorreo = new DatosCorreo();

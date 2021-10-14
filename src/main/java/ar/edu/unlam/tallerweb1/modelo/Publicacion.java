@@ -13,10 +13,10 @@ public class Publicacion {
     private Byte finalizado = 0;
 
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuarioId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "USUARIO_ID")
-//    private Usuario usuarioId;
 
     public Long getId() {
         return id;
@@ -42,13 +42,11 @@ public class Publicacion {
         this.finalizado = finalizado;
     }
 
+    public Usuario getUsuarioId() {
+        return usuarioId;
+    }
 
-
-//    public Usuario getUsuarioId() {
-//        return usuarioId;
-//    }
-//
-//    public void setUsuarioId(Usuario usuarioId) {
-//        this.usuarioId = usuarioId;
-//    }
+    public void setUsuarioId(Usuario usuarioId) {
+        this.usuarioId = usuarioId;
+    }
 }

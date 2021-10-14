@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@Repository("repositorioPublicacion")
 public class RepositorioPublicacionImpl implements RepositorioPublicacion{
 
     @Autowired
@@ -26,5 +26,11 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion{
     @Override
     public void guardarPublicacion(Mascota nuevaMascota) {
 
+    }
+
+    @Override
+    public List<Publicacion> buscarTodosLasPublicaciones() {
+        List<Publicacion> publicaciones = sessionFactory.getCurrentSession().createCriteria(Publicacion.class).list();
+        return publicaciones;
     }
 }
