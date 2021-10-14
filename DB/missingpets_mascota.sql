@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `missingpets` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `missingpets`;
 -- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: missingpets
@@ -25,7 +23,6 @@ DROP TABLE IF EXISTS `mascota`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mascota` (
-  `usuario_id` bigint DEFAULT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(90) DEFAULT NULL,
   `edad` varchar(90) DEFAULT NULL,
@@ -36,10 +33,9 @@ CREATE TABLE `mascota` (
   `fecha` date DEFAULT NULL,
   `tipo` varchar(255) NOT NULL,
   `estado` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mascota_estado_id_fk` (`estado`),
-  CONSTRAINT `mascota_estado_id_fk` FOREIGN KEY (`estado`) REFERENCES `estado` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `publicacion_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +44,7 @@ CREATE TABLE `mascota` (
 
 LOCK TABLES `mascota` WRITE;
 /*!40000 ALTER TABLE `mascota` DISABLE KEYS */;
-INSERT INTO `mascota` VALUES (NULL,15,'qwe','3 meses','sarasa','sadas','asd','asd',NULL,'1',NULL),(NULL,16,'Cormier','7 meses','American Bully','gordo y petizo','trichoco','mediano',NULL,'1',1),(NULL,17,'michi','2 años','','collar blanco','blanco','chiquito',NULL,'2',2);
+INSERT INTO `mascota` VALUES (33,'T-Rex','145','Dinosaurio Carnivoro','Veloz cirraptor','Verde','Gigante',NULL,'3',1,4),(34,'Pichichus','4','Pekines','Sin una oreja','Rojo','Chico',NULL,'1',2,5),(35,'Con botas','7','Gato de pelicula','Espadachin','Naranja','Chico',NULL,'2',1,6),(36,'Superman','27','No Binario','Super pito','Azul y Rojo','Normal',NULL,'3',1,7);
 /*!40000 ALTER TABLE `mascota` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-08 19:08:41
+-- Dump completed on 2021-10-14  0:00:52
