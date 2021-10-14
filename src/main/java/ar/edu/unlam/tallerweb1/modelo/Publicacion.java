@@ -10,12 +10,13 @@ public class Publicacion {
     private Long id;
 
     private Date fechaPublicacion;
-    private Byte finalizado;
+    private Byte finalizado = 0;
 
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuarioId;
+
 
     public Long getId() {
         return id;

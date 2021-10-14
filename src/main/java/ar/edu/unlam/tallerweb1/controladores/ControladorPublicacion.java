@@ -21,6 +21,8 @@ public class ControladorPublicacion {
     @RequestMapping(method = RequestMethod.GET,path = "/ir-a-publicacion-mascota-perdida")
     public ModelAndView irAPublicacionMascotaPerdida() {
         ModelMap model = new ModelMap();
+
+//        model.put("mascotas",)
         model.put("publicaciones","publicaciones de mascotas");
         return new ModelAndView("publicaciones-perdidos",model);
 

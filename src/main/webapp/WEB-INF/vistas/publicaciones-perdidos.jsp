@@ -36,25 +36,18 @@
 </div>
 
 <!-- First Parallax Image with Logo Text -->
+
+<c:forEach items="${mascotas}" var="e">
     <div class="container-publicaciones noselect">
-        <div class="tarjeta-publicacion-mascota">
-            <img class="imagen-publicacion-mascota" src="https://cadenapolitica.com/wp-content/uploads/2021/08/schnauzer.jpg" alt="Alps">
-            <div class="w3-container w3-center">
-                <p>Descripcion de la mascota perdida</p>
-            </div>
-        </div>
         <div class="tarjeta-publicacion-mascota">
             <img class="imagen-publicacion-mascota"  src="https://images.clarin.com/2021/06/20/el-caniche-arriba-en-las___6JQOYiC4y_340x340__1.jpg" alt="Alps">
             <div class="w3-container w3-center">
-                <p>Descripcion de la mascota perdida</p>
-            </div>
-        </div>
-        <div class="tarjeta-publicacion-mascota">
-            <img class="imagen-publicacion-mascota"  src="https://hips.hearstapps.com/es.h-cdn.co/mcres/images/mi-casa/terraza-jardines-porche/razas-pequenas-de-perros-blancos/bichon-frise/1722987-1-esl-ES/bichon-frise.jpg?crop=1xw:0.9377289377289377xh;center,top&resize=480:*" alt="Alps">
-            <div class="w3-container w3-center">
-                <p>Descripcion de la mascota perdida</p>
+                <p>${p.detalles}</p>
             </div>
         </div>
     </div>
+</c:forEach>
+
+
 </body>
 </html>
