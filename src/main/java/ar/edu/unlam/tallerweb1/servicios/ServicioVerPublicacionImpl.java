@@ -13,16 +13,18 @@ import javax.mail.internet.MimeMessage;
 public class ServicioVerPublicacionImpl implements ServicioVerPublicacion {
 
     @Override
-    public void enviarCorreo(String receptor, String comentario) throws MessagingException {
+    public void enviarCorreo(String receptor, String comentario) throws Exception {
 
+        if(receptor == null || comentario == null)
+            throw new Exception();
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
 
-        String miCuenta = "garlopacompany@gmail.com";
-        String password = "Unlam2020";
+        String miCuenta = "missingpetsunlam@gmail.com";
+        String password = "Unlam2021";
 
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
@@ -40,10 +42,8 @@ public class ServicioVerPublicacionImpl implements ServicioVerPublicacion {
             MimeMessage mensaje = new MimeMessage(session);
             mensaje.setFrom(new InternetAddress(miCuenta));
             mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(receptor));
-            //mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(receptor));
             mensaje.setSubject("Missing Pets");
-            mensaje.setText("Recibiste un mensaje de la APP Missing Pets:" + comentario);
-
+            mensaje.setText("Recibiste un mensaje de la APP Missing Pets: " + comentario);
             return mensaje;
         } catch (Exception e) {
             e.printStackTrace();

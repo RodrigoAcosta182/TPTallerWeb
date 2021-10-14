@@ -9,7 +9,6 @@ import java.util.List;
 public interface RepositorioPublicacion {
     List<Publicacion> buscarPor(Usuario usuario);
 
-    void guardarPublicacion(Mascota nuevaMascota);
 
-    List<Publicacion> buscarTodosLasPublicaciones();
+    List<Publicacion> buscarTodasLasPublicaciones();
 }

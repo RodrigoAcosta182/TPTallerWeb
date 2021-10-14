@@ -37,6 +37,7 @@
 </div>
 
 <!-- First Parallax Image with Logo Text -->
+
 <div class="container-publicaciones noselect">
     <div class="tarjeta-publicacion-ver-publicacion">
         <div class="w3-container w3-center">
@@ -49,6 +50,11 @@
                 <div>
                     <button class="w3-btn w3-purple" type="submit">Comentar</button>
                 </div>
+                <c:if test="${not empty mailOk}">
+                    <div class="w3-panel w3-green w3-round">
+                        <h4><span>${mailOk}</span></h4>
+                    </div>
+                </c:if>
             </form:form>
         </div>
     </div>

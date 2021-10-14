@@ -4,6 +4,15 @@ public class DatosCorreo {
     String receptor;
     String comentario;
 
+
+    public DatosCorreo() {
+    }
+
+    public DatosCorreo(String receptor, String comentario) {
+        this.receptor = receptor;
+        this.comentario = comentario;
+    }
+
     public String getReceptor() {
         return receptor;
     }

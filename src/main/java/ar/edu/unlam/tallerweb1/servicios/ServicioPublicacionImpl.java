@@ -21,8 +21,8 @@ public class ServicioPublicacionImpl implements ServicioPublicacion{
     @Override
     public List<Publicacion> listarTodasLasPublicaciones() throws Exception {
 
-        if(repositorioPublicacion.buscarTodosLasPublicaciones().size() == 0)
+        if(repositorioPublicacion.buscarTodasLasPublicaciones().size() == 0)
             throw  new Exception();
-        return repositorioPublicacion.buscarTodosLasPublicaciones();
+        return repositorioPublicacion.buscarTodasLasPublicaciones();
     }
 }
