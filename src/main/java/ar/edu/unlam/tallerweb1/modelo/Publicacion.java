@@ -12,11 +12,9 @@ public class Publicacion {
     private Date fechaPublicacion;
     private Byte finalizado;
 
-    @ManyToOne
-    private Mascota mascotaid;
 
     @ManyToOne
-    @JoinColumn(name = "USUARIO_ID", nullable = false)
+    @JoinColumn(name = "usuario_id")
     private Usuario usuarioId;
 
     public Long getId() {
@@ -41,14 +39,6 @@ public class Publicacion {
 
     public void setFinalizado(Byte finalizado) {
         this.finalizado = finalizado;
-    }
-
-    public Mascota getMascotaid() {
-        return mascotaid;
-    }
-
-    public void setMascotaid(Mascota mascotaid) {
-        this.mascotaid = mascotaid;
     }
 
     public Usuario getUsuarioId() {
