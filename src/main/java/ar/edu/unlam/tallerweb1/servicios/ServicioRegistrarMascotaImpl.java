@@ -44,7 +44,8 @@ public class ServicioRegistrarMascotaImpl implements ServicioRegistrarMascota {
 
         Publicacion publicacion = new Publicacion();
         publicacion.setFechaPublicacion(new Date());
-        nuevaMascota.setPublicacion(publicacion);
+        publicacion.setMascota(nuevaMascota);
+//        nuevaMascota.setPublicacion(publicacion);
 
 
         repositorioRegistrarMascota.guardarMascota(nuevaMascota);

@@ -25,8 +25,7 @@ public class Mascota {
     private Date fecha;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Publicacion publicacion;
+
 
 
 
@@ -115,13 +114,7 @@ public class Mascota {
         this.estado = estado;
     }
 
-    public Publicacion getPublicacion() {
-        return publicacion;
-    }
 
-    public void setPublicacion(Publicacion publicacion) {
-        this.publicacion = publicacion;
-    }
 }
 
 
