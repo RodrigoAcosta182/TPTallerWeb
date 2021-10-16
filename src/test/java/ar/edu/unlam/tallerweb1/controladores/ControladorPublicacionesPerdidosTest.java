@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.mockito.configuration.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class ControladorPublicacionesPerdidosTest {
     }
 
     private ModelAndView whenIrAPublicaciones() {
-        return controladorPublicacion.irAPublicacionMascotaPerdida();
+        return controladorPublicacion.irAPublicacionMascotaPerdida(mock(HttpServletRequest.class));
     }
 
     @Test
@@ -44,7 +45,7 @@ public class ControladorPublicacionesPerdidosTest {
     }
 
     private ModelAndView whenObtengoPublicaciones() {
-        return controladorPublicacion.irAPublicacionMascotaPerdida();
+        return controladorPublicacion.irAPublicacionMascotaPerdida(mock(HttpServletRequest.class));
     }
 
     private void givenQueNoEncuentroPublicacion() throws Exception {

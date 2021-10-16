@@ -21,7 +21,7 @@ public class ControladorVerPublicacion {
         this.servicioVerPublicacion = servicioVerPublicacion;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/ir-a-ver-publicacion/")
+    @RequestMapping(method = RequestMethod.GET, path = "/ir-a-ver-publicacion")
     public ModelAndView irAVerPublicacion() {
         ModelMap model = new ModelMap();
         DatosCorreo datosCorreo = new DatosCorreo();
@@ -31,9 +31,15 @@ public class ControladorVerPublicacion {
 
 
     @RequestMapping(method = RequestMethod.POST, path = "/enviarCorreo")
-    public ModelAndView enviarCorreo(@ModelAttribute("datosCorreo") DatosCorreo datosCorreo) throws Exception {
-        servicioVerPublicacion.enviarCorreo(datosCorreo.getReceptor(),datosCorreo.getComentario());
-
-        return new ModelAndView("ver-publicacion");
+    public ModelAndView enviarCorreo(@ModelAttribute("datosCorreo") DatosCorreo datosCorreo) {
+        ModelMap model = new ModelMap();
+        try {
+            servicioVerPublicacion.enviarCorreo(datosCorreo.getReceptor(), datosCorreo.getComentario());
+        }catch (Exception e){
+            model.put("mailError","error al enviar el mensaje");
+            return new ModelAndView("ver-publicacion", model);
+        }
+        model.put("mailOk","Mensaje enviado correctamente");
+        return new ModelAndView("ver-publicacion",model);
     }
 }

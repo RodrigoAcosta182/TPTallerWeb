@@ -17,6 +17,12 @@ public class Publicacion {
     @JoinColumn(name = "usuario_id")
     private Usuario usuarioId;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Mascota mascota;
+
+    public Mascota getMascota() {
+        return mascota;
+    }
 
     public Long getId() {
         return id;
@@ -48,5 +54,9 @@ public class Publicacion {
 
     public void setUsuarioId(Usuario usuarioId) {
         this.usuarioId = usuarioId;
+    }
+
+    public void setMascota(Mascota nuevaMascota) {
+        this.mascota = nuevaMascota;
     }
 }

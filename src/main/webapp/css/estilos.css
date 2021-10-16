@@ -198,7 +198,6 @@ body, html {
 }
 
 .tarjeta-publicacion-ver-publicacion{
-    cursor: pointer;
     background: white;
     border-radius: 12px;
     padding: 10px 24px 24px 24px;

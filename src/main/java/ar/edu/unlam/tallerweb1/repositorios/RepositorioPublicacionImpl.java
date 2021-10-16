@@ -24,12 +24,7 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion{
     }
 
     @Override
-    public void guardarPublicacion(Mascota nuevaMascota) {
-
-    }
-
-    @Override
-    public List<Publicacion> buscarTodosLasPublicaciones() {
+    public List<Publicacion> buscarTodasLasPublicaciones() {
         List<Publicacion> publicaciones = sessionFactory.getCurrentSession().createCriteria(Publicacion.class).list();
         return publicaciones;
     }
