@@ -27,7 +27,7 @@ public class ServicioRegistrarMascotaImpl implements ServicioRegistrarMascota {
 
 
     @Override
-    public Mascota registrarMascotaPerdida(DatosRegistroMascota mascota) throws Exception {
+    public Mascota registrarMascotaPerdida(DatosRegistroMascota mascota,HttpServletRequest request) throws Exception {
 
         Mascota nuevaMascota = new Mascota();
         if (mascota.getTipo() == null || mascota.getEstado() == null)
@@ -43,10 +43,11 @@ public class ServicioRegistrarMascotaImpl implements ServicioRegistrarMascota {
         nuevaMascota.setFecha(mascota.getFecha());
 
         Publicacion publicacion = new Publicacion();
+        Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
         publicacion.setFechaPublicacion(new Date());
+        publicacion.setFinalizado(0);
+        publicacion.setUsuarioId(usuario);
         publicacion.setMascota(nuevaMascota);
-//        nuevaMascota.setPublicacion(publicacion);
-
 
         repositorioRegistrarMascota.guardarMascota(nuevaMascota);
         return nuevaMascota;

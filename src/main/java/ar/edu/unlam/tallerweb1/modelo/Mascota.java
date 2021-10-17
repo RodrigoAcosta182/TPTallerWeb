@@ -19,18 +19,10 @@ public class Mascota {
     private String detalle;
     private String color;
     private String tamanio;
-
-
     @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
     private Date fecha;
 
-
-
-
-
-
     public Mascota() {}
-
 
     public Long getId() {
         return id;

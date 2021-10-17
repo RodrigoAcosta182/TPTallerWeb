@@ -28,4 +28,6 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion{
         List<Publicacion> publicaciones = sessionFactory.getCurrentSession().createCriteria(Publicacion.class).list();
         return publicaciones;
     }
+
+
 }

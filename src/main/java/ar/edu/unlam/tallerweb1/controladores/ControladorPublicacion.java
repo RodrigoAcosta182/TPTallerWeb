@@ -30,8 +30,8 @@ public class ControladorPublicacion {
     @RequestMapping(method = RequestMethod.GET, path = "/ir-a-publicacion-mascota-perdida")
     public ModelAndView irAPublicacionMascotaPerdida(HttpServletRequest request) {
         ModelMap model = new ModelMap();
-//        Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-//        usuario.getId();
+        Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+        usuario.getId();
         List<Publicacion> publicaciones = new ArrayList<>();
         try {
         publicaciones = servicioPublicacion.listarTodasLasPublicaciones();

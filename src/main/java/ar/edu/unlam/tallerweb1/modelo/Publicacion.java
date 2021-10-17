@@ -10,7 +10,7 @@ public class Publicacion {
     private Long id;
 
     private Date fechaPublicacion;
-    private Byte finalizado = 0;
+    private Integer finalizado = 0;
 
 
     @ManyToOne
@@ -20,9 +20,6 @@ public class Publicacion {
     @OneToOne(cascade = CascadeType.ALL)
     private Mascota mascota;
 
-    public Mascota getMascota() {
-        return mascota;
-    }
 
     public Long getId() {
         return id;
@@ -40,11 +37,11 @@ public class Publicacion {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    public Byte getFinalizado() {
+    public Integer getFinalizado() {
         return finalizado;
     }
 
-    public void setFinalizado(Byte finalizado) {
+    public void setFinalizado(Integer finalizado) {
         this.finalizado = finalizado;
     }
 
@@ -58,5 +55,9 @@ public class Publicacion {
 
     public void setMascota(Mascota nuevaMascota) {
         this.mascota = nuevaMascota;
+    }
+
+    public Mascota getMascota() {
+        return mascota;
     }
 }
