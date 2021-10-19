@@ -48,7 +48,18 @@
                  src="https://images.clarin.com/2021/06/20/el-caniche-arriba-en-las___6JQOYiC4y_340x340__1.jpg"
                  alt="Alps">
             <div class="w3-container w3-center">
-                <p>Publicado: ${publicacion.fechaPublicacion}</p>
+                <p>Nombre: ${publicacion.mascota.nombre}</p>
+                <p>Raza: ${publicacion.mascota.raza}</p>
+                <p>Detalles: ${publicacion.mascota.detalle}</p>
+                <p>Tamanio: ${publicacion.mascota.tamanio}</p>
+                <p>Edad: ${publicacion.mascota.edad}</p>
+                <c:if test="${publicacion.mascota.estado == 1}">
+                <p>Estado: Perdido</p>
+                </c:if>
+                <c:if test="${publicacion.mascota.estado == 2}">
+                <p>Estado: Encontrado</p>
+                </c:if>
+
             </div>
         </div>
     </c:forEach>

@@ -11,4 +11,6 @@ public interface RepositorioPublicacion {
 
 
     List<Publicacion> buscarTodasLasPublicaciones();
+
+    void guardarPublicacion(Publicacion nuevaPublicacion);
 }
