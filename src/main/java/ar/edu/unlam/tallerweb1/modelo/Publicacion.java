@@ -15,14 +15,12 @@ public class Publicacion {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    private Usuario usuarioId;
+    private Usuario usuario;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Mascota mascota;
 
-    public Mascota getMascota() {
-        return mascota;
-    }
+
 
     public Long getId() {
         return id;
@@ -48,15 +46,19 @@ public class Publicacion {
         this.finalizado = finalizado;
     }
 
-    public Usuario getUsuarioId() {
-        return usuarioId;
-    }
-
-    public void setUsuarioId(Usuario usuarioId) {
-        this.usuarioId = usuarioId;
-    }
-
     public void setMascota(Mascota nuevaMascota) {
         this.mascota = nuevaMascota;
+    }
+
+    public Mascota getMascota() {
+        return mascota;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

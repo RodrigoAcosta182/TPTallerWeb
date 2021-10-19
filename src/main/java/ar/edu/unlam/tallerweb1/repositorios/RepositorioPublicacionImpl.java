@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.repositorios;
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +29,31 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion{
         List<Publicacion> publicaciones = sessionFactory.getCurrentSession().createCriteria(Publicacion.class).list();
         return publicaciones;
     }
+
+    @Override
+    public void guardarPublicacion(Publicacion nuevaPublicacion) {
+        sessionFactory.getCurrentSession().save(nuevaPublicacion);
+    }
+
 }
+
+//    @Override
+//    public List<Mascota> buscarMascotaPorTipo(String tipo) {
+//        final Session session = sessionFactory.getCurrentSession();
+//        return session.createCriteria(Mascota.class)
+//                .add(Restrictions.eq("tipo", tipo))
+//                .list();
+//    }
+//
+//    @Override
+//    public void guardarMascota(Mascota mascota) {
+//        sessionFactory.getCurrentSession().save(mascota);
+//    }
+//
+//    @Override
+//    public List<Mascota> buscarPorId(Long id) {
+//        final Session session = sessionFactory.getCurrentSession();
+//        return session.createCriteria(Mascota.class)
+//                .add(Restrictions.eq("id", id))
+//                .list();
+//    }
