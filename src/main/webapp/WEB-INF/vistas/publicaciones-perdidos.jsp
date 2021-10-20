@@ -68,3 +68,5 @@
 
 </body>
 </html>
+
+<%-- src="<spring:url value='webapp/images'${savedUser.profileImage.originalFilename}'  --%>

@@ -44,7 +44,7 @@
                 <%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
                 <%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
                 <%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto--%>
-                <form:form cssClass="w3-container" action="registrarMascota" method="POST" modelAttribute="datosMascota">
+                <form:form cssClass="w3-container" action="registrarMascota" method="POST" modelAttribute="datosMascota" enctype="multipart/form-data">
                     <%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
                     <div class="w3-row flex-center">
                             <div class="w3-col l5">
@@ -122,12 +122,12 @@
                     <%--                    </div>--%>
 
                     <!-- SEXTA FILA -->
-                    <%--                    <div class="w3-row flex-center">--%>
-                    <%--                        <div class="w3-col" style="width: 100%">--%>
-                    <%--                            <label style="float: left">Agregar Foto </label>--%>
-                    <%--                            <form:input path="imagen" name="imagen" id="imagen" cssClass="w3-input" type="file"/>--%>
-                    <%--                        </div>--%>
-                    <%--                    </div>--%>
+                                        <div class="w3-row flex-center">
+                                            <div class="w3-col" style="width: 100%">
+                                                <label style="float: left">Agregar Foto </label>
+                                                <form:input path="imagen" name="file" id="imagen" cssClass="w3-input" type="file"/>
+                                            </div>
+                                        </div>
 
                     <%--Bloque que es visible si el elemento error no esta vacio	--%>
                     <c:if test="${not empty error}">

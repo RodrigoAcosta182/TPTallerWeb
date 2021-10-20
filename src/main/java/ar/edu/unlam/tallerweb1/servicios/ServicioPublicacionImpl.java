@@ -9,29 +9,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.Servlet;
+import javax.servlet.ServletContext;
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
 @Service("servicioPublicacion")
 @Transactional
-public class ServicioPublicacionImpl implements ServicioPublicacion{
+public class ServicioPublicacionImpl implements ServicioPublicacion {
 
     private final RepositorioPublicacion repositorioPublicacion;
 
     @Autowired
-    public ServicioPublicacionImpl(RepositorioPublicacion repositorioPublicacion){
+    public ServicioPublicacionImpl(RepositorioPublicacion repositorioPublicacion) {
         this.repositorioPublicacion = repositorioPublicacion;
     }
+
+    @Autowired
+    ServletContext servletContext;
+
     @Override
     public List<Publicacion> listarTodasLasPublicaciones() throws Exception {
 
-        if(repositorioPublicacion.buscarTodasLasPublicaciones().size() == 0)
-            throw  new Exception();
+        if (repositorioPublicacion.buscarTodasLasPublicaciones().size() == 0)
+            throw new Exception();
         return repositorioPublicacion.buscarTodasLasPublicaciones();
     }
 
     @Override
-    public Publicacion registrarPublicacion(DatosRegistroMascota mascota, Usuario usuario)throws Exception {
+    public Publicacion registrarPublicacion(DatosRegistroMascota mascota, Usuario usuario) throws Exception {
 
         if (mascota.getTipo() == null || mascota.getEstado() == null)
             throw new Exception();
@@ -47,6 +54,14 @@ public class ServicioPublicacionImpl implements ServicioPublicacion{
         nuevaMascota.setDetalle(mascota.getDetalle());
         nuevaMascota.setTamanio(mascota.getTamanio());
         nuevaMascota.setFecha(mascota.getFecha());
+
+        if (mascota.getImagen() != null || !mascota.getImagen().isEmpty()) {
+
+            nuevaMascota.setImagen(mascota.getImagen().getOriginalFilename());
+//            String filename = servletContext.getRealPath("/src")+ "webapp\\img\\" + mascota.getImagen().getOriginalFilename();
+            String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
+            mascota.getImagen().transferTo(new File(filename));
+        }
 
         nuevaPublicacion.setFechaPublicacion(new Date());
         nuevaPublicacion.setUsuario(usuario);

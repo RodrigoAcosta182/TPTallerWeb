@@ -19,15 +19,10 @@ public class Mascota {
     private String detalle;
     private String color;
     private String tamanio;
-
+    private String imagen;
 
     @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
     private Date fecha;
-
-
-
-
-
 
     public Mascota() {}
 
@@ -112,6 +107,14 @@ public class Mascota {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
 

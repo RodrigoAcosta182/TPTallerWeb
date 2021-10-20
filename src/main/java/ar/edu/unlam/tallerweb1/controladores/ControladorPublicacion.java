@@ -9,6 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,7 +55,7 @@ public class ControladorPublicacion {
     }
 
     @RequestMapping(method = RequestMethod.POST,path = "/registrarMascota")
-    public ModelAndView registrarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota,HttpServletRequest request) throws Exception{
+    public ModelAndView registrarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, HttpServletRequest request) throws Exception{
         ModelMap model = new ModelMap();
         try {
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");

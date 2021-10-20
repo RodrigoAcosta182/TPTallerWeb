@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.CascadeType;
 import javax.persistence.OneToOne;
@@ -17,7 +18,7 @@ public class DatosRegistroMascota {
     private String detalle;
     private String color;
     private String tamanio;
-
+    private MultipartFile imagen;
     @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
     private Date fecha;
     private Publicacion publicacionId;
@@ -28,9 +29,11 @@ public class DatosRegistroMascota {
 //    private String imagen;
 //    private String estado;
 
-    public DatosRegistroMascota(){}
+    public DatosRegistroMascota() {
+    }
 
-    public DatosRegistroMascota(String nombre,String tipo,String estado, String edad, String raza, String detalle, String color, String tamanio, Date fecha, Publicacion publicacionId) {
+    public DatosRegistroMascota(String nombre, String tipo, String estado, String edad, String raza, String detalle,
+                                String color, String tamanio, Date fecha, Publicacion publicacionId, MultipartFile imagen) {
         this.nombre = nombre;
 
         this.tipo = tipo;
@@ -41,6 +44,7 @@ public class DatosRegistroMascota {
         this.color = color;
         this.tamanio = tamanio;
         this.fecha = fecha;
+        this.imagen = imagen;
 
         this.publicacionId = publicacionId;
     }
@@ -125,5 +129,13 @@ public class DatosRegistroMascota {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public MultipartFile getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(MultipartFile imagen) {
+        this.imagen = imagen;
     }
 }
