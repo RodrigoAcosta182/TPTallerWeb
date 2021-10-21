@@ -19,6 +19,7 @@ public class Publicacion {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Mascota mascota;
+    private String estado;
 
 
 
@@ -60,5 +61,13 @@ public class Publicacion {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getEstado() {
+        return estado;
     }
 }

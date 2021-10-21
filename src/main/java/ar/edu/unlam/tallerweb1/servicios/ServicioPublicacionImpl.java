@@ -55,17 +55,24 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         nuevaMascota.setTamanio(mascota.getTamanio());
         nuevaMascota.setFecha(mascota.getFecha());
 
-        if (mascota.getImagen() != null || !mascota.getImagen().isEmpty()) {
-
-            nuevaMascota.setImagen(mascota.getImagen().getOriginalFilename());
+        if (mascota.getImagen().getSize() > 0) {
+            String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
+            nuevaMascota.setImagen(nombreConRuta);
 //            String filename = servletContext.getRealPath("/src")+ "webapp\\img\\" + mascota.getImagen().getOriginalFilename();
             String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
             mascota.getImagen().transferTo(new File(filename));
+        }else{
+            String nombreConRuta = "img/" + "noImagen.jpeg";
+            nuevaMascota.setImagen(nombreConRuta);
+//            String filename = servletContext.getRealPath("/src")+ "webapp\\img\\" + mascota.getImagen().getOriginalFilename();
+//            String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + "noImagen";
+//            mascota.getImagen().transferTo(new File(filename));
         }
 
         nuevaPublicacion.setFechaPublicacion(new Date());
         nuevaPublicacion.setUsuario(usuario);
         nuevaPublicacion.setMascota(nuevaMascota);
+        nuevaPublicacion.setEstado(mascota.getEstado());
 
         repositorioPublicacion.guardarPublicacion(nuevaPublicacion);
 
