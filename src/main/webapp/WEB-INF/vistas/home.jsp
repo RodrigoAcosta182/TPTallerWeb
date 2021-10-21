@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <title>Home Missing Pets</title>
@@ -21,6 +23,9 @@
         <a href="" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Reencontrados</a>
         <a href="" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Servicios</a>
 
+        <a class="w3-bar-item w3-button w3-hide-small" style="float:right" href="#about">Cerrar Sesion</a>
+        <a class="w3-bar-item w3-button w3-hide-small" style="float:right" href="#about">Mis Publicaciones</a>
+        <a class="w3-bar-item w3-button w3-hide-small" style="float:right" href="#about">Bienvenido ${usuario.nombre}</a>
 
         </a>
     </div>
