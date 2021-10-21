@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `missingpets` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `missingpets`;
 -- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: missingpets
@@ -24,11 +26,19 @@ DROP TABLE IF EXISTS `publicacion`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `publicacion` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `finalizado` bit(1) DEFAULT NULL,
+  `finalizado` int DEFAULT NULL,
   `fechaPublicacion` date DEFAULT NULL,
   `usuario_id` bigint DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `mascota_id` bigint DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKsmafswujolnyojwb2rq31ax48` (`mascota_id`),
+  KEY `FKrfbxv3finr62x94rulf1mm5mp` (`usuario_id`),
+  CONSTRAINT `FKrfbxv3finr62x94rulf1mm5mp` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
+  CONSTRAINT `FKsmafswujolnyojwb2rq31ax48` FOREIGN KEY (`mascota_id`) REFERENCES `mascota` (`id`),
+  CONSTRAINT `publicacion_mascota_id_fk` FOREIGN KEY (`mascota_id`) REFERENCES `mascota` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `publicacion_usuario_id_fk` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +47,7 @@ CREATE TABLE `publicacion` (
 
 LOCK TABLES `publicacion` WRITE;
 /*!40000 ALTER TABLE `publicacion` DISABLE KEYS */;
-INSERT INTO `publicacion` VALUES (4,_binary '\0','2021-10-14',NULL),(5,_binary '\0','2021-10-14',NULL),(6,_binary '\0','2021-10-14',NULL),(7,_binary '\0','2021-10-14',NULL);
+INSERT INTO `publicacion` VALUES (10,0,'2021-10-20',1,48,'2'),(11,0,'2021-10-20',1,49,'2'),(17,0,'2021-10-21',1,55,'2'),(18,0,'2021-10-21',1,56,'1'),(19,0,'2021-10-21',1,57,'1');
 /*!40000 ALTER TABLE `publicacion` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-14  0:00:52
+-- Dump completed on 2021-10-21 19:36:23

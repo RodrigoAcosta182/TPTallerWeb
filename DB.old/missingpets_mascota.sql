@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `missingpets` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `missingpets`;
 -- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: missingpets
@@ -18,27 +16,36 @@ USE `missingpets`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cuenta`
+-- Table structure for table `mascota`
 --
 
-DROP TABLE IF EXISTS `cuenta`;
+DROP TABLE IF EXISTS `mascota`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cuenta` (
+CREATE TABLE `mascota` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `creada` datetime NOT NULL,
+  `nombre` varchar(90) DEFAULT NULL,
+  `edad` varchar(90) DEFAULT NULL,
+  `raza` varchar(90) DEFAULT NULL,
+  `detalle` varchar(90) DEFAULT NULL,
+  `color` varchar(90) DEFAULT NULL,
+  `tamanio` varchar(90) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `tipo` varchar(255) NOT NULL,
+  `estado` int DEFAULT NULL,
+  `publicacion_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cuenta`
+-- Dumping data for table `mascota`
 --
 
-LOCK TABLES `cuenta` WRITE;
-/*!40000 ALTER TABLE `cuenta` DISABLE KEYS */;
-INSERT INTO `cuenta` VALUES (5,'2021-10-06 01:17:15'),(6,'2021-10-06 01:19:19');
-/*!40000 ALTER TABLE `cuenta` ENABLE KEYS */;
+LOCK TABLES `mascota` WRITE;
+/*!40000 ALTER TABLE `mascota` DISABLE KEYS */;
+INSERT INTO `mascota` VALUES (33,'T-Rex','145','Dinosaurio Carnivoro','Veloz cirraptor','Verde','Gigante',NULL,'3',1,4),(34,'Pichichus','4','Pekines','Sin una oreja','Rojo','Chico',NULL,'1',2,5),(35,'Con botas','7','Gato de pelicula','Espadachin','Naranja','Chico',NULL,'2',1,6),(36,'Superman','27','No Binario','Super pito','Azul y Rojo','Normal',NULL,'3',1,7);
+/*!40000 ALTER TABLE `mascota` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-21 19:36:24
+-- Dump completed on 2021-10-14  0:00:52
