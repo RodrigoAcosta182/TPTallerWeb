@@ -83,4 +83,26 @@ public class ControladorPublicacion {
         return new ModelAndView("home",model);
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/publicacion")
+    public ModelAndView irAVerPublicacion() {
+        ModelMap model = new ModelMap();
+        DatosCorreo datosCorreo = new DatosCorreo();
+        model.put("datosCorreo", datosCorreo);
+        return new ModelAndView("ver-publicacion",model);
+    }
+
+
+    @RequestMapping(method = RequestMethod.POST, path = "/enviarCorreo")
+    public ModelAndView enviarCorreo(@ModelAttribute("datosCorreo") DatosCorreo datosCorreo) {
+        ModelMap model = new ModelMap();
+        try {
+            servicioPublicacion.enviarCorreo(datosCorreo.getReceptor(), datosCorreo.getComentario());
+        }catch (Exception e){
+            model.put("mailError","error al enviar el mensaje");
+            return new ModelAndView("ver-publicacion", model);
+        }
+        model.put("mailOk","Mensaje enviado correctamente");
+        return new ModelAndView("ver-publicacion",model);
+    }
+
 }
