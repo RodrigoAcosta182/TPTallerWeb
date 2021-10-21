@@ -35,7 +35,6 @@
     </div>
 </div>
 
-
 <div class="container-publicaciones noselect">
     <c:if test="${not empty publicacionesError}">
         <div class="w3-panel w3-red w3-round-xxlarge">
@@ -44,9 +43,6 @@
     </c:if>
     <c:forEach items="${publicaciones}" var="publicacion" varStatus="status" step="1" begin="0">
         <div id="${status.index % 3 + 1}" class="tarjeta-publicacion-mascota">
-<%--            <img class="imagen-publicacion-mascota"--%>
-<%--                 src="https://images.clarin.com/2021/06/20/el-caniche-arriba-en-las___6JQOYiC4y_340x340__1.jpg"--%>
-<%--                 alt="Alps">--%>
                 <c:if test="${publicacion.mascota.estado == 1}">
                     <h2 style="text-align: center">Perdido</h2>
                 </c:if>
@@ -62,8 +58,6 @@
                 <p>Detalles: ${publicacion.mascota.detalle}</p>
                 <p>Tamanio: ${publicacion.mascota.tamanio}</p>
                 <p>Edad: ${publicacion.mascota.edad}</p>
-
-
             </div>
         </div>
     </c:forEach>

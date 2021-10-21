@@ -10,7 +10,7 @@ public interface RepositorioPublicacion {
     List<Publicacion> buscarPor(Usuario usuario);
 
 
-    List<Publicacion> buscarTodasLasPublicaciones();
-
+    List<Publicacion> buscarTodasLasPublicacionesPerdidas();
+    List<Publicacion> buscarTodasLasPublicacionesEncontradas();
     void guardarPublicacion(Publicacion nuevaPublicacion);
 }

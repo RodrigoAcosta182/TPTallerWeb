@@ -35,15 +35,29 @@ public class ControladorPublicacion {
         try {
         Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
         usuario.getId();
-        publicaciones = servicioPublicacion.listarTodasLasPublicaciones();
+        publicaciones = servicioPublicacion.listarTodasLasPublicacionesPerdidas();
         } catch (Exception e) {
         model.put("publicacionesError", "No hay publicaciones");
             return new ModelAndView("publicaciones-perdidos", model);
         }
         model.put("publicaciones", publicaciones);
         return new ModelAndView("publicaciones-perdidos", model);
+    }
 
-
+    @RequestMapping(method = RequestMethod.GET, path = "/ir-a-publicacion-mascota-encontrada")
+    public ModelAndView irAPublicacionMascotaEncontrada(HttpServletRequest request) {
+        ModelMap model = new ModelMap();
+        List<Publicacion> publicaciones = new ArrayList<>();
+        try {
+            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+            usuario.getId();
+            publicaciones = servicioPublicacion.listarTodasLasPublicacionesEncontradas();
+        } catch (Exception e) {
+            model.put("publicacionesError", "No hay publicaciones");
+            return new ModelAndView("publicaciones-perdidos", model);
+        }
+        model.put("publicaciones", publicaciones);
+        return new ModelAndView("publicaciones-perdidos", model);
     }
 
     @RequestMapping(method = RequestMethod.GET,path = "/ir-a-registrar-mascota")

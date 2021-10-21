@@ -7,7 +7,10 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import java.util.List;
 
 public interface ServicioPublicacion {
-    List<Publicacion> listarTodasLasPublicaciones() throws Exception;
 
     Publicacion registrarPublicacion(DatosRegistroMascota mascota, Usuario usuario) throws Exception;
+
+    List<Publicacion> listarTodasLasPublicacionesEncontradas() throws Exception;
+
+    List<Publicacion> listarTodasLasPublicacionesPerdidas() throws Exception;
 }
