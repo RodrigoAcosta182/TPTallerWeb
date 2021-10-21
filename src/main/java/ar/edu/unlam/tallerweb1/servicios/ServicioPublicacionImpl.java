@@ -30,12 +30,22 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     ServletContext servletContext;
 
     @Override
-    public List<Publicacion> listarTodasLasPublicaciones() throws Exception {
+    public List<Publicacion> listarTodasLasPublicacionesPerdidas() throws Exception {
 
-        if (repositorioPublicacion.buscarTodasLasPublicaciones().size() == 0)
+        if (repositorioPublicacion.buscarTodasLasPublicacionesPerdidas().size() == 0)
             throw new Exception();
-        return repositorioPublicacion.buscarTodasLasPublicaciones();
+        return repositorioPublicacion.buscarTodasLasPublicacionesPerdidas();
     }
+
+    @Override
+    public List<Publicacion> listarTodasLasPublicacionesEncontradas() throws Exception {
+
+        if (repositorioPublicacion.buscarTodasLasPublicacionesEncontradas().size() == 0)
+            throw new Exception();
+        return repositorioPublicacion.buscarTodasLasPublicacionesEncontradas();
+    }
+
+
 
     @Override
     public Publicacion registrarPublicacion(DatosRegistroMascota mascota, Usuario usuario) throws Exception {
@@ -64,9 +74,6 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         }else{
             String nombreConRuta = "img/" + "noImagen.jpeg";
             nuevaMascota.setImagen(nombreConRuta);
-//            String filename = servletContext.getRealPath("/src")+ "webapp\\img\\" + mascota.getImagen().getOriginalFilename();
-//            String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + "noImagen";
-//            mascota.getImagen().transferTo(new File(filename));
         }
 
         nuevaPublicacion.setFechaPublicacion(new Date());

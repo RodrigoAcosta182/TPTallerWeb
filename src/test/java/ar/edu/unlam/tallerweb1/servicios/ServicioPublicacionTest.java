@@ -27,11 +27,11 @@ public class ServicioPublicacionTest {
     }
 
     private List<Publicacion> whenObtengoPublicaciones() throws Exception {
-        return  servicioPublicacion.listarTodasLasPublicaciones();
+        return  servicioPublicacion.listarTodasLasPublicacionesPerdidas();
     }
 
     private void givenQueLaPublicacionNoExiste() {
-        when(repositorioPublicacion.buscarTodasLasPublicaciones()).thenReturn(null);
+        when(repositorioPublicacion.buscarTodasLasPublicacionesPerdidas()).thenReturn(null);
     }
 }
 

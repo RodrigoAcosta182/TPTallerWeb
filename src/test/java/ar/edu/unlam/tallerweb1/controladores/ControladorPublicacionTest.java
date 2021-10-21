@@ -66,7 +66,7 @@ public class ControladorPublicacionTest {
     }
 
     private void givenQueNoEncuentroPublicacion() throws Exception {
-        doThrow(Exception.class).when(servicioPublicacion).listarTodasLasPublicaciones();
+        doThrow(Exception.class).when(servicioPublicacion).listarTodasLasPublicacionesPerdidas();
     }
 
 

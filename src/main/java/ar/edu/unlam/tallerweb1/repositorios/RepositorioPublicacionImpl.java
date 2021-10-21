@@ -25,9 +25,16 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion{
     }
 
     @Override
-    public List<Publicacion> buscarTodasLasPublicaciones() {
+    public List<Publicacion> buscarTodasLasPublicacionesPerdidas() {
         List<Publicacion> publicaciones = sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
                 .add(Restrictions.eq("estado","1"))
+                .list();
+        return publicaciones;
+    }
+    @Override
+    public List<Publicacion> buscarTodasLasPublicacionesEncontradas() {
+        List<Publicacion> publicaciones = sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
+                .add(Restrictions.eq("estado","2"))
                 .list();
         return publicaciones;
     }
