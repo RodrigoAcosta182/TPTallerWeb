@@ -6,10 +6,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -58,6 +55,27 @@ public class ControladorPublicacion {
         }
         model.put("publicaciones", publicaciones);
         return new ModelAndView("publicaciones-perdidos", model);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/ir-a-mis-publicaciones")
+    public ModelAndView irAMisPublicaciones(HttpServletRequest request) {
+        ModelMap model = new ModelMap();
+        List<Publicacion> publicaciones = new ArrayList<>();
+        try {
+            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+            publicaciones = servicioPublicacion.listarTodasMisPublicaciones(usuario);
+        } catch (Exception e) {
+            model.put("publicacionesError", "No hay publicaciones");
+            return new ModelAndView("publicaciones-perdidos", model);
+        }
+        model.put("publicaciones", publicaciones);
+        return new ModelAndView("mis-publicaciones", model);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/finalizar-publicacion/{id}")
+    public ModelAndView finalizarPublicacion(@PathVariable ("id") Long id) {
+        servicioPublicacion.finalizarPublicacion(id);
+        return new ModelAndView("mis-publicaciones");
     }
 
     @RequestMapping(method = RequestMethod.GET,path = "/ir-a-registrar-mascota")
