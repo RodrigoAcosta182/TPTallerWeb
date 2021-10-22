@@ -9,6 +9,11 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaUpdate;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository("repositorioPublicacion")
@@ -17,11 +22,22 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion{
     @Autowired
     private SessionFactory sessionFactory;
 
+    @PersistenceContext
+    private EntityManager em;
+
     @Override
     public List<Publicacion> buscarPor(Usuario usuario) {
         return sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
                 .add(Restrictions.eq("usuarioId", usuario))
                 .list();
+    }
+
+    @Override
+    public List<Publicacion> buscarTodasMisPublicaciones(Usuario usuario) {
+        List<Publicacion> publicaciones = sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
+                .add(Restrictions.eq("usuario", usuario))
+                .list();
+        return publicaciones;
     }
 
     @Override
@@ -42,6 +58,29 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion{
     @Override
     public void guardarPublicacion(Publicacion nuevaPublicacion) {
         sessionFactory.getCurrentSession().save(nuevaPublicacion);
+    }
+
+    @Override
+    public void finalizarPublicacion(Long id) {
+        CriteriaBuilder cb = this.em.getCriteriaBuilder();
+
+//        CriteriaUpdate<Publicacion>
+//        sessionFactory.getCurrentSession().createCriteria
+//                .add(Restrictions.eq("estado","2"));
+
+        // create update
+        CriteriaUpdate<Publicacion> update = cb.
+                createCriteriaUpdate(Publicacion.class);
+
+        // set the root class
+        Root e = update.from(Publicacion.class);
+
+        // set update and where clause
+        update.set("finalizado", 1);
+        update.where(cb.greaterThanOrEqualTo(e.get("id"), id));
+
+        // perform update
+        this.em.createQuery(update).executeUpdate();
     }
 
 }
