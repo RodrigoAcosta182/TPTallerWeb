@@ -142,4 +142,9 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         return null;
     }
 
+    @Override
+    public Publicacion buscarPublicacion(Long id) {
+        return repositorioPublicacion.buscarPublicacionPorId(id);
+
+    }
 }

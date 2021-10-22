@@ -5,21 +5,41 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
 import java.util.List;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class ServicioPublicacionTest {
     private RepositorioPublicacion repositorioPublicacion = mock(RepositorioPublicacion.class);
     private ServicioPublicacion servicioPublicacion = new ServicioPublicacionImpl(repositorioPublicacion);
+
+
 
     @Test(expected = Exception.class)
     public void queSeNoSeEncontroPublicaciones() throws Exception {
         givenQueLaPublicacionNoExiste();
         List<Publicacion> publicaciones = whenObtengoPublicaciones();
         thenExistenPublicaciones(publicaciones);
+    }
+
+    @Test
+    public void queSeEncuentraUnaPublicacionPorId(){
+        givenQueLaPublicacionExiste();
+        Publicacion publicacion = whenObtengoPublicacionPor(Long.valueOf(10));
+        thenEncuentroUnaPublicacion(publicacion);
+    }
+
+    private void thenEncuentroUnaPublicacion(Publicacion publicacion) {
+        //assertThat(publicacion).isNotNull();
+        //verify(repositorioPublicacion,times(1)).buscarPublicacionPorId(publicacion.getId());
+    }
+
+    private Publicacion whenObtengoPublicacionPor(Long id) {
+
+        return servicioPublicacion.buscarPublicacion(id);
+    }
+
+    private void givenQueLaPublicacionExiste() {
     }
 
     private void thenExistenPublicaciones(List<Publicacion> publicaciones) {
@@ -33,7 +53,22 @@ public class ServicioPublicacionTest {
     private void givenQueLaPublicacionNoExiste() {
         when(repositorioPublicacion.buscarTodasLasPublicacionesPerdidas()).thenReturn(null);
     }
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
 
 
 // TEST A REVISAR Y PONER EN ESTE ARCHIVO

@@ -18,5 +18,9 @@ public interface ServicioPublicacion {
 
     void enviarCorreo(String receptor, String comentario) throws Exception;
 
+
+    Publicacion buscarPublicacion(Long id);
+
     void finalizarPublicacion(Long id);
+
 }
