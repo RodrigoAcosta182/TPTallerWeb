@@ -14,6 +14,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
@@ -50,7 +51,12 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         return repositorioPublicacion.buscarTodasLasPublicacionesEncontradas();
     }
 
-
+    @Override
+    public List<Publicacion> listarTodasMisPublicaciones(Usuario usuario) throws Exception {
+        if (repositorioPublicacion.buscarTodasMisPublicaciones(usuario).size() == 0)
+            throw new Exception();
+        return repositorioPublicacion.buscarTodasMisPublicaciones(usuario);
+    }
 
     @Override
     public Publicacion registrarPublicacion(DatosRegistroMascota mascota, Usuario usuario) throws Exception {
@@ -114,6 +120,12 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 
         Message mensaje = prepararMensaje(session, miCuenta, receptor, comentario);
         Transport.send(mensaje, mensaje.getRecipients(Message.RecipientType.TO));
+    }
+
+    @Override
+    public void finalizarPublicacion(Long id) {
+//        repositorioPublicacion.guardarPublicacion(nuevaPublicacion);
+        repositorioPublicacion.finalizarPublicacion(id);
     }
 
     private static Message prepararMensaje(Session session, String miCuenta,String receptor,  String comentario) {

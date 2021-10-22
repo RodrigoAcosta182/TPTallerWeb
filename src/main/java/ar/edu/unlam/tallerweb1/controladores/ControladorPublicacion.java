@@ -57,6 +57,27 @@ public class ControladorPublicacion {
         return new ModelAndView("publicaciones-perdidos", model);
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/ir-a-mis-publicaciones")
+    public ModelAndView irAMisPublicaciones(HttpServletRequest request) {
+        ModelMap model = new ModelMap();
+        List<Publicacion> publicaciones = new ArrayList<>();
+        try {
+            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+            publicaciones = servicioPublicacion.listarTodasMisPublicaciones(usuario);
+        } catch (Exception e) {
+            model.put("publicacionesError", "No hay publicaciones");
+            return new ModelAndView("publicaciones-perdidos", model);
+        }
+        model.put("publicaciones", publicaciones);
+        return new ModelAndView("mis-publicaciones", model);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/finalizar-publicacion/{id}")
+    public ModelAndView finalizarPublicacion(@PathVariable ("id") Long id) {
+        servicioPublicacion.finalizarPublicacion(id);
+        return new ModelAndView("mis-publicaciones");
+    }
+
     @RequestMapping(method = RequestMethod.GET,path = "/ir-a-registrar-mascota")
     public ModelAndView irARegistrarPublicacion() {
         ModelMap model = new ModelMap();
