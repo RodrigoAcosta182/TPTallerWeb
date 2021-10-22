@@ -13,4 +13,6 @@ public interface RepositorioPublicacion {
     List<Publicacion> buscarTodasLasPublicacionesPerdidas();
     List<Publicacion> buscarTodasLasPublicacionesEncontradas();
     void guardarPublicacion(Publicacion nuevaPublicacion);
+
+    Publicacion buscarPublicacionPorId(Long id);
 }

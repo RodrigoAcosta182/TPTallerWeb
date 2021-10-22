@@ -15,4 +15,6 @@ public interface ServicioPublicacion {
     List<Publicacion> listarTodasLasPublicacionesPerdidas() throws Exception;
 
     void enviarCorreo(String receptor, String comentario) throws Exception;
+
+    Publicacion buscarPublicacion(Long id);
 }

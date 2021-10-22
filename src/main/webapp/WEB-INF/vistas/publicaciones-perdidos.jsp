@@ -44,8 +44,8 @@
     </c:if>
     <c:forEach items="${publicaciones}" var="publicacion" varStatus="status" step="1" begin="0">
         <div id="${status.index % 3 + 1}" class="tarjeta-publicacion-mascota">
-<%--            <a href="publicacion/${publicacion.id}" class="tarjeta-text-decoration">--%>
-            <a href="publicacion" class="tarjeta-text-decoration">
+            <a href="publicacion/${publicacion.id}" class="tarjeta-text-decoration">
+<%--            <a href="publicacion" class="tarjeta-text-decoration">--%>
 
 
                     <%--            <img class="imagen-publicacion-mascota"--%>

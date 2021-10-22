@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository("repositorioPublicacion")
-public class RepositorioPublicacionImpl implements RepositorioPublicacion{
+public class RepositorioPublicacionImpl implements RepositorioPublicacion {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -27,14 +27,15 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion{
     @Override
     public List<Publicacion> buscarTodasLasPublicacionesPerdidas() {
         List<Publicacion> publicaciones = sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
-                .add(Restrictions.eq("estado","1"))
+                .add(Restrictions.eq("estado", "1"))
                 .list();
         return publicaciones;
     }
+
     @Override
     public List<Publicacion> buscarTodasLasPublicacionesEncontradas() {
         List<Publicacion> publicaciones = sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
-                .add(Restrictions.eq("estado","2"))
+                .add(Restrictions.eq("estado", "2"))
                 .list();
         return publicaciones;
     }
@@ -44,6 +45,12 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion{
         sessionFactory.getCurrentSession().save(nuevaPublicacion);
     }
 
+    @Override
+    public Publicacion buscarPublicacionPorId(Long id) {
+        return (Publicacion) sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
+                .add(Restrictions.eq("id", id)).uniqueResult();
+        
+    }
 }
 
 //    @Override
