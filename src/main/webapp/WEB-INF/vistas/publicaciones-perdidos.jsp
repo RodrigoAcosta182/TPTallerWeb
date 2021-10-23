@@ -5,6 +5,12 @@
 <title>Mis Publicaciones</title>
 <%@ include file="partial/header.jsp" %>
 
+<link href="${pageContext.request.contextPath}/css/w3s.css" rel="stylesheet">
+<link href="../css/estilos.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <div class="container-publicaciones noselect">
     <c:if test="${not empty publicacionesError}">
         <div class="w3-panel w3-red w3-round-xxlarge">
@@ -28,7 +34,9 @@
                 <p>Tamanio: ${publicacion.mascota.tamanio}</p>
                 <p>Edad: ${publicacion.mascota.edad}</p>
             </div>
-
+            <a href="/missingpets/publicacion?id=${publicacion.id}">
+                <button class="w3-btn w3-green" style="text-decoration: none">Ver publicacion</button>
+            </a>
         </div>
     </c:forEach>
 </div>

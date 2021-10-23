@@ -9,15 +9,23 @@
 
 <div class="container-publicaciones noselect">
     <div class="tarjeta-publicacion-ver-publicacion">
-        <div class="w3-container w3-center">
-            <p>Foto + Descripcion de la publicacion</p>
-            <%--            <textarea class="ver-publicacion-escribir-comentario"></textarea>--%>
-            <form:form action="enviarCorreo" method="POST" modelAttribute="datosCorreo" cssClass="w3-container">
-                <label class="w3-left">Correo creador de la publicacion</label>
-                <form:input cssClass="w3-input" path="receptor" id="receptor"/>
+        <div>
+            <img src="${publicacion.mascota.imagen}" style="width: 400px; height: 400px;border-radius: 12px" alt="">
+            <div >
+                <p>Nombre: ${publicacion.mascota.nombre}</p>
+                <p>Raza: ${publicacion.mascota.raza}</p>
+                <p>Detalles: ${publicacion.mascota.detalle}</p>
+                <p>Tamanio: ${publicacion.mascota.tamanio}</p>
+                <p>Edad: ${publicacion.mascota.edad}</p>
+            </div>
+
+
+            <form:form action="enviarCorreo" method="POST" modelAttribute="datosCorreo">
+                <label class="w3-left">Enviar mensaje a:</label>
+                <form:input cssClass="w3-input" path="receptor" id="receptor" readonly="true" />
                 <form:textarea cssClass="ver-publicacion-escribir-comentario" path="comentario" id="receptor"/>
                 <div>
-                    <button class="w3-btn w3-purple" type="submit">Comentar</button>
+                    <button class="w3-btn w3-purple" type="submit" style="width: 100%">Enviar mensaje</button>
                 </div>
                 <c:if test="${not empty mailOk}">
                     <div class="w3-panel w3-green w3-round">
