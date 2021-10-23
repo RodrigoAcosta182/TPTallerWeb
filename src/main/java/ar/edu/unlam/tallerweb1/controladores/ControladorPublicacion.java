@@ -101,12 +101,14 @@ public class ControladorPublicacion {
         return new ModelAndView("home",model);
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/publicacion/{id}")
-    public ModelAndView irAVerPublicacion(@PathVariable("id") Long id) {
+    @RequestMapping(method = RequestMethod.GET, path = "/publicacion")
+    public ModelAndView irAVerPublicacion(@RequestParam("id") Long id) {
         ModelMap model = new ModelMap();
-        servicioPublicacion.buscarPublicacion(id);
+        Publicacion publicacion = servicioPublicacion.buscarPublicacion(id);
         DatosCorreo datosCorreo = new DatosCorreo();
+        datosCorreo.setReceptor(publicacion.getUsuario().getEmail());
         model.put("datosCorreo", datosCorreo);
+        model.put("publicacion",publicacion);
         return new ModelAndView("ver-publicacion",model);
     }
 

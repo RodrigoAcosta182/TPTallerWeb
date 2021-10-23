@@ -186,7 +186,6 @@ body, html {
     align-items: center;
     flex-direction: column;
     text-decoration: none;
-    cursor: pointer;
     background: white;
     border-radius: 12px;
     padding: 10px 24px 24px 24px;
@@ -202,13 +201,9 @@ body, html {
     width:50%;
     height:150px;
 }
+
 .tarjeta-text-decoration{
     text-decoration: none;
-}
-
-.tarjeta-publicacion-mascota:hover{
-    background-color: #3a3a3a;
-    color: white;
 }
 
 .tarjeta-publicacion-ver-publicacion{
