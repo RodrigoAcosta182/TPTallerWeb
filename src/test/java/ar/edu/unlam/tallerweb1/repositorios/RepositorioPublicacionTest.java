@@ -13,12 +13,12 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RepositorioPublicacionTest extends SpringTest {
-
-
-
-
-}
+//public class RepositorioPublicacionTest extends SpringTest {
+//
+//
+//
+//
+//}
 //
 //    private final Usuario USUARIO = new Usuario("mascota@mascota.com", "1234");
 //    @Autowired
