@@ -35,30 +35,6 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     ServletContext servletContext;
 
     @Override
-    public List<Publicacion> listarTodasLasPublicacionesPerdidas() throws Exception {
-
-        if (repositorioPublicacion.buscarTodasLasPublicacionesPerdidas().size() == 0)
-            throw new Exception();
-        return repositorioPublicacion.buscarTodasLasPublicacionesPerdidas();
-    }
-
-
-    @Override
-    public List<Publicacion> listarTodasLasPublicacionesEncontradas() throws Exception {
-
-        if (repositorioPublicacion.buscarTodasLasPublicacionesEncontradas().size() == 0)
-            throw new Exception();
-        return repositorioPublicacion.buscarTodasLasPublicacionesEncontradas();
-    }
-
-    @Override
-    public List<Publicacion> listarTodasMisPublicaciones(Usuario usuario) throws Exception {
-        if (repositorioPublicacion.buscarTodasMisPublicaciones(usuario).size() == 0)
-            throw new Exception();
-        return repositorioPublicacion.buscarTodasMisPublicaciones(usuario);
-    }
-
-    @Override
     public Publicacion registrarPublicacion(DatosRegistroMascota mascota, Usuario usuario) throws Exception {
 
         if (mascota.getTipo() == null || mascota.getEstado() == null)
@@ -98,6 +74,41 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     }
 
     @Override
+    public void finalizarPublicacion(Long id) {
+        repositorioPublicacion.finalizarPublicacion(id);
+    }
+
+    @Override
+    public List<Publicacion> listarTodasLasPublicacionesPerdidas() throws Exception {
+
+        if (repositorioPublicacion.buscarTodasLasPublicacionesPerdidas().size() == 0)
+            throw new Exception();
+        return repositorioPublicacion.buscarTodasLasPublicacionesPerdidas();
+    }
+
+
+    @Override
+    public List<Publicacion> listarTodasLasPublicacionesEncontradas() throws Exception {
+
+        if (repositorioPublicacion.buscarTodasLasPublicacionesEncontradas().size() == 0)
+            throw new Exception();
+        return repositorioPublicacion.buscarTodasLasPublicacionesEncontradas();
+    }
+
+    @Override
+    public List<Publicacion> listarTodasMisPublicaciones(Usuario usuario) throws Exception {
+        if (repositorioPublicacion.buscarTodasMisPublicaciones(usuario).size() == 0)
+            throw new Exception();
+        return repositorioPublicacion.buscarTodasMisPublicaciones(usuario);
+    }
+
+    @Override
+    public Publicacion buscarPublicacion(Long id) {
+        return repositorioPublicacion.buscarPublicacionPorId(id);
+
+    }
+
+    @Override
     public void enviarCorreo(String receptor, String comentario) throws Exception {
 
         if(receptor == null || comentario == null)
@@ -122,12 +133,6 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         Transport.send(mensaje, mensaje.getRecipients(Message.RecipientType.TO));
     }
 
-    @Override
-    public void finalizarPublicacion(Long id) {
-//        repositorioPublicacion.guardarPublicacion(nuevaPublicacion);
-        repositorioPublicacion.finalizarPublicacion(id);
-    }
-
     private static Message prepararMensaje(Session session, String miCuenta,String receptor,  String comentario) {
         try {
             MimeMessage mensaje = new MimeMessage(session);
@@ -140,11 +145,5 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
             e.printStackTrace();
         }
         return null;
-    }
-
-    @Override
-    public Publicacion buscarPublicacion(Long id) {
-        return repositorioPublicacion.buscarPublicacionPorId(id);
-
     }
 }
