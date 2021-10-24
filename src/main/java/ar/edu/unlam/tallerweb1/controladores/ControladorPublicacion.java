@@ -39,10 +39,10 @@ public class ControladorPublicacion {
         return new ModelAndView("home", model);
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/finalizar-publicacion/{id}")
-    public ModelAndView finalizarPublicacion(@PathVariable("id") Long id) {
-        servicioPublicacion.finalizarPublicacion(id);
-        return new ModelAndView("mis-publicaciones");
+    @RequestMapping(method = RequestMethod.GET, path = "/finalizar-publicacion")
+    public ModelAndView finalizarPublicacion(@RequestParam("id") Long id, Publicacion publicacion) {
+        servicioPublicacion.finalizarPublicacion(id, publicacion);
+        return new ModelAndView("home");
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/ir-a-publicacion-mascota-perdida")

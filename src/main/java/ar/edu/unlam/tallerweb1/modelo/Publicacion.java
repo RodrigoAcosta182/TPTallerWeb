@@ -10,7 +10,7 @@ public class Publicacion {
     private Long id;
 
     private Date fechaPublicacion;
-    private Byte finalizado = 0;
+    private Boolean finalizado = false;
 
 
     @ManyToOne
@@ -39,11 +39,11 @@ public class Publicacion {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    public Byte getFinalizado() {
+    public Boolean getFinalizado() {
         return finalizado;
     }
 
-    public void setFinalizado(Byte finalizado) {
+    public void setFinalizado(Boolean finalizado) {
         this.finalizado = finalizado;
     }
 
