@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
+import ar.edu.unlam.tallerweb1.modelo.Cuenta;
+import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.junit.Test;
@@ -8,21 +10,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-//public class RepositorioPublicacionTest extends SpringTest {
+
+public class RepositorioPublicacionTest extends SpringTest {
+
+    @Autowired
+    private RepositorioPublicacion repositorioPublicacion;
+
+
+    @Test(expected = Exception.class)
+    @Transactional
+    @Rollback
+    public void obtengoUnaPublicacionPorId() {
+
+        givenExistePublicacionConId(10L);
+        Publicacion publicacion =   whenObtengoLaPublicacionPorId(10L);
+        thenObtengoPublicacion(publicacion);
+    }
+
+    private Publicacion whenObtengoLaPublicacionPorId(Long id) {
+        return repositorioPublicacion.buscarPublicacionPorId(id);
+    }
+
+    private void thenObtengoPublicacion(Publicacion publicacion) {
+        assertThat(publicacion.getClass()).isEqualTo(Publicacion.class);
+    }
+
+    private void givenExistePublicacionConId(Long id) {
+            Publicacion publicacion = new Publicacion();
+            publicacion.setId(id);
+            session().save(publicacion);
+    }
+
+}
 //
 //
 //
-//
-//}
-//
-//    private final Usuario USUARIO = new Usuario("mascota@mascota.com", "1234");
-//    @Autowired
-//    private RepositorioPublicacion repositorioPublicaciones;
 //
 //    @Test @Transactional @Rollback
 //    public void obtengoLasPublicacionesDeUnUsuario() {
