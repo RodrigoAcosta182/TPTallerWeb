@@ -62,11 +62,9 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     }
 
     @Override
-
     public Publicacion buscarPublicacionPorId(Long id) {
         return (Publicacion) sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
                 .add(Restrictions.eq("id", id)).uniqueResult();
-        
     }
 
     public void finalizarPublicacion(Long id) {
