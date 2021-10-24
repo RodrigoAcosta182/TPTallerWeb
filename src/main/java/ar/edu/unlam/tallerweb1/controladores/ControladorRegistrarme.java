@@ -22,15 +22,6 @@ public class ControladorRegistrarme {
         this.servicioLogin = servicioLogin;
     }
 
-    //@RequestParam es para ?nombre=valor&ñapellido=valor2
-    @RequestMapping(method = RequestMethod.GET,path = "/ir-a-registrarme")
-    public ModelAndView irARegistrarme(){
-        ModelMap model = new ModelMap();
-        DatosRegistro datos = new DatosRegistro();
-        model.put("datos", datos);
-        return new ModelAndView("registro-usuario",model);
-    }
-
     @RequestMapping(method = RequestMethod.POST,path = "/registrarme")
     public ModelAndView registrarUsuario(@ModelAttribute("datos") DatosRegistro datos) {
 
@@ -59,6 +50,15 @@ public class ControladorRegistrarme {
             model.put("error", "Registro Fallido por mail incorrecto");
             return new ModelAndView("registro-usuario", model);
         }
+    }
+
+    //@RequestParam es para ?nombre=valor&ñapellido=valor2
+    @RequestMapping(method = RequestMethod.GET,path = "/ir-a-registrarme")
+    public ModelAndView irARegistrarme(){
+        ModelMap model = new ModelMap();
+        DatosRegistro datos = new DatosRegistro();
+        model.put("datos", datos);
+        return new ModelAndView("registro-usuario",model);
     }
 
 

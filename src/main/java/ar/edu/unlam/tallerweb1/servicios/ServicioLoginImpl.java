@@ -28,10 +28,6 @@ public class ServicioLoginImpl implements ServicioLogin {
 	}
 
 	@Override
-	public Usuario consultarUsuario (String email, String password) {
-		return repositorioUsuario.buscarUsuario(email, password);
-	}
-	@Override
 	public Usuario registrar(String email, String password) throws Exception {
 		Usuario buscado = repositorioUsuario.buscar(email);
 		if (buscado != null)
@@ -44,6 +40,10 @@ public class ServicioLoginImpl implements ServicioLogin {
 		nuevo.setCuenta(cuenta);
 		repositorioUsuario.guardar(nuevo);
 		return nuevo;
+	}
+	@Override
+	public Usuario consultarUsuario (String email, String password) {
+		return repositorioUsuario.buscarUsuario(email, password);
 	}
 
 }
