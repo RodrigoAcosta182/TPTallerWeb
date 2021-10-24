@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 import org.junit.Test;
 
@@ -24,22 +25,23 @@ public class ServicioPublicacionTest {
 
     @Test
     public void queSeEncuentraUnaPublicacionPorId(){
-        givenQueLaPublicacionExiste();
-        Publicacion publicacion = whenObtengoPublicacionPor(Long.valueOf(10));
+        givenQueLaPublicacionExiste(10L);
+        Publicacion publicacion = whenObtengoPublicacionPor(10L);
         thenEncuentroUnaPublicacion(publicacion);
     }
 
     private void thenEncuentroUnaPublicacion(Publicacion publicacion) {
-        //assertThat(publicacion).isNotNull();
-        //verify(repositorioPublicacion,times(1)).buscarPublicacionPorId(publicacion.getId());
+        assertThat(publicacion).isNotNull();
+        verify(repositorioPublicacion,times(1)).buscarPublicacionPorId(10L);
+//        verify(repositorioPublicacion,times(1)).buscarPublicacionPorId(publicacion.getId());
     }
 
     private Publicacion whenObtengoPublicacionPor(Long id) {
-
         return servicioPublicacion.buscarPublicacion(id);
     }
 
-    private void givenQueLaPublicacionExiste() {
+    private void givenQueLaPublicacionExiste(Long id) {
+        when(repositorioPublicacion.buscarPublicacionPorId(id)).thenReturn(new Publicacion());
     }
 
     private void thenExistenPublicaciones(List<Publicacion> publicaciones) {
@@ -53,8 +55,6 @@ public class ServicioPublicacionTest {
     private void givenQueLaPublicacionNoExiste() {
         when(repositorioPublicacion.buscarTodasLasPublicacionesPerdidas()).thenReturn(null);
     }
-
-
 
 
 

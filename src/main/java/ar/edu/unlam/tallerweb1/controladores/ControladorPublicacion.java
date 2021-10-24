@@ -30,11 +30,11 @@ public class ControladorPublicacion {
         ModelMap model = new ModelMap();
         List<Publicacion> publicaciones = new ArrayList<>();
         try {
-        Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-        usuario.getId();
-        publicaciones = servicioPublicacion.listarTodasLasPublicacionesPerdidas();
+            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+            usuario.getId();
+            publicaciones = servicioPublicacion.listarTodasLasPublicacionesPerdidas();
         } catch (Exception e) {
-        model.put("publicacionesError", "No hay publicaciones");
+            model.put("publicacionesError", "No hay publicaciones");
             return new ModelAndView("publicaciones-perdidos", model);
         }
         model.put("publicaciones", publicaciones);
@@ -73,43 +73,47 @@ public class ControladorPublicacion {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/finalizar-publicacion/{id}")
-    public ModelAndView finalizarPublicacion(@PathVariable ("id") Long id) {
+    public ModelAndView finalizarPublicacion(@PathVariable("id") Long id) {
         servicioPublicacion.finalizarPublicacion(id);
         return new ModelAndView("mis-publicaciones");
     }
 
-    @RequestMapping(method = RequestMethod.GET,path = "/ir-a-registrar-mascota")
+    @RequestMapping(method = RequestMethod.GET, path = "/ir-a-registrar-mascota")
     public ModelAndView irARegistrarPublicacion() {
         ModelMap model = new ModelMap();
         DatosRegistroMascota datosMascota = new DatosRegistroMascota();
-        model.put("datosMascota",datosMascota);
-        return new ModelAndView("form-registro-mascota",model);
+        model.put("datosMascota", datosMascota);
+        return new ModelAndView("form-registro-mascota", model);
     }
 
-    @RequestMapping(method = RequestMethod.POST,path = "/registrarMascota")
-    public ModelAndView registrarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, HttpServletRequest request) throws Exception{
+    @RequestMapping(method = RequestMethod.POST, path = "/registrarMascota")
+    public ModelAndView registrarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
         ModelMap model = new ModelMap();
         try {
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-            usuario.getId();
-            servicioPublicacion.registrarPublicacion(mascota,usuario);
-        }catch (Exception e){
-            model.put("error","El campo tipo y estado es obligatorio");
-            return new ModelAndView("form-registro-mascota",model);
+            servicioPublicacion.registrarPublicacion(mascota, usuario);
+        } catch (Exception e) {
+            model.put("error", "El campo tipo y estado es obligatorio");
+            return new ModelAndView("form-registro-mascota", model);
         }
         model.put("msg", "Mascota Registrada Exitosamente");
-        return new ModelAndView("home",model);
+        return new ModelAndView("home", model);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/publicacion")
     public ModelAndView irAVerPublicacion(@RequestParam("id") Long id) {
         ModelMap model = new ModelMap();
-        Publicacion publicacion = servicioPublicacion.buscarPublicacion(id);
         DatosCorreo datosCorreo = new DatosCorreo();
+        Publicacion publicacion;
+        try {
+        publicacion = servicioPublicacion.buscarPublicacion(id);
         datosCorreo.setReceptor(publicacion.getUsuario().getEmail());
+        model.put("publicacion", publicacion);
+        }catch (Exception e){
+            model.put("msjError","Error al encontrar publicacion");
+        }
         model.put("datosCorreo", datosCorreo);
-        model.put("publicacion",publicacion);
-        return new ModelAndView("ver-publicacion",model);
+        return new ModelAndView("ver-publicacion", model);
     }
 
 
@@ -118,12 +122,12 @@ public class ControladorPublicacion {
         ModelMap model = new ModelMap();
         try {
             servicioPublicacion.enviarCorreo(datosCorreo.getReceptor(), datosCorreo.getComentario());
-        }catch (Exception e){
-            model.put("mailError","error al enviar el mensaje");
+        } catch (Exception e) {
+            model.put("mailError", "error al enviar el mensaje");
             return new ModelAndView("ver-publicacion", model);
         }
-        model.put("mailOk","Mensaje enviado correctamente");
-        return new ModelAndView("ver-publicacion",model);
+        model.put("mailOk", "Mensaje enviado correctamente");
+        return new ModelAndView("ver-publicacion", model);
     }
 
 }

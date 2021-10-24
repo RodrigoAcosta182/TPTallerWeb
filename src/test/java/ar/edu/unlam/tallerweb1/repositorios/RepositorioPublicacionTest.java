@@ -1,19 +1,24 @@
-//package ar.edu.unlam.tallerweb1.repositorios;
-//
-//import ar.edu.unlam.tallerweb1.SpringTest;
-//import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-//import ar.edu.unlam.tallerweb1.modelo.Usuario;
-//import org.junit.Test;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.test.annotation.Rollback;
-//import org.springframework.transaction.annotation.Transactional;
-//
-//import java.util.LinkedList;
-//import java.util.List;
-//
-//import static org.assertj.core.api.Assertions.assertThat;
-//
-//public class RepositorioPublicacionTest extends SpringTest {
+package ar.edu.unlam.tallerweb1.repositorios;
+
+import ar.edu.unlam.tallerweb1.SpringTest;
+import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class RepositorioPublicacionTest extends SpringTest {
+
+
+
+
+}
 //
 //    private final Usuario USUARIO = new Usuario("mascota@mascota.com", "1234");
 //    @Autowired
