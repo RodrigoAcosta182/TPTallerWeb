@@ -37,7 +37,7 @@
                 <br>
                 <a class="w3-btn w3-green" style="width: 100%;" type="submit">Modificar</a>
                 <br>
-                <a class="w3-btn w3-red" style="width: 100%; margin-top: 10px" type="submit" href="finalizar-publicacion/${publicacion.id}">Finalizar</a>
+                <a class="w3-btn w3-red" style="width: 100%; margin-top: 10px" type="submit" href="/missingpets/finalizar-publicacion?id=${publicacion.id}">Finalizar</a>
             </div>
         </div>
     </c:forEach>
