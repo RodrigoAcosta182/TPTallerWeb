@@ -17,21 +17,12 @@ public class ControladorPublicacionTest {
 
     private ServicioPublicacion servicioPublicacion = mock(ServicioPublicacion.class);
     private ControladorPublicacion controladorPublicacion = new ControladorPublicacion(servicioPublicacion);
-    private static final DatosCorreo DATOSCORREO = new DatosCorreo("jracosta1991@gmail.com", "mensaje de prueba");
-    private static final DatosCorreo DATOSCORREONULL = new DatosCorreo(null, null);
+
 
     @Test
     public void irAPublicaciones() {
         ModelAndView mav = whenIrAPublicaciones();
         thenIrAPublicaciones(mav);
-    }
-
-    private void thenIrAPublicaciones(ModelAndView mav) {
-        assertThat(mav.getViewName()).isEqualTo("publicaciones-perdidos");
-    }
-
-    private ModelAndView whenIrAPublicaciones() {
-        return controladorPublicacion.irAPublicacionMascotaPerdida(mock(HttpServletRequest.class));
     }
 
     @Test
@@ -54,19 +45,6 @@ public class ControladorPublicacionTest {
     }
 
     @Test
-    public void enviarMailCorrectamenteTest() throws Exception {
-        ModelAndView mav = whenEnvioMail(DATOSCORREO);
-        thenEnvioMailCorrectamente(mav);
-    }
-
-    @Test
-    public void enviarMailFallaPorAlgunParametroNull() throws Exception {
-        givenQueElEnvioDeMailFalla(DATOSCORREONULL);
-        ModelAndView mav = whenEnvioMail(DATOSCORREONULL);
-        thenElEnvioFalla(mav, "error al enviar el mensaje");
-    }
-
-    @Test
     public void irAVerPublicacionArrojaError() throws Exception {
         givenQueNoEncuentroPublicacionPorId(10L);
         ModelAndView mav = whenIrAVerPublicacion(10L);
@@ -78,17 +56,15 @@ public class ControladorPublicacionTest {
         doThrow(Exception.class).when(servicioPublicacion).buscarPublicacion(id);
     }
 
-    private void givenQueElEnvioDeMailFalla(DatosCorreo datosCorreo) throws Exception {
-        doThrow(Exception.class).when(servicioPublicacion).enviarCorreo(datosCorreo.getReceptor(), datosCorreo.getComentario());
-    }
-
     private void givenQueNoEncuentroPublicacion() throws Exception {
         doThrow(Exception.class).when(servicioPublicacion).listarTodasLasPublicacionesPerdidas();
     }
 
-    private ModelAndView whenEnvioMail(DatosCorreo datosCorreo) throws Exception {
-        return controladorPublicacion.enviarCorreo(datosCorreo);
+    private ModelAndView whenIrAPublicaciones() {
+        return controladorPublicacion.irAPublicacionMascotaPerdida(mock(HttpServletRequest.class));
     }
+
+
 
 
     private ModelAndView whenIrAVerPublicacion(Long id) {
@@ -105,17 +81,12 @@ public class ControladorPublicacionTest {
     }
 
 
+    private void thenIrAPublicaciones(ModelAndView mav) {
+        assertThat(mav.getViewName()).isEqualTo("publicaciones-perdidos");
+    }
+
     private void thenIrAVerPublicacionFalla(ModelAndView mav, String mensaje) {
         assertThat(mav.getModel().get("msjError")).isEqualTo(mensaje);
-    }
-
-    private void thenElEnvioFalla(ModelAndView mav, String mensaje) {
-        assertThat(mav.getModel().get("mailError")).isEqualTo(mensaje);
-
-    }
-
-    private void thenEnvioMailCorrectamente(ModelAndView mav) {
-        assertThat(mav.getModel().get("mailOk")).isEqualTo("Mensaje enviado correctamente");
     }
 
     private void thenIrAVerPublicacion(ModelAndView mav) {
