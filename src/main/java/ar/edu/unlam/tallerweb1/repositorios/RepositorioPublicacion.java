@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface RepositorioPublicacion {
-    List<Publicacion> buscarPor(Usuario usuario);
+    void guardarPublicacion(Publicacion nuevaPublicacion);
+    void finalizarPublicacion(Publicacion publicacion);
 
+    List<Publicacion> buscarPor(Usuario usuario);
     List<Publicacion> buscarTodasMisPublicaciones(Usuario usuario);
     List<Publicacion> buscarTodasLasPublicacionesPerdidas();
     List<Publicacion> buscarTodasLasPublicacionesEncontradas();
-    void guardarPublicacion(Publicacion nuevaPublicacion);
     Publicacion buscarPublicacionPorId(Long id);
-    void finalizarPublicacion(Publicacion publicacion);
 
 
 }

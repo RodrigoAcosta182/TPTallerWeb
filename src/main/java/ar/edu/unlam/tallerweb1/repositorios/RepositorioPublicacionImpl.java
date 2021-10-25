@@ -37,6 +37,7 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     public List<Publicacion> buscarPor(Usuario usuario) {
         return sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
                 .add(Restrictions.eq("usuarioId", usuario))
+                .add(Restrictions.eq("finalizado", false))
                 .list();
     }
 
@@ -44,6 +45,7 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     public List<Publicacion> buscarTodasMisPublicaciones(Usuario usuario) {
         List<Publicacion> publicaciones = sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
                 .add(Restrictions.eq("usuario", usuario))
+                .add(Restrictions.eq("finalizado", false))
                 .list();
         return publicaciones;
     }
@@ -52,6 +54,7 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     public List<Publicacion> buscarTodasLasPublicacionesPerdidas() {
         List<Publicacion> publicaciones = sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
                 .add(Restrictions.eq("estado", "1"))
+                .add(Restrictions.eq("finalizado", false))
                 .list();
         return publicaciones;
     }
@@ -60,6 +63,7 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     public List<Publicacion> buscarTodasLasPublicacionesEncontradas() {
         List<Publicacion> publicaciones = sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
                 .add(Restrictions.eq("estado", "2"))
+                .add(Restrictions.eq("finalizado", false))
                 .list();
         return publicaciones;
     }
