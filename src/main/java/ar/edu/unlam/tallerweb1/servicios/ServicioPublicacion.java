@@ -16,9 +16,6 @@ public interface ServicioPublicacion {
 
     List<Publicacion> listarTodasMisPublicaciones(Usuario usuario) throws Exception;
 
-    void enviarCorreo(String receptor, String comentario) throws Exception;
-
-
     Publicacion buscarPublicacion(Long id);
 
     void finalizarPublicacion(Long id, Publicacion publicacion);

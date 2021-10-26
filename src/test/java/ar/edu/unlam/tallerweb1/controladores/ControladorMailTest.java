@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.servicios.ServicioMail;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
@@ -10,8 +11,9 @@ import static org.mockito.Mockito.mock;
 
 public class ControladorMailTest {
 
-    private ServicioPublicacion servicioPublicacion = mock(ServicioPublicacion.class);
-    private ControladorPublicacion controladorPublicacion = new ControladorPublicacion(servicioPublicacion);
+
+    private ServicioMail servicioMail = mock(ServicioMail.class);
+    private ControladorMail controladorMail = new ControladorMail(servicioMail);
     private static final DatosCorreo DATOSCORREO = new DatosCorreo("jracosta1991@gmail.com", "mensaje de prueba");
     private static final DatosCorreo DATOSCORREONULL = new DatosCorreo(null, null);
 
@@ -29,12 +31,12 @@ public class ControladorMailTest {
     }
 
     private void givenQueElEnvioDeMailFalla(DatosCorreo datosCorreo) throws Exception {
-        doThrow(Exception.class).when(servicioPublicacion).enviarCorreo(datosCorreo.getReceptor(), datosCorreo.getComentario());
+        doThrow(Exception.class).when(servicioMail).enviarCorreo(datosCorreo.getReceptor(), datosCorreo.getComentario());
     }
 
 
     private ModelAndView whenEnvioMail(DatosCorreo datosCorreo) throws Exception {
-        return controladorPublicacion.enviarCorreo(datosCorreo);
+        return controladorMail.enviarCorreo(datosCorreo);
     }
 
     private void thenElEnvioFalla(ModelAndView mav, String mensaje) {
