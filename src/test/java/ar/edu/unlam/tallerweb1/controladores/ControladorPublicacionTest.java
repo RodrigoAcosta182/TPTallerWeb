@@ -1,13 +1,19 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Mascota;
+import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 
 import org.junit.Test;
 
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 
 import javax.servlet.http.HttpServletRequest;
+
+import java.util.Date;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.doThrow;
@@ -15,6 +21,11 @@ import static org.mockito.Mockito.mock;
 
 public class ControladorPublicacionTest {
 
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("JoseBalvin", "1", "2", "5", "Siberiano",
+            "Medio carolo", "Negro y Blanco", "Grande", new Date(), new Publicacion(), null);
+    private static final Publicacion PUBLICACION = new Publicacion();
+
+    private HttpServletRequest REQUEST = mock(HttpServletRequest.class);
     private ServicioPublicacion servicioPublicacion = mock(ServicioPublicacion.class);
     private ControladorPublicacion controladorPublicacion = new ControladorPublicacion(servicioPublicacion);
 
@@ -23,6 +34,25 @@ public class ControladorPublicacionTest {
     public void irAPublicaciones() {
         ModelAndView mav = whenIrAPublicaciones();
         thenIrAPublicaciones(mav);
+    }
+
+    @Test
+    public void registroPublicacionExitoso() throws Exception {
+        givenQueLaPublicacionNoExiste(PUBLICACION);
+        ModelAndView mav = whenRegistroLaPublicacion(MASCOTA, REQUEST);
+        thenElRegistroDePublicacionEsExitoso(mav);
+    }
+
+    private void givenQueLaPublicacionNoExiste(Publicacion publicacion) {
+    }
+
+    private ModelAndView whenRegistroLaPublicacion(DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
+        return controladorPublicacion.registrarPublicacion(mascota, request);
+    }
+
+    private void thenElRegistroDePublicacionEsExitoso(ModelAndView mav) {
+        assertThat(mav.getViewName()).isEqualTo("home");
+        assertThat(mav.getModel().get("msg")).isEqualTo("Publicacion Registrada Exitosamente");
     }
 
     @Test
@@ -60,17 +90,15 @@ public class ControladorPublicacionTest {
         doThrow(Exception.class).when(servicioPublicacion).listarTodasLasPublicacionesPerdidas();
     }
 
+
+
     private ModelAndView whenIrAPublicaciones() {
         return controladorPublicacion.irAPublicacionMascotaPerdida(mock(HttpServletRequest.class));
     }
 
-
-
-
     private ModelAndView whenIrAVerPublicacion(Long id) {
         return controladorPublicacion.irAVerPublicacion(id);
     }
-
 
     private ModelAndView whenIrARegistrarPublicacion() {
         return controladorPublicacion.irARegistrarPublicacion();
@@ -79,6 +107,7 @@ public class ControladorPublicacionTest {
     private ModelAndView whenObtengoPublicaciones() {
         return controladorPublicacion.irAPublicacionMascotaPerdida(mock(HttpServletRequest.class));
     }
+
 
 
     private void thenIrAPublicaciones(ModelAndView mav) {
@@ -98,7 +127,6 @@ public class ControladorPublicacionTest {
         assertThat(mav.getViewName()).isEqualTo("form-registro-mascota");
     }
 
-
     private void thenNoEncuentroPublicaciones(ModelAndView mav, String mensaje) {
         assertThat(mav.getModel().get("publicacionesError")).isEqualTo(mensaje);
     }
@@ -108,13 +136,8 @@ public class ControladorPublicacionTest {
 
 
 
-//
-//    @Test
-//    public void registroMascotaExitoso() throws Exception {
-//        givenQueLaMascotaNoExiste(MASCOTA);
-//        ModelAndView mav = whenRegistroLaMascota(MASCOTA);
-//        thenElRegistroDeMascotaEsExitoso(mav);
-//    }
+
+
 //
 //
 //    @Test
@@ -130,26 +153,24 @@ public class ControladorPublicacionTest {
 //    }
 //
 //
-//    private void givenQueLaMascotaNoExiste(DatosRegistroMascota mascota) {
-//    }
+
+
 //
 //    private ModelAndView whenIrARegistroMascotaPerdida() {
 //        return controladorRegistrarMascota.irARegistrarMascotaPerdida();
 //    }
 //
-//    private ModelAndView whenRegistroLaMascota(DatosRegistroMascota mascota) throws Exception {
-//        return controladorRegistrarMascota.registrarMascota(mascota);
-//    }
+
+
 //
 //    private void thenIrARegistrarMascotaPerdida(ModelAndView mav) {
 //        assertThat(mav.getViewName()).isEqualTo("form-registro-mascota");
 //    }
 //
-//    private void thenElRegistroDeMascotaEsExitoso(ModelAndView mav) {
-//        assertThat(mav.getViewName()).isEqualTo("home");
-//        assertThat(mav.getModel().get("msg")).isEqualTo("Mascota Registrada Exitosamente");
-//
-//    }
+
+
+
+
 //
 //    private void thenElRegistroDeMascotaFallaTipoNull(ModelAndView mav, String mensaje) {
 //        assertThat(mav.getViewName()).isEqualTo("form-registro-mascota");
