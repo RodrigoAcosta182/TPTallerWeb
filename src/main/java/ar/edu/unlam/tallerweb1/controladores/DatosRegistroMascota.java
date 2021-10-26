@@ -10,8 +10,8 @@ import javax.persistence.OneToOne;
 import java.util.Date;
 
 public class DatosRegistroMascota {
-    private String tipo;
     private String nombre;
+    private String tipo;
     private String estado;
     private String edad;
     private String raza;
@@ -23,11 +23,6 @@ public class DatosRegistroMascota {
     private Date fecha;
     private Publicacion publicacionId;
 
-
-//    private String localidad;
-//    private String provincia;
-//    private String imagen;
-//    private String estado;
 
     public DatosRegistroMascota() {
     }
