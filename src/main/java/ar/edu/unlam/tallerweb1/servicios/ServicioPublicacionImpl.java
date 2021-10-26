@@ -52,16 +52,21 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         nuevaMascota.setTamanio(mascota.getTamanio());
         nuevaMascota.setFecha(mascota.getFecha());
 
-        if (mascota.getImagen().getSize() > 0) {
-            String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
-            nuevaMascota.setImagen(nombreConRuta);
-//            String filename = servletContext.getRealPath("/src")+ "webapp\\img\\" + mascota.getImagen().getOriginalFilename();
-            String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
-            mascota.getImagen().transferTo(new File(filename));
-        }else{
-            String nombreConRuta = "img/" + "noImagen.jpeg";
-            nuevaMascota.setImagen(nombreConRuta);
+        try {
+            if (mascota.getImagen().getSize() > 0) {
+                String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
+                nuevaMascota.setImagen(nombreConRuta);
+
+                String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
+                mascota.getImagen().transferTo(new File(filename));
+            } else {
+                String nombreConRuta = "img/" + "noImagen.jpeg";
+                nuevaMascota.setImagen(nombreConRuta);
+            }
+        } catch (Exception e) {
+            e.getMessage();
         }
+
 
         nuevaPublicacion.setFechaPublicacion(new Date());
         nuevaPublicacion.setUsuario(usuario);
@@ -109,42 +114,5 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 
     }
 
-    @Override
-    public void enviarCorreo(String receptor, String comentario) throws Exception {
 
-        if(receptor == null || comentario == null)
-            throw new Exception();
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", "587");
-
-        String miCuenta = "missingpetsunlam@gmail.com";
-        String password = "Unlam2021";
-
-        Session session = Session.getInstance(properties, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(miCuenta, password);
-            }
-        });
-
-        Message mensaje = prepararMensaje(session, miCuenta, receptor, comentario);
-        Transport.send(mensaje, mensaje.getRecipients(Message.RecipientType.TO));
-    }
-
-    private static Message prepararMensaje(Session session, String miCuenta,String receptor,  String comentario) {
-        try {
-            MimeMessage mensaje = new MimeMessage(session);
-            mensaje.setFrom(new InternetAddress(miCuenta));
-            mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(receptor));
-            mensaje.setSubject("Missing Pets");
-            mensaje.setText("Recibiste un mensaje de la APP Missing Pets: " + comentario);
-            return mensaje;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 }
