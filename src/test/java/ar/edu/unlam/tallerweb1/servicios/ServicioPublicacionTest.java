@@ -46,14 +46,14 @@ public class ServicioPublicacionTest {
         thenRegistroExitoso(publicacion);
     }
 
-    @Test
+
 
 
     private void givenQueLaPublicacionExiste(Long id) {
         when(repositorioPublicacion.buscarPublicacionPorId(id)).thenReturn(new Publicacion());
     }
 
-    private void givenQueLaPublicacionNoExiste() {
+    public void givenQueLaPublicacionNoExiste() {
         when(repositorioPublicacion.buscarTodasLasPublicacionesPerdidas()).thenReturn(null);
     }
 
