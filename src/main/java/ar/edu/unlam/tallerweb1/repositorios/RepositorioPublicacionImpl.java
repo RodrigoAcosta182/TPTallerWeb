@@ -36,7 +36,7 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     @Override
     public List<Publicacion> buscarPor(Usuario usuario) {
         return sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
-                .add(Restrictions.eq("usuarioId", usuario))
+                .add(Restrictions.eq("usuario", usuario))
                 .add(Restrictions.eq("finalizado", false))
                 .list();
     }
