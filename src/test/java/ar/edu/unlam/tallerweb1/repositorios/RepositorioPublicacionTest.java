@@ -19,6 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RepositorioPublicacionTest extends SpringTest {
 
+    private static final Usuario USUARIO = new Usuario();
     @Autowired
     private RepositorioPublicacion repositorioPublicacion;
 
@@ -28,8 +29,8 @@ public class RepositorioPublicacionTest extends SpringTest {
     @Rollback
     public void obtengoUnaPublicacionPorId() {
 
-        givenExistePublicacionConId(10L);
-        Publicacion publicacion =   whenObtengoLaPublicacionPorId(10L);
+        givenExistePublicacionConId(98L);
+        Publicacion publicacion = whenObtengoLaPublicacionPorId(98L);
         thenObtengoPublicacion(publicacion);
     }
 
@@ -42,29 +43,47 @@ public class RepositorioPublicacionTest extends SpringTest {
     }
 
     private void givenExistePublicacionConId(Long id) {
-            Publicacion publicacion = new Publicacion();
-            publicacion.setId(id);
-            session().save(publicacion);
+        Publicacion publicacion = new Publicacion();
+        publicacion.setId(id);
+        session().save(publicacion);
     }
 
+
+    @Test
+    @Transactional
+    @Rollback
+    public void obtengoMisPublicaciones() {
+        List<Publicacion> misPublicaciones = new LinkedList<>();
+        misPublicaciones.add(new Publicacion());
+        misPublicaciones.add(new Publicacion());
+
+        givenElUsuarioConPublicaciones(USUARIO, misPublicaciones);
+
+        List<Publicacion> publicaciones = whenBuscoLasPublicacionesDelUsuario(USUARIO);
+
+        thenEncuentro(misPublicaciones.size(), publicaciones);
+    }
+
+    private void givenElUsuarioConPublicaciones(Usuario usuario, List<Publicacion> publicacionesDelUsuario) {
+        session().save(usuario);
+        for (Publicacion publicacion : publicacionesDelUsuario) {
+            publicacion.setUsuario(usuario);
+            session().save(publicacion);
+        }
+    }
+
+    private List<Publicacion> whenBuscoLasPublicacionesDelUsuario(Usuario usuario) {
+        return repositorioPublicacion.buscarPor(usuario);
+    }
+
+    private void thenEncuentro(int cantidadEsperada, List<Publicacion> publicaciones) {
+        assertThat(publicaciones).hasSize(cantidadEsperada);
+    }
 }
-//
-//
-//
-//
-//    @Test @Transactional @Rollback
-//    public void obtengoLasPublicacionesDeUnUsuario() {
-//        List<Publicacion> publicacionesDelUsuario = new LinkedList<>();
-//        publicacionesDelUsuario.add(new Publicacion());
-//        publicacionesDelUsuario.add(new Publicacion());
-//
-//        givenElUsuarioConPublicaciones(USUARIO, publicacionesDelUsuario);
-//
-//        List<Publicacion> publicaciones = whenBuscoLasPublicacionesDelUsuario(USUARIO);
-//
-//        thenEncuentro(publicacionesDelUsuario.size(), publicaciones);
-//    }
-//
+
+
+
+
 //    @Test @Transactional @Rollback
 //    public void obtengoTodasLasPublicaciones(){
 //        List<Publicacion> listaPublicaciones = new LinkedList<>();
@@ -81,29 +100,13 @@ public class RepositorioPublicacionTest extends SpringTest {
 //    private List<Publicacion> whenObtengoTodasLasPublicaciones() {
 //        return repositorioPublicaciones.buscarTodasLasPublicaciones();
 //    }
-//
-//
-//    private List<Publicacion> whenBuscoLasPublicacionesDelUsuario(Usuario usuario) {
-//        return repositorioPublicaciones.buscarPor(usuario);
-//    }
-//
-//
-//    private void givenElUsuarioConPublicaciones(Usuario usuario, List<Publicacion> publicacionesDelUsuario) {
-//        session().save(usuario);
-//        for (Publicacion publicacion : publicacionesDelUsuario){
-//            publicacion.setUsuarioId(usuario);
-//            session().save(publicacion);
-//        }
-//    }
+
 //    private void givenObtengoTodasLasPublicaciones(List<Publicacion> publicaciones) {
 //        for (Publicacion publicacion : publicaciones){
 //            session().save(publicacion);
 //        }
 //    }
-//    private void thenEncuentro(int cantidadEsperada, List<Publicacion> publicaciones) {
-//        assertThat(publicaciones).hasSize(cantidadEsperada);
-//    }
-//}
+
 
 //package ar.edu.unlam.tallerweb1.repositorios;
 //
