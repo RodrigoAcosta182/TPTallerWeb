@@ -1,20 +1,10 @@
 package ar.edu.unlam.tallerweb1.repositorios;
-
-import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.CriteriaUpdate;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository("repositorioPublicacion")
@@ -28,7 +18,9 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         sessionFactory.getCurrentSession().save(nuevaPublicacion);
     }
     @Override
-    public void finalizarPublicacion(Publicacion publicacion) {
+    public void finalizarPublicacion(Long id) {
+        Publicacion publicacion = buscarPublicacionPorId(id);
+        publicacion.setFinalizado(true);
         sessionFactory.getCurrentSession().update(publicacion);
     }
 
