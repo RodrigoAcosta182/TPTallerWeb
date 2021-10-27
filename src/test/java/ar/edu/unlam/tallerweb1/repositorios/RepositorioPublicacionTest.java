@@ -104,7 +104,7 @@ public class RepositorioPublicacionTest extends SpringTest {
     }
 
     private List<Publicacion> whenBuscoLasPublicacionesDelUsuario(Usuario usuario) {
-        return repositorioPublicacion.buscarPor(usuario);
+        return repositorioPublicacion.buscarTodasMisPublicaciones(usuario);
     }
 
     private List<Publicacion> whenObtengoTodasLasPublicacionesDeMascotasPerdidas() {

@@ -23,7 +23,6 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     @Autowired
     private SessionFactory sessionFactory;
 
-
     @Override
     public void guardarPublicacion(Publicacion nuevaPublicacion) {
         sessionFactory.getCurrentSession().save(nuevaPublicacion);
@@ -33,13 +32,6 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         sessionFactory.getCurrentSession().update(publicacion);
     }
 
-    @Override
-    public List<Publicacion> buscarPor(Usuario usuario) {
-        return sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
-                .add(Restrictions.eq("usuario", usuario))
-                .add(Restrictions.eq("finalizado", false))
-                .list();
-    }
 
     @Override
     public List<Publicacion> buscarTodasMisPublicaciones(Usuario usuario) {
@@ -73,27 +65,5 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         return (Publicacion) sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
                 .add(Restrictions.eq("id", id)).uniqueResult();
     }
-
-
 }
 
-//    @Override
-//    public List<Mascota> buscarMascotaPorTipo(String tipo) {
-//        final Session session = sessionFactory.getCurrentSession();
-//        return session.createCriteria(Mascota.class)
-//                .add(Restrictions.eq("tipo", tipo))
-//                .list();
-//    }
-//
-//    @Override
-//    public void guardarMascota(Mascota mascota) {
-//        sessionFactory.getCurrentSession().save(mascota);
-//    }
-//
-//    @Override
-//    public List<Mascota> buscarPorId(Long id) {
-//        final Session session = sessionFactory.getCurrentSession();
-//        return session.createCriteria(Mascota.class)
-//                .add(Restrictions.eq("id", id))
-//                .list();
-//    }
