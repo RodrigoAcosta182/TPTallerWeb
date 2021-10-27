@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -29,8 +30,11 @@ public class RepositorioPublicacionTest extends SpringTest {
     @Transactional
     @Rollback
     public void obtengoUnaPublicacionPorId() {
-        givenExistePublicacionConId(98L);
-        Publicacion publicacion = whenObtengoLaPublicacionPorId(98L);
+        List<Publicacion> listaPublicaciones = new LinkedList<>();
+        listaPublicaciones.add(new Publicacion());
+
+        givenExistePublicacionConId(1L,listaPublicaciones);
+        Publicacion publicacion = whenObtengoLaPublicacionPorId(1L);
         thenObtengoPublicacion(publicacion);
     }
 
@@ -85,10 +89,11 @@ public class RepositorioPublicacionTest extends SpringTest {
         }
     }
 
-    private void givenExistePublicacionConId(Long id) {
-        Publicacion publicacion = new Publicacion();
-        publicacion.setId(id);
-        session().save(publicacion);
+    private void givenExistePublicacionConId(Long id, List<Publicacion> listaPublicaciones) {
+        for(Publicacion publicacion : listaPublicaciones){
+            publicacion.setId(id);
+            session().save(publicacion);
+        }
     }
 
     private void givenElUsuarioConPublicaciones(Usuario usuario, List<Publicacion> publicacionesDelUsuario) {
