@@ -2,7 +2,9 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.*;
 import java.util.Date;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 @Entity
 public class Publicacion {
     @Id
@@ -22,6 +24,18 @@ public class Publicacion {
     private String estado;
 
 
+    public Publicacion() {
+
+    }
+
+    public Publicacion( Date fechaPublicacion, Boolean finalizado, Usuario usuario, Mascota mascota, String estado) {
+
+        this.fechaPublicacion = fechaPublicacion;
+        this.finalizado = finalizado;
+        this.usuario = usuario;
+        this.mascota = mascota;
+        this.estado = estado;
+    }
 
     public Long getId() {
         return id;

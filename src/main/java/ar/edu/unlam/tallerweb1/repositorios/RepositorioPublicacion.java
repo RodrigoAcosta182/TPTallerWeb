@@ -11,7 +11,6 @@ public interface RepositorioPublicacion {
     void guardarPublicacion(Publicacion nuevaPublicacion);
     void finalizarPublicacion(Publicacion publicacion);
 
-    List<Publicacion> buscarPor(Usuario usuario);
     List<Publicacion> buscarTodasMisPublicaciones(Usuario usuario);
     List<Publicacion> buscarTodasLasPublicacionesPerdidas();
     List<Publicacion> buscarTodasLasPublicacionesEncontradas();
