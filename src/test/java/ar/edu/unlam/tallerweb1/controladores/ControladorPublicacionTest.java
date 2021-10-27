@@ -12,20 +12,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 public class ControladorPublicacionTest {
 
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("JoseBalvin", "1", "2", "5", "Siberiano",
-            "Medio carolo", "Negro y Blanco", "Grande", new Date(), new Publicacion(), null);
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo","Perro","1","3 Anios","American Bully","Le falta una pata","Blanco","Chico", new Date(), new Publicacion(),null);
     private static final Publicacion PUBLICACION = new Publicacion();
+    private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123");
 
     private HttpServletRequest REQUEST = mock(HttpServletRequest.class);
+    private HttpSession session = mock(HttpSession.class);
     private ServicioPublicacion servicioPublicacion = mock(ServicioPublicacion.class);
     private ControladorPublicacion controladorPublicacion = new ControladorPublicacion(servicioPublicacion);
 
@@ -38,16 +39,20 @@ public class ControladorPublicacionTest {
 
     @Test
     public void registroPublicacionExitoso() throws Exception {
-        givenQueLaPublicacionNoExiste(PUBLICACION);
+        givenQueLaPublicacionNoExiste(PUBLICACION, REQUEST);
         ModelAndView mav = whenRegistroLaPublicacion(MASCOTA, REQUEST);
         thenElRegistroDePublicacionEsExitoso(mav);
     }
 
-    private void givenQueLaPublicacionNoExiste(Publicacion publicacion) {
+    private void givenQueLaPublicacionNoExiste(Publicacion publicacion, HttpServletRequest request) throws Exception {
+        when(request.getSession()).thenReturn(session);
+        when(session.getAttribute("Usuario")).thenReturn(1L);
+        ModelAndView mav = new ModelAndView();
+        when(controladorPublicacion.registrarPublicacion(MASCOTA, REQUEST)).thenReturn(mav);
     }
 
     private ModelAndView whenRegistroLaPublicacion(DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
-        return controladorPublicacion.registrarPublicacion(mascota, request);
+        return controladorPublicacion.registrarPublicacion(MASCOTA, REQUEST) ;
     }
 
     private void thenElRegistroDePublicacionEsExitoso(ModelAndView mav) {
