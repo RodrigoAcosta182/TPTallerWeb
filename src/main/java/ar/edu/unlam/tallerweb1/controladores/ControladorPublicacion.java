@@ -41,8 +41,15 @@ public class ControladorPublicacion {
 
     @RequestMapping(method = RequestMethod.GET, path = "/finalizar-publicacion")
     public ModelAndView finalizarPublicacion(@RequestParam("id") Long id) {
-        servicioPublicacion.finalizarPublicacion(id);
-        return new ModelAndView("home");
+        ModelMap model = new ModelMap();
+        try{
+            servicioPublicacion.finalizarPublicacion(id);
+        }catch (Exception e){
+            model.put("error","No se pudo finalizar");
+        }
+        model.put("msg","Publicacion Finalizada");
+
+        return new ModelAndView("home", model);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/ir-a-publicacion-mascota-perdida")

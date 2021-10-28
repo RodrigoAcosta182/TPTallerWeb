@@ -69,6 +69,28 @@ public class ControladorPublicacionTest {
         thenIrAVerPublicacionFalla(mav, "Error al encontrar publicacion");
     }
 
+    @Test
+    public void queLaPublicacionSeFinaliceCorrectamente() throws Exception {
+        givenQueLaPublicacionExiste();
+        ModelAndView mav = whenFinalizarPublicacion(1L);
+        thenFinalizoPublicacionCorrectamente(mav, "Publicacion Finalizada");
+    }
+
+
+
+    private void thenFinalizoPublicacionCorrectamente(ModelAndView mav, String mensaje) {
+        assertThat(mav.getModel().get("msg")).isEqualTo(mensaje);
+    }
+
+    private void givenQueLaPublicacionExiste() throws Exception {
+        when(controladorPublicacion.registrarPublicacion(MASCOTA,REQUEST));
+    }
+
+    private ModelAndView whenFinalizarPublicacion(Long id) {
+        return controladorPublicacion.finalizarPublicacion(id);
+    }
+
+
     private void givenQueLaPublicacionNoExiste(HttpServletRequest request) throws Exception {
         when(request.getSession()).thenReturn(session);
     }
