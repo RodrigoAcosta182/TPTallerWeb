@@ -82,6 +82,33 @@ public class RepositorioPublicacionTest extends SpringTest {
         thenEncuentro(listaPublicaciones.size(), publicacionesDeMascotasEncontradas);
     }
 
+    @Test(expected = Exception.class)
+    @Transactional
+    @Rollback
+    public void finalizoPublicacionCorrectamente(){
+        List<Publicacion> listaPublicaciones = new LinkedList<>();
+        listaPublicaciones.add(new Publicacion());
+        givenExistenMisPublicaciones(listaPublicaciones);
+        whenFinalizoUnaPublicacion(1L);
+        thenFinalizoPublicacion(1L,true);
+
+    }
+
+    private void thenFinalizoPublicacion(Long id, Boolean finalizado) {
+        Publicacion publicacion =  repositorioPublicacion.buscarPublicacionPorId(id);
+        assertThat(publicacion.getFinalizado()).isEqualTo(finalizado);
+    }
+
+    private void givenExistenMisPublicaciones(List<Publicacion> listaPublicaciones ) {
+        for(Publicacion publicacion :listaPublicaciones ){
+            session().save(publicacion);
+        }
+    }
+
+    private void whenFinalizoUnaPublicacion(Long id) {
+        repositorioPublicacion.finalizarPublicacion(id);
+    }
+
     private void givenExistenPublicacionesDeMascotas(List<Publicacion> publicaciones, String estado) {
         for (Publicacion publicacion : publicaciones) {
             publicacion.setEstado(estado);

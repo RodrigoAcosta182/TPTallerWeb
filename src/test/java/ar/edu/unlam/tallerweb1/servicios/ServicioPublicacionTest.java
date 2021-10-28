@@ -15,7 +15,6 @@ import java.util.Date;
 import java.util.List;
 
 public class ServicioPublicacionTest {
-//    private static final DatosRegistroMascota PUBLICACION = ;
 
     private RepositorioPublicacion repositorioPublicacion = mock(RepositorioPublicacion.class);
     private ServicioPublicacion servicioPublicacion = new ServicioPublicacionImpl(repositorioPublicacion);
@@ -46,7 +45,12 @@ public class ServicioPublicacionTest {
         thenRegistroExitoso(publicacion);
     }
 
-
+    @Test
+    public void queSeFinalizaLaPublicacionCorrectamente(){
+        givenQueLaPublicacionExiste(10L);
+        whenFinalizoLaPublicacion(10L);
+        thenFinalizoLaPublicacionCorrectamente();
+    }
 
 
     private void givenQueLaPublicacionExiste(Long id) {
@@ -57,12 +61,9 @@ public class ServicioPublicacionTest {
         when(repositorioPublicacion.buscarTodasLasPublicacionesPerdidas()).thenReturn(null);
     }
 
-
-    private void thenEncuentroUnaPublicacion(Publicacion publicacion) {
-        assertThat(publicacion).isNotNull();
-        verify(repositorioPublicacion,times(1)).buscarPublicacionPorId(10L);
+    private void whenFinalizoLaPublicacion(Long id) {
+        servicioPublicacion.finalizarPublicacion(id);
     }
-
     private Publicacion whenObtengoPublicacionPor(Long id) {
         return servicioPublicacion.buscarPublicacion(id);
     }
@@ -75,6 +76,10 @@ public class ServicioPublicacionTest {
 
         return servicioPublicacion.registrarPublicacion(MASCOTA, USUARIO) ;
     }
+    private void thenEncuentroUnaPublicacion(Publicacion publicacion) {
+        assertThat(publicacion).isNotNull();
+        verify(repositorioPublicacion,times(1)).buscarPublicacionPorId(10L);
+    }
 
     private void thenExistenPublicaciones(List<Publicacion> publicaciones) {
         assertThat(publicaciones).isNull();
@@ -84,6 +89,9 @@ public class ServicioPublicacionTest {
         assertThat(publicacion).isNotNull();
     }
 
+    private void thenFinalizoLaPublicacionCorrectamente() {
+        verify(repositorioPublicacion,times(1)).finalizarPublicacion(10L);
+    }
 
 }
 

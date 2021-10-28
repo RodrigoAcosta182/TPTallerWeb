@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 
 public class ControladorPublicacionTest {
 
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo","Perro","1","3 Anios","American Bully","Le falta una pata","Blanco","Chico", new Date(), new Publicacion(),null);
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo", "Perro", "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), null);
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123");
 
     private HttpServletRequest REQUEST = mock(HttpServletRequest.class);
@@ -77,13 +77,12 @@ public class ControladorPublicacionTest {
     }
 
 
-
     private void thenFinalizoPublicacionCorrectamente(ModelAndView mav, String mensaje) {
         assertThat(mav.getModel().get("msg")).isEqualTo(mensaje);
     }
 
     private void givenQueLaPublicacionExiste() throws Exception {
-        when(controladorPublicacion.registrarPublicacion(MASCOTA,REQUEST));
+        when(controladorPublicacion.registrarPublicacion(MASCOTA, REQUEST));
     }
 
     private ModelAndView whenFinalizarPublicacion(Long id) {
@@ -104,10 +103,9 @@ public class ControladorPublicacionTest {
     }
 
 
-
     private ModelAndView whenRegistroLaPublicacion(DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
         request.getSession().setAttribute("Usuario", USUARIO);
-        return controladorPublicacion.registrarPublicacion(mascota, REQUEST) ;
+        return controladorPublicacion.registrarPublicacion(mascota, REQUEST);
     }
 
     private ModelAndView whenIrAPublicaciones() {
@@ -125,7 +123,6 @@ public class ControladorPublicacionTest {
     private ModelAndView whenObtengoPublicaciones() {
         return controladorPublicacion.irAPublicacionMascotaPerdida(mock(HttpServletRequest.class));
     }
-
 
 
     private void thenElRegistroDePublicacionEsExitoso(ModelAndView mav) {
