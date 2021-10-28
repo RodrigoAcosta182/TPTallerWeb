@@ -19,7 +19,6 @@
         <a href="home" class="w3-bar-item w3-button">HOME</a>
         <a href="ir-a-publicacion-mascota-perdida" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Perdidos</a>
         <a href="ir-a-publicacion-mascota-encontrada" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Encontrados</a>
-        <a href="" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Reencontrados</a>
         <a href="" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Servicios</a>
 
         <a class="w3-bar-item w3-button w3-hide-small" style="float:right" href="#about">Cerrar Sesion</a>
@@ -33,7 +32,6 @@
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
         <a href="" class="w3-bar-item w3-button" onclick="toggleFunction()">Perdidos</a>
         <a href="" class="w3-bar-item w3-button" onclick="toggleFunction()">Encontrados</a>
-        <a href="" class="w3-bar-item w3-button" onclick="toggleFunction()">Reencontrados</a>
         <a href="" class="w3-bar-item w3-button" onclick="toggleFunction()">Servicios</a>
     </div>
 </div>

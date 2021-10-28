@@ -29,7 +29,6 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     public List<Publicacion> buscarTodasMisPublicaciones(Usuario usuario) {
         List<Publicacion> publicaciones = sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
                 .add(Restrictions.eq("usuario", usuario))
-                .add(Restrictions.eq("finalizado", false))
                 .list();
         return publicaciones;
     }

@@ -16,6 +16,9 @@
 <%--            <img class="imagen-publicacion-mascota"--%>
 <%--                 src="https://images.clarin.com/2021/06/20/el-caniche-arriba-en-las___6JQOYiC4y_340x340__1.jpg"--%>
 <%--                 alt="Alps">--%>
+                <c:if test="${publicacion.finalizado == true}">
+                    <h4 style="text-align: center; color: red">Finalizado</h4>
+                </c:if>
                 <c:if test="${publicacion.mascota.estado == 1}">
                     <h2 style="text-align: center">Perdido</h2>
                 </c:if>
@@ -32,6 +35,7 @@
                 <p>Tamanio: ${publicacion.mascota.tamanio}</p>
                 <p>Edad: ${publicacion.mascota.edad}</p>
             </div>
+    <c:if test="${publicacion.finalizado != true}">
             <div>
                 <form action=""></form>
                 <br>
@@ -39,6 +43,7 @@
                 <br>
                 <a class="w3-btn w3-red" style="width: 100%; margin-top: 10px" type="submit" href="/missingpets/finalizar-publicacion?id=${publicacion.id}">Finalizar</a>
             </div>
+    </c:if>
         </div>
     </c:forEach>
 </div>
