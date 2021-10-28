@@ -57,9 +57,6 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 	@Override
 	public List<Usuario> buscarUsuarioPorRol(String rol) {
 		final Session session = sessionFactory.getCurrentSession();
-//		final Query namedQuery = session.getNamedQuery("userByRol");
-//		namedQuery.setParameter("rol", rol);
-//		return namedQuery.list();
 		return session.createCriteria(Usuario.class)
 				.add(Restrictions.eq("rol", rol))
 				.list();
@@ -68,9 +65,6 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 	@Override
 	public List<Usuario> buscarUsuarioConMailLikePorRol(String mail) {
 		final Session session = sessionFactory.getCurrentSession();
-//		final Query namedQuery = session.getNamedQuery("userByRol");
-//		namedQuery.setParameter("rol", rol);
-//		return namedQuery.list();
 		return session.createCriteria(Usuario.class)
 				.add(Restrictions.like("email", "%"+mail+"%"))
 				.list();
