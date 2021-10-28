@@ -40,8 +40,8 @@ public class ControladorPublicacion {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/finalizar-publicacion")
-    public ModelAndView finalizarPublicacion(@RequestParam("id") Long id, Publicacion publicacion) {
-        servicioPublicacion.finalizarPublicacion(id, publicacion);
+    public ModelAndView finalizarPublicacion(@RequestParam("id") Long id) {
+        servicioPublicacion.finalizarPublicacion(id);
         return new ModelAndView("home");
     }
 

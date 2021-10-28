@@ -18,6 +18,6 @@ public interface ServicioPublicacion {
 
     Publicacion buscarPublicacion(Long id);
 
-    void finalizarPublicacion(Long id, Publicacion publicacion);
+    void finalizarPublicacion(Long id);
 
 }

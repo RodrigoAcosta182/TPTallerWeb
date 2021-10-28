@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface RepositorioPublicacion {
     void guardarPublicacion(Publicacion nuevaPublicacion);
-    void finalizarPublicacion(Publicacion publicacion);
+    void finalizarPublicacion(Long id);
 
     List<Publicacion> buscarTodasMisPublicaciones(Usuario usuario);
     List<Publicacion> buscarTodasLasPublicacionesPerdidas();
