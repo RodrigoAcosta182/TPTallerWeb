@@ -5,6 +5,7 @@ import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -29,6 +30,10 @@ public class ControladorPublicacionTest {
     private ServicioPublicacion servicioPublicacion = mock(ServicioPublicacion.class);
     private ControladorPublicacion controladorPublicacion = new ControladorPublicacion(servicioPublicacion);
 
+    @Before
+    public void setup(){
+        when(REQUEST.getSession()).thenReturn(session);
+    }
 
     @Test
     public void irAPublicaciones() {
@@ -38,7 +43,6 @@ public class ControladorPublicacionTest {
 
     @Test
     public void registroPublicacionExitoso() throws Exception {
-        givenQueLaPublicacionNoExiste(REQUEST);
         ModelAndView mav = whenRegistroLaPublicacion(MASCOTA, REQUEST);
         thenElRegistroDePublicacionEsExitoso(mav);
     }
@@ -89,10 +93,6 @@ public class ControladorPublicacionTest {
         return controladorPublicacion.finalizarPublicacion(id);
     }
 
-
-    private void givenQueLaPublicacionNoExiste(HttpServletRequest request) throws Exception {
-        when(request.getSession()).thenReturn(session);
-    }
 
     private void givenQueNoEncuentroPublicacionPorId(Long id) {
         doThrow(Exception.class).when(servicioPublicacion).buscarPublicacion(id);
@@ -150,5 +150,4 @@ public class ControladorPublicacionTest {
     private void thenNoEncuentroPublicaciones(ModelAndView mav, String mensaje) {
         assertThat(mav.getModel().get("publicacionesError")).isEqualTo(mensaje);
     }
-
 }

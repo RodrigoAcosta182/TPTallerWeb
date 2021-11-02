@@ -40,33 +40,14 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         if (mascota.getTipo() == null || mascota.getEstado() == null)
             throw new Exception();
         Publicacion nuevaPublicacion = new Publicacion();
-        Mascota nuevaMascota = new Mascota();
 
-        nuevaMascota.setEstado(mascota.getEstado());
-        nuevaMascota.setTipo(mascota.getTipo());
-        nuevaMascota.setNombre(mascota.getNombre());
-        nuevaMascota.setEdad(mascota.getEdad());
-        nuevaMascota.setRaza(mascota.getRaza());
-        nuevaMascota.setColor(mascota.getColor());
-        nuevaMascota.setDetalle(mascota.getDetalle());
-        nuevaMascota.setTamanio(mascota.getTamanio());
-        nuevaMascota.setFecha(mascota.getFecha());
+        Mascota nuevaMascota = mascota.toMascota();
 
-        try {
-            if (mascota.getImagen().getSize() > 0) {
-                String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
-                nuevaMascota.setImagen(nombreConRuta);
+        String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
+        nuevaMascota.setImagen(nombreConRuta);
 
-                String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
-                mascota.getImagen().transferTo(new File(filename));
-            } else {
-                String nombreConRuta = "img/" + "noImagen.jpeg";
-                nuevaMascota.setImagen(nombreConRuta);
-            }
-        } catch (Exception e) {
-            e.getMessage();
-        }
-
+        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
+        mascota.getImagen().transferTo(new File(filename));
 
         nuevaPublicacion.setFechaPublicacion(new Date());
         nuevaPublicacion.setUsuario(usuario);

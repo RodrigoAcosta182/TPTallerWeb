@@ -58,7 +58,6 @@ public class ControladorPublicacion {
         List<Publicacion> publicaciones = new ArrayList<>();
         try {
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-            usuario.getId();
             publicaciones = servicioPublicacion.listarTodasLasPublicacionesPerdidas();
         } catch (Exception e) {
             model.put("publicacionesError", "No hay publicaciones");
