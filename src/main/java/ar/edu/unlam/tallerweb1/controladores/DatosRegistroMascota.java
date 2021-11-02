@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -132,5 +133,19 @@ public class DatosRegistroMascota {
 
     public void setImagen(MultipartFile imagen) {
         this.imagen = imagen;
+    }
+
+    public Mascota toMascota() {
+        Mascota nuevaMascota = new Mascota();
+        nuevaMascota.setEstado(this.getEstado());
+        nuevaMascota.setTipo(this.getTipo());
+        nuevaMascota.setNombre(this.getNombre());
+        nuevaMascota.setEdad(this.getEdad());
+        nuevaMascota.setRaza(this.getRaza());
+        nuevaMascota.setColor(this.getColor());
+        nuevaMascota.setDetalle(this.getDetalle());
+        nuevaMascota.setTamanio(this.getTamanio());
+        nuevaMascota.setFecha(this.getFecha());
+        return nuevaMascota;
     }
 }

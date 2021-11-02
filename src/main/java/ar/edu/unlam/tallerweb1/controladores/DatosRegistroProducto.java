@@ -1,40 +1,22 @@
-package ar.edu.unlam.tallerweb1.modelo;
+package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Producto;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class Producto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class DatosRegistroProducto {
     private String descripcion;
     private Integer puntos;
     private Integer cantidad;
-    private String imgproducto;
+    private MultipartFile imgproducto;
 
-    public Producto(Long id, String descripcion, Integer puntos, Integer cantidad, String imgproducto) {
-        this.id = id;
+    public DatosRegistroProducto(){
+    }
+
+    public DatosRegistroProducto(String descripcion, Integer puntos, Integer cantidad, MultipartFile imgproducto) {
         this.descripcion = descripcion;
         this.puntos = puntos;
         this.cantidad = cantidad;
         this.imgproducto = imgproducto;
-    }
-
-    public Producto() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getDescripcion() {
@@ -61,11 +43,19 @@ public class Producto {
         this.cantidad = cantidad;
     }
 
-    public String getImgproducto() {
+    public MultipartFile getImgproducto() {
         return imgproducto;
     }
 
-    public void setImgproducto(String imgproducto) {
+    public void setImgproducto(MultipartFile imgproducto) {
         this.imgproducto = imgproducto;
+    }
+
+    public Producto toProducto(){
+        Producto nuevoProducto = new Producto();
+        nuevoProducto.setCantidad(this.cantidad);
+        nuevoProducto.setDescripcion(this.descripcion);
+        nuevoProducto.setPuntos(this.puntos);
+        return nuevoProducto;
     }
 }
