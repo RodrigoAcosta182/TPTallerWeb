@@ -19,6 +19,7 @@ public class Usuario {
 	private String password;
 	private String rol;
 	private Boolean activo = false;
+	private Integer puntos = 0;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Cuenta cuenta;
 
@@ -75,4 +76,12 @@ public class Usuario {
     public void activar() {
 		activo = true;
     }
+
+	public Integer getPuntos() {
+		return puntos;
+	}
+
+	public void setPuntos(Integer puntos) {
+		this.puntos = puntos;
+	}
 }

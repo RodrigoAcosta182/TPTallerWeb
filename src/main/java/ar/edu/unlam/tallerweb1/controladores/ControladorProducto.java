@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +40,21 @@ public class ControladorProducto {
             return new ModelAndView("Productos", model);
         }
         model.put("productos", productos);
+        return new ModelAndView("Productos", model);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/canjear-producto")
+    public ModelAndView canjearProducto(@RequestParam("id") Long id,HttpServletRequest request){
+        ModelMap model = new ModelMap();
+        try{
+            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+            servicioProducto.canjearProducto(id,usuario);
+        }catch (Exception e){
+            model.put("error","Lo siento, no te alcanza para canjear este producto :(");
+            return new ModelAndView("Productos", model);
+        }
+        model.put("msg","Puntos Canjeados");
+
         return new ModelAndView("Productos", model);
     }
 
