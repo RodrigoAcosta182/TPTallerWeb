@@ -19,7 +19,7 @@
         <a href="home" class="w3-bar-item w3-button">HOME</a>
         <a href="ir-a-publicacion-mascota-perdida" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Perdidos</a>
         <a href="ir-a-publicacion-mascota-encontrada" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Encontrados</a>
-        <a href="" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Servicios</a>
+        <a href="ir-a-productos" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Servicios</a>
 
         <a class="w3-bar-item w3-button w3-hide-small" style="float:right" href="#about">Cerrar Sesion</a>
         <a class="w3-bar-item w3-button w3-hide-small" style="float:right" href="ir-a-mis-publicaciones">Mis Publicaciones</a>

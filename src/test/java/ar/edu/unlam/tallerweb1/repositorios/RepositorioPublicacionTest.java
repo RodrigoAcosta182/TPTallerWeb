@@ -19,6 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RepositorioPublicacionTest extends SpringTest {
 
     private static final Usuario USUARIO = new Usuario();
+    private static final Publicacion PUBLICACION = new Publicacion();
     private static final String PERDIDO = "1";
     private static final String ENCONTRADO = "2";
 
@@ -89,7 +90,7 @@ public class RepositorioPublicacionTest extends SpringTest {
         List<Publicacion> listaPublicaciones = new LinkedList<>();
         listaPublicaciones.add(new Publicacion());
         givenExistenMisPublicaciones(listaPublicaciones);
-        whenFinalizoUnaPublicacion(1L);
+        whenFinalizoUnaPublicacion(PUBLICACION);
         thenFinalizoPublicacion(1L,true);
 
     }
@@ -105,8 +106,8 @@ public class RepositorioPublicacionTest extends SpringTest {
         }
     }
 
-    private void whenFinalizoUnaPublicacion(Long id) {
-        repositorioPublicacion.finalizarPublicacion(id);
+    private void whenFinalizoUnaPublicacion(Publicacion publicacion) {
+        repositorioPublicacion.finalizarPublicacion(publicacion);
     }
 
     private void givenExistenPublicacionesDeMascotas(List<Publicacion> publicaciones, String estado) {
