@@ -23,18 +23,21 @@ public class Publicacion {
     private Mascota mascota;
     private String estado;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Localidad localidad;
+
 
     public Publicacion() {
 
     }
 
-    public Publicacion( Date fechaPublicacion, Boolean finalizado, Usuario usuario, Mascota mascota, String estado) {
-
+    public Publicacion( Date fechaPublicacion, Boolean finalizado, Usuario usuario, Mascota mascota, String estado, Localidad localidad) {
         this.fechaPublicacion = fechaPublicacion;
         this.finalizado = finalizado;
         this.usuario = usuario;
         this.mascota = mascota;
         this.estado = estado;
+        this.localidad = localidad;
     }
 
     public Long getId() {
@@ -83,5 +86,13 @@ public class Publicacion {
 
     public String getEstado() {
         return estado;
+    }
+
+    public Localidad getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(Localidad localidad) {
+        this.localidad = localidad;
     }
 }

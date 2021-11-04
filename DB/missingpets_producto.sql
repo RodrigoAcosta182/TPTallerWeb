@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `missingpets` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `missingpets`;
 -- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: missingpets
@@ -16,36 +18,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `mascota`
+-- Table structure for table `producto`
 --
 
-DROP TABLE IF EXISTS `mascota`;
+DROP TABLE IF EXISTS `producto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `mascota` (
+CREATE TABLE `producto` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(90) DEFAULT NULL,
-  `edad` varchar(90) DEFAULT NULL,
-  `raza` varchar(90) DEFAULT NULL,
-  `detalle` varchar(90) DEFAULT NULL,
-  `color` varchar(90) DEFAULT NULL,
-  `tamanio` varchar(90) DEFAULT NULL,
-  `fecha` date DEFAULT NULL,
-  `tipo` varchar(255) NOT NULL,
-  `estado` int DEFAULT NULL,
-  `publicacion_id` bigint DEFAULT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `puntos` int NOT NULL,
+  `hayStock` tinyint(1) NOT NULL DEFAULT '1',
+  `cantidad` int NOT NULL,
+  `imgproducto` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `mascota`
+-- Dumping data for table `producto`
 --
 
-LOCK TABLES `mascota` WRITE;
-/*!40000 ALTER TABLE `mascota` DISABLE KEYS */;
-INSERT INTO `mascota` VALUES (33,'T-Rex','145','Dinosaurio Carnivoro','Veloz cirraptor','Verde','Gigante',NULL,'3',1,4),(34,'Pichichus','4','Pekines','Sin una oreja','Rojo','Chico',NULL,'1',2,5),(35,'Con botas','7','Gato de pelicula','Espadachin','Naranja','Chico',NULL,'2',1,6),(36,'Superman','27','No Binario','Super pito','Azul y Rojo','Normal',NULL,'3',1,7);
-/*!40000 ALTER TABLE `mascota` ENABLE KEYS */;
+LOCK TABLES `producto` WRITE;
+/*!40000 ALTER TABLE `producto` DISABLE KEYS */;
+INSERT INTO `producto` VALUES (1,'Cama para perro mediano',60,1,8,NULL),(2,'Bolson 15KG Royal Canin',250,1,4,NULL),(3,'Bolsa de 3kg de piedra para gatos',30,1,12,NULL),(4,'Collar + correa 1.50mts',30,1,2,NULL);
+/*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-14  0:00:52
+-- Dump completed on 2021-11-01 19:31:41

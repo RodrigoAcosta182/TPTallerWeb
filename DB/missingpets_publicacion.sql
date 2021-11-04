@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `publicacion`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `publicacion` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `finalizado` int DEFAULT NULL,
+  `finalizado` tinyint(1) DEFAULT NULL,
   `fechaPublicacion` date DEFAULT NULL,
   `usuario_id` bigint DEFAULT NULL,
   `mascota_id` bigint DEFAULT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE `publicacion` (
   CONSTRAINT `FKsmafswujolnyojwb2rq31ax48` FOREIGN KEY (`mascota_id`) REFERENCES `mascota` (`id`),
   CONSTRAINT `publicacion_mascota_id_fk` FOREIGN KEY (`mascota_id`) REFERENCES `mascota` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `publicacion_usuario_id_fk` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `publicacion` (
 
 LOCK TABLES `publicacion` WRITE;
 /*!40000 ALTER TABLE `publicacion` DISABLE KEYS */;
-INSERT INTO `publicacion` VALUES (10,0,'2021-10-20',1,48,'2'),(11,0,'2021-10-20',1,49,'2'),(17,0,'2021-10-21',1,55,'2'),(18,0,'2021-10-21',1,56,'1'),(19,0,'2021-10-21',1,57,'1');
+INSERT INTO `publicacion` VALUES (22,1,'2021-10-25',1,60,'2'),(23,1,'2021-10-25',1,61,'1'),(24,0,'2021-10-27',1,62,'1'),(25,0,'2021-10-27',1,63,'2');
 /*!40000 ALTER TABLE `publicacion` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-21 19:36:23
+-- Dump completed on 2021-11-01 19:31:43
