@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioBusqueda;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,11 @@ public class ControladorBusqueda {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/ir-a-busqueda")
-    public ModelAndView irAVerBusqueda() {
+    public ModelAndView irAVerPaginaDeBusqueda() {
         DatosRegistroMascota datos = new DatosRegistroMascota();
         ModelMap model = new ModelMap();
+        List<Localidad> localidades = servicioBusqueda.getLocalidades();
+        model.put("localidades", localidades);
         model.put("datosMascota", datos);
         return new ModelAndView("buscar-publicacion", model);
     }

@@ -33,13 +33,13 @@
                     <form:option value="3">Otro</form:option>
                 </form:select>
 
-                <label style="float: left; margin-bottom: 2px">Localidad</label>
-                <form:select path="publicacionId." cssClass="w3-select">
-                    <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
-                    <form:option value="1">San justo</form:option>
-                    <form:option value="2">Ramos Mejia</form:option>
-                    <form:option value="3">Lomas del Mirador</form:option>
-                </form:select>
+<%--                <label style="float: left; margin-bottom: 2px">Localidad</label>--%>
+<%--                <form:select path="publicacionId.localidad" id="publicacionId.localidad" cssClass="w3-select">--%>
+<%--                    <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>--%>
+<%--                    <form:options items="${localidades}" itemValue="publicacionId.localidad"  />--%>
+<%--                </form:select>--%>
+
+
                 <label style="float: left">Raza</label>
                 <form:input cssClass="w3-input" path="raza" type="text" id="raza"/>
                 <label style="float: left">Color</label>

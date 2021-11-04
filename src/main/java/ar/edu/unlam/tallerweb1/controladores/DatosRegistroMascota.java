@@ -41,7 +41,6 @@ public class DatosRegistroMascota {
         this.tamanio = tamanio;
         this.fecha = fecha;
         this.imagen = imagen;
-
         this.publicacionId = publicacionId;
     }
 
@@ -104,11 +103,6 @@ public class DatosRegistroMascota {
 
     public Date getFecha() {
         return fecha;
-
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
     }
 
     public Publicacion getPublicacionId() {
@@ -117,6 +111,10 @@ public class DatosRegistroMascota {
 
     public void setPublicacionId(Publicacion publicacionId) {
         this.publicacionId = publicacionId;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public String getEstado() {

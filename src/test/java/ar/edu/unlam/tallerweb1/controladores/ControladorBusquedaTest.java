@@ -53,7 +53,7 @@ public class ControladorBusquedaTest {
     }
 
     private ModelAndView whenIrAVerPaginaDeBusqueda() {
-        return controladorBusqueda.irAVerBusqueda();
+        return controladorBusqueda.irAVerPaginaDeBusqueda();
     }
 
     private void thenNoEncuentroPublicaciones(ModelAndView mav) {
