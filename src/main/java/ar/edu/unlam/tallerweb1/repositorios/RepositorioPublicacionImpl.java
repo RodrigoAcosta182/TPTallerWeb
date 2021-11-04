@@ -18,9 +18,7 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         sessionFactory.getCurrentSession().save(nuevaPublicacion);
     }
     @Override
-    public void finalizarPublicacion(Long id) {
-        Publicacion publicacion = buscarPublicacionPorId(id);
-        publicacion.setFinalizado(true);
+    public void finalizarPublicacion(Publicacion publicacion) {
         sessionFactory.getCurrentSession().update(publicacion);
     }
 

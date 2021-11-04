@@ -14,7 +14,7 @@
         <a class="homeBotonBox w3-col">
             <span>Buscar a tu mascota</span>
         </a>
-        <a class="homeBotonBox w3-col">
+        <a class="homeBotonBox w3-col" href="ir-a-productos">
             <span>Servicios</span>
         </a>
 

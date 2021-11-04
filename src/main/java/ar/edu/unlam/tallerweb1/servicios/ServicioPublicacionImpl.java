@@ -61,8 +61,9 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 
     @Override
     public void finalizarPublicacion(Long id) {
-
-        repositorioPublicacion.finalizarPublicacion(id);
+        Publicacion publicacion = repositorioPublicacion.buscarPublicacionPorId(id);
+        publicacion.setFinalizado(true);
+        repositorioPublicacion.finalizarPublicacion(publicacion);
     }
 
     @Override

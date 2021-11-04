@@ -7,6 +7,8 @@ import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 import org.junit.Test;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -21,7 +23,8 @@ public class ServicioPublicacionTest {
 
     private static final String RAZA = "American Bully";
     private static final Long ID = 22L;
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo","1","1","3 Anios","American Bully","Le falta una pata","Blanco","Chico", new Date(), new Publicacion(),null);
+    private static final Publicacion PUBLICACION = new Publicacion();
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo","1","1","3 Anios","American Bully","Le falta una pata","Blanco","Chico", new Date(), new Publicacion(),mock(MultipartFile.class));
 
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com","123");
 
@@ -54,7 +57,7 @@ public class ServicioPublicacionTest {
 
 
     private void givenQueLaPublicacionExiste(Long id) {
-        when(repositorioPublicacion.buscarPublicacionPorId(id)).thenReturn(new Publicacion());
+        when(repositorioPublicacion.buscarPublicacionPorId(id)).thenReturn(PUBLICACION);
     }
 
     public void givenQueLaPublicacionNoExiste() {
@@ -90,7 +93,7 @@ public class ServicioPublicacionTest {
     }
 
     private void thenFinalizoLaPublicacionCorrectamente() {
-        verify(repositorioPublicacion,times(1)).finalizarPublicacion(10L);
+        verify(repositorioPublicacion,times(1)).finalizarPublicacion(PUBLICACION);
     }
 
 }
