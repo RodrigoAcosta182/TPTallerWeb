@@ -1,8 +1,8 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
 import ar.edu.unlam.tallerweb1.modelo.Localidad;
-import ar.edu.unlam.tallerweb1.modelo.Producto;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +20,14 @@ public class RepositorioBusquedaImpl implements RepositorioBusqueda {
     public List<Localidad> obtenerTodasLasLocalidades() {
         return  sessionFactory.getCurrentSession().createCriteria(Localidad.class).list();
     }
+
+    @Override
+    public List<Publicacion> obtenerPublicacionesPorLocalidad(DatosRegistroMascota localidad) {
+        return sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
+                .add(Restrictions.eq("descripcion", localidad.getPublicacion().getLocalidad().getDescripcion()))
+                .list();
+    }
 }
-
-
-
-
 
 
 

@@ -12,13 +12,13 @@
 <div class="imagen-fondo container-buscar-publicaciones" style="height: 100%">
     <div class="buscar-publicaciones-formulario">
         <div class="buscar-publicaciones-cerrar">
-            <span class="noselect"  style="font-size: 20px;cursor: pointer">X</span>
+            <span class="noselect" style="font-size: 20px;cursor: pointer">X</span>
         </div>
         <div class="buscar-publicaciones-titulo">
             <span style="font-size: 20px">Buscar Mascota</span>
         </div>
         <div>
-            <form:form cssClass="w3-container" action="buscarMascota" method="POST" modelAttribute="datosMascota">
+            <form:form cssClass="w3-container" action="buscar-publicaciones" method="POST" modelAttribute="datosMascota">
                 <label style="float: left">Estado</label>
                 <form:select path="estado" cssClass="w3-select">
                     <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
@@ -33,13 +33,12 @@
                     <form:option value="3">Otro</form:option>
                 </form:select>
 
-<%--                <label style="float: left; margin-bottom: 2px">Localidad</label>--%>
-<%--                <form:select path="publicacionId.localidad" id="publicacionId.localidad" cssClass="w3-select">--%>
-<%--                    <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>--%>
-<%--                    <form:options items="${localidades}" itemValue="publicacionId.localidad"  />--%>
-<%--                </form:select>--%>
-
-
+                <label style="float: left; margin-bottom: 2px">Localidad</label>
+                <form:select path="publicacion.localidad.id" id="publicacion.localidad.id" cssClass="w3-select">
+                    <form:options items="${localidades}"
+                                  itemValue="id"
+                                  itemLabel="descripcion"/>
+                </form:select>
                 <label style="float: left">Raza</label>
                 <form:input cssClass="w3-input" path="raza" type="text" id="raza"/>
                 <label style="float: left">Color</label>

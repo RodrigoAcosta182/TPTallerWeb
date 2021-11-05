@@ -11,7 +11,7 @@
         <a class="homeBotonBox w3-col" href="ir-a-registrar-mascota">
             <span>Perdiste o encontraste una mascota?</span>
         </a>
-        <a class="homeBotonBox w3-col">
+        <a class="homeBotonBox w3-col" href="ir-a-busqueda">
             <span>Buscar a tu mascota</span>
         </a>
         <a class="homeBotonBox w3-col" href="ir-a-productos">

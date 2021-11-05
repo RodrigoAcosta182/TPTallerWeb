@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
+
 import javax.persistence.*;
 import java.util.Date;
 import javax.persistence.Entity;
