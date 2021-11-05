@@ -28,13 +28,13 @@ public class ControladorBusqueda {
         DatosRegistroMascota datos = new DatosRegistroMascota();
         ModelMap model = new ModelMap();
         List<Localidad> localidades = servicioBusqueda.getLocalidades();
-        model.put("localidades", localidades);
         model.put("datosMascota", datos);
+        model.put("localidades", localidades);
         return new ModelAndView("buscar-publicacion", model);
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, path = "/buscar-publicacion")
+    @RequestMapping(method = RequestMethod.GET, path = "/buscar-publicaciones")
     public ModelAndView buscarPublicaciones(DatosRegistroMascota mascota) throws Exception {
         ModelMap model = new ModelMap();
         List<Publicacion> publicaciones = new ArrayList<>();
@@ -48,4 +48,7 @@ public class ControladorBusqueda {
         model.put("publicacionesList", publicaciones);
         return new ModelAndView("publicaciones-filtradas-busqueda", model);
     }
+
+
+
 }

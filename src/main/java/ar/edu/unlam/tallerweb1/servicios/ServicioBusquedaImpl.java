@@ -25,7 +25,7 @@ public class ServicioBusquedaImpl implements ServicioBusqueda {
 
     @Override
     public List<Publicacion> buscarPublicaciones(DatosRegistroMascota mascota) {
-        return null;
+        return repositorioBusqueda.obtenerPublicacionesPorLocalidad(mascota);
     }
 
     @Override

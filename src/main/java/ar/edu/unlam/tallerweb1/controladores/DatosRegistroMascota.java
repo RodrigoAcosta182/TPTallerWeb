@@ -2,12 +2,9 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.CascadeType;
-import javax.persistence.OneToOne;
 import java.util.Date;
 
 public class DatosRegistroMascota {
@@ -22,14 +19,14 @@ public class DatosRegistroMascota {
     private MultipartFile imagen;
     @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
     private Date fecha;
-    private Publicacion publicacionId;
+    private Publicacion publicacion;
 
 
     public DatosRegistroMascota() {
     }
 
     public DatosRegistroMascota(String nombre, String tipo, String estado, String edad, String raza, String detalle,
-                                String color, String tamanio, Date fecha, Publicacion publicacionId, MultipartFile imagen) {
+                                String color, String tamanio, Date fecha, Publicacion publicacion, MultipartFile imagen) {
         this.nombre = nombre;
 
         this.tipo = tipo;
@@ -41,7 +38,7 @@ public class DatosRegistroMascota {
         this.tamanio = tamanio;
         this.fecha = fecha;
         this.imagen = imagen;
-        this.publicacionId = publicacionId;
+        this.publicacion = publicacion;
     }
 
     public String getNombre() {
@@ -105,12 +102,12 @@ public class DatosRegistroMascota {
         return fecha;
     }
 
-    public Publicacion getPublicacionId() {
-        return publicacionId;
+    public Publicacion getPublicacion() {
+        return publicacion;
     }
 
-    public void setPublicacionId(Publicacion publicacionId) {
-        this.publicacionId = publicacionId;
+    public void setPublicacion(Publicacion publicacion) {
+        this.publicacion = publicacion;
     }
 
     public void setFecha(Date fecha) {
