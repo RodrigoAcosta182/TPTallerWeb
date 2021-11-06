@@ -18,7 +18,7 @@
             <span style="font-size: 20px">Buscar Mascota</span>
         </div>
         <div>
-            <form:form cssClass="w3-container" action="buscar-publicaciones" method="POST" modelAttribute="datosMascota">
+            <form:form cssClass="w3-container" action="buscar-publicaciones" method="GET" modelAttribute="datosMascota">
                 <label style="float: left">Estado</label>
                 <form:select path="estado" cssClass="w3-select">
                     <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
@@ -34,9 +34,9 @@
                 </form:select>
 
                 <label style="float: left; margin-bottom: 2px">Localidad</label>
-                <form:select path="publicacion.localidad.id" id="publicacion.localidad.id" cssClass="w3-select">
+                <form:select path="publicacion.localidad.descripcion" id="publicacion.localidad.descripcion" cssClass="w3-select">
                     <form:options items="${localidades}"
-                                  itemValue="id"
+                                  itemValue="descripcion"
                                   itemLabel="descripcion"/>
                 </form:select>
                 <label style="float: left">Raza</label>
@@ -51,7 +51,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

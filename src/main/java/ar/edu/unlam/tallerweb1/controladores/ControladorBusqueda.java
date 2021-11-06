@@ -39,7 +39,7 @@ public class ControladorBusqueda {
 
 
     @RequestMapping(method = RequestMethod.GET, path = "/buscar-publicaciones")
-    public ModelAndView buscarPublicaciones(DatosRegistroMascota mascota) throws Exception {
+    public ModelAndView buscarPublicaciones(@ModelAttribute("datosMascota") DatosRegistroMascota mascota) throws Exception {
         ModelMap model = new ModelMap();
         List<Publicacion> publicaciones = new ArrayList<>();
         try {
