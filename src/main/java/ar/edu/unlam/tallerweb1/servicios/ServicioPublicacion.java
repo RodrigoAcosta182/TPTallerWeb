@@ -20,4 +20,5 @@ public interface ServicioPublicacion {
 
     void finalizarPublicacion(Long id);
 
+    void buscarUsuarioParaFinalizar(Usuario usuario, String email);
 }
