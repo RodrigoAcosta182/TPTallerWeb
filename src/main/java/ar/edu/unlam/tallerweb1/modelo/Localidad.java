@@ -16,8 +16,7 @@ public class Localidad {
     public Localidad() {
     }
 
-    public Localidad(Long id, String descripcion) {
-        this.id = id;
+    public Localidad(String descripcion) {
         this.descripcion = descripcion;
     }
 
