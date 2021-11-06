@@ -20,9 +20,9 @@ public class ServicioBusquedaTest {
 
     private RepositorioBusqueda repositorioBusqueda = mock(RepositorioBusqueda.class);
     private ServicioBusqueda servicioBusqueda = new ServicioBusquedaImpl(repositorioBusqueda);
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Lucas", "1",
-            "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco",
-            "Chico", new Date(), new Publicacion(), mock(MultipartFile.class));
+//    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Lucas", "1",
+//            "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco",
+//            "Chico", new Date(), new Publicacion(), mock(MultipartFile.class));
 
     @Test
     public void obtengoTodasLasLocalidades() {
@@ -35,16 +35,16 @@ public class ServicioBusquedaTest {
     @Test
     public void buscoPublicacionesPorLocalidadExitosamente() {
         givenQueLasPublicacionesExiten();
-        //List<Publicacion> publicaciones = whenObtengoPublicacionesPorLocalidad();
+//        List<Publicacion> publicaciones = whenObtengoPublicacionesPorLocalidad();
         //thenEncuentroPublicaciones(publicaciones);
     }
 
     private void thenEncuentroPublicaciones(List<Publicacion> publicaciones) {
     }
 
-    private List<Publicacion> whenObtengoPublicacionesPorLocalidad() {
-        return servicioBusqueda.buscarPublicaciones(MASCOTA);
-    }
+//    private List<Publicacion> whenObtengoPublicacionesPorLocalidad() {
+//        return servicioBusqueda.buscarPublicaciones(MASCOTA);
+//    }
 
     private void givenQueLasPublicacionesExiten() {
         List<Publicacion> publicaciones = new ArrayList<>();
