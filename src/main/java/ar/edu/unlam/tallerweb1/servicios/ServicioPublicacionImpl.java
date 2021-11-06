@@ -67,6 +67,11 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     }
 
     @Override
+    public void buscarUsuarioParaFinalizar(Usuario usuario, String email) {
+        repositorioPublicacion.buscarUsuarioPorEmail(email);
+    }
+
+    @Override
     public List<Publicacion> listarTodasLasPublicacionesPerdidas() throws Exception {
 
         if (repositorioPublicacion.buscarTodasLasPublicacionesPerdidas().size() == 0)

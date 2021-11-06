@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
 
 public class ControladorPublicacionTest {
 
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo", "Perro", "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), null);
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo", "Perro", "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), null, "nashe");
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123");
 
     private HttpServletRequest REQUEST = mock(HttpServletRequest.class);

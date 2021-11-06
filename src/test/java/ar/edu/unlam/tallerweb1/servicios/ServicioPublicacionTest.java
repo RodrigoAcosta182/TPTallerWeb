@@ -24,7 +24,7 @@ public class ServicioPublicacionTest {
     private static final String RAZA = "American Bully";
     private static final Long ID = 22L;
     private static final Publicacion PUBLICACION = new Publicacion();
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo","1","1","3 Anios","American Bully","Le falta una pata","Blanco","Chico", new Date(), new Publicacion(),mock(MultipartFile.class));
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo","1","1","3 Anios","American Bully","Le falta una pata","Blanco","Chico", new Date(), new Publicacion(),mock(MultipartFile.class),"nashe");
 
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com","123");
 

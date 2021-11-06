@@ -16,7 +16,7 @@ public class ControladorBusquedaTest {
 
     private ServicioBusqueda servicioBusqueda = mock(ServicioBusqueda.class);
     private ControladorBusqueda controladorBusqueda = new ControladorBusqueda(servicioBusqueda);
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Ramon", "Perro", "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), null);
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Ramon", "Perro", "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), null, "nashe");
 
     @Test
     public void irAVerPaginaDeBusqueda() {

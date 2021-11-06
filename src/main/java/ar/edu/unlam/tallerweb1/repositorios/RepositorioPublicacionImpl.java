@@ -54,5 +54,11 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         return (Publicacion) sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
                 .add(Restrictions.eq("id", id)).uniqueResult();
     }
+
+    @Override
+    public void buscarUsuarioPorEmail(String email) {
+        sessionFactory.getCurrentSession().createCriteria(Usuario.class)
+                .add(Restrictions.eq("email", email));
+    }
 }
 

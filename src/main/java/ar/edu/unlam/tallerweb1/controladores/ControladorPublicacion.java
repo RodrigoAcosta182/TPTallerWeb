@@ -39,6 +39,19 @@ public class ControladorPublicacion {
         return new ModelAndView("home", model);
     }
 
+    @RequestMapping(method = RequestMethod.POST, path = "/buscarUsuario")
+    public ModelAndView buscarUsuario(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, HttpServletRequest request, String email) {
+        ModelMap model = new ModelMap();
+        try {
+            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+            servicioPublicacion.buscarUsuarioParaFinalizar(usuario, email);
+        } catch (Exception e) {
+            model.put("busquedaError", "No existe usuario con ese email");
+            return new ModelAndView("mis-publicaciones", model);
+        }
+        return new ModelAndView("mis-publicaciones", model);
+    }
+
     @RequestMapping(method = RequestMethod.GET, path = "/finalizar-publicacion")
     public ModelAndView finalizarPublicacion(@RequestParam("id") Long id) {
         ModelMap model = new ModelMap();
@@ -92,7 +105,7 @@ public class ControladorPublicacion {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/ir-a-mis-publicaciones")
-    public ModelAndView irAMisPublicaciones(HttpServletRequest request) {
+    public ModelAndView irAMisPublicaciones(@ModelAttribute("datosMascota") DatosRegistroMascota mascota,HttpServletRequest request) {
         ModelMap model = new ModelMap();
         List<Publicacion> publicaciones = new ArrayList<>();
         try {
@@ -105,6 +118,8 @@ public class ControladorPublicacion {
         model.put("publicaciones", publicaciones);
         return new ModelAndView("mis-publicaciones", model);
     }
+
+
 
     @RequestMapping(method = RequestMethod.GET, path = "/publicacion")
     public ModelAndView irAVerPublicacion(@RequestParam("id") Long id) {
@@ -121,7 +136,6 @@ public class ControladorPublicacion {
         model.put("datosCorreo", datosCorreo);
         return new ModelAndView("ver-publicacion", model);
     }
-
 
 
 

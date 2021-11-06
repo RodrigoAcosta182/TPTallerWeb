@@ -43,10 +43,22 @@
                 <br>
                 <a class="w3-btn w3-red" style="width: 100%; margin-top: 10px" type="submit" href="/missingpets/finalizar-publicacion?id=${publicacion.id}">Finalizar</a>
             </div>
+        <br>
+        <div class="w3-center">
+            <c:if test="${publicacion.mascota.estado == 1}">
+                <form:form cssClass="w3-container" action="buscarUsuario" method="POST" modelAttribute="datosMascota">
+                    <label style="float: left">Buscar Usuario</label>
+                        <form:input cssClass="w3-input" path="email" type="text" id="email"/>
+                    <button class="w3-btn w3-blue" style="width: 100%;" type="submit">Buscar</button>
+                </form:form>
+            </c:if>
+        </div>
     </c:if>
         </div>
+
     </c:forEach>
 </div>
+
 </body>
 </html>
 
