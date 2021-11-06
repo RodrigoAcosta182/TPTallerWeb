@@ -29,7 +29,6 @@ public class DatosRegistroMascota {
     public DatosRegistroMascota(String nombre, String tipo, String estado, String edad, String raza, String detalle,
                                 String color, String tamanio, Date fecha, Publicacion publicacion, MultipartFile imagen, String email) {
         this.nombre = nombre;
-
         this.tipo = tipo;
         this.estado = estado;
         this.edad = edad;

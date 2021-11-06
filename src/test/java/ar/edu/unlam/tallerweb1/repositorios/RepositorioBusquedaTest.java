@@ -22,7 +22,7 @@ public class RepositorioBusquedaTest extends SpringTest {
     @Rollback
     public void obtengoTodasLasLocalidades(){
         List<Localidad> localidades = new ArrayList<>();
-        localidades.add(new Localidad(50L,"Mataderos"));
+        localidades.add(new Localidad("Mataderos"));
 
         givenExistenLocalidades(localidades);
         List<Localidad> localidadesObtenidas = whenObtengoTodasLasLocalidades();

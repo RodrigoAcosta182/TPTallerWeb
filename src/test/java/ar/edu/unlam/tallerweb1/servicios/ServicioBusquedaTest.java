@@ -13,16 +13,17 @@ import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 public class ServicioBusquedaTest {
 
     private RepositorioBusqueda repositorioBusqueda = mock(RepositorioBusqueda.class);
     private ServicioBusqueda servicioBusqueda = new ServicioBusquedaImpl(repositorioBusqueda);
-//    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Lucas", "1",
-//            "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco",
-//            "Chico", new Date(), new Publicacion(), mock(MultipartFile.class));
+    private static final Publicacion PUBLICACION = new Publicacion(new Localidad("Moron"));
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Lucas", "1",
+            "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco",
+            "Chico", new Date(), PUBLICACION, mock(MultipartFile.class), "jracosta1991@gmail.com");
 
     @Test
     public void obtengoTodasLasLocalidades() {
@@ -34,23 +35,45 @@ public class ServicioBusquedaTest {
 
     @Test
     public void buscoPublicacionesPorLocalidadExitosamente() {
-        givenQueLasPublicacionesExiten();
-//        List<Publicacion> publicaciones = whenObtengoPublicacionesPorLocalidad();
-        //thenEncuentroPublicaciones(publicaciones);
+        givenQueLasPublicacionesConEsaLocalidadExiten();
+        List<Publicacion> publicaciones = whenObtengoPublicacionesPorLocalidad();
+        thenEncuentroPublicaciones(publicaciones);
+    }
+
+    @Test
+    public void noEncuentroPublicacionesPorLocalidad(){
+        givenQueLasPublicacionesConEsaLocalidadNoExiten();
+        List<Publicacion> publicaciones = whenObtengoPublicacionesPorLocalidad();
+        thenNoEncuentroPublicaciones(publicaciones);
+    }
+
+    private void thenNoEncuentroPublicaciones(List<Publicacion> publicaciones) {
+        assertThat(publicaciones).isNull();
+    }
+
+    private void givenQueLasPublicacionesConEsaLocalidadNoExiten() {
+        List<Publicacion> publicaciones = new ArrayList<>();
+        Publicacion publicacion = new Publicacion();
+        Localidad localidad = new Localidad("Moron");
+        publicacion.setLocalidad(localidad);
+        publicaciones.add(publicacion);
+        when(repositorioBusqueda.obtenerPublicacionesPorLocalidad(publicacion.getLocalidad().getDescripcion())).thenReturn(null);
     }
 
     private void thenEncuentroPublicaciones(List<Publicacion> publicaciones) {
+        assertThat(publicaciones).isNotNull();
+        verify(repositorioBusqueda,times(1)).obtenerPublicacionesPorLocalidad(PUBLICACION.getLocalidad().getDescripcion());
     }
 
-//    private List<Publicacion> whenObtengoPublicacionesPorLocalidad() {
-//        return servicioBusqueda.buscarPublicaciones(MASCOTA);
-//    }
+    private List<Publicacion> whenObtengoPublicacionesPorLocalidad() {
+        return servicioBusqueda.buscarPublicaciones(MASCOTA);
+    }
 
-    private void givenQueLasPublicacionesExiten() {
+    private void givenQueLasPublicacionesConEsaLocalidadExiten() {
         List<Publicacion> publicaciones = new ArrayList<>();
 
         Publicacion publicacion = new Publicacion();
-        Localidad localidad = new Localidad(1L, "Moron");
+        Localidad localidad = new Localidad("Moron");
 
         publicacion.setLocalidad(localidad);
         publicaciones.add(publicacion);
@@ -59,7 +82,7 @@ public class ServicioBusquedaTest {
 
     private void givenQueExistenLocalidades() {
         List<Localidad> localidades = new ArrayList<>();
-        localidades.add(new Localidad(1L, "San Justo"));
+        localidades.add(new Localidad("San Justo"));
         when(repositorioBusqueda.obtenerTodasLasLocalidades()).thenReturn(localidades);
     }
 

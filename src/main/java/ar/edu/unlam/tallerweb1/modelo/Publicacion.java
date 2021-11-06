@@ -42,6 +42,10 @@ public class Publicacion {
         this.localidad = localidad;
     }
 
+    public Publicacion(Localidad localidad) {
+        this.localidad = localidad;
+    }
+
     public Long getId() {
         return id;
     }
