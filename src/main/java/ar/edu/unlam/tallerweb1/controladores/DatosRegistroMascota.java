@@ -20,13 +20,14 @@ public class DatosRegistroMascota {
     @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
     private Date fecha;
     private Publicacion publicacion;
+    private String email;
 
 
     public DatosRegistroMascota() {
     }
 
     public DatosRegistroMascota(String nombre, String tipo, String estado, String edad, String raza, String detalle,
-                                String color, String tamanio, Date fecha, Publicacion publicacion, MultipartFile imagen) {
+                                String color, String tamanio, Date fecha, Publicacion publicacion, MultipartFile imagen, String email) {
         this.nombre = nombre;
 
         this.tipo = tipo;
@@ -39,6 +40,7 @@ public class DatosRegistroMascota {
         this.fecha = fecha;
         this.imagen = imagen;
         this.publicacion = publicacion;
+        this.email = email;
     }
 
     public String getNombre() {
@@ -128,6 +130,14 @@ public class DatosRegistroMascota {
 
     public void setImagen(MultipartFile imagen) {
         this.imagen = imagen;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Mascota toMascota() {
