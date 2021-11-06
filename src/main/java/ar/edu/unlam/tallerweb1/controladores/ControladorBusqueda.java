@@ -6,6 +6,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioBusqueda;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,7 +36,7 @@ public class ControladorBusqueda {
 
 
     @RequestMapping(method = RequestMethod.GET, path = "/buscar-publicaciones")
-    public ModelAndView buscarPublicaciones(DatosRegistroMascota mascota) throws Exception {
+    public ModelAndView buscarPublicaciones(@ModelAttribute("datosMascota") DatosRegistroMascota mascota) throws Exception {
         ModelMap model = new ModelMap();
         List<Publicacion> publicaciones = new ArrayList<>();
         try {

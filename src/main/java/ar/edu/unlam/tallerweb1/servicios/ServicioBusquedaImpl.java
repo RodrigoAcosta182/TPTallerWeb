@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional
@@ -25,7 +26,12 @@ public class ServicioBusquedaImpl implements ServicioBusqueda {
 
     @Override
     public List<Publicacion> buscarPublicaciones(DatosRegistroMascota mascota) {
-        return repositorioBusqueda.obtenerPublicacionesPorLocalidad(mascota);
+        List<Publicacion> publicacionList = new ArrayList<>();
+        if(mascota.getPublicacion().getLocalidad().getDescripcion() != null) {
+            publicacionList = repositorioBusqueda
+                    .obtenerPublicacionesPorLocalidad(mascota.getPublicacion().getLocalidad().getDescripcion());
+        }
+        return publicacionList;
     }
 
     @Override

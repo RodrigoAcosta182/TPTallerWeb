@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
-import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
 import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import org.hibernate.SessionFactory;
@@ -16,16 +15,18 @@ public class RepositorioBusquedaImpl implements RepositorioBusqueda {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Localidad> obtenerTodasLasLocalidades() {
         return  sessionFactory.getCurrentSession().createCriteria(Localidad.class).list();
     }
-
+    @SuppressWarnings("unchecked")
     @Override
-    public List<Publicacion> obtenerPublicacionesPorLocalidad(DatosRegistroMascota localidad) {
+    public List<Publicacion> obtenerPublicacionesPorLocalidad(String localidad) {
         return sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
-                .add(Restrictions.eq("descripcion", localidad.getPublicacion().getLocalidad().getDescripcion()))
-                .list();
+                .createAlias("localidad","l")
+                .add(Restrictions.eq("l.descripcion", localidad)).list();
+
     }
 }
 
