@@ -42,7 +42,7 @@ public class ServicioBusquedaTest {
 
     @Test
     public void noEncuentroPublicacionesPorLocalidad(){
-        givenQueLasPublicacionesConEsaLocalidadNoExiten();
+        givenQueLasPublicacionesConEsaLocalidadNoExisten();
         List<Publicacion> publicaciones = whenObtengoPublicacionesPorLocalidad();
         thenNoEncuentroPublicaciones(publicaciones);
     }
@@ -51,7 +51,7 @@ public class ServicioBusquedaTest {
         assertThat(publicaciones).isNull();
     }
 
-    private void givenQueLasPublicacionesConEsaLocalidadNoExiten() {
+    private void givenQueLasPublicacionesConEsaLocalidadNoExisten() {
         List<Publicacion> publicaciones = new ArrayList<>();
         Publicacion publicacion = new Publicacion();
         Localidad localidad = new Localidad("Moron");
