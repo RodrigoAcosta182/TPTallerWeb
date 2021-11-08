@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
 import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import org.hibernate.SessionFactory;
@@ -28,16 +29,35 @@ public class RepositorioBusquedaImpl implements RepositorioBusqueda {
                 .add(Restrictions.eq("l.descripcion", localidad)).list();
 
     }
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Publicacion> buscarPublicaciones(DatosRegistroMascota mascota) {
+        return sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
+                .createAlias("localidad","l")
+                .createAlias("mascota", "m")
+                .add(Restrictions.eq("m.estado",mascota.getEstado()))
+                .add(Restrictions.eq("m.tipo",mascota.getTipo()))
+                .add(Restrictions.eq("m.color",mascota.getColor()))
+                .add(Restrictions.eq("m.raza",mascota.getRaza()))
+                .add(Restrictions.eq("l.descripcion",mascota.getPublicacion().getLocalidad().getDescripcion()))
+                .list();
+    }
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Publicacion> obtenerPublicacionesConAlgunParametroNull(DatosRegistroMascota mascota) {
+        return sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
+                .createAlias("localidad","l")
+                .createAlias("mascota", "m")
+                .add(Restrictions.disjunction()
+                .add(Restrictions.eq("m.estado",mascota.getEstado()))
+                .add(Restrictions.eq("m.tipo",mascota.getTipo()))
+                .add(Restrictions.eq("m.color",mascota.getColor()))
+                .add(Restrictions.eq("m.raza",mascota.getRaza()))
+                .add(Restrictions.eq("l.descripcion",mascota.getPublicacion().getLocalidad().getDescripcion())))
+                .list();
+    }
 }
 
 
 
 
-
-//    @Override
-//    public List<Producto> buscarTodosMisProductos(Usuario usuario) {
-//        List<Producto> productos = sessionFactory.getCurrentSession().createCriteria(Producto.class)
-//                .add(Restrictions.eq("hayStock", true))
-//                .list();
-//        return productos;
-//    }

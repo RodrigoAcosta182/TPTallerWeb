@@ -31,6 +31,7 @@ CREATE TABLE `usuario` (
   `rol` varchar(90) DEFAULT NULL,
   `activo` tinyint(1) DEFAULT NULL,
   `cuenta_id` bigint DEFAULT NULL,
+  `puntos` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -41,7 +42,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'emiortiz1992@gmail.com','123','admin',0,5),(2,'emiortiz@gmail.com','123','llano',0,6),(3,'emortiz@alumno.com','123','llano',0,7);
+INSERT INTO `usuario` VALUES (1,'emiortiz1992@gmail.com','123','admin',0,5,NULL),(2,'emiortiz@gmail.com','123','llano',0,6,NULL),(3,'emortiz@alumno.com','123','llano',0,7,NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-01 19:31:41
+-- Dump completed on 2021-11-08 19:34:14

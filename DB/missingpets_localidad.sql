@@ -18,36 +18,27 @@ USE `missingpets`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `mascota`
+-- Table structure for table `localidad`
 --
 
-DROP TABLE IF EXISTS `mascota`;
+DROP TABLE IF EXISTS `localidad`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `mascota` (
+CREATE TABLE `localidad` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(90) DEFAULT NULL,
-  `edad` varchar(90) DEFAULT NULL,
-  `raza` varchar(90) DEFAULT NULL,
-  `detalle` varchar(90) DEFAULT NULL,
-  `color` varchar(90) DEFAULT NULL,
-  `tamanio` varchar(90) DEFAULT NULL,
-  `fecha` date DEFAULT NULL,
-  `tipo` varchar(255) NOT NULL,
-  `estado` int DEFAULT NULL,
-  `imagen` varchar(255) DEFAULT NULL,
+  `descripcion` varchar(90) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `mascota`
+-- Dumping data for table `localidad`
 --
 
-LOCK TABLES `mascota` WRITE;
-/*!40000 ALTER TABLE `mascota` DISABLE KEYS */;
-INSERT INTO `mascota` VALUES (60,'Cormier','3','American Bully','gordo y petizo','marron','mediano',NULL,'1',2,'img/Cormier 5.jpeg'),(61,'tu vieja','tu vieja','tu vieja','tu vieja','tu vieja','tu vieja',NULL,'1',1,'img/rex.jpeg'),(62,'Hellboy','30 años','American Bully','gordo y abortero','trichoco','mediano',NULL,'1',1,'img/american-bully-dog-vector-illustration-white-background-bullie-breed-can-be-used-as-logo-kennel-tattoo-etc-156378364.jpg'),(63,'Cormier','1 año','American Bully','Marron y petzo','Marron','Mediano',NULL,'1',2,'img/Cormier 7.jpeg');
-/*!40000 ALTER TABLE `mascota` ENABLE KEYS */;
+LOCK TABLES `localidad` WRITE;
+/*!40000 ALTER TABLE `localidad` DISABLE KEYS */;
+INSERT INTO `localidad` VALUES (1,'San justo'),(2,'Ramos Mejia'),(3,'Moron'),(4,'Haedo'),(5,'Moreno'),(6,'San Miguel');
+/*!40000 ALTER TABLE `localidad` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

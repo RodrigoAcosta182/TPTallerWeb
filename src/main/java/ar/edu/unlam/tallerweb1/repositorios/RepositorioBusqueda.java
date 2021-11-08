@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
 import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 
@@ -10,4 +11,8 @@ public interface RepositorioBusqueda {
 
 
     List<Publicacion> obtenerPublicacionesPorLocalidad(String localidad);
+
+    List<Publicacion> buscarPublicaciones(DatosRegistroMascota mascota);
+
+    List<Publicacion> obtenerPublicacionesConAlgunParametroNull(DatosRegistroMascota mascota);
 }
