@@ -29,10 +29,13 @@ public class ControladorPublicacion {
     public ModelAndView registrarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
         ModelMap model = new ModelMap();
         try {
+            if (mascota.getTipo() == null || mascota.getEstado() == null || mascota.getImagen().getSize() == 0){
+                throw new Exception();
+            }
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
             servicioPublicacion.registrarPublicacion(mascota, usuario);
         } catch (Exception e) {
-            model.put("error", "El campo tipo y estado es obligatorio");
+            model.put("error", "El campo 'tipo', 'estado' e 'imagen' son obligatorio");
             return new ModelAndView("form-registro-mascota", model);
         }
         model.put("msg", "Mascota Registrada Exitosamente");

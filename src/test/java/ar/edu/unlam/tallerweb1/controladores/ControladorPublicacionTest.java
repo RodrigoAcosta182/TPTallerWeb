@@ -36,7 +36,7 @@ public class ControladorPublicacionTest {
     }
 
     @Test
-    public void irAPublicaciones() {
+    public void irAlSitioDePublicaciones() {
         ModelAndView mav = whenIrAPublicaciones();
         thenIrAPublicaciones(mav);
     }
@@ -55,7 +55,7 @@ public class ControladorPublicacionTest {
     }
 
     @Test
-    public void irARegistrarPublicacion() {
+    public void irAlSitioRegistrarPublicacion() {
         ModelAndView mav = whenIrARegistrarPublicacion();
         thenIrARegistrarPublicacion(mav);
     }

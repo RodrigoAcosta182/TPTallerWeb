@@ -48,7 +48,7 @@
             <c:if test="${publicacion.mascota.estado == 1}">
                 <form:form cssClass="w3-container" action="buscarUsuario" method="POST" modelAttribute="datosMascota">
                     <label style="float: left">Buscar Usuario</label>
-                        <form:input cssClass="w3-input" path="email" type="text" id="email"/>
+                        <form:input cssClass="w3-input w3-border" path="email"  type="text" id="email"/>
                     <button class="w3-btn w3-blue" style="width: 100%;" type="submit">Buscar</button>
                 </form:form>
             </c:if>

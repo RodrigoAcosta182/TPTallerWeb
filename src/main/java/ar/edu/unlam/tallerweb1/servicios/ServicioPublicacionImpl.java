@@ -37,16 +37,14 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     @Override
     public Publicacion registrarPublicacion(DatosRegistroMascota mascota, Usuario usuario) throws Exception {
 
-        if (mascota.getTipo() == null || mascota.getEstado() == null)
-            throw new Exception();
-        Publicacion nuevaPublicacion = new Publicacion();
 
+        Publicacion nuevaPublicacion = new Publicacion();
         Mascota nuevaMascota = mascota.toMascota();
 
         String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
         nuevaMascota.setImagen(nombreConRuta);
 
-        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
+        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" +mascota.getImagen().getOriginalFilename();
         mascota.getImagen().transferTo(new File(filename));
 
         nuevaPublicacion.setFechaPublicacion(new Date());
