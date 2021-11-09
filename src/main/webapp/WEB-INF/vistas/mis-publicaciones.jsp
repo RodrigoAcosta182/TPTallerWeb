@@ -59,6 +59,7 @@
             </div>
             <div>
                 <a class="w3-btn w3-blue w3-round-xxlarge" style="width: 100%; margin-top: 10px" href="javascript: history.go(-1)">Volver a Mis Publicaciones</a>
+
             </div>
         </div>
     </c:if>
