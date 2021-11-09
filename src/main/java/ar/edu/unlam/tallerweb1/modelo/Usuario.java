@@ -30,6 +30,12 @@ public class Usuario {
 		this.password = password;
 	}
 
+	public Usuario(String email, String password, Integer puntos) {
+		this.email = email;
+		this.password = password;
+		this.puntos = puntos;
+	}
+
 	public Cuenta getCuenta() {
 		return cuenta;
 	}
