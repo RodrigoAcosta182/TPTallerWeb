@@ -36,9 +36,9 @@ public class ControladorPublicacionTest {
     }
 
     @Test
-    public void irAPublicaciones() {
-        ModelAndView mav = whenIrAPublicaciones();
-        thenIrAPublicaciones(mav);
+    public void irAlSitioDePublicaciones() {
+        ModelAndView mav = whenIrAlSitioPublicacionesPerdidas();
+        thenIrAlSitioPublicacionesPerdidas(mav);
     }
 
     @Test
@@ -55,9 +55,9 @@ public class ControladorPublicacionTest {
     }
 
     @Test
-    public void irARegistrarPublicacion() {
-        ModelAndView mav = whenIrARegistrarPublicacion();
-        thenIrARegistrarPublicacion(mav);
+    public void irAlSitioRegistrarPublicacion() {
+        ModelAndView mav = whenIrAlSitioRegistrarPublicacion();
+        thenIrAlSitioRegistrarPublicacion(mav);
     }
 
     @Test
@@ -108,7 +108,7 @@ public class ControladorPublicacionTest {
         return controladorPublicacion.registrarPublicacion(mascota, REQUEST);
     }
 
-    private ModelAndView whenIrAPublicaciones() {
+    private ModelAndView whenIrAlSitioPublicacionesPerdidas() {
         return controladorPublicacion.irAPublicacionMascotaPerdida(mock(HttpServletRequest.class));
     }
 
@@ -116,7 +116,7 @@ public class ControladorPublicacionTest {
         return controladorPublicacion.irAVerPublicacion(id);
     }
 
-    private ModelAndView whenIrARegistrarPublicacion() {
+    private ModelAndView whenIrAlSitioRegistrarPublicacion() {
         return controladorPublicacion.irARegistrarPublicacion();
     }
 
@@ -130,7 +130,7 @@ public class ControladorPublicacionTest {
         assertThat(mav.getModel().get("msg")).isEqualTo("Mascota Registrada Exitosamente");
     }
 
-    private void thenIrAPublicaciones(ModelAndView mav) {
+    private void thenIrAlSitioPublicacionesPerdidas(ModelAndView mav) {
         assertThat(mav.getViewName()).isEqualTo("publicaciones-perdidos");
     }
 
@@ -143,7 +143,7 @@ public class ControladorPublicacionTest {
         assertThat(mav.getModel().get("datosCorreo").getClass()).isEqualTo(DatosCorreo.class);
     }
 
-    private void thenIrARegistrarPublicacion(ModelAndView mav) {
+    private void thenIrAlSitioRegistrarPublicacion(ModelAndView mav) {
         assertThat(mav.getViewName()).isEqualTo("form-registro-mascota");
     }
 

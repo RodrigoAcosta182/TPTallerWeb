@@ -37,16 +37,15 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     @Override
     public Publicacion registrarPublicacion(DatosRegistroMascota mascota, Usuario usuario) throws Exception {
 
-        if (mascota.getTipo() == null || mascota.getEstado() == null)
-            throw new Exception();
-        Publicacion nuevaPublicacion = new Publicacion();
 
+        Publicacion nuevaPublicacion = new Publicacion();
         Mascota nuevaMascota = mascota.toMascota();
 
-        String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
+        Integer random = (int)(Math. random()*10+1);
+        String nombreConRuta = "img/"+ random + mascota.getImagen().getOriginalFilename();
         nuevaMascota.setImagen(nombreConRuta);
 
-        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
+        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\"+random +mascota.getImagen().getOriginalFilename();
         mascota.getImagen().transferTo(new File(filename));
 
         nuevaPublicacion.setFechaPublicacion(new Date());
@@ -67,8 +66,13 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     }
 
     @Override
-    public void buscarUsuarioParaFinalizar(Usuario usuario, String email) {
-        repositorioPublicacion.buscarUsuarioPorEmail(email);
+    public void buscarUsuarioParaFinalizar(Usuario usuario, String email) throws Exception {
+        if (usuario.getEmail() != email){
+            if (repositorioPublicacion.buscarUsuarioPorEmail(email).size() == 0){
+                throw new Exception();
+            }
+        }
+
     }
 
     @Override
