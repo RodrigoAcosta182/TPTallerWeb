@@ -42,7 +42,8 @@ public class Publicacion {
         this.localidad = localidad;
     }
 
-    public Publicacion(Localidad localidad) {
+    public Publicacion(Mascota mascota, Localidad localidad) {
+        this.mascota = mascota;
         this.localidad = localidad;
     }
 

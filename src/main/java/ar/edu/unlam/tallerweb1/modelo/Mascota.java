@@ -26,6 +26,11 @@ public class Mascota {
 
     public Mascota() {}
 
+    public Mascota(String tipo,String color) {
+        this.tipo = tipo;
+        this.color = color;
+    }
+
 
     public Long getId() {
         return id;
