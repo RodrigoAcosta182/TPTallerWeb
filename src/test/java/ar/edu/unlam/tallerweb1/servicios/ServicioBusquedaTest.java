@@ -21,70 +21,43 @@ public class ServicioBusquedaTest {
 
     private RepositorioBusqueda repositorioBusqueda = mock(RepositorioBusqueda.class);
     private ServicioBusqueda servicioBusqueda = new ServicioBusquedaImpl(repositorioBusqueda);
-    private static final Publicacion PUBLICACION = new Publicacion(new Localidad("Moron"));
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Lucas", "1",
-            null, "3 Anios", "American Bully", "Le falta una pata", "Blanco",
-            "Chico", new Date(), PUBLICACION, mock(MultipartFile.class), "jracosta1991@gmail.com");
-
+    private static final Publicacion PUBLICACION = new Publicacion(new Mascota(), new Localidad("Moron"));
     private static final DatosRegistroMascota MASCOTACOMPLETA = new DatosRegistroMascota
-            ("1","1",PUBLICACION,"Pekines","Blanco");
-
+            ("1", "1", PUBLICACION, "Pekines", "Blanco");
 
     @Test
     public void obtengoTodasLasLocalidades() {
         givenQueExistenLocalidades();
         List<Localidad> localidades = whenObtengoLocalidades();
         thenObtengoLocalidades(localidades);
-
     }
 
     @Test
-    public void buscoPublicacionesPorLocalidadExitosamente() {
-        givenQueLasPublicacionesConEsaLocalidadExisten();
-        List<Publicacion> publicaciones = whenObtengoPublicacionesPorLocalidad();
+    public void buscoPublicacionesPorEstadoLocalidadYColor() {
+        givenQueExistenPublicacionesConEsosDatos();
+        List<Publicacion> publicaciones = whenBuscoPublicacionesConEstadoLocalidadYColor();
         //thenEncuentroPublicaciones(publicaciones);
     }
 
     @Test
-    public void noEncuentroPublicacionesPorLocalidad() {
-        givenQueLasPublicacionesConEsaLocalidadNoExisten();
-        List<Publicacion> publicaciones = whenObtengoPublicacionesPorLocalidad();
+    public void buscoPublicacionesYNoEncuentro() {
+        givenQueLasPublicacionesBuscadasNoExisten();
+        List<Publicacion> publicaciones = whenBuscoPublicacionesConEstadoLocalidadYColor();
         //thenNoEncuentroPublicaciones(publicaciones);
     }
 
-    @Test
-    public void buscoPublicacionesPorTodosLosParametros(){
-        givenQueExistenPublicacionesConEsosParametros();
+
+    private void givenQueLasPublicacionesBuscadasNoExisten() {
+        when(repositorioBusqueda.buscarPublicacionPor(MASCOTACOMPLETA.getPublicacion())).thenReturn(null);
     }
 
-    private void givenQueExistenPublicacionesConEsosParametros() {
+    private void givenQueExistenPublicacionesConEsosDatos() {
         List<Publicacion> publicaciones = new ArrayList<>();
         Publicacion publicacion = new Publicacion();
-        Localidad localidad = new Localidad("Moron");
-        publicacion.setLocalidad(localidad);
         publicaciones.add(publicacion);
+        when(repositorioBusqueda.buscarPublicacionPor(MASCOTACOMPLETA.getPublicacion())).thenReturn(publicaciones);
     }
 
-
-    private void givenQueLasPublicacionesConEsaLocalidadNoExisten() {
-        List<Publicacion> publicaciones = new ArrayList<>();
-        Publicacion publicacion = new Publicacion();
-        Localidad localidad = new Localidad("Moron");
-        publicacion.setLocalidad(localidad);
-        publicaciones.add(publicacion);
-        when(repositorioBusqueda.obtenerPublicacionesPorLocalidad(publicacion.getLocalidad().getDescripcion())).thenReturn(null);
-    }
-
-    private void givenQueLasPublicacionesConEsaLocalidadExisten() {
-        List<Publicacion> publicaciones = new ArrayList<>();
-
-        Publicacion publicacion = new Publicacion();
-        Localidad localidad = new Localidad("Moron");
-
-        publicacion.setLocalidad(localidad);
-        publicaciones.add(publicacion);
-        when(repositorioBusqueda.obtenerPublicacionesPorLocalidad(publicacion.getLocalidad().getDescripcion())).thenReturn(publicaciones);
-    }
 
     private void givenQueExistenLocalidades() {
         List<Localidad> localidades = new ArrayList<>();
@@ -92,8 +65,8 @@ public class ServicioBusquedaTest {
         when(repositorioBusqueda.obtenerTodasLasLocalidades()).thenReturn(localidades);
     }
 
-    private List<Publicacion> whenObtengoPublicacionesPorLocalidad() {
-        return servicioBusqueda.buscarPublicaciones(MASCOTA);
+    private List<Publicacion> whenBuscoPublicacionesConEstadoLocalidadYColor() {
+        return servicioBusqueda.buscarPublicaciones(MASCOTACOMPLETA);
     }
 
 
@@ -105,13 +78,13 @@ public class ServicioBusquedaTest {
         assertThat(publicaciones).isNull();
     }
 
-
     private void thenEncuentroPublicaciones(List<Publicacion> publicaciones) {
         assertThat(publicaciones).isNotNull();
-        verify(repositorioBusqueda, times(1)).obtenerPublicacionesPorLocalidad(PUBLICACION.getLocalidad().getDescripcion());
+        verify(repositorioBusqueda, times(1)).buscarPublicacionPor(PUBLICACION);
     }
 
     private void thenObtengoLocalidades(List<Localidad> localidades) {
         assertThat(localidades).isNotNull();
     }
 }
+

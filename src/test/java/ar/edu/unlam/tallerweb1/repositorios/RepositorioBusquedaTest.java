@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.modelo.Localidad;
+import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RepositorioBusquedaTest extends SpringTest {
 
-    private static final Publicacion PUBLICACION = new Publicacion(new Localidad("Moron"));
+    private static final Mascota MASCOTA = new Mascota("1","Blanco");
+    private static final Publicacion PUBLICACION = new Publicacion(MASCOTA,new Localidad("Moron"));
 
     @Autowired
     private RepositorioBusqueda repositorioBusqueda;
@@ -35,12 +37,11 @@ public class RepositorioBusquedaTest extends SpringTest {
     @Test
     @Transactional
     @Rollback
-    public void buscoPublicacionesPorLocalidadExitosamente(){
+    public void buscoPublicacionesPorTipoLocalidadColorDeFormaExitosa(){
         List<Publicacion> listaPublicaciones = new LinkedList<>();
         listaPublicaciones.add(PUBLICACION);
-
         givenQueExistenPublicaciones(listaPublicaciones);
-        List<Publicacion> publicacionesEncontradas = whenBuscoPublicacionesPorLocalidad(PUBLICACION);
+        List<Publicacion> publicacionesEncontradas = whenBuscoPublicacionesPorTipoLocalidadColor(PUBLICACION);
         thenEncuentroPublicaciones(publicacionesEncontradas.size(),listaPublicaciones);
     }
 
@@ -48,16 +49,15 @@ public class RepositorioBusquedaTest extends SpringTest {
         assertThat(listaPublicaciones).hasSize(cantidadEsperada);
     }
 
-    private List<Publicacion> whenBuscoPublicacionesPorLocalidad(Publicacion publicacion) {
-        return repositorioBusqueda.obtenerPublicacionesPorLocalidad(publicacion.getLocalidad().getDescripcion());
+    private List<Publicacion> whenBuscoPublicacionesPorTipoLocalidadColor(Publicacion publicacion) {
+        return repositorioBusqueda.buscarPublicacionPor(publicacion);
     }
 
     private void givenQueExistenPublicaciones(List<Publicacion> listaPublicaciones) {
-        for(Publicacion publicacion: listaPublicaciones){
-            session().save(publicacion);
-        }
+            for(Publicacion publicacion: listaPublicaciones){
+                session().save(publicacion);
+            }
     }
-
 
     private void givenExistenLocalidades(List<Localidad> localidades) {
         for (Localidad localidad : localidades){
@@ -70,6 +70,6 @@ public class RepositorioBusquedaTest extends SpringTest {
     private void thenObtengoTodasLaslocalidades(int cantidadEsperada, List<Localidad> localidadesObtenidas) {
         assertThat(localidadesObtenidas).hasSize(cantidadEsperada);
     }
-
-
 }
+
+

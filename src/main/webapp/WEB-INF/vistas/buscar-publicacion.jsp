@@ -18,15 +18,9 @@
             <span style="font-size: 20px">Buscar Mascota</span>
         </div>
         <div>
-            <form:form cssClass="w3-container" action="buscar-publicaciones" method="GET" modelAttribute="datosMascota">
-                <label style="float: left">Estado</label>
-                <form:select path="estado" cssClass="w3-select">
-                    <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
-                    <form:option value="1">Perdido</form:option>
-                    <form:option value="2">Encontrado</form:option>
-                </form:select>
+            <form:form cssClass="w3-container" action="buscar-publicaciones" method="GET" modelAttribute="datosMascota" >
                 <label style="float: left; margin-bottom: 2px">Tipo</label>
-                <form:select path="tipo" cssClass="w3-select">
+                <form:select path="tipo" cssClass="w3-select" required="true">
                     <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
                     <form:option value="1">Perro</form:option>
                     <form:option value="2">Gato</form:option>
@@ -34,15 +28,13 @@
                 </form:select>
 
                 <label style="float: left; margin-bottom: 2px">Localidad</label>
-                <form:select path="publicacion.localidad.descripcion" id="publicacion.localidad.descripcion" cssClass="w3-select">
+                <form:select path="publicacion.localidad.descripcion" required="true" id="publicacion.localidad.descripcion" cssClass="w3-select">
                     <form:options items="${localidades}"
                                   itemValue="descripcion"
                                   itemLabel="descripcion"/>
                 </form:select>
-                <label style="float: left">Raza</label>
-                <form:input cssClass="w3-input" path="raza" type="text" id="raza"/>
                 <label style="float: left">Color</label>
-                <form:input cssClass="w3-input" path="color" type="text" id="color"/>
+                <form:input  cssClass="w3-input" path="color" type="text" id="color" required="true"/>
                 <div class="buscar-publicaciones-boton-container">
                     <button class="w3-button w3-deep-purple" Type="Submit"/>
                     Buscar</button>
