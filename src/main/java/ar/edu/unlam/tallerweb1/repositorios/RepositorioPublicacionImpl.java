@@ -56,9 +56,10 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     }
 
     @Override
-    public void buscarUsuarioPorEmail(String email) {
-        sessionFactory.getCurrentSession().createCriteria(Usuario.class)
-                .add(Restrictions.eq("email", email));
+    public List<Usuario> buscarUsuarioPorEmail(String email) {
+        List<Usuario> usuario = sessionFactory.getCurrentSession().createCriteria(Usuario.class)
+                .add(Restrictions.eq("email", email)).list();
+                return usuario;
     }
 }
 

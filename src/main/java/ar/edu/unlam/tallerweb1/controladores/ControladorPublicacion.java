@@ -49,9 +49,10 @@ public class ControladorPublicacion {
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
             servicioPublicacion.buscarUsuarioParaFinalizar(usuario, email);
         } catch (Exception e) {
-            model.put("busquedaError", "No existe usuario con ese email");
+            model.put("busqueda", "No existe usuario con ese email");
             return new ModelAndView("mis-publicaciones", model);
         }
+        model.put("busqueda", "Usuario Encontrado");
         return new ModelAndView("mis-publicaciones", model);
     }
 
