@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioProducto;
 import ar.edu.unlam.tallerweb1.modelo.Producto;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -33,6 +34,14 @@ public class RepositorioProductoImpl implements RepositorioProducto{
     public Producto buscarProductoPorId(Long id) {
         return (Producto) sessionFactory.getCurrentSession().createCriteria(Producto.class)
                 .add(Restrictions.eq("id", id)).uniqueResult();
+    }
+
+    @Override
+    public List<Producto> buscarTodosLosProductos() {
+        List<Producto> productos = sessionFactory.getCurrentSession().createCriteria(Producto.class)
+                .add(Restrictions.eq("hayStock", true))
+                .list();
+        return productos;
     }
 
     @Override
