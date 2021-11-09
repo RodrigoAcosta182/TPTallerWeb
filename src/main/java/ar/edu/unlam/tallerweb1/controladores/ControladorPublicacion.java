@@ -29,7 +29,7 @@ public class ControladorPublicacion {
     public ModelAndView registrarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
         ModelMap model = new ModelMap();
         try {
-            if (mascota.getTipo() == null || mascota.getEstado() == null || mascota.getImagen().getSize() == 0){
+            if (mascota.getTipo() == null || mascota.getEstado() == null || mascota.getImagen() == null){
                 throw new Exception();
             }
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
