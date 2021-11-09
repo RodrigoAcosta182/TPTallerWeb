@@ -15,5 +15,5 @@ public interface RepositorioPublicacion {
     Publicacion buscarPublicacionPorId(Long id);
 
 
-    void buscarUsuarioPorEmail(String email);
+    List<Usuario> buscarUsuarioPorEmail(String email);
 }
