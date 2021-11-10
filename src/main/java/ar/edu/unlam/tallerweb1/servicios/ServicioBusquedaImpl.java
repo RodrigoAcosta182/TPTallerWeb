@@ -32,8 +32,7 @@ public class ServicioBusquedaImpl implements ServicioBusqueda {
                 && mascota.getColor() != null
                 && mascota.getPublicacion().getLocalidad().getDescripcion() != null
         ) {
-
-            Publicacion buscarPublicacion = new Publicacion();
+            Publicacion buscarPublicacion = mascota.getPublicacion();
             buscarPublicacion.setMascota(mascota.toMascota());
             buscarPublicacion.setLocalidad(mascota.getPublicacion().getLocalidad());
             publicacionList = repositorioBusqueda.buscarPublicacionPor(buscarPublicacion);

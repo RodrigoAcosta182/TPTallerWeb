@@ -21,7 +21,7 @@ public class ServicioBusquedaTest {
 
     private RepositorioBusqueda repositorioBusqueda = mock(RepositorioBusqueda.class);
     private ServicioBusqueda servicioBusqueda = new ServicioBusquedaImpl(repositorioBusqueda);
-    private static final Publicacion PUBLICACION = new Publicacion(new Mascota(), new Localidad("Moron"));
+    private static final Publicacion PUBLICACION = new Publicacion(new Mascota("1", "blanco"), new Localidad("Moron"));
     private static final DatosRegistroMascota MASCOTACOMPLETA = new DatosRegistroMascota
             ("1", "1", PUBLICACION, "Pekines", "Blanco");
 
@@ -36,28 +36,26 @@ public class ServicioBusquedaTest {
     public void buscoPublicacionesPorEstadoLocalidadYColor() {
         givenQueExistenPublicacionesConEsosDatos();
         List<Publicacion> publicaciones = whenBuscoPublicacionesConEstadoLocalidadYColor();
-        //thenEncuentroPublicaciones(publicaciones);
+        thenEncuentroPublicaciones(publicaciones);
     }
 
     @Test
     public void buscoPublicacionesYNoEncuentro() {
         givenQueLasPublicacionesBuscadasNoExisten();
         List<Publicacion> publicaciones = whenBuscoPublicacionesConEstadoLocalidadYColor();
-        //thenNoEncuentroPublicaciones(publicaciones);
+        thenNoEncuentroPublicaciones(publicaciones);
     }
 
+
+    private void givenQueExistenPublicacionesConEsosDatos() {
+        List<Publicacion> publicaciones = new ArrayList<>();
+        publicaciones.add(PUBLICACION);
+        when(repositorioBusqueda.buscarPublicacionPor(PUBLICACION)).thenReturn(publicaciones);
+    }
 
     private void givenQueLasPublicacionesBuscadasNoExisten() {
         when(repositorioBusqueda.buscarPublicacionPor(MASCOTACOMPLETA.getPublicacion())).thenReturn(null);
     }
-
-    private void givenQueExistenPublicacionesConEsosDatos() {
-        List<Publicacion> publicaciones = new ArrayList<>();
-        Publicacion publicacion = new Publicacion();
-        publicaciones.add(publicacion);
-        when(repositorioBusqueda.buscarPublicacionPor(MASCOTACOMPLETA.getPublicacion())).thenReturn(publicaciones);
-    }
-
 
     private void givenQueExistenLocalidades() {
         List<Localidad> localidades = new ArrayList<>();
@@ -68,7 +66,6 @@ public class ServicioBusquedaTest {
     private List<Publicacion> whenBuscoPublicacionesConEstadoLocalidadYColor() {
         return servicioBusqueda.buscarPublicaciones(MASCOTACOMPLETA);
     }
-
 
     private List<Localidad> whenObtengoLocalidades() {
         return servicioBusqueda.getLocalidades();
@@ -87,4 +84,12 @@ public class ServicioBusquedaTest {
         assertThat(localidades).isNotNull();
     }
 }
+
+
+
+
+
+
+
+
 
