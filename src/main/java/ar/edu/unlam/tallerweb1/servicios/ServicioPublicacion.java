@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
+import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
@@ -21,4 +22,6 @@ public interface ServicioPublicacion {
     void finalizarPublicacion(Long id);
 
     void buscarUsuarioParaFinalizar(Usuario usuario, String email) throws Exception;
+
+    List<Localidad> getLocalidades();
 }

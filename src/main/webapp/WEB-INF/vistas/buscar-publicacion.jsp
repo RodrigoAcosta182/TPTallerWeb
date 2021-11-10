@@ -12,7 +12,7 @@
 <div class="imagen-fondo container-buscar-publicaciones" style="height: 100%">
     <div class="buscar-publicaciones-formulario">
         <div class="buscar-publicaciones-cerrar">
-            <span class="noselect" style="font-size: 20px;cursor: pointer">X</span>
+            <a href="home" class="noselect" style="font-size: 20px;cursor: pointer;text-decoration: none">X</a>
         </div>
         <div class="buscar-publicaciones-titulo">
             <span style="font-size: 20px">Buscar Mascota</span>
@@ -28,9 +28,9 @@
                 </form:select>
 
                 <label style="float: left; margin-bottom: 2px">Localidad</label>
-                <form:select path="publicacion.localidad.descripcion" required="true" id="publicacion.localidad.descripcion" cssClass="w3-select">
+                <form:select path="publicacion.localidad.id" required="true" id="publicacion.localidad.id" cssClass="w3-select">
                     <form:options items="${localidades}"
-                                  itemValue="descripcion"
+                                  itemValue="id"
                                   itemLabel="descripcion"/>
                 </form:select>
                 <label style="float: left">Color</label>

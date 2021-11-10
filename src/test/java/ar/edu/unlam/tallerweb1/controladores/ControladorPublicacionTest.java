@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -15,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -78,6 +81,25 @@ public class ControladorPublicacionTest {
         givenQueLaPublicacionExiste();
         ModelAndView mav = whenFinalizarPublicacion(1L, "emiortiz1992@gmail.com");
         thenFinalizoPublicacionCorrectamente(mav, "Publicacion Finalizada");
+    }
+
+    @Test
+    public void obtengoLocalidadesEnLaPaginaDeRegistroDeMascota(){
+        givenQueExistenLocalidades();
+        ModelAndView mav = whenIrAlSitioRegistrarPublicacion();
+        thenEncuentroLocalidades(mav);
+    }
+
+    private void givenQueExistenLocalidades() {
+        List<Localidad> localidades = new ArrayList<>();
+        localidades.add(new Localidad());
+        when(servicioPublicacion.getLocalidades()).thenReturn(localidades);
+    }
+
+
+
+    private void thenEncuentroLocalidades(ModelAndView mav) {
+        assertThat(mav.getModel().get("localidades")).isNotNull();
     }
 
 

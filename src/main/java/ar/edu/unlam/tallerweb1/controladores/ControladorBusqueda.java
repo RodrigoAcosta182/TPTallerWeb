@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,17 +38,17 @@ public class ControladorBusqueda {
 
 
     @RequestMapping(method = RequestMethod.GET, path = "/buscar-publicaciones")
-    public ModelAndView buscarPublicaciones(@ModelAttribute("datosMascota") DatosRegistroMascota mascota) throws Exception {
+    public ModelAndView buscarPublicaciones(@ModelAttribute("datosMascota") DatosRegistroMascota mascota){
         ModelMap model = new ModelMap();
         List<Publicacion> publicaciones = new ArrayList<>();
         try {
             publicaciones = servicioBusqueda.buscarPublicaciones(mascota);
         } catch (Exception e) {
-            model.put("mensajeError", "No se encontraron publicaciones");
-            return new ModelAndView("buscar-publicacion", model);
+            model.put("publicacionesError", "No se encontraron publicaciones");
+            return new ModelAndView("publicaciones-filtradas-busqueda", model);
         }
         model.put("mensajeOK", "Se encontraron publicaciones");
-        model.put("publicacionesList", publicaciones);
+        model.put("publicaciones", publicaciones);
         return new ModelAndView("publicaciones-filtradas-busqueda", model);
     }
 
