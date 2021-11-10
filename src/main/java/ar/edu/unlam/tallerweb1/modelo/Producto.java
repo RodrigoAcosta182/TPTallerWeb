@@ -14,6 +14,14 @@ public class Producto {
     private String imgproducto;
     private Boolean hayStock;
 
+    public Producto(String descripcion, Integer puntos, Integer cantidad, String imgproducto, Boolean hayStock) {
+        this.descripcion = descripcion;
+        this.puntos = puntos;
+        this.cantidad = cantidad;
+        this.imgproducto = imgproducto;
+        this.hayStock = hayStock;
+    }
+
     public Producto(Long id, String descripcion, Integer puntos, Integer cantidad, String imgproducto, Boolean hayStock) {
         this.id = id;
         this.descripcion = descripcion;

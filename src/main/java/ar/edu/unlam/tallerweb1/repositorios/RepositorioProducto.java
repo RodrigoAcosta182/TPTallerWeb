@@ -10,6 +10,8 @@ public interface RepositorioProducto {
 
     List<Producto> buscarTodosMisProductos(Usuario usuario);
 
+    List<Producto> buscarTodosLosProductos();
+
     Producto buscarProductoPorId(Long id);
 
     void canjearProducto(UsuarioProducto usuarioProducto);

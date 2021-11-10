@@ -34,7 +34,7 @@ public class ControladorProducto {
         List<Producto> productos = new ArrayList<>();
         try {
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-            productos = servicioProducto.listarTodosLosProductos(usuario);
+            productos = servicioProducto.listarTodosLosProductos();
         } catch (Exception e) {
             model.put("productoError", "No hay productos");
             return new ModelAndView("Productos", model);
@@ -44,7 +44,7 @@ public class ControladorProducto {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/canjear-producto")
-    public ModelAndView canjearProducto(@RequestParam("id") Long id,HttpServletRequest request){
+    public ModelAndView canjearProducto(@RequestParam("id") Long id,HttpServletRequest request) throws Exception{
         ModelMap model = new ModelMap();
         try{
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
