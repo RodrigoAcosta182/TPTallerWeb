@@ -1,8 +1,11 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Localidad;
+import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioBusqueda;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -38,13 +41,31 @@ public class ControladorBusquedaTest {
         thenEncuentroPublicaciones(mav);
     }
 
+    @Test
+    public void obtengoLocalidadesEnLaPaginaDeBusqueda(){
+        givenQueExistenLocalidades();
+        ModelAndView mav = whenIrAVerPaginaDeBusqueda();
+        thenEncuentroLocalidades(mav);
+    }
 
-    private void givenQueLaPublicacionExiste() {
+    private void thenEncuentroLocalidades(ModelAndView mav) {
+        assertThat(mav.getModel().get("localidades")).isNotNull();
+    }
+
+
+    private void givenQueExistenLocalidades() {
+        List<Localidad> localidades = new ArrayList<>();
+        localidades.add(new Localidad());
+        when(servicioBusqueda.getLocalidades()).thenReturn(localidades);
+    }
+
+
+    private void givenQueLaPublicacionExiste() throws Exception {
         List<Publicacion> publicaciones = new ArrayList<>();
         when(servicioBusqueda.buscarPublicaciones(MASCOTA)).thenReturn(publicaciones);
     }
 
-    private void givenQueLaPublicacionNoExiste() {
+    private void givenQueLaPublicacionNoExiste() throws Exception {
         doThrow(Exception.class).when(servicioBusqueda).buscarPublicaciones(MASCOTA);
     }
 
@@ -57,8 +78,8 @@ public class ControladorBusquedaTest {
     }
 
     private void thenNoEncuentroPublicaciones(ModelAndView mav) {
-        assertThat(mav.getModel().get("mensajeError")).isEqualTo("No se encontraron publicaciones");
-        assertThat(mav.getViewName()).isEqualTo("buscar-publicacion");
+        assertThat(mav.getModel().get("publicacionesError")).isEqualTo("No se encontraron publicaciones");
+        assertThat(mav.getViewName()).isEqualTo("publicaciones-filtradas-busqueda");
     }
     private void thenEncuentroPublicaciones(ModelAndView mav) {
         assertThat(mav.getModel().get("mensajeOK")).isEqualTo("Se encontraron publicaciones");

@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
@@ -16,4 +17,6 @@ public interface RepositorioPublicacion {
 
 
     List<Usuario> buscarUsuarioPorEmail(String email);
+
+    List<Localidad> obtenerTodasLasLocalidades();
 }

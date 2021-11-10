@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
+import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -73,6 +74,11 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
             }
         }
 
+    }
+
+    @Override
+    public List<Localidad> getLocalidades() {
+        return repositorioPublicacion.obtenerTodasLasLocalidades();
     }
 
     @Override
