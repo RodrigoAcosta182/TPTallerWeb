@@ -76,7 +76,7 @@ public class ControladorPublicacionTest {
     @Test
     public void queLaPublicacionSeFinaliceCorrectamente() throws Exception {
         givenQueLaPublicacionExiste();
-        ModelAndView mav = whenFinalizarPublicacion(1L);
+        ModelAndView mav = whenFinalizarPublicacion(1L, "emiortiz1992@gmail.com");
         thenFinalizoPublicacionCorrectamente(mav, "Publicacion Finalizada");
     }
 
@@ -89,8 +89,8 @@ public class ControladorPublicacionTest {
         when(controladorPublicacion.registrarPublicacion(MASCOTA, REQUEST));
     }
 
-    private ModelAndView whenFinalizarPublicacion(Long id) {
-        return controladorPublicacion.finalizarPublicacion(id);
+    private ModelAndView whenFinalizarPublicacion(Long id, String email) {
+        return controladorPublicacion.finalizarPublicacion(MASCOTA,id);
     }
 
 

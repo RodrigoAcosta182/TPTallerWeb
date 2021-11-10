@@ -12,6 +12,7 @@
         </div>
     </c:if>
     <c:forEach items="${publicaciones}" var="publicacion" varStatus="status" step="1" begin="0">
+
         <div id="${status.index % 3 + 1}" class="tarjeta-publicacion-mascota">
                 <c:if test="${publicacion.finalizado == true}">
                     <h4 style="text-align: center; color: red">Finalizado</h4>
