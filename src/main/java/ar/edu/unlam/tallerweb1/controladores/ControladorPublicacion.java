@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
@@ -104,6 +105,8 @@ public class ControladorPublicacion {
     public ModelAndView irARegistrarPublicacion() {
         ModelMap model = new ModelMap();
         DatosRegistroMascota datosMascota = new DatosRegistroMascota();
+        List<Localidad> localidades =  servicioPublicacion.getLocalidades();
+        model.put("localidades",localidades);
         model.put("datosMascota", datosMascota);
         return new ModelAndView("form-registro-mascota", model);
     }

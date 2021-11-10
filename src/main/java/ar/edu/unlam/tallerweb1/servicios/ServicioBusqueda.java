@@ -7,7 +7,7 @@ import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import java.util.List;
 
 public interface ServicioBusqueda {
-    List<Publicacion> buscarPublicaciones(DatosRegistroMascota mascota);
+    List<Publicacion> buscarPublicaciones(DatosRegistroMascota mascota) throws Exception;
 
     List<Localidad> getLocalidades();
 }

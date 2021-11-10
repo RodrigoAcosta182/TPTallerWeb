@@ -1,10 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
-import ar.edu.unlam.tallerweb1.modelo.Cuenta;
-import ar.edu.unlam.tallerweb1.modelo.Mascota;
-import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 import org.junit.Test;
 import org.springframework.mock.web.MockMultipartFile;
@@ -13,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -53,6 +51,25 @@ public class ServicioPublicacionTest {
         givenQueLaPublicacionExiste(10L);
         whenFinalizoLaPublicacion(10L);
         thenFinalizoLaPublicacionCorrectamente();
+    }
+
+    @Test
+    public void obtengoTodasLasLocalidades() {
+        givenQueExistenLocalidades();
+        List<Localidad> localidades = whenObtengoLocalidades();
+        thenObtengoLocalidades(localidades);
+    }
+    private void givenQueExistenLocalidades() {
+        List<Localidad> localidades = new ArrayList<>();
+        localidades.add(new Localidad("San Justo"));
+        when(repositorioPublicacion.obtenerTodasLasLocalidades()).thenReturn(localidades);
+    }
+    private List<Localidad> whenObtengoLocalidades() {
+        return servicioPublicacion.getLocalidades();
+    }
+    private void thenObtengoLocalidades(List<Localidad> localidades) {
+        assertThat(localidades).isNotNull();
+        verify(repositorioPublicacion,times(1)).obtenerTodasLasLocalidades();
     }
 
 
