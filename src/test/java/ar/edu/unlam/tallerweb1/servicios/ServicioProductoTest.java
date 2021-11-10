@@ -65,7 +65,7 @@ public class ServicioProductoTest {
     }
 
     private List<Producto> whenObtengoProductos() throws Exception {
-        return servicioProducto.listarTodosLosProductos(USUARIO);
+        return servicioProducto.listarTodosLosProductos();
     }
 
     private void whenCanjeoElProducto(Long id) throws Exception {

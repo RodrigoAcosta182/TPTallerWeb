@@ -34,10 +34,10 @@ import java.util.List;
             }
 
             @Override
-            public List<Producto> listarTodosLosProductos(Usuario usuario) throws Exception {
-                if (repositorioProducto.buscarTodosMisProductos(usuario).size() == 0)
+            public List<Producto> listarTodosLosProductos() throws Exception {
+                if (repositorioProducto.buscarTodosLosProductos().size() == 0)
                     throw new Exception();
-                return repositorioProducto.buscarTodosMisProductos(usuario);
+                return repositorioProducto.buscarTodosLosProductos();
             }
 
             @Override
