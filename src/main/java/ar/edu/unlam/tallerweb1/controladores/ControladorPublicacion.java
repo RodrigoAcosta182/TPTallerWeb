@@ -57,7 +57,7 @@ public class ControladorPublicacion {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/finalizar-publicacion")
-    public ModelAndView finalizarPublicacion(@RequestParam("id") Long id) {
+    public ModelAndView finalizarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota,@RequestParam("id") Long id) {
         ModelMap model = new ModelMap();
         try{
             servicioPublicacion.finalizarPublicacion(id);
