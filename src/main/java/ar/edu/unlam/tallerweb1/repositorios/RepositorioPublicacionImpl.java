@@ -75,5 +75,12 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     public List<Localidad> obtenerTodasLasLocalidades() {
         return sessionFactory.getCurrentSession().createCriteria(Localidad.class).list();
     }
+
+    @Override
+    public Localidad obtenerLocalidadPorDescripcion(String localidadDescripcion) {
+        Localidad localidad = (Localidad) sessionFactory.getCurrentSession().createCriteria(Localidad.class)
+                .add(Restrictions.eq("descripcion", localidadDescripcion)).uniqueResult();
+        return localidad;
+    }
 }
 

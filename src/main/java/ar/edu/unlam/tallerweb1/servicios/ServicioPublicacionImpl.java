@@ -10,16 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
-import java.util.Properties;
 
 @Service("servicioPublicacion")
 @Transactional
@@ -42,10 +36,11 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         Publicacion nuevaPublicacion = new Publicacion();
         Mascota nuevaMascota = mascota.toMascota();
 
+
         Integer random = (int)(Math. random()*10+1);
         String nombreConRuta = "img/"+ random + mascota.getImagen().getOriginalFilename();
         nuevaMascota.setImagen(nombreConRuta);
-
+        Localidad localidad = this.getLocalidadPorDescripcion(mascota.getPublicacion().getLocalidad().getDescripcion());
         String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\"+random +mascota.getImagen().getOriginalFilename();
         mascota.getImagen().transferTo(new File(filename));
 
@@ -53,6 +48,9 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         nuevaPublicacion.setUsuario(usuario);
         nuevaPublicacion.setMascota(nuevaMascota);
         nuevaPublicacion.setEstado(mascota.getEstado());
+        nuevaPublicacion.setLocalidad(localidad);
+
+
 
         repositorioPublicacion.guardarPublicacion(nuevaPublicacion);
 
@@ -79,6 +77,11 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     @Override
     public List<Localidad> getLocalidades() {
         return repositorioPublicacion.obtenerTodasLasLocalidades();
+    }
+
+    @Override
+    public Localidad getLocalidadPorDescripcion(String localidadDescripcion) {
+        return repositorioPublicacion.obtenerLocalidadPorDescripcion(localidadDescripcion);
     }
 
     @Override

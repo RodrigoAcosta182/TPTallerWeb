@@ -21,8 +21,9 @@ public class ServicioPublicacionTest {
 
     private static final String RAZA = "American Bully";
     private static final Long ID = 22L;
-    private static final Publicacion PUBLICACION = new Publicacion();
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo","1","1","3 Anios","American Bully","Le falta una pata","Blanco","Chico", new Date(), new Publicacion(),mock(MultipartFile.class),"nashe");
+    private static final Publicacion PUBLICACION = new Publicacion(new Mascota(), new Localidad("Moron"));
+
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo","1","1","3 Anios","American Bully","Le falta una pata","Blanco","Chico", new Date(), PUBLICACION,mock(MultipartFile.class),"nashe");
 
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com","123");
 
@@ -59,6 +60,29 @@ public class ServicioPublicacionTest {
         List<Localidad> localidades = whenObtengoLocalidades();
         thenObtengoLocalidades(localidades);
     }
+
+    @Test
+    public void obtenerLocalidadPorDescripcion(){
+        givenQueExistenLocalidadesConDescripcion();
+        Localidad localidadObtenida = whenObtengoLocalidadPorDescripcion("San Justo");
+        thenEncuentroLaLocalidad(localidadObtenida);
+    }
+
+    private void givenQueExistenLocalidadesConDescripcion() {
+        Localidad localidad = new Localidad();
+        when(repositorioPublicacion.obtenerLocalidadPorDescripcion("San Justo")).thenReturn(localidad);
+    }
+
+    private void thenEncuentroLaLocalidad(Localidad localidadObtenida) {
+        assertThat(localidadObtenida).isNotNull();
+        verify(repositorioPublicacion,times(1)).obtenerLocalidadPorDescripcion("San Justo");
+    }
+
+
+    private Localidad whenObtengoLocalidadPorDescripcion(String localidadDescripcion) {
+        return servicioPublicacion.getLocalidadPorDescripcion(localidadDescripcion);
+    }
+
     private void givenQueExistenLocalidades() {
         List<Localidad> localidades = new ArrayList<>();
         localidades.add(new Localidad("San Justo"));
@@ -93,7 +117,6 @@ public class ServicioPublicacionTest {
     }
 
     private Publicacion whenRegistroPublicacionCon() throws Exception {
-
         return servicioPublicacion.registrarPublicacion(MASCOTA, USUARIO) ;
     }
     private void thenEncuentroUnaPublicacion(Publicacion publicacion) {
