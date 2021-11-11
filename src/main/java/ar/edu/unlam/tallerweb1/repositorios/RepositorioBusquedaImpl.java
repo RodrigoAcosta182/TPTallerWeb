@@ -28,7 +28,7 @@ public class RepositorioBusquedaImpl implements RepositorioBusqueda {
                 .createAlias("mascota","m")
                 .createAlias("localidad","l")
                 .add(Restrictions.eq("m.tipo",publicacion.getMascota().getTipo()))
-                .add(Restrictions.eq("m.color",publicacion.getMascota().getColor()))
+                .add(Restrictions.like("m.color","%" + publicacion.getMascota().getColor()+ "%"))
                 .add(Restrictions.eq("l.descripcion",publicacion.getLocalidad().getDescripcion()))
                 .list();
     }
