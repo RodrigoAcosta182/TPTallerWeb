@@ -28,9 +28,9 @@
                 </form:select>
 
                 <label style="float: left; margin-bottom: 2px">Localidad</label>
-                <form:select path="publicacion.localidad.id" required="true" id="publicacion.localidad.id" cssClass="w3-select">
+                <form:select path="publicacion.localidad.descripcion" required="true" id="publicacion.localidad.descripcion" cssClass="w3-select">
                     <form:options items="${localidades}"
-                                  itemValue="id"
+                                  itemValue="descripcion"
                                   itemLabel="descripcion"/>
                 </form:select>
                 <label style="float: left">Color</label>
