@@ -37,11 +37,11 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         Mascota nuevaMascota = mascota.toMascota();
 
 
-        Integer random = (int)(Math. random()*10+1);
-        String nombreConRuta = "img/"+ random + mascota.getImagen().getOriginalFilename();
+
+        String nombreConRuta = "img/"+ mascota.getImagen().getOriginalFilename();
         nuevaMascota.setImagen(nombreConRuta);
         Localidad localidad = this.getLocalidadPorDescripcion(mascota.getPublicacion().getLocalidad().getDescripcion());
-        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\"+random +mascota.getImagen().getOriginalFilename();
+        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\"+mascota.getImagen().getOriginalFilename();
         mascota.getImagen().transferTo(new File(filename));
 
         nuevaPublicacion.setFechaPublicacion(new Date());
