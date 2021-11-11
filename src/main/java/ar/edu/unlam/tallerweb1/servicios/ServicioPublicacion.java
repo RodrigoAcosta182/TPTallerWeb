@@ -24,4 +24,6 @@ public interface ServicioPublicacion {
     void buscarUsuarioParaFinalizar(Usuario usuario, String email) throws Exception;
 
     List<Localidad> getLocalidades();
+
+    Localidad getLocalidadPorDescripcion(String localidadDescripcion);
 }

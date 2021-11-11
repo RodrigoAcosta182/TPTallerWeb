@@ -109,6 +109,27 @@ public class RepositorioPublicacionTest extends SpringTest {
         thenObtengoTodasLaslocalidades(localidades.size(),localidadesObtenidas);
     }
 
+    @Test
+    @Transactional
+    @Rollback
+    public void obtengoLocalidadPorDescripcion(){
+        List<Localidad> localidades = new ArrayList<>();
+        localidades.add(new Localidad("Mataderos"));
+
+        givenExistenLocalidades(localidades);
+        Localidad localidadObtenida = whenObtengoLocalidadPorDescripcion("Mataderos");
+        thenEncuentroLocalidad(localidadObtenida);
+    }
+
+    private void thenEncuentroLocalidad(Localidad localidadObtenida) {
+        assertThat(localidadObtenida).isNotNull();
+        assertThat(localidadObtenida.getClass()).isEqualTo(Localidad.class);
+    }
+
+    private Localidad whenObtengoLocalidadPorDescripcion(String localidadDescripcion) {
+        return repositorioPublicacion.obtenerLocalidadPorDescripcion(localidadDescripcion);
+    }
+
     private void givenExistenLocalidades(List<Localidad> localidades) {
         for (Localidad localidad : localidades){
             session().save(localidad);

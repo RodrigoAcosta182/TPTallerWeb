@@ -19,4 +19,6 @@ public interface RepositorioPublicacion {
     List<Usuario> buscarUsuarioPorEmail(String email);
 
     List<Localidad> obtenerTodasLasLocalidades();
+
+    Localidad obtenerLocalidadPorDescripcion(String localidadDescripcion);
 }
