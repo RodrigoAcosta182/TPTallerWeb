@@ -29,6 +29,7 @@
                 <p>Nombre: ${publicacion.mascota.nombre}</p>
                 <p>Raza: ${publicacion.mascota.raza}</p>
                 <p>Detalles: ${publicacion.mascota.detalle}</p>
+                <p>Detalles: ${publicacion.mascota.color}</p>
                 <p>Tamanio: ${publicacion.mascota.tamanio}</p>
                 <p>Edad: ${publicacion.mascota.edad}</p>
             </div>
