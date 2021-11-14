@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.Tipo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -76,11 +77,24 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         return sessionFactory.getCurrentSession().createCriteria(Localidad.class).list();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Localidad obtenerLocalidadPorDescripcion(String localidadDescripcion) {
-        Localidad localidad = (Localidad) sessionFactory.getCurrentSession().createCriteria(Localidad.class)
+        return (Localidad) sessionFactory.getCurrentSession().createCriteria(Localidad.class)
                 .add(Restrictions.eq("descripcion", localidadDescripcion)).uniqueResult();
-        return localidad;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Tipo> obtenerTodosLosTiposDeMascota() {
+        return sessionFactory.getCurrentSession().createCriteria(Tipo.class).list();
+    }
+
+    @Override
+    public Tipo obtenerTipoDeMascotaPorId(long id) {
+        return (Tipo) sessionFactory.getCurrentSession().createCriteria(Tipo.class)
+                .add(Restrictions.eq("id",id))
+                .uniqueResult();
     }
 }
 

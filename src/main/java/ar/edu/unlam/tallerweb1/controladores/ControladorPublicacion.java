@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.Tipo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +31,17 @@ public class ControladorPublicacion {
     public ModelAndView registrarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
         ModelMap model = new ModelMap();
         try {
-            if (mascota.getTipo() == null || mascota.getEstado() == null || mascota.getImagen() == null){
+            if (mascota.getTipo().getId() == null || mascota.getEstado() == null || mascota.getImagen() == null){
                 throw new Exception();
             }
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
             servicioPublicacion.registrarPublicacion(mascota, usuario);
         } catch (Exception e) {
-            model.put("error", "El campo 'tipo', 'estado' e 'imagen' son obligatorio");
+            List<Localidad> localidades =  servicioPublicacion.getLocalidades();
+            List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
+            model.put("localidades",localidades);
+            model.put("tiposDeMascota",tiposDeMascota);
+            model.put("error", "Los campos 'tipo', 'estado' e 'imagen' son obligatorios");
             return new ModelAndView("form-registro-mascota", model);
         }
         model.put("msg", "Mascota Registrada Exitosamente");
@@ -106,7 +111,9 @@ public class ControladorPublicacion {
         ModelMap model = new ModelMap();
         DatosRegistroMascota datosMascota = new DatosRegistroMascota();
         List<Localidad> localidades =  servicioPublicacion.getLocalidades();
+        List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
         model.put("localidades",localidades);
+        model.put("tiposDeMascota",tiposDeMascota);
         model.put("datosMascota", datosMascota);
         return new ModelAndView("form-registro-mascota", model);
     }

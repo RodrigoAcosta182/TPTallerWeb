@@ -58,12 +58,14 @@
                         </div>
                         <div class="w3-col l5">
                             <label style="float: left; margin-bottom: 2px">Tipo</label>
-                            <form:select path="tipo" cssClass="w3-select">
+                            <form:select path="tipo.id" required="true"
+                                         id="tipo.id" cssClass="w3-select">
                                 <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
-                                <form:option value="1">Perro</form:option>
-                                <form:option value="2">Gato</form:option>
-                                <form:option value="3">Otro</form:option>
+                                <form:options items="${tiposDeMascota}"
+                                              itemValue="id"
+                                              itemLabel="descripcion"/>
                             </form:select>
+
                         </div>
                     </div>
                     <div class="w3-row flex-center">
@@ -71,6 +73,7 @@
                             <label style="float: left; margin-bottom: 2px">Localidad</label>
                             <form:select path="publicacion.localidad.descripcion" required="true"
                                          id="publicacion.localidad.descripcion" cssClass="w3-select">
+                                <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
                                 <form:options items="${localidades}"
                                               itemValue="descripcion"
                                               itemLabel="descripcion"/>

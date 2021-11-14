@@ -1,10 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
-import ar.edu.unlam.tallerweb1.modelo.Localidad;
-import ar.edu.unlam.tallerweb1.modelo.Mascota;
-import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,22 +32,18 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 
         Publicacion nuevaPublicacion = new Publicacion();
         Mascota nuevaMascota = mascota.toMascota();
-
-
-
-        String nombreConRuta = "img/"+ mascota.getImagen().getOriginalFilename();
+        Tipo tipoMascota = this.obtenerTipoDeMascotaPorId(mascota.getTipo().getId());
+        String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
         nuevaMascota.setImagen(nombreConRuta);
         Localidad localidad = this.getLocalidadPorDescripcion(mascota.getPublicacion().getLocalidad().getDescripcion());
-        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\"+mascota.getImagen().getOriginalFilename();
+        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
         mascota.getImagen().transferTo(new File(filename));
-
+        nuevaMascota.setTipo(tipoMascota);
         nuevaPublicacion.setFechaPublicacion(new Date());
         nuevaPublicacion.setUsuario(usuario);
         nuevaPublicacion.setMascota(nuevaMascota);
         nuevaPublicacion.setEstado(mascota.getEstado());
         nuevaPublicacion.setLocalidad(localidad);
-
-
 
         repositorioPublicacion.guardarPublicacion(nuevaPublicacion);
 
@@ -66,12 +59,11 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 
     @Override
     public void buscarUsuarioParaFinalizar(Usuario usuario, String email) throws Exception {
-        if (usuario.getEmail() != email){
-            if (repositorioPublicacion.buscarUsuarioPorEmail(email).size() == 0){
+        if (usuario.getEmail() != email) {
+            if (repositorioPublicacion.buscarUsuarioPorEmail(email).size() == 0) {
                 throw new Exception();
             }
         }
-
     }
 
     @Override
@@ -82,6 +74,16 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     @Override
     public Localidad getLocalidadPorDescripcion(String localidadDescripcion) {
         return repositorioPublicacion.obtenerLocalidadPorDescripcion(localidadDescripcion);
+    }
+
+    @Override
+    public List<Tipo> getTiposDeMascota() {
+        return repositorioPublicacion.obtenerTodosLosTiposDeMascota();
+    }
+
+    @Override
+    public Tipo obtenerTipoDeMascotaPorId(long id) {
+        return repositorioPublicacion.obtenerTipoDeMascotaPorId(id);
     }
 
     @Override

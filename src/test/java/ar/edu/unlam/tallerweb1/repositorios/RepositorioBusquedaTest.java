@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RepositorioBusquedaTest extends SpringTest {
 
-    private static final Mascota MASCOTA = new Mascota("1","Blanco");
+    private static final Mascota MASCOTA = new Mascota();
     private static final Publicacion PUBLICACION = new Publicacion(MASCOTA,new Localidad("Moron"));
 
     @Autowired
@@ -37,11 +37,11 @@ public class RepositorioBusquedaTest extends SpringTest {
     @Test
     @Transactional
     @Rollback
-    public void buscoPublicacionesPorTipoLocalidadColorDeFormaExitosa(){
+    public void buscoPublicacionesDeFormaExitosa(){
         List<Publicacion> listaPublicaciones = new LinkedList<>();
         listaPublicaciones.add(PUBLICACION);
         givenQueExistenPublicaciones(listaPublicaciones);
-        List<Publicacion> publicacionesEncontradas = whenBuscoPublicacionesPorTipoLocalidadColor(PUBLICACION);
+        List<Publicacion> publicacionesEncontradas = whenBuscoPublicaciones(PUBLICACION);
         thenEncuentroPublicaciones(publicacionesEncontradas.size(),listaPublicaciones);
     }
 
@@ -49,7 +49,7 @@ public class RepositorioBusquedaTest extends SpringTest {
         assertThat(listaPublicaciones).hasSize(cantidadEsperada);
     }
 
-    private List<Publicacion> whenBuscoPublicacionesPorTipoLocalidadColor(Publicacion publicacion) {
+    private List<Publicacion> whenBuscoPublicaciones(Publicacion publicacion) {
         return repositorioBusqueda.buscarPublicacionPor(publicacion);
     }
 

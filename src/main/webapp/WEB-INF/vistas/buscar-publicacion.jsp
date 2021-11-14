@@ -20,7 +20,7 @@
         <div>
             <form:form cssClass="w3-container" action="buscar-publicaciones" method="GET" modelAttribute="datosMascota" >
                 <label style="float: left; margin-bottom: 2px">Tipo</label>
-                <form:select path="tipo" cssClass="w3-select" required="true">
+                <form:select path="tipo" cssClass="w3-select">
                     <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
                     <form:option value="1">Perro</form:option>
                     <form:option value="2">Gato</form:option>
@@ -28,13 +28,13 @@
                 </form:select>
 
                 <label style="float: left; margin-bottom: 2px">Localidad</label>
-                <form:select path="publicacion.localidad.descripcion" required="true" id="publicacion.localidad.descripcion" cssClass="w3-select">
+                <form:select path="publicacion.localidad.descripcion" id="publicacion.localidad.descripcion" cssClass="w3-select">
                     <form:options items="${localidades}"
                                   itemValue="descripcion"
                                   itemLabel="descripcion"/>
                 </form:select>
                 <label style="float: left">Color</label>
-                <form:input  cssClass="w3-input" path="color" type="text" id="color" required="true"/>
+                <form:input  cssClass="w3-input" path="color" type="text" id="color"/>
                 <div class="buscar-publicaciones-boton-container">
                     <button class="w3-button w3-deep-purple" Type="Submit"/>
                     Buscar</button>
