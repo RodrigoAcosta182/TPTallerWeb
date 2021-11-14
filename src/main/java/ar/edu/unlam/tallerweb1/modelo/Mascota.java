@@ -12,7 +12,6 @@ public class Mascota {
     private Long id;
 
     private String nombre;
-    private String tipo;
     private String estado;
     private String edad;
     private String raza;
@@ -21,17 +20,14 @@ public class Mascota {
     private String tamanio;
     private String imagen;
     private String email;
-
     @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
     private Date fecha;
 
+    @ManyToOne
+    @JoinColumn(name = "tipo_id")
+    private Tipo tipo;
+
     public Mascota() {}
-
-    public Mascota(String tipo,String color) {
-        this.tipo = tipo;
-        this.color = color;
-    }
-
 
     public Long getId() {
         return id;
@@ -49,11 +45,11 @@ public class Mascota {
         this.nombre = nombre;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 
@@ -105,7 +101,6 @@ public class Mascota {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-
 
     public String getEstado() {
         return estado;

@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.Tipo;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,7 +10,7 @@ import java.util.Date;
 
 public class DatosRegistroMascota {
     private String nombre;
-    private String tipo;
+
     private String estado;
     private String edad;
     private String raza;
@@ -21,12 +22,13 @@ public class DatosRegistroMascota {
     private Date fecha;
     private Publicacion publicacion;
     private String email;
+    private Tipo tipo;
 
 
     public DatosRegistroMascota() {
     }
 
-    public DatosRegistroMascota(String estado,String tipo, Publicacion publicacion, String raza,String color) {
+    public DatosRegistroMascota(String estado,Tipo tipo, Publicacion publicacion, String raza,String color) {
         this.estado = estado;
         this.tipo = tipo;
         this.publicacion = publicacion;
@@ -34,7 +36,7 @@ public class DatosRegistroMascota {
         this.color = color;
     }
 
-    public DatosRegistroMascota(String nombre, String tipo, String estado, String edad, String raza, String detalle,
+    public DatosRegistroMascota(String nombre, Tipo tipo, String estado, String edad, String raza, String detalle,
                                 String color, String tamanio, Date fecha, Publicacion publicacion, MultipartFile imagen, String email) {
         this.nombre = nombre;
         this.tipo = tipo;
@@ -58,14 +60,13 @@ public class DatosRegistroMascota {
         this.nombre = nombre;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
-
 
     public String getEdad() {
         return edad;

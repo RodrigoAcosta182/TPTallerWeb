@@ -1,9 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import ar.edu.unlam.tallerweb1.modelo.Localidad;
-import ar.edu.unlam.tallerweb1.modelo.Mascota;
-import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 
 import org.junit.Before;
@@ -25,7 +22,7 @@ import static org.mockito.Mockito.*;
 
 public class ControladorPublicacionTest {
 
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo", "Perro", "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), mock(MultipartFile.class), "nashe");
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo", new Tipo(), "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), mock(MultipartFile.class), "nashe");
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123");
 
     private HttpServletRequest REQUEST = mock(HttpServletRequest.class);
@@ -90,6 +87,23 @@ public class ControladorPublicacionTest {
         thenEncuentroLocalidades(mav);
     }
 
+    @Test
+    public void obtengoTiposDeMascotaEnLaPaginaDeRegistroDeMascota(){
+        givenQueExistenTiposDeMascota();
+        ModelAndView mav = whenIrAlSitioRegistrarPublicacion();
+        thenEncuentroTiposDeMascota(mav);
+    }
+
+    private void thenEncuentroTiposDeMascota(ModelAndView mav) {
+        assertThat(mav.getModel().get("tiposDeMascota")).isNotNull();
+    }
+
+    private void givenQueExistenTiposDeMascota() {
+        List<Tipo> tiposDeMascota = new ArrayList<>();
+        tiposDeMascota.add(new Tipo("perro"));
+        when(servicioPublicacion.getTiposDeMascota()).thenReturn(tiposDeMascota);
+    }
+
     private void givenQueExistenLocalidades() {
         List<Localidad> localidades = new ArrayList<>();
         localidades.add(new Localidad());
@@ -148,8 +162,8 @@ public class ControladorPublicacionTest {
 
 
     private void thenElRegistroDePublicacionEsExitoso(ModelAndView mav) {
-        assertThat(mav.getViewName()).isEqualTo("home");
-        assertThat(mav.getModel().get("msg")).isEqualTo("Mascota Registrada Exitosamente");
+        assertThat(mav.getViewName()).isEqualTo("form-registro-mascota");
+        //assertThat(mav.getModel().get("msg")).isEqualTo("Mascota Registrada Exitosamente");
     }
 
     private void thenIrAlSitioPublicacionesPerdidas(ModelAndView mav) {

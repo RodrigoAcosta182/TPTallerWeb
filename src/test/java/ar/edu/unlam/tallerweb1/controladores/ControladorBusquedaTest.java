@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.Tipo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioBusqueda;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -19,7 +20,7 @@ public class ControladorBusquedaTest {
 
     private ServicioBusqueda servicioBusqueda = mock(ServicioBusqueda.class);
     private ControladorBusqueda controladorBusqueda = new ControladorBusqueda(servicioBusqueda);
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Ramon", "Perro", "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), null, "nashe");
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Ramon", new Tipo(), "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), null, "nashe");
 
     @Test
     public void irAVerPaginaDeBusqueda() {

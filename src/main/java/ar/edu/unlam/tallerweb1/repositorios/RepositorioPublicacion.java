@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.Tipo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 import java.util.List;
@@ -21,4 +22,8 @@ public interface RepositorioPublicacion {
     List<Localidad> obtenerTodasLasLocalidades();
 
     Localidad obtenerLocalidadPorDescripcion(String localidadDescripcion);
+
+    List<Tipo> obtenerTodosLosTiposDeMascota();
+
+    Tipo obtenerTipoDeMascotaPorId(long id);
 }

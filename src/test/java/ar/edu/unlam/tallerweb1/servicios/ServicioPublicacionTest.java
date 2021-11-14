@@ -4,7 +4,6 @@ import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
 import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 import org.junit.Test;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,8 +21,8 @@ public class ServicioPublicacionTest {
     private static final String RAZA = "American Bully";
     private static final Long ID = 22L;
     private static final Publicacion PUBLICACION = new Publicacion(new Mascota(), new Localidad("Moron"));
-
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo","1","1","3 Anios","American Bully","Le falta una pata","Blanco","Chico", new Date(), PUBLICACION,mock(MultipartFile.class),"nashe");
+    private static final Tipo TIPOMASCOTA = new Tipo(1L,"Perro");
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo",TIPOMASCOTA,"1","3 Anios","American Bully","Le falta una pata","Blanco","Chico", new Date(), PUBLICACION,mock(MultipartFile.class),"nashe");
 
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com","123");
 
@@ -61,11 +60,55 @@ public class ServicioPublicacionTest {
         thenObtengoLocalidades(localidades);
     }
 
+
     @Test
     public void obtenerLocalidadPorDescripcion(){
         givenQueExistenLocalidadesConDescripcion();
         Localidad localidadObtenida = whenObtengoLocalidadPorDescripcion("San Justo");
         thenEncuentroLaLocalidad(localidadObtenida);
+    }
+
+    @Test
+    public void obtengoTodosLosTiposDeMascota(){
+        givenQueExistenTiposDeMascota();
+        List<Tipo> tipoDeMascota = whenObtengoTiposDeMascota();
+        thenEncuentroTiposDeMascota(tipoDeMascota);
+    }
+
+    @Test
+    public void obtengoTipoDeMascotaPorId(){
+        givenQueExistenTiposDeMascotaConId();
+        Tipo tipoDeMascotaObtenido = whenObtengoTipoDeMascotaPorId(1L);
+        thenEncuentroTipoDeMascotaPorId(tipoDeMascotaObtenido);
+    }
+
+    private void thenEncuentroTipoDeMascotaPorId(Tipo tipoDeMascotaObtenido) {
+        assertThat(tipoDeMascotaObtenido).isNotNull();
+        verify(repositorioPublicacion,times(1)).obtenerTipoDeMascotaPorId(1L);
+    }
+
+    private Tipo whenObtengoTipoDeMascotaPorId(long id) {
+        return servicioPublicacion.obtenerTipoDeMascotaPorId(id);
+    }
+
+    private void givenQueExistenTiposDeMascotaConId() {
+        Tipo tipoDeMascota = new Tipo("Perro");
+        when(repositorioPublicacion.obtenerTipoDeMascotaPorId(1L)).thenReturn(tipoDeMascota);
+    }
+
+    private void thenEncuentroTiposDeMascota(List<Tipo> tipoDeMascota) {
+        assertThat(tipoDeMascota).isNotNull();
+        verify(repositorioPublicacion,times(1)).obtenerTodosLosTiposDeMascota();
+    }
+
+    private List<Tipo> whenObtengoTiposDeMascota() {
+        return repositorioPublicacion.obtenerTodosLosTiposDeMascota();
+    }
+
+    private void givenQueExistenTiposDeMascota() {
+        List<Tipo> tiposDeMascota = new ArrayList<>();
+        tiposDeMascota.add(new Tipo("Perro"));
+        when(repositorioPublicacion.obtenerTodosLosTiposDeMascota()).thenReturn(tiposDeMascota);
     }
 
     private void givenQueExistenLocalidadesConDescripcion() {

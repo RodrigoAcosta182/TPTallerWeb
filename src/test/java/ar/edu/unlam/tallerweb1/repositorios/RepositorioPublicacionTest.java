@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.repositorios;
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.Tipo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,6 +110,7 @@ public class RepositorioPublicacionTest extends SpringTest {
         thenObtengoTodasLaslocalidades(localidades.size(),localidadesObtenidas);
     }
 
+
     @Test
     @Transactional
     @Rollback
@@ -119,6 +121,32 @@ public class RepositorioPublicacionTest extends SpringTest {
         givenExistenLocalidades(localidades);
         Localidad localidadObtenida = whenObtengoLocalidadPorDescripcion("Mataderos");
         thenEncuentroLocalidad(localidadObtenida);
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void obtengoTodosLosTiposDeMascota(){
+        List<Tipo> tiposDeMascota = new ArrayList<>();
+        tiposDeMascota.add(new Tipo("Perro"));
+//        givenQueExistenTiposDeMascota(tiposDeMascota);
+//        List<Tipo> tiposDeMascotaObtenidos = whenObtengoTodosLosTiposDeMascota();
+//        thenEncuentroTiposDeMascota(tiposDeMascota.size(),tiposDeMascotaObtenidos);
+    }
+
+    private void thenEncuentroTiposDeMascota(int cantidadEsperada, List<Tipo> tiposDeMascotaObtenidos) {
+        assertThat(tiposDeMascotaObtenidos).hasSize(cantidadEsperada);
+    }
+
+    private  List<Tipo> whenObtengoTodosLosTiposDeMascota() {
+        return repositorioPublicacion.obtenerTodosLosTiposDeMascota();
+    }
+
+    private void givenQueExistenTiposDeMascota(List<Tipo> tiposDeMascota) {
+
+        for (Tipo tipoDeMascota : tiposDeMascota){
+            session().save(tipoDeMascota);
+        }
     }
 
     private void thenEncuentroLocalidad(Localidad localidadObtenida) {

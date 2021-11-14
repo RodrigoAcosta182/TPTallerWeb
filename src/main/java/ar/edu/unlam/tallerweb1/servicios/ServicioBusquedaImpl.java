@@ -27,21 +27,13 @@ public class ServicioBusquedaImpl implements ServicioBusqueda {
     @Override
     public List<Publicacion> buscarPublicaciones(DatosRegistroMascota mascota) throws Exception {
         List<Publicacion> publicacionList = new ArrayList<>();
-
-        if (mascota.getTipo() != null
-                && mascota.getColor() != null
-                && mascota.getPublicacion().getLocalidad().getDescripcion() != null
-        ) {
             Publicacion buscarPublicacion = mascota.getPublicacion();
             buscarPublicacion.setMascota(mascota.toMascota());
             buscarPublicacion.setLocalidad(mascota.getPublicacion().getLocalidad());
             publicacionList = repositorioBusqueda.buscarPublicacionPor(buscarPublicacion);
             if (publicacionList.size() == 0) {
-                throw new Exception();
+                throw new Exception("No se encontro ninguna publicacion");
             }
-        }
-
-
         return publicacionList;
     }
 
