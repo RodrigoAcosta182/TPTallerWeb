@@ -31,6 +31,7 @@ public class ControladorProductoTest {
     @Before
     public void setup(){
         when(REQUEST.getSession()).thenReturn(session);
+        when(session.getAttribute("Usuario")).thenReturn(USUARIO);
     }
 
     @Test
@@ -59,21 +60,16 @@ public class ControladorProductoTest {
         thenNoSeSubeElProducto(mav, "El stock no puede ser negativo");
     }
 
-//    @Test
-//    public void noSePuedeCanjearProductosSinLosPuntosNecesarios() throws Exception {
-//        givenQueElProductoExisteConPuntosMayorAlUsuario();
-//        ModelAndView mav = whenCanjeoUnProducto(PRODUCTO_2, REQUEST);
-//        thenNoSeSubeElProducto(mav, "Lo siento, no te alcanza para canjear este producto :(");
-//    }
-//
-//    private void givenQueElProductoExisteConPuntosMayorAlUsuario() throws Exception {
-//        doThrow(Exception.class).when(servicioProducto).canjearProducto(PRODUCTO_2.getId(), USUARIO);
-//    }
-//
-//    private ModelAndView whenCanjeoUnProducto(Producto producto, HttpServletRequest request) throws Exception {
-//        request.getSession().setAttribute("Usuario", USUARIO);
-//        return controladorProducto.canjearProducto(producto.getId(), REQUEST);
-//    }
+    @Test
+    public void noSePuedeCanjearProductosSinLosPuntosNecesarios() throws Exception {
+        givenQueElProductoExisteConPuntosMayorAlUsuario();
+        ModelAndView mav = whenCanjeoUnProducto(PRODUCTO_2, REQUEST);
+        thenNoSeSubeElProducto(mav, "Lo siento, no te alcanza para canjear este producto :(");
+    }
+
+    private void givenQueElProductoExisteConPuntosMayorAlUsuario() throws Exception {
+        doThrow(Exception.class).when(servicioProducto).canjearProducto(PRODUCTO_2.getId(), USUARIO);
+    }
 
     private void givenQueElProductoExisteConCantidadMenorOIgualACero() throws Exception {
         doThrow(Exception.class).when(servicioProducto).registrarProducto(PRODUCTO_NEGATIVO, USUARIO);
@@ -81,6 +77,10 @@ public class ControladorProductoTest {
 
     private void givenQueNoEncuentroProducto() throws Exception {
         doThrow(Exception.class).when(servicioProducto).listarTodosLosProductos();
+    }
+
+    private ModelAndView whenCanjeoUnProducto(Producto producto, HttpServletRequest request) throws Exception {
+        return controladorProducto.canjearProducto(producto.getId(), REQUEST);
     }
 
     private ModelAndView whenObtengoProductos() {
