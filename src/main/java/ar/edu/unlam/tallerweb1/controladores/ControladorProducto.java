@@ -57,31 +57,38 @@ public class ControladorProducto {
 
         return new ModelAndView("Productos", model);
     }
+@RequestMapping(method = RequestMethod.POST, path = "/registrarProducto")
+public ModelAndView registrarProducto(@ModelAttribute("producto") DatosRegistroProducto producto, HttpServletRequest request) throws Exception{
+    ModelMap model = new ModelMap();
 
-    @RequestMapping(method = RequestMethod.POST, path = "/registrarProducto")
-    public ModelAndView registrarProducto(@ModelAttribute("producto") DatosRegistroProducto producto, HttpServletRequest request) throws Exception{
+    try{
+        validarRegistroProducto(producto, request);
+        Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+        servicioProducto.registrarProducto(producto, usuario);
+    }catch (Exception e){
+        model.put("error", e.getMessage());
+        return new ModelAndView("form-registro-producto", model);
+    }
+
+    model.put("msg", "Producto Registrado Exitosamente");
+    return new ModelAndView("Productos", model);
+}
+
+    public void validarRegistroProducto(DatosRegistroProducto producto, HttpServletRequest request) throws Exception {
         ModelMap model = new ModelMap();
-        try {
-            if (producto.getCantidad() != null && producto.getDescripcion() != null){
-                try {
-                    if (producto.getCantidad() > 0){
-                        Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-                        servicioProducto.registrarProducto(producto, usuario);
-                    }else {
-                        throw new RuntimeException("Registro Fallido");
-                    }
-                }catch (Exception e){
-                    model.put("error", "El stock no puede ser negativo");
-                    return new ModelAndView("form-registro-producto", model);
+//la china
+            if (producto.getCantidad() != null)
+            {
+                if (producto.getCantidad() < 0)
+                {
+                    throw new RuntimeException("El stock no puede ser negativo");
                 }
-            }else{
-                throw new RuntimeException("Registro Fallido");
+            }else if (producto.getDescripcion() == null  || producto.getDescripcion() == ""){
+                throw new RuntimeException("Tiene que ingresar la descripcion del producto");
+            } else if (producto.getPuntos() == null || producto.getPuntos() != producto.getPuntos().intValue()) {
+                throw new RuntimeException("Los puntos tienen que ser numericos");
+            } else {
+                throw new RuntimeException("Tiene que ingresar una cantidad");
             }
-        } catch (Exception e) {
-            model.put("error", "Faltan completar campos");
-            return new ModelAndView("form-registro-producto", model);
-        }
-        model.put("msg", "Producto Registrado Exitosamente");
-        return new ModelAndView("Productos", model);
     }
 }
