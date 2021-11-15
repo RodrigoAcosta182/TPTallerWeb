@@ -27,7 +27,7 @@
     <c:if test="${not empty error}">
         <div class="w3-container w3-center">
             <div>
-                <img class="imagen-tarjeta" src="img/perro-triste.jpg" alt="triste">
+                <img class="imagen-tarjeta" src="img/perro-triste.jpeg" alt="triste">
             </div>
             <div>
                 <p class="login-mensaje-error">${error}</p>
