@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `missingpets` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `missingpets`;
 -- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: missingpets
@@ -35,14 +33,11 @@ CREATE TABLE `publicacion` (
   PRIMARY KEY (`id`),
   KEY `FKsmafswujolnyojwb2rq31ax48` (`mascota_id`),
   KEY `FKrfbxv3finr62x94rulf1mm5mp` (`usuario_id`),
-  KEY `FKmgpby4kddnjf46wiahl18r2gi` (`localidad_id`),
-  CONSTRAINT `FKmgpby4kddnjf46wiahl18r2gi` FOREIGN KEY (`localidad_id`) REFERENCES `localidad` (`id`),
   CONSTRAINT `FKrfbxv3finr62x94rulf1mm5mp` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
   CONSTRAINT `FKsmafswujolnyojwb2rq31ax48` FOREIGN KEY (`mascota_id`) REFERENCES `mascota` (`id`),
-  CONSTRAINT `publicacion_localidad_id_fk` FOREIGN KEY (`localidad_id`) REFERENCES `localidad` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `publicacion_mascota_id_fk` FOREIGN KEY (`mascota_id`) REFERENCES `mascota` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `publicacion_usuario_id_fk` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +46,7 @@ CREATE TABLE `publicacion` (
 
 LOCK TABLES `publicacion` WRITE;
 /*!40000 ALTER TABLE `publicacion` DISABLE KEYS */;
-INSERT INTO `publicacion` VALUES (22,1,'2021-10-25',1,60,'2',1),(23,1,'2021-10-25',1,61,'1',1),(24,0,'2021-10-27',1,62,'1',2),(25,0,'2021-10-27',1,63,'2',3);
+INSERT INTO `publicacion` VALUES (28,0,'2021-11-11',1,66,'1',2),(29,0,'2021-11-11',1,67,'1',2),(30,0,'2021-11-11',1,68,'2',2);
 /*!40000 ALTER TABLE `publicacion` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -64,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-08 19:34:15
+-- Dump completed on 2021-11-15 19:28:57

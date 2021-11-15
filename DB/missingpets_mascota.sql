@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `missingpets` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `missingpets`;
 -- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: missingpets
@@ -36,8 +34,9 @@ CREATE TABLE `mascota` (
   `tipo` varchar(255) NOT NULL,
   `estado` int DEFAULT NULL,
   `imagen` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +45,7 @@ CREATE TABLE `mascota` (
 
 LOCK TABLES `mascota` WRITE;
 /*!40000 ALTER TABLE `mascota` DISABLE KEYS */;
-INSERT INTO `mascota` VALUES (60,'Cormier','3','American Bully','gordo y petizo','marron','mediano',NULL,'1',2,'img/Cormier 5.jpeg'),(61,'tu vieja','tu vieja','tu vieja','tu vieja','tu vieja','tu vieja',NULL,'1',1,'img/rex.jpeg'),(62,'Hellboy','30 años','American Bully','gordo y abortero','trichoco','mediano',NULL,'1',1,'img/american-bully-dog-vector-illustration-white-background-bullie-breed-can-be-used-as-logo-kennel-tattoo-etc-156378364.jpg'),(63,'Cormier','1 año','American Bully','Marron y petzo','Marron','Mediano',NULL,'1',2,'img/Cormier 7.jpeg');
+INSERT INTO `mascota` VALUES (66,'Jose','54','Scalonista','Medio Tarulo','Negro','Grande',NULL,'1',1,'img/unicornio.jpg',NULL),(67,'Marcos','6','Golden','Enano y Gordo','Negro y Blanco','Mediano',NULL,'2',1,'img/fuck yall.jfif',NULL),(68,'Julio','7','Bull','Feo y Gordo','Rosa','Pequeño',NULL,'1',2,'img/MARIPOSA STICKER.jpg',NULL);
 /*!40000 ALTER TABLE `mascota` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-08 19:34:15
+-- Dump completed on 2021-11-15 19:28:59
