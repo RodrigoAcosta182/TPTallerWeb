@@ -76,7 +76,7 @@ public ModelAndView registrarProducto(@ModelAttribute("producto") DatosRegistroP
 
     public void validarRegistroProducto(DatosRegistroProducto producto, HttpServletRequest request) throws Exception {
         ModelMap model = new ModelMap();
-
+//la china
             if (producto.getCantidad() != null)
             {
                 if (producto.getCantidad() < 0)
