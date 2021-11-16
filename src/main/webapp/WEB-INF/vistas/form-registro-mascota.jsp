@@ -58,7 +58,7 @@
                         </div>
                         <div class="w3-col l5">
                             <label style="float: left; margin-bottom: 2px">Tipo</label>
-                            <form:select path="tipo.id" required="true"
+                            <form:select path="tipo.id"
                                          id="tipo.id" cssClass="w3-select">
                                 <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
                                 <form:options items="${tiposDeMascota}"

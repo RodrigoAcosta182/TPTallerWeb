@@ -57,26 +57,25 @@ public class ControladorProducto {
 
         return new ModelAndView("Productos", model);
     }
-@RequestMapping(method = RequestMethod.POST, path = "/registrarProducto")
-public ModelAndView registrarProducto(@ModelAttribute("producto") DatosRegistroProducto producto, HttpServletRequest request) throws Exception{
-    ModelMap model = new ModelMap();
 
-    try{
-        validarRegistroProducto(producto, request);
-        Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-        servicioProducto.registrarProducto(producto, usuario);
-    }catch (Exception e){
-        model.put("error", e.getMessage());
-        return new ModelAndView("form-registro-producto", model);
+    @RequestMapping(method = RequestMethod.POST, path = "/registrarProducto")
+    public ModelAndView registrarProducto(@ModelAttribute("producto") DatosRegistroProducto producto, HttpServletRequest request) throws Exception{
+        ModelMap model = new ModelMap();
+
+        try{
+            validarRegistroProducto(producto, request);
+            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+            servicioProducto.registrarProducto(producto, usuario);
+        }catch (Exception e){
+            model.put("error", e.getMessage());
+            return new ModelAndView("form-registro-producto", model);
+        }
+
+        model.put("msg", "Producto Registrado Exitosamente");
+        return new ModelAndView("Productos", model);
     }
 
-    model.put("msg", "Producto Registrado Exitosamente");
-    return new ModelAndView("Productos", model);
-}
-
     public void validarRegistroProducto(DatosRegistroProducto producto, HttpServletRequest request) throws Exception {
-        ModelMap model = new ModelMap();
-//la china
             if (producto.getCantidad() != null)
             {
                 if (producto.getCantidad() < 0)
