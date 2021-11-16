@@ -31,9 +31,7 @@ public class ControladorPublicacion {
     public ModelAndView registrarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
         ModelMap model = new ModelMap();
         try {
-            if (mascota.getTipo().getId() == null || mascota.getEstado() == null || mascota.getImagen() == null){
-                throw new Exception();
-            }
+            validarRegistrarPublicacion(mascota, request);
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
             servicioPublicacion.registrarPublicacion(mascota, usuario);
         } catch (Exception e) {
@@ -41,7 +39,7 @@ public class ControladorPublicacion {
             List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
             model.put("localidades",localidades);
             model.put("tiposDeMascota",tiposDeMascota);
-            model.put("error", "Los campos 'tipo', 'estado' e 'imagen' son obligatorios");
+            model.put("error", e.getMessage());
             return new ModelAndView("form-registro-mascota", model);
         }
         model.put("msg", "Mascota Registrada Exitosamente");
@@ -133,8 +131,6 @@ public class ControladorPublicacion {
         return new ModelAndView("mis-publicaciones", model);
     }
 
-
-
     @RequestMapping(method = RequestMethod.GET, path = "/publicacion")
     public ModelAndView irAVerPublicacion(@RequestParam("id") Long id) {
         ModelMap model = new ModelMap();
@@ -151,6 +147,14 @@ public class ControladorPublicacion {
         return new ModelAndView("ver-publicacion", model);
     }
 
-
+    public void validarRegistrarPublicacion(DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
+        if (mascota.getTipo() == null){
+            throw new Exception("El campo Tipo es obligatorio");
+        }else if (mascota.getEstado() == null){
+            throw new Exception("El campo Estado es obligatorio");
+        }else if (mascota.getImagen().getSize() < 1){
+            throw new Exception("El campo Imagen es obligatorio");
+        }
+    }
 
 }
