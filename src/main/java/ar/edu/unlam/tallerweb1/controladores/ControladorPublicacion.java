@@ -152,7 +152,7 @@ public class ControladorPublicacion {
             throw new Exception("El campo Tipo es obligatorio");
         }else if (mascota.getEstado() == null){
             throw new Exception("El campo Estado es obligatorio");
-        }else if (mascota.getImagen().getSize() < 1){
+        }else if (mascota.getImagen().isEmpty()){
             throw new Exception("El campo Imagen es obligatorio");
         }
     }

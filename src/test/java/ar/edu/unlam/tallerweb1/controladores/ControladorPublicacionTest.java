@@ -141,6 +141,7 @@ public class ControladorPublicacionTest {
 
     private ModelAndView whenRegistroLaPublicacion(DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
         request.getSession().setAttribute("Usuario", USUARIO);
+        //mascota.setImagen(mock(MultipartFile.class));
         return controladorPublicacion.registrarPublicacion(mascota, REQUEST);
     }
 
@@ -162,8 +163,8 @@ public class ControladorPublicacionTest {
 
 
     private void thenElRegistroDePublicacionEsExitoso(ModelAndView mav) {
-        assertThat(mav.getViewName()).isEqualTo("form-registro-mascota");
-        //assertThat(mav.getModel().get("msg")).isEqualTo("Mascota Registrada Exitosamente");
+        assertThat(mav.getViewName()).isEqualTo("home");
+        assertThat(mav.getModel().get("msg")).isEqualTo("Mascota Registrada Exitosamente");
     }
 
     private void thenIrAlSitioPublicacionesPerdidas(ModelAndView mav) {

@@ -128,10 +128,10 @@ public class RepositorioPublicacionTest extends SpringTest {
     @Rollback
     public void obtengoTodosLosTiposDeMascota(){
         List<Tipo> tiposDeMascota = new ArrayList<>();
-        tiposDeMascota.add(new Tipo("Perro"));
-//        givenQueExistenTiposDeMascota(tiposDeMascota);
-//        List<Tipo> tiposDeMascotaObtenidos = whenObtengoTodosLosTiposDeMascota();
-//        thenEncuentroTiposDeMascota(tiposDeMascota.size(),tiposDeMascotaObtenidos);
+        tiposDeMascota.add(new Tipo(1L,"Perro"));
+        givenQueExistenTiposDeMascota(tiposDeMascota);
+        List<Tipo> tiposDeMascotaObtenidos = whenObtengoTodosLosTiposDeMascota();
+        thenEncuentroTiposDeMascota(tiposDeMascota.size(),tiposDeMascotaObtenidos);
     }
 
     private void thenEncuentroTiposDeMascota(int cantidadEsperada, List<Tipo> tiposDeMascotaObtenidos) {
