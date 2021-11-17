@@ -48,6 +48,9 @@
         </div>
     </c:if>
 </div>
+<c:if test="${usuario.rol == 'admin'}">
+    <a class="w3-btn w3-blue" style="margin-bottom: 40px; margin-left: 44%" type="submit" href="ir-a-registrar-producto">Subir nuevo Producto</a>
+</c:if>
 
 </body>
 </html>
