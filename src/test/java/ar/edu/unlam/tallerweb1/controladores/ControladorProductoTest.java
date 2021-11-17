@@ -41,6 +41,12 @@ public class ControladorProductoTest {
     }
 
     @Test
+    public void irAlSitioParaSubirUnNuevoProducto(){
+        ModelAndView mav = whenVoyAlSitioDeRegistroDeProductos();
+        thenVoyAlSitioDeRegistroDeProductos(mav);
+    }
+
+    @Test
     public void testQueSeSubaUnProductoALaPagina() throws Exception {
         ModelAndView mav = whenSuboUnProducto(PRODUCTO, REQUEST);
         thenElRegistroDeProductoEsExitoso(mav);
@@ -96,6 +102,10 @@ public class ControladorProductoTest {
         return controladorProducto.irAVistaDeProductos(mock(HttpServletRequest.class));
     }
 
+    private ModelAndView whenVoyAlSitioDeRegistroDeProductos() {
+        return controladorProducto.irAVistaDeRegistroDeProductos();
+    }
+
     private void thenNoEncuentroProductos(ModelAndView mav, String msg) {
         assertThat(mav.getModel().get("productoError")).isEqualTo(msg);
     }
@@ -107,6 +117,10 @@ public class ControladorProductoTest {
 
     private void thenVoyAlSitioDeProductos(ModelAndView mav) {
         assertThat(mav.getViewName()).isEqualTo("Productos");
+    }
+
+    private void thenVoyAlSitioDeRegistroDeProductos(ModelAndView mav) {
+        assertThat(mav.getViewName()).isEqualTo("form-registro-producto");
     }
 
     private void thenNoSeSubeElProducto(ModelAndView mav, String msg) {
