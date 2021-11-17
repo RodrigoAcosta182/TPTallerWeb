@@ -145,7 +145,7 @@ public class ControladorPublicacion {
         model.put("datosCorreo", datosCorreo);
         return new ModelAndView("ver-publicacion", model);
     }
-
+//
     @RequestMapping(method = RequestMethod.GET, path = "/modificarregistroMascota")
     public ModelAndView modificarRegistroPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota , @RequestParam("id") Long id, HttpServletRequest request)  throws Exception {
         ModelMap model = new ModelMap();
@@ -166,11 +166,10 @@ public class ControladorPublicacion {
         model.put("msg", "Mascota Registrada Exitosamente");
         return new ModelAndView("home", model);
     }
-
-    @RequestMapping(method = RequestMethod.GET, path = "/ir-a-publicacion-mascota-perdida")
+//
+    @RequestMapping(method = RequestMethod.GET, path = "/ir-al-sitio-modificar-mascota")
     public ModelAndView irAlSitioModificarPublicacion(@RequestParam("id") Long id) {
         ModelMap model = new ModelMap();
-        DatosCorreo datosCorreo = new DatosCorreo();
         Publicacion publicacion;
         try {
             publicacion = servicioPublicacion.buscarPublicacion(id);
