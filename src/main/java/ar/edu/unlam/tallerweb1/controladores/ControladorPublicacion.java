@@ -1,9 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import ar.edu.unlam.tallerweb1.modelo.Localidad;
-import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.Tipo;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -110,8 +107,10 @@ public class ControladorPublicacion {
         DatosRegistroMascota datosMascota = new DatosRegistroMascota();
         List<Localidad> localidades =  servicioPublicacion.getLocalidades();
         List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
+        List<Estado> estadosMascota = servicioPublicacion.getEstadosDeMascota();
         model.put("localidades",localidades);
         model.put("tiposDeMascota",tiposDeMascota);
+        model.put("estadosMascota",estadosMascota);
         model.put("datosMascota", datosMascota);
         return new ModelAndView("form-registro-mascota", model);
     }
@@ -187,7 +186,7 @@ public class ControladorPublicacion {
             throw new Exception("El campo Tipo es obligatorio");
         }else if (mascota.getEstado() == null){
             throw new Exception("El campo Estado es obligatorio");
-        }else if (mascota.getImagen().getSize() < 1){
+        }else if (mascota.getImagen().isEmpty()){
             throw new Exception("El campo Imagen es obligatorio");
         }
     }

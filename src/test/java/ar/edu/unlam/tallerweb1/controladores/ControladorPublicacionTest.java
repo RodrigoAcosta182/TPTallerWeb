@@ -94,6 +94,23 @@ public class ControladorPublicacionTest {
         thenEncuentroTiposDeMascota(mav);
     }
 
+    @Test
+    public void obtengoEstadosEnLaPaginaDeRegistroDeMascota(){
+        givenExistenEstadosDeMascota();
+        ModelAndView mav = whenIrAlSitioRegistrarPublicacion();
+        thenEncuentroEstadosDeMascota(mav);
+    }
+
+    private void thenEncuentroEstadosDeMascota(ModelAndView mav) {
+        assertThat(mav.getModel().get("estadosMascota")).isNotNull();
+    }
+
+    private void givenExistenEstadosDeMascota() {
+        List<Estado> estados = new ArrayList<>();
+        estados.add(new Estado());
+        when(servicioPublicacion.getEstadosDeMascota()).thenReturn(estados);
+    }
+
     private void thenEncuentroTiposDeMascota(ModelAndView mav) {
         assertThat(mav.getModel().get("tiposDeMascota")).isNotNull();
     }
@@ -141,6 +158,7 @@ public class ControladorPublicacionTest {
 
     private ModelAndView whenRegistroLaPublicacion(DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
         request.getSession().setAttribute("Usuario", USUARIO);
+        //mascota.setImagen(mock(MultipartFile.class));
         return controladorPublicacion.registrarPublicacion(mascota, REQUEST);
     }
 
@@ -162,8 +180,8 @@ public class ControladorPublicacionTest {
 
 
     private void thenElRegistroDePublicacionEsExitoso(ModelAndView mav) {
-        assertThat(mav.getViewName()).isEqualTo("form-registro-mascota");
-        //assertThat(mav.getModel().get("msg")).isEqualTo("Mascota Registrada Exitosamente");
+        assertThat(mav.getViewName()).isEqualTo("home");
+        assertThat(mav.getModel().get("msg")).isEqualTo("Mascota Registrada Exitosamente");
     }
 
     private void thenIrAlSitioPublicacionesPerdidas(ModelAndView mav) {

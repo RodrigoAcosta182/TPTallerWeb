@@ -21,10 +21,10 @@ public class ServicioPublicacionTest {
     private static final String RAZA = "American Bully";
     private static final Long ID = 22L;
     private static final Publicacion PUBLICACION = new Publicacion(new Mascota(), new Localidad("Moron"));
-    private static final Tipo TIPOMASCOTA = new Tipo(1L,"Perro");
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo",TIPOMASCOTA,"1","3 Anios","American Bully","Le falta una pata","Blanco","Chico", new Date(), PUBLICACION,mock(MultipartFile.class),"nashe");
+    private static final Tipo TIPOMASCOTA = new Tipo(1L, "Perro");
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo", TIPOMASCOTA, "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), PUBLICACION, mock(MultipartFile.class), "nashe");
 
-    private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com","123");
+    private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123");
 
     @Test(expected = Exception.class)
     public void queSeNoSeEncontroPublicaciones() throws Exception {
@@ -34,11 +34,12 @@ public class ServicioPublicacionTest {
     }
 
     @Test
-    public void queSeEncuentraUnaPublicacionPorId(){
+    public void queSeEncuentraUnaPublicacionPorId() {
         givenQueLaPublicacionExiste(10L);
         Publicacion publicacion = whenObtengoPublicacionPor(10L);
         thenEncuentroUnaPublicacion(publicacion);
     }
+
     @Test
     public void queSeRegistrePublicacionExitosamente() throws Exception {
         givenQueLaPublicacionNoExiste();
@@ -47,7 +48,7 @@ public class ServicioPublicacionTest {
     }
 
     @Test
-    public void queSeFinalizaLaPublicacionCorrectamente(){
+    public void queSeFinalizaLaPublicacionCorrectamente() {
         givenQueLaPublicacionExiste(10L);
         whenFinalizoLaPublicacion(10L);
         thenFinalizoLaPublicacionCorrectamente();
@@ -62,29 +63,52 @@ public class ServicioPublicacionTest {
 
 
     @Test
-    public void obtenerLocalidadPorDescripcion(){
+    public void obtenerLocalidadPorDescripcion() {
         givenQueExistenLocalidadesConDescripcion();
         Localidad localidadObtenida = whenObtengoLocalidadPorDescripcion("San Justo");
         thenEncuentroLaLocalidad(localidadObtenida);
     }
 
     @Test
-    public void obtengoTodosLosTiposDeMascota(){
+    public void obtengoTodosLosTiposDeMascota() {
         givenQueExistenTiposDeMascota();
         List<Tipo> tipoDeMascota = whenObtengoTiposDeMascota();
         thenEncuentroTiposDeMascota(tipoDeMascota);
     }
 
     @Test
-    public void obtengoTipoDeMascotaPorId(){
+    public void obtengoTodosLosEstadosDeMascota() {
+        givenQueExistenEstadosDeMascota();
+        List<Estado> estados = whenObtengoEstadosDeMascota();
+        thenEncuentroEstadosDeMascota(estados);
+    }
+
+    @Test
+    public void obtengoTipoDeMascotaPorId() {
         givenQueExistenTiposDeMascotaConId();
         Tipo tipoDeMascotaObtenido = whenObtengoTipoDeMascotaPorId(1L);
         thenEncuentroTipoDeMascotaPorId(tipoDeMascotaObtenido);
     }
 
+    private void thenEncuentroEstadosDeMascota(List<Estado> estados) {
+        assertThat(estados).isNotNull();
+        verify(repositorioPublicacion, times(1)).obtenerTodosLosEstadosDeMascota();
+    }
+
+    private List<Estado> whenObtengoEstadosDeMascota() {
+        return servicioPublicacion.getEstadosDeMascota();
+    }
+
+    private void givenQueExistenEstadosDeMascota() {
+        List<Estado> estados = new ArrayList<>();
+        estados.add(new Estado());
+        estados.add(new Estado());
+        when(repositorioPublicacion.obtenerTodosLosEstadosDeMascota()).thenReturn(estados);
+    }
+
     private void thenEncuentroTipoDeMascotaPorId(Tipo tipoDeMascotaObtenido) {
         assertThat(tipoDeMascotaObtenido).isNotNull();
-        verify(repositorioPublicacion,times(1)).obtenerTipoDeMascotaPorId(1L);
+        verify(repositorioPublicacion, times(1)).obtenerTipoDeMascotaPorId(1L);
     }
 
     private Tipo whenObtengoTipoDeMascotaPorId(long id) {
@@ -98,11 +122,11 @@ public class ServicioPublicacionTest {
 
     private void thenEncuentroTiposDeMascota(List<Tipo> tipoDeMascota) {
         assertThat(tipoDeMascota).isNotNull();
-        verify(repositorioPublicacion,times(1)).obtenerTodosLosTiposDeMascota();
+        verify(repositorioPublicacion, times(1)).obtenerTodosLosTiposDeMascota();
     }
 
     private List<Tipo> whenObtengoTiposDeMascota() {
-        return repositorioPublicacion.obtenerTodosLosTiposDeMascota();
+        return servicioPublicacion.getTiposDeMascota();
     }
 
     private void givenQueExistenTiposDeMascota() {
@@ -118,7 +142,7 @@ public class ServicioPublicacionTest {
 
     private void thenEncuentroLaLocalidad(Localidad localidadObtenida) {
         assertThat(localidadObtenida).isNotNull();
-        verify(repositorioPublicacion,times(1)).obtenerLocalidadPorDescripcion("San Justo");
+        verify(repositorioPublicacion, times(1)).obtenerLocalidadPorDescripcion("San Justo");
     }
 
 
@@ -131,12 +155,14 @@ public class ServicioPublicacionTest {
         localidades.add(new Localidad("San Justo"));
         when(repositorioPublicacion.obtenerTodasLasLocalidades()).thenReturn(localidades);
     }
+
     private List<Localidad> whenObtengoLocalidades() {
         return servicioPublicacion.getLocalidades();
     }
+
     private void thenObtengoLocalidades(List<Localidad> localidades) {
         assertThat(localidades).isNotNull();
-        verify(repositorioPublicacion,times(1)).obtenerTodasLasLocalidades();
+        verify(repositorioPublicacion, times(1)).obtenerTodasLasLocalidades();
     }
 
 
@@ -151,20 +177,22 @@ public class ServicioPublicacionTest {
     private void whenFinalizoLaPublicacion(Long id) {
         servicioPublicacion.finalizarPublicacion(id);
     }
+
     private Publicacion whenObtengoPublicacionPor(Long id) {
         return servicioPublicacion.buscarPublicacion(id);
     }
 
     private List<Publicacion> whenObtengoPublicaciones() throws Exception {
-        return  servicioPublicacion.listarTodasLasPublicacionesPerdidas();
+        return servicioPublicacion.listarTodasLasPublicacionesPerdidas();
     }
 
     private Publicacion whenRegistroPublicacionCon() throws Exception {
-        return servicioPublicacion.registrarPublicacion(MASCOTA, USUARIO) ;
+        return servicioPublicacion.registrarPublicacion(MASCOTA, USUARIO);
     }
+
     private void thenEncuentroUnaPublicacion(Publicacion publicacion) {
         assertThat(publicacion).isNotNull();
-        verify(repositorioPublicacion,times(1)).buscarPublicacionPorId(10L);
+        verify(repositorioPublicacion, times(1)).buscarPublicacionPorId(10L);
     }
 
     private void thenExistenPublicaciones(List<Publicacion> publicaciones) {
@@ -176,7 +204,7 @@ public class ServicioPublicacionTest {
     }
 
     private void thenFinalizoLaPublicacionCorrectamente() {
-        verify(repositorioPublicacion,times(1)).finalizarPublicacion(PUBLICACION);
+        verify(repositorioPublicacion, times(1)).finalizarPublicacion(PUBLICACION);
     }
 
 }

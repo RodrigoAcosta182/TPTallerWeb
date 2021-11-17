@@ -1,9 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
-import ar.edu.unlam.tallerweb1.modelo.Localidad;
-import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.Tipo;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,6 +92,12 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         return (Tipo) sessionFactory.getCurrentSession().createCriteria(Tipo.class)
                 .add(Restrictions.eq("id",id))
                 .uniqueResult();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Estado> obtenerTodosLosEstadosDeMascota() {
+        return sessionFactory.getCurrentSession().createCriteria(Estado.class).list();
     }
 }
 
