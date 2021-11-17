@@ -23,7 +23,7 @@
 
         <a class="w3-bar-item w3-button w3-hide-small" style="float:right" href="#about">Cerrar Sesion</a>
         <a class="w3-bar-item w3-button w3-hide-small" style="float:right" href="ir-a-mis-publicaciones">Mis Publicaciones</a>
-        <a class="w3-bar-item w3-button w3-hide-small" style="float:right" href="ir-a-mis-publicaciones">Bienvenido ${usuario.nombre}</a>
+        <a class="w3-bar-item w3-button w3-hide-small" style="float:right" href="ir-a-mis-publicaciones">Bienvenido</a>
 
         </a>
     </div>

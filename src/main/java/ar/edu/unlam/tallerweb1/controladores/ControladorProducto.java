@@ -1,12 +1,11 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import ar.edu.unlam.tallerweb1.modelo.Producto;
-import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.servicios.ServicioProducto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +33,7 @@ public class ControladorProducto {
         List<Producto> productos = new ArrayList<>();
         try {
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+            model.put("usuario", usuario);
             productos = servicioProducto.listarTodosLosProductos();
         } catch (Exception e) {
             model.put("productoError", "No hay productos");
@@ -41,6 +41,14 @@ public class ControladorProducto {
         }
         model.put("productos", productos);
         return new ModelAndView("Productos", model);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/ir-a-registrar-producto")
+    public ModelAndView irAVistaDeRegistroDeProductos() {
+        ModelMap model = new ModelMap();
+        DatosRegistroProducto datosProducto = new DatosRegistroProducto();
+        model.put("producto", datosProducto);
+        return new ModelAndView("form-registro-producto", model);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/canjear-producto")
