@@ -31,4 +31,6 @@ public interface ServicioPublicacion {
     List<Tipo> getTiposDeMascota();
 
     Tipo obtenerTipoDeMascotaPorId(long id);
+
+
 }
