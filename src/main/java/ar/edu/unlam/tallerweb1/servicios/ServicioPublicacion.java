@@ -1,10 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
-import ar.edu.unlam.tallerweb1.modelo.Localidad;
-import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.Tipo;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.*;
 
 import java.util.List;
 
@@ -31,4 +28,6 @@ public interface ServicioPublicacion {
     List<Tipo> getTiposDeMascota();
 
     Tipo obtenerTipoDeMascotaPorId(long id);
+
+    List<Estado> getEstadosDeMascota();
 }

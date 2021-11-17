@@ -87,6 +87,11 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     }
 
     @Override
+    public List<Estado> getEstadosDeMascota() {
+        return repositorioPublicacion.obtenerTodosLosEstadosDeMascota();
+    }
+
+    @Override
     public List<Publicacion> listarTodasLasPublicacionesPerdidas() throws Exception {
 
         if (repositorioPublicacion.buscarTodasLasPublicacionesPerdidas().size() == 0)

@@ -94,6 +94,23 @@ public class ControladorPublicacionTest {
         thenEncuentroTiposDeMascota(mav);
     }
 
+    @Test
+    public void obtengoEstadosEnLaPaginaDeRegistroDeMascota(){
+        givenExistenEstadosDeMascota();
+        ModelAndView mav = whenIrAlSitioRegistrarPublicacion();
+        thenEncuentroEstadosDeMascota(mav);
+    }
+
+    private void thenEncuentroEstadosDeMascota(ModelAndView mav) {
+        assertThat(mav.getModel().get("estadosMascota")).isNotNull();
+    }
+
+    private void givenExistenEstadosDeMascota() {
+        List<Estado> estados = new ArrayList<>();
+        estados.add(new Estado());
+        when(servicioPublicacion.getEstadosDeMascota()).thenReturn(estados);
+    }
+
     private void thenEncuentroTiposDeMascota(ModelAndView mav) {
         assertThat(mav.getModel().get("tiposDeMascota")).isNotNull();
     }

@@ -1,10 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
-import ar.edu.unlam.tallerweb1.modelo.Localidad;
-import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.Tipo;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.*;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -132,6 +129,33 @@ public class RepositorioPublicacionTest extends SpringTest {
         givenQueExistenTiposDeMascota(tiposDeMascota);
         List<Tipo> tiposDeMascotaObtenidos = whenObtengoTodosLosTiposDeMascota();
         thenEncuentroTiposDeMascota(tiposDeMascota.size(),tiposDeMascotaObtenidos);
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void obtengoTodosLosEstadosDeMascota(){
+        List<Estado> estados = new ArrayList<>();
+        estados.add(new Estado());
+        estados.add(new Estado());
+
+        givenQueExistenEstadosDeMascota(estados);
+        List<Estado> estadosObtenidos = whenObtengoTodosLosEstadosDeMascota();
+        thenEncuentroEstadosDeMascota(estadosObtenidos.size(), estadosObtenidos);
+    }
+
+    private void thenEncuentroEstadosDeMascota(int cantidadEsperada, List<Estado> estadosObtenidos) {
+        assertThat(estadosObtenidos).hasSize(cantidadEsperada);
+    }
+
+    private List<Estado> whenObtengoTodosLosEstadosDeMascota() {
+        return repositorioPublicacion.obtenerTodosLosEstadosDeMascota();
+    }
+
+    private void givenQueExistenEstadosDeMascota(List<Estado> estados) {
+        for(Estado estadosDeMascota : estados){
+            session().save(estadosDeMascota);
+        }
     }
 
     private void thenEncuentroTiposDeMascota(int cantidadEsperada, List<Tipo> tiposDeMascotaObtenidos) {
