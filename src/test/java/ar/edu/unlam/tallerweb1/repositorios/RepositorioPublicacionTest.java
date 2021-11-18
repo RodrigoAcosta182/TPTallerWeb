@@ -92,7 +92,6 @@ public class RepositorioPublicacionTest extends SpringTest {
         givenExistenMisPublicaciones(listaPublicaciones);
         whenFinalizoUnaPublicacion(PUBLICACION);
         thenFinalizoPublicacion(1L,true);
-
     }
 
     @Test

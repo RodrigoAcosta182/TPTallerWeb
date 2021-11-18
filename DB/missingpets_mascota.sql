@@ -33,15 +33,18 @@ CREATE TABLE `mascota` (
   `color` varchar(90) DEFAULT NULL,
   `tamanio` varchar(90) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
-  `estado` int DEFAULT NULL,
   `imagen` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `tipo_id` bigint DEFAULT NULL,
+  `estado_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKbqvtbhflbdlclgnnrrb08tth` (`tipo_id`),
+  KEY `FKfxpnmoqu6mh0as8sxp3knvxkf` (`estado_id`),
   CONSTRAINT `FKbqvtbhflbdlclgnnrrb08tth` FOREIGN KEY (`tipo_id`) REFERENCES `tipo` (`id`),
+  CONSTRAINT `FKfxpnmoqu6mh0as8sxp3knvxkf` FOREIGN KEY (`estado_id`) REFERENCES `estado` (`id`),
+  CONSTRAINT `mascota_estado_id_fk` FOREIGN KEY (`estado_id`) REFERENCES `estado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `mascota_tipo_id_fk` FOREIGN KEY (`tipo_id`) REFERENCES `tipo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +53,7 @@ CREATE TABLE `mascota` (
 
 LOCK TABLES `mascota` WRITE;
 /*!40000 ALTER TABLE `mascota` DISABLE KEYS */;
-INSERT INTO `mascota` VALUES (60,'Cormier','3','American Bully','gordo y petizo','marron','mediano',NULL,2,'img/Cormier 5.jpeg',NULL,NULL),(61,'tu vieja','tu vieja','tu vieja','tu vieja','tu vieja','tu vieja',NULL,1,'img/rex.jpeg',NULL,NULL),(62,'Hellboy','30 años','American Bully','gordo y abortero','trichoco','mediano',NULL,1,'img/american-bully-dog-vector-illustration-white-background-bullie-breed-can-be-used-as-logo-kennel-tattoo-etc-156378364.jpg',NULL,NULL),(63,'Cormier','1 año','American Bully','Marron y petzo','Marron','Mediano',NULL,2,'img/Cormier 7.jpeg',NULL,NULL),(64,'Fatiga','7','Callejero','Perezoso','Marron','Normal',NULL,1,'img/2fatiga.jpg',NULL,NULL),(65,'Fatiga2','8','Callejero','Perezoso','marron','Normal',NULL,1,'img/7fatiga-argento.jpg',NULL,NULL),(66,'Fatiga3','8','Callejero','Perezoso','marron','Normal',NULL,1,'img/9fatiga 3.jpeg',NULL,NULL),(67,'Fatiga','8','Callejero','Perezoso','marron','Normal',NULL,1,'img/1fatiga-argento.jpg',NULL,NULL),(68,'Charly','7','Caniche','Petiso','blanco','chico',NULL,1,'img/5caniche.jpg',NULL,NULL),(71,'Riki','7','Dalmata','Sin detalles','Blanco','chico',NULL,1,'img/3dalmata-t.jpg',NULL,NULL),(72,'Carucha','8','Callejero','Sin detalles','marron','chico',NULL,1,'img/3dalmata2.jpg',NULL,NULL),(73,'Morita','4','Salchicha','Larga y Petiza','Marron','chico',NULL,1,'img/2salchi.jpg',NULL,NULL),(74,'Buddy','7','Golden','SuperStar','Amarillo','Normal',NULL,1,'img/9buddy.png',NULL,NULL),(75,'Pluto','7','Animado','Amigo del Pato Donald','marron','Normal',NULL,1,'img/Pluto.png',NULL,1);
+INSERT INTO `mascota` VALUES (60,'Cormier','3','American Bully','gordo y petizo','marron','mediano',NULL,'img/Cormier 5.jpeg',NULL,NULL,2),(61,'tu vieja','tu vieja','tu vieja','tu vieja','tu vieja','tu vieja',NULL,'img/rex.jpeg',NULL,NULL,2),(62,'Hellboy','30 años','American Bully','gordo y abortero','trichoco','mediano',NULL,'img/american-bully-dog-vector-illustration-white-background-bullie-breed-can-be-used-as-logo-kennel-tattoo-etc-156378364.jpg',NULL,NULL,2),(63,'Cormier','1 año','American Bully','Marron y petzo','Marron','Mediano',NULL,'img/Cormier 7.jpeg',NULL,NULL,2),(64,'Fatiga','7','Callejero','Perezoso','Marron','Normal',NULL,'img/2fatiga.jpg',NULL,NULL,1),(65,'Fatiga2','8','Callejero','Perezoso','marron','Normal',NULL,'img/7fatiga-argento.jpg',NULL,NULL,2),(66,'Fatiga3','8','Callejero','Perezoso','marron','Normal',NULL,'img/9fatiga 3.jpeg',NULL,NULL,1),(67,'Fatiga','8','Callejero','Perezoso','marron','Normal',NULL,'img/1fatiga-argento.jpg',NULL,NULL,2),(68,'Charly','7','Caniche','Petiso','blanco','chico',NULL,'img/5caniche.jpg',NULL,NULL,2),(71,'Riki','7','Dalmata','Sin detalles','Blanco','chico',NULL,'img/3dalmata-t.jpg',NULL,NULL,2),(72,'Carucha','8','Callejero','Sin detalles','marron','chico',NULL,'img/3dalmata2.jpg',NULL,NULL,2),(73,'Morita','4','Salchicha','Larga y Petiza','Marron','chico',NULL,'img/2salchi.jpg',NULL,NULL,2),(74,'Buddy','7','Golden','SuperStar','Amarillo','Normal',NULL,'img/9buddy.png',NULL,NULL,1),(75,'Pluto','7','Animado','Amigo del Pato Donald','marron','Normal',NULL,'img/Pluto.png',NULL,1,1),(76,'Pluto','7','Animado','Amigo del Pato Donald','marron','Normal',NULL,'img/Pluto.png',NULL,1,1),(77,'Gato ','7','con Botas','Amigo de Shrek','Naranja','chico',NULL,'img/gato con botas.jpg',NULL,1,1),(78,'Gato ','7','con Botas','Amigo de Shrek','Naranja','chico',NULL,'img/gato con botas.jpg',NULL,2,1),(79,'Scooby Doo','7','No se','Amigo de Shaggy','marron','Grande',NULL,'img/scooby.jpg',NULL,1,1);
 /*!40000 ALTER TABLE `mascota` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -63,4 +66,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-14 15:47:04
+-- Dump completed on 2021-11-18  0:27:23
