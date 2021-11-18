@@ -36,7 +36,7 @@
             <div>
                 <form action=""></form>
                 <br>
-                <a class="w3-btn w3-green" style="width: 100%;" type="submit">Modificar</a>
+                <a class="w3-btn w3-green" style="width: 100%;" href="/missingpets/ir-al-sitio-modificar-mascota?id=${publicacion.id}">Modificar</a>
                 <br>
                 <a class="w3-btn w3-red" style="width: 100%; margin-top: 10px" type="submit" href="/missingpets/finalizar-publicacion?id=${publicacion.id}">Finalizar</a>
             </div>

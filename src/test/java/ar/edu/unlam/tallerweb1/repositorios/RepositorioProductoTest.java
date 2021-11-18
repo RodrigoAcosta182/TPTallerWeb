@@ -58,21 +58,19 @@ public class RepositorioProductoTest extends SpringTest {
         listaProducto.add(new Producto());
         givenExistenProductos(listaProducto, STOCK_DISPONIBLE);
         whenCanjeoUnProducto(PRODUCTO);
-        thenCanjeoProducto(1L,true);
+        thenCanjeoProducto(1L);
 
     }
 
     private void givenExisteProductoConId(Long id, List<Producto> listaProductos) {
         for(Producto producto : listaProductos){
             producto.setId(id);
-            producto.setHayStock(STOCK_DISPONIBLE);
             session().save(producto);
         }
     }
 
     private void givenExistenProductos(List<Producto> listaProductos, Boolean stockDisponible) {
         for (Producto producto : listaProductos) {
-            producto.setHayStock(stockDisponible);
             session().save(producto);
         }
     }
@@ -97,9 +95,8 @@ public class RepositorioProductoTest extends SpringTest {
         assertThat(producto.getClass()).isEqualTo(Producto.class);
     }
 
-    private void thenCanjeoProducto(Long id, Boolean hayStock) {
+    private void thenCanjeoProducto(Long id) {
         Producto producto =  repositorioProducto.buscarProductoPorId(id);
-        assertThat(producto.getHayStock()).isEqualTo(hayStock);
     }
 
 }

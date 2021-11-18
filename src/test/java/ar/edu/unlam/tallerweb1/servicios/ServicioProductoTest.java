@@ -17,7 +17,7 @@ import static org.mockito.Mockito.times;
 
 public class ServicioProductoTest {
 
-    private static final Producto PRODUCTO = new Producto("Cucha para Perro", 30, 6, "img/hellboy.jpg", true);
+    private static final Producto PRODUCTO = new Producto("Cucha para Perro", 30, 6, "img/hellboy.jpg");
     private static final DatosRegistroProducto DATOS_PRODUCTO = new DatosRegistroProducto("Cucha para Perro", 30, 6, mock(MultipartFile.class));
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123", 500);
 

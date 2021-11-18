@@ -147,6 +147,40 @@ public class ControladorPublicacion {
         model.put("datosCorreo", datosCorreo);
         return new ModelAndView("ver-publicacion", model);
     }
+//
+    @RequestMapping(method = RequestMethod.GET, path = "/modificarregistroMascota")
+    public ModelAndView modificarRegistroPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota , @RequestParam("id") Long id, HttpServletRequest request)  throws Exception {
+        ModelMap model = new ModelMap();
+        Publicacion publicacion;
+        try {
+            validarRegistrarPublicacion(mascota, request);
+            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+//            publicacion = servicioPublicacion.modificarPublicacion(id);
+//            model.put("publicacion", publicacion);
+        } catch (Exception e) {
+            List<Localidad> localidades =  servicioPublicacion.getLocalidades();
+            List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
+            model.put("localidades",localidades);
+            model.put("tiposDeMascota",tiposDeMascota);
+            model.put("error", e.getMessage());
+            return new ModelAndView("form-modificar-registro-mascota", model);
+        }
+        model.put("msg", "Mascota Registrada Exitosamente");
+        return new ModelAndView("home", model);
+    }
+//
+    @RequestMapping(method = RequestMethod.GET, path = "/ir-al-sitio-modificar-mascota")
+    public ModelAndView irAlSitioModificarPublicacion(@RequestParam("id") Long id) {
+        ModelMap model = new ModelMap();
+        Publicacion publicacion;
+        try {
+            publicacion = servicioPublicacion.buscarPublicacion(id);
+            model.put("publicacion", publicacion);
+        }catch (Exception e){
+            model.put("msjError","Error al encontrar publicacion");
+        }
+        return new ModelAndView("form-modificar-registro-mascota", model);
+    }
 
     public void validarRegistrarPublicacion(DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
         if (mascota.getTipo() == null){

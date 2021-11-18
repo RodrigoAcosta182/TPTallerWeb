@@ -87,6 +87,8 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         return repositorioPublicacion.obtenerTipoDeMascotaPorId(id);
     }
 
+
+
     @Override
     public List<Estado> getEstadosDeMascota() {
         return repositorioPublicacion.obtenerTodosLosEstadosDeMascota();

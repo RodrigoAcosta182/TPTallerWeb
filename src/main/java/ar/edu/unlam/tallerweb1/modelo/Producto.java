@@ -12,23 +12,20 @@ public class Producto {
     private Integer puntos;
     private Integer cantidad;
     private String imgproducto;
-    private Boolean hayStock;
 
-    public Producto(String descripcion, Integer puntos, Integer cantidad, String imgproducto, Boolean hayStock) {
+    public Producto(String descripcion, Integer puntos, Integer cantidad, String imgproducto) {
         this.descripcion = descripcion;
         this.puntos = puntos;
         this.cantidad = cantidad;
         this.imgproducto = imgproducto;
-        this.hayStock = hayStock;
     }
 
-    public Producto(Long id, String descripcion, Integer puntos, Integer cantidad, String imgproducto, Boolean hayStock) {
+    public Producto(Long id, String descripcion, Integer puntos, Integer cantidad, String imgproducto) {
         this.id = id;
         this.descripcion = descripcion;
         this.puntos = puntos;
         this.cantidad = cantidad;
         this.imgproducto = imgproducto;
-        this.hayStock = hayStock;
     }
 
     public Producto() {
@@ -73,13 +70,5 @@ public class Producto {
 
     public void setImgproducto(String imgproducto) {
         this.imgproducto = imgproducto;
-    }
-
-    public Boolean getHayStock() {
-        return hayStock;
-    }
-
-    public void setHayStock(Boolean hayStock) {
-        this.hayStock = hayStock;
     }
 }
