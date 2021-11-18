@@ -31,4 +31,6 @@ public interface ServicioPublicacion {
 
     List<Estado> getEstadosDeMascota();
 
+    Estado obtenerEstadoDeMascotaPorId(long id);
+
 }

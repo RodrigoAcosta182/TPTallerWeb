@@ -50,10 +50,17 @@
                     <div class="w3-row flex-center">
                         <div class="w3-col l5">
                             <label style="float: left">Estado</label>
-                            <form:select path="estado" cssClass="w3-select">
+<%--                            <form:select path="estado" cssClass="w3-select">--%>
+<%--                                <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>--%>
+<%--                                <form:option value="1">Perdido</form:option>--%>
+<%--                                <form:option value="2">Encontrado</form:option>--%>
+<%--                            </form:select>--%>
+                            <form:select path="estado.id"
+                                         id="estado.id" cssClass="w3-select">
                                 <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
-                                <form:option value="1">Perdido</form:option>
-                                <form:option value="2">Encontrado</form:option>
+                                <form:options items="${estadosMascota}"
+                                              itemValue="id"
+                                              itemLabel="descripcion"/>
                             </form:select>
                         </div>
                         <div class="w3-col l5">

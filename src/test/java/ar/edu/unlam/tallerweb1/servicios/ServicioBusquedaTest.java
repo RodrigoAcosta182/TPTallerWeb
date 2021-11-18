@@ -1,10 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
-import ar.edu.unlam.tallerweb1.modelo.Localidad;
-import ar.edu.unlam.tallerweb1.modelo.Mascota;
-import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.Tipo;
+import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioBusqueda;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 import org.junit.Test;
@@ -24,7 +21,7 @@ public class ServicioBusquedaTest {
     private ServicioBusqueda servicioBusqueda = new ServicioBusquedaImpl(repositorioBusqueda);
     private static final Publicacion PUBLICACION = new Publicacion(new Mascota(), new Localidad("Moron"));
     private static final DatosRegistroMascota MASCOTACOMPLETA = new DatosRegistroMascota
-            ("1", new Tipo(), PUBLICACION, "Pekines", "Blanco");
+            (new Estado(), new Tipo(), PUBLICACION, "Pekines", "Blanco");
 
     @Test
     public void obtengoTodasLasLocalidades() {

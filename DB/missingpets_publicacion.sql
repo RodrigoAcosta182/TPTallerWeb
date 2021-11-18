@@ -30,7 +30,6 @@ CREATE TABLE `publicacion` (
   `fechaPublicacion` date DEFAULT NULL,
   `usuario_id` bigint DEFAULT NULL,
   `mascota_id` bigint DEFAULT NULL,
-  `estado` varchar(255) DEFAULT NULL,
   `localidad_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKsmafswujolnyojwb2rq31ax48` (`mascota_id`),
@@ -42,7 +41,7 @@ CREATE TABLE `publicacion` (
   CONSTRAINT `publicacion_localidad_id_fk` FOREIGN KEY (`localidad_id`) REFERENCES `localidad` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `publicacion_mascota_id_fk` FOREIGN KEY (`mascota_id`) REFERENCES `mascota` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `publicacion_usuario_id_fk` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +50,7 @@ CREATE TABLE `publicacion` (
 
 LOCK TABLES `publicacion` WRITE;
 /*!40000 ALTER TABLE `publicacion` DISABLE KEYS */;
-INSERT INTO `publicacion` VALUES (22,1,'2021-10-25',1,60,'2',1),(23,1,'2021-10-25',1,61,'1',1),(24,1,'2021-10-27',1,62,'1',2),(25,0,'2021-10-27',1,63,'2',3),(26,0,'2021-11-10',1,64,'1',NULL),(27,0,'2021-11-10',1,65,'1',NULL),(28,0,'2021-11-11',1,66,'1',NULL),(29,0,'2021-11-11',1,67,'1',NULL),(30,0,'2021-11-11',1,68,'1',NULL),(33,0,'2021-11-11',1,71,'1',7),(34,0,'2021-11-11',1,72,'1',NULL),(35,0,'2021-11-11',1,73,'1',3),(36,0,'2021-11-11',1,74,'1',1),(37,0,'2021-11-14',1,75,'1',4);
+INSERT INTO `publicacion` VALUES (22,1,'2021-10-25',1,60,1),(23,1,'2021-10-25',1,61,1),(24,1,'2021-10-27',1,62,2),(25,0,'2021-10-27',1,63,3),(26,0,'2021-11-10',1,64,NULL),(27,0,'2021-11-10',1,65,NULL),(28,0,'2021-11-11',1,66,NULL),(29,0,'2021-11-11',1,67,NULL),(30,0,'2021-11-11',1,68,NULL),(33,0,'2021-11-11',1,71,7),(34,0,'2021-11-11',1,72,NULL),(35,0,'2021-11-11',1,73,3),(36,0,'2021-11-11',1,74,1),(37,0,'2021-11-14',1,75,4),(38,0,'2021-11-17',1,76,1),(39,0,'2021-11-18',1,77,3),(40,0,'2021-11-18',1,78,6),(41,0,'2021-11-18',1,79,6);
 /*!40000 ALTER TABLE `publicacion` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -64,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-14 15:47:04
+-- Dump completed on 2021-11-18  0:27:23

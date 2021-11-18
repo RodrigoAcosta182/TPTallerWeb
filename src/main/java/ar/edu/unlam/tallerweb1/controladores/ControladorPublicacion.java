@@ -34,9 +34,11 @@ public class ControladorPublicacion {
         } catch (Exception e) {
             List<Localidad> localidades =  servicioPublicacion.getLocalidades();
             List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
+            List<Estado> estadosMascota = servicioPublicacion.getEstadosDeMascota();
             model.put("localidades",localidades);
             model.put("tiposDeMascota",tiposDeMascota);
             model.put("error", e.getMessage());
+            model.put("estadosMascota",estadosMascota);
             return new ModelAndView("form-registro-mascota", model);
         }
         model.put("msg", "Mascota Registrada Exitosamente");
@@ -183,11 +185,12 @@ public class ControladorPublicacion {
     public void validarRegistrarPublicacion(DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
         if (mascota.getTipo() == null){
             throw new Exception("El campo Tipo es obligatorio");
-        }else if (mascota.getEstado() == null){
+        }else if (mascota.getEstado().getId() == null){
             throw new Exception("El campo Estado es obligatorio");
         }else if (mascota.getImagen().isEmpty()){
             throw new Exception("El campo Imagen es obligatorio");
         }
-    }
+    } // el estado esta viniendo null desde el front
+
 
 }

@@ -12,7 +12,6 @@ public class Mascota {
     private Long id;
 
     private String nombre;
-    private String estado;
     private String edad;
     private String raza;
     private String detalle;
@@ -26,6 +25,11 @@ public class Mascota {
     @ManyToOne
     @JoinColumn(name = "tipo_id")
     private Tipo tipo;
+
+    @ManyToOne
+    @JoinColumn(name = "estado_id")
+    private Estado estado;
+
 
     public Mascota() {}
 
@@ -102,11 +106,11 @@ public class Mascota {
         this.fecha = fecha;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 

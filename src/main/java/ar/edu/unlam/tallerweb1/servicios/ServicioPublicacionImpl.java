@@ -33,16 +33,17 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         Publicacion nuevaPublicacion = new Publicacion();
         Mascota nuevaMascota = mascota.toMascota();
         Tipo tipoMascota = this.obtenerTipoDeMascotaPorId(mascota.getTipo().getId());
+        Estado estadoMascota = this.obtenerEstadoDeMascotaPorId(mascota.getEstado().getId());
+        Localidad localidad = this.getLocalidadPorDescripcion(mascota.getPublicacion().getLocalidad().getDescripcion());
         String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
         nuevaMascota.setImagen(nombreConRuta);
-        Localidad localidad = this.getLocalidadPorDescripcion(mascota.getPublicacion().getLocalidad().getDescripcion());
         String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
         mascota.getImagen().transferTo(new File(filename));
         nuevaMascota.setTipo(tipoMascota);
+        nuevaMascota.setEstado(estadoMascota);
         nuevaPublicacion.setFechaPublicacion(new Date());
         nuevaPublicacion.setUsuario(usuario);
         nuevaPublicacion.setMascota(nuevaMascota);
-        nuevaPublicacion.setEstado(mascota.getEstado());
         nuevaPublicacion.setLocalidad(localidad);
 
         repositorioPublicacion.guardarPublicacion(nuevaPublicacion);
@@ -91,6 +92,11 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     @Override
     public List<Estado> getEstadosDeMascota() {
         return repositorioPublicacion.obtenerTodosLosEstadosDeMascota();
+    }
+
+    @Override
+    public Estado obtenerEstadoDeMascotaPorId(long id) {
+        return repositorioPublicacion.obtenerEstadoDeMascotaPorId(id);
     }
 
     @Override

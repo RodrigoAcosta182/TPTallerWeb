@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
 
 public class ControladorPublicacionTest {
 
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo", new Tipo(), "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), mock(MultipartFile.class), "nashe");
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo", new Tipo(), new Estado(1L,"Perdido"), "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), mock(MultipartFile.class), "nashe");
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123");
 
     private HttpServletRequest REQUEST = mock(HttpServletRequest.class);
@@ -44,7 +44,7 @@ public class ControladorPublicacionTest {
     @Test
     public void registroPublicacionExitoso() throws Exception {
         ModelAndView mav = whenRegistroLaPublicacion(MASCOTA, REQUEST);
-        thenElRegistroDePublicacionEsExitoso(mav);
+       thenElRegistroDePublicacionEsExitoso(mav);
     }
 
     @Test
