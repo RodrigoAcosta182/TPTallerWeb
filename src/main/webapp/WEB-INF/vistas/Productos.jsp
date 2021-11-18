@@ -5,6 +5,10 @@
 <title>Mis Publicaciones</title>
 <%@ include file="partial/header.jsp" %>
 
+<c:if test="${usuario.rol == 'admin'}">
+    <a class="w3-btn w3-blue" style="margin-top: 80px; margin-left: 44%" type="submit" href="ir-a-registrar-producto">Subir nuevo Producto</a>
+</c:if>
+
 <div class="container-publicaciones noselect">
 
     <c:forEach items="${productos}" var="productos" varStatus="status" step="1" begin="0">
@@ -48,9 +52,6 @@
         </div>
     </c:if>
 </div>
-<c:if test="${usuario.rol == 'admin'}">
-    <a class="w3-btn w3-blue" style="margin-bottom: 40px; margin-left: 44%" type="submit" href="ir-a-registrar-producto">Subir nuevo Producto</a>
-</c:if>
 
 </body>
 </html>
