@@ -44,45 +44,45 @@
                 <%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
                 <%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
                 <%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto--%>
-                <form:form cssClass="w3-container" action="modificarregistroMascota" method="POST" modelAttribute="datosMascota"
-                           enctype="multipart/form-data">
+<%--                <form:form cssClass="w3-container" action="modificarregistroMascota" method="POST" modelAttribute="datosMascota"--%>
+<%--                           enctype="multipart/form-data">--%>
                     <%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
-                    <div class="w3-row flex-center">
-                        <div class="w3-col l5">
-                            <label style="float: left">Estado</label>
-                            <form:select path="estado" cssClass="w3-select">
-                                <form:option value="" disabled="true" selected="selected">${datosMascota.estado}</form:option>
-                                <form:option value="1">Perdido</form:option>
-                                <form:option value="2">Encontrado</form:option>
-                            </form:select>
-                        </div>
-                        <div class="w3-col l5">
-                            <label style="float: left; margin-bottom: 2px">Tipo</label>
-                            <form:select path="tipo.id"
-                                         id="tipo.id" cssClass="w3-select">
-                                <form:option value="${publicacion.mascota.tipo}" disabled="true" selected="selected">-- SELECCIONE --</form:option>
-                                <form:options items="${tiposDeMascota}"
-                                              itemValue="id"
-                                              itemLabel="descripcion"/>
-                            </form:select>
-                        </div>
-                    </div>
-                    <div class="w3-row flex-center">
-                        <div class="w3-col">
-                            <label style="float: left; margin-bottom: 2px">Localidad</label>
-                            <form:select path="publicacion.localidad.descripcion" required="true"
-                                         id="publicacion.localidad.descripcion" cssClass="w3-select">
-                                <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
-                                <form:options items="${localidades}"
-                                              itemValue="descripcion"
-                                              itemLabel="${publicacion.localidad}"/>
-                            </form:select>
-                        </div>
-                    </div>
-                    <div class="w3-row flex-center" style=" margin-top: 6px">
+<%--                    <div class="w3-row flex-center">--%>
+<%--                        <div class="w3-col l5">--%>
+<%--                            <label style="float: left">Estado</label>--%>
+<%--                            <form:select path="estado" cssClass="w3-select">--%>
+<%--                                <form:option value="" disabled="true" selected="selected">${datosMascota.estado}</form:option>--%>
+<%--                                <form:option value="1">Perdido</form:option>--%>
+<%--                                <form:option value="2">Encontrado</form:option>--%>
+<%--                            </form:select>--%>
+<%--                        </div>--%>
+<%--                        <div class="w3-col l5">--%>
+<%--                            <label style="float: left; margin-bottom: 2px">Tipo</label>--%>
+<%--                            <form:select path="tipo.id"--%>
+<%--                                         id="tipo.id" cssClass="w3-select">--%>
+<%--                                <form:option value="${publicacion.mascota.tipo}" disabled="true" selected="selected">-- SELECCIONE --</form:option>--%>
+<%--                                <form:options items="${tiposDeMascota}"--%>
+<%--                                              itemValue="id"--%>
+<%--                                              itemLabel="descripcion"/>--%>
+<%--                            </form:select>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="w3-row flex-center">--%>
+<%--                        <div class="w3-col">--%>
+<%--                            <label style="float: left; margin-bottom: 2px">Localidad</label>--%>
+<%--                            <form:select path="publicacion.localidad.descripcion" required="true"--%>
+<%--                                         id="publicacion.localidad.descripcion" cssClass="w3-select">--%>
+<%--                                <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>--%>
+<%--                                <form:options items="${localidades}"--%>
+<%--                                              itemValue="descripcion"--%>
+<%--                                              itemLabel="${publicacion.localidad}"/>--%>
+<%--                            </form:select>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="w3-row flex-center" style=" margin-top: 6px">--%>
                         <div class="w3-col l5">
                             <label style="float: left">Nombre</label>
-                            <form:input  cssClass="w3-input" path="nombre" type="text" value="${publicacion.mascota.nombre}" id="nombre" />
+                            <form:input value="${publicacion.mascota.nombre}"  cssClass="w3-input" path="publicacion" type="text" id="nombre" />
                         </div>
 <%--                        <div class="w3-col l5">--%>
 <%--                            <label style="float: left">Raza</label>--%>
@@ -131,7 +131,7 @@
 <%--                        <button class="w3-button w3-deep-purple" Type="Submit"/>--%>
 <%--                        Subir datos</button>--%>
 <%--                    </div>--%>
-                </form:form>
+<%--                </form:form>--%>
             </div>
         </div>
     </div>
