@@ -25,4 +25,6 @@ public interface RepositorioPublicacion {
     Tipo obtenerTipoDeMascotaPorId(long id);
 
     List<Estado> obtenerTodosLosEstadosDeMascota();
+
+    Estado obtenerEstadoDeMascotaPorId(long id);
 }

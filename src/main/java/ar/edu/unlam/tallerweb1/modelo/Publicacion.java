@@ -23,7 +23,7 @@ public class Publicacion {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Mascota mascota;
-    private String estado;
+
 
     @OneToOne(cascade = CascadeType.ALL)
     private Localidad localidad;
@@ -33,12 +33,11 @@ public class Publicacion {
 
     }
 
-    public Publicacion( Date fechaPublicacion, Boolean finalizado, Usuario usuario, Mascota mascota, String estado, Localidad localidad) {
+    public Publicacion( Date fechaPublicacion, Boolean finalizado, Usuario usuario, Mascota mascota, Localidad localidad) {
         this.fechaPublicacion = fechaPublicacion;
         this.finalizado = finalizado;
         this.usuario = usuario;
         this.mascota = mascota;
-        this.estado = estado;
         this.localidad = localidad;
     }
 
@@ -87,13 +86,7 @@ public class Publicacion {
         this.usuario = usuario;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 
-    public String getEstado() {
-        return estado;
-    }
 
     public Localidad getLocalidad() {
         return localidad;

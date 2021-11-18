@@ -38,7 +38,9 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     @Override
     public List<Publicacion> buscarTodasLasPublicacionesPerdidas() {
         List<Publicacion> publicaciones = sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
-                .add(Restrictions.eq("estado", "1"))
+                .createAlias("mascota", "m")
+                .createAlias("m.estado","e")
+                .add(Restrictions.eq("e.descripcion", "perdido"))
                 .add(Restrictions.eq("finalizado", false))
                 .list();
         return publicaciones;
@@ -48,7 +50,9 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     @Override
     public List<Publicacion> buscarTodasLasPublicacionesEncontradas() {
         List<Publicacion> publicaciones = sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
-                .add(Restrictions.eq("estado", "2"))
+                .createAlias("mascota", "m")
+                .createAlias("m.estado","e")
+                .add(Restrictions.eq("e.descripcion", "encontrado"))
                 .add(Restrictions.eq("finalizado", false))
                 .list();
         return publicaciones;
@@ -98,6 +102,13 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     @Override
     public List<Estado> obtenerTodosLosEstadosDeMascota() {
         return sessionFactory.getCurrentSession().createCriteria(Estado.class).list();
+    }
+
+    @Override
+    public Estado obtenerEstadoDeMascotaPorId(long id) {
+        return (Estado) sessionFactory.getCurrentSession().createCriteria(Estado.class)
+                .add(Restrictions.eq("id",id))
+                .uniqueResult();
     }
 }
 

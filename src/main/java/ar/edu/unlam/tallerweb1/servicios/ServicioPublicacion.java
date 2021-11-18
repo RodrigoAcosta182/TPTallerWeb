@@ -30,4 +30,6 @@ public interface ServicioPublicacion {
     Tipo obtenerTipoDeMascotaPorId(long id);
 
     List<Estado> getEstadosDeMascota();
+
+    Estado obtenerEstadoDeMascotaPorId(long id);
 }

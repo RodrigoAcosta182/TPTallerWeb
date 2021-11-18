@@ -22,7 +22,7 @@ public class ServicioPublicacionTest {
     private static final Long ID = 22L;
     private static final Publicacion PUBLICACION = new Publicacion(new Mascota(), new Localidad("Moron"));
     private static final Tipo TIPOMASCOTA = new Tipo(1L, "Perro");
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo", TIPOMASCOTA, "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), PUBLICACION, mock(MultipartFile.class), "nashe");
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo", TIPOMASCOTA, new Estado(1L,"Perdido"), "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), PUBLICACION, mock(MultipartFile.class), "nashe");
 
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123");
 
@@ -88,6 +88,27 @@ public class ServicioPublicacionTest {
         givenQueExistenTiposDeMascotaConId();
         Tipo tipoDeMascotaObtenido = whenObtengoTipoDeMascotaPorId(1L);
         thenEncuentroTipoDeMascotaPorId(tipoDeMascotaObtenido);
+    }
+
+    @Test
+    public void obtengoEstadoDeMascotaPorId(){
+        givenQueExistenEstadosDeMascotaConId();
+        Estado tipoDeEstadoObtenido = whenObtengoEstadoDeMascotaPorId(1L);
+        thenEncuentroEstadoDeMascotaPorId(tipoDeEstadoObtenido);
+    }
+
+    private void thenEncuentroEstadoDeMascotaPorId(Estado tipoDeEstadoObtenido) {
+        assertThat(tipoDeEstadoObtenido).isNotNull();
+        verify(repositorioPublicacion, times(1)).obtenerEstadoDeMascotaPorId(1L);
+    }
+
+    private Estado whenObtengoEstadoDeMascotaPorId(long id) {
+        return servicioPublicacion.obtenerEstadoDeMascotaPorId(id);
+    }
+
+    private void givenQueExistenEstadosDeMascotaConId() {
+        Estado estadoDeMascota = new Estado(1L,"Perdido");
+        when(repositorioPublicacion.obtenerEstadoDeMascotaPorId(1L)).thenReturn(estadoDeMascota);
     }
 
     private void thenEncuentroEstadosDeMascota(List<Estado> estados) {
