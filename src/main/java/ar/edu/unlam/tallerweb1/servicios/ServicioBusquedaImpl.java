@@ -1,9 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
-import ar.edu.unlam.tallerweb1.modelo.Localidad;
-import ar.edu.unlam.tallerweb1.modelo.Mascota;
-import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioBusqueda;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +38,15 @@ public class ServicioBusquedaImpl implements ServicioBusqueda {
     @Override
     public List<Localidad> getLocalidades() {
         return repositorioBusqueda.obtenerTodasLasLocalidades();
+    }
+
+    @Override
+    public List<Tipo> getTiposDeMascota() {
+        return repositorioBusqueda.obtenerTodosLosTiposDeMascota();
+    }
+
+    @Override
+    public List<Estado> getEstadosDeMascota() {
+        return repositorioBusqueda.obtenerTodosLosEstadosDeMascota();
     }
 }

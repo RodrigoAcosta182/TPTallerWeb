@@ -1,7 +1,9 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.modelo.Estado;
 import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.Tipo;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -41,6 +43,18 @@ public class RepositorioBusquedaImpl implements RepositorioBusqueda {
             criteria.add(Restrictions.like("m.raza", "%" + publicacion.getMascota().getRaza() + "%"));
         }
         return criteria.list();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Tipo> obtenerTodosLosTiposDeMascota() {
+        return sessionFactory.getCurrentSession().createCriteria(Tipo.class).list() ;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Estado> obtenerTodosLosEstadosDeMascota() {
+        return sessionFactory.getCurrentSession().createCriteria(Estado.class).list();
     }
 
 }

@@ -46,6 +46,43 @@ public class ControladorBusquedaTest {
         thenEncuentroLocalidades(mav);
     }
 
+    @Test
+    public void obtengoTiposDeMascotaEnLaPaginaDeBusquedaDeMascota(){
+        givenQueExistenTiposDeMascota();
+        ModelAndView mav = whenIrAVerPaginaDeBusqueda();
+        thenEncuentroTiposDeMascota(mav);
+    }
+
+    @Test
+    public void obtengoEstadosEnLaPaginaDeBusquedaDeMascota(){
+        givenExistenEstadosDeMascota();
+        ModelAndView mav = whenIrAVerPaginaDeBusqueda();
+        thenEncuentroEstadosDeMascota(mav);
+    }
+
+    private void givenExistenEstadosDeMascota() {
+        List<Estado> estados = new ArrayList<>();
+        estados.add(new Estado());
+        when(servicioBusqueda.getEstadosDeMascota()).thenReturn(estados);
+    }
+
+    private void thenEncuentroEstadosDeMascota(ModelAndView mav) {
+        assertThat(mav.getModel().get("estadosMascota")).isNotNull();
+    }
+
+
+    private void givenQueExistenTiposDeMascota() {
+        List<Tipo> tiposDeMascota = new ArrayList<>();
+        tiposDeMascota.add(new Tipo("perro"));
+        when(servicioBusqueda.getTiposDeMascota()).thenReturn(tiposDeMascota);
+    }
+
+    private void thenEncuentroTiposDeMascota(ModelAndView mav) {
+        assertThat(mav.getModel().get("tiposDeMascota")).isNotNull();
+    }
+
+
+
     private void thenEncuentroLocalidades(ModelAndView mav) {
         assertThat(mav.getModel().get("localidades")).isNotNull();
     }
