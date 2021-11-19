@@ -1,8 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import ar.edu.unlam.tallerweb1.modelo.Localidad;
-import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.servicios.ServicioBusqueda;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,8 +29,12 @@ public class ControladorBusqueda {
         DatosRegistroMascota datos = new DatosRegistroMascota();
         ModelMap model = new ModelMap();
         List<Localidad> localidades = servicioBusqueda.getLocalidades();
+        List<Tipo> tiposDeMascota = servicioBusqueda.getTiposDeMascota();
+        List<Estado> estadosMascota = servicioBusqueda.getEstadosDeMascota();
         model.put("datosMascota", datos);
         model.put("localidades", localidades);
+        model.put("tiposDeMascota", tiposDeMascota);
+        model.put("estadosMascota", estadosMascota);
         return new ModelAndView("buscar-publicacion", model);
     }
 

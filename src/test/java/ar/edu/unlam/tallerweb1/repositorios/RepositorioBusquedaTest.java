@@ -1,9 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
-import ar.edu.unlam.tallerweb1.modelo.Localidad;
-import ar.edu.unlam.tallerweb1.modelo.Mascota;
-import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.*;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -22,6 +20,17 @@ public class RepositorioBusquedaTest extends SpringTest {
     @Autowired
     private RepositorioBusqueda repositorioBusqueda;
 
+
+    @Test
+    @Transactional
+    @Rollback
+    public void buscoPublicacionesDeFormaExitosa(){
+        List<Publicacion> listaPublicaciones = new LinkedList<>();
+        listaPublicaciones.add(PUBLICACION);
+        givenQueExistenPublicaciones(listaPublicaciones);
+        List<Publicacion> publicacionesEncontradas = whenBuscoPublicaciones(PUBLICACION);
+        thenEncuentroPublicaciones(publicacionesEncontradas.size(),listaPublicaciones);
+    }
     @Test
     @Transactional
     @Rollback
@@ -37,12 +46,55 @@ public class RepositorioBusquedaTest extends SpringTest {
     @Test
     @Transactional
     @Rollback
-    public void buscoPublicacionesDeFormaExitosa(){
-        List<Publicacion> listaPublicaciones = new LinkedList<>();
-        listaPublicaciones.add(PUBLICACION);
-        givenQueExistenPublicaciones(listaPublicaciones);
-        List<Publicacion> publicacionesEncontradas = whenBuscoPublicaciones(PUBLICACION);
-        thenEncuentroPublicaciones(publicacionesEncontradas.size(),listaPublicaciones);
+    public void obtengoTodosLosTiposDeMascota() {
+        List<Tipo> tiposDeMascota = new ArrayList<>();
+        tiposDeMascota.add(new Tipo(1L, "Perro"));
+        givenQueExistenTiposDeMascota(tiposDeMascota);
+        List<Tipo> tiposDeMascotaObtenidos = whenObtengoTodosLosTiposDeMascota();
+        thenEncuentroTiposDeMascota(tiposDeMascota.size(), tiposDeMascotaObtenidos);
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void obtengoTodosLosEstadosDeMascota() {
+        List<Estado> estados = new ArrayList<>();
+        estados.add(new Estado());
+        estados.add(new Estado());
+
+        givenQueExistenEstadosDeMascota(estados);
+        List<Estado> estadosObtenidos = whenObtengoTodosLosEstadosDeMascota();
+        thenEncuentroEstadosDeMascota(estadosObtenidos.size(), estadosObtenidos);
+    }
+
+    private void givenQueExistenEstadosDeMascota(List<Estado> estados) {
+        for (Estado estadosDeMascota : estados) {
+            session().save(estadosDeMascota);
+        }
+    }
+
+    private List<Estado> whenObtengoTodosLosEstadosDeMascota() {
+        return repositorioBusqueda.obtenerTodosLosEstadosDeMascota();
+    }
+
+    private void thenEncuentroEstadosDeMascota(int cantidadEsperada, List<Estado> estadosObtenidos) {
+        assertThat(estadosObtenidos).hasSize(cantidadEsperada);
+    }
+
+
+    private void givenQueExistenTiposDeMascota(List<Tipo> tiposDeMascota) {
+
+        for (Tipo tipoDeMascota : tiposDeMascota) {
+            session().save(tipoDeMascota);
+        }
+    }
+
+    private List<Tipo> whenObtengoTodosLosTiposDeMascota() {
+        return repositorioBusqueda.obtenerTodosLosTiposDeMascota();
+    }
+
+    private void thenEncuentroTiposDeMascota(int cantidadEsperada, List<Tipo> tiposDeMascotaObtenidos) {
+        assertThat(tiposDeMascotaObtenidos).hasSize(cantidadEsperada);
     }
 
     private void thenEncuentroPublicaciones(int cantidadEsperada, List<Publicacion> listaPublicaciones) {
