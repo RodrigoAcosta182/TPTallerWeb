@@ -17,6 +17,10 @@ public class Estado {
 
     }
 
+    public Estado(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     public Estado(Long id, String descripcion) {
         this.id = id;
         this.descripcion = descripcion;

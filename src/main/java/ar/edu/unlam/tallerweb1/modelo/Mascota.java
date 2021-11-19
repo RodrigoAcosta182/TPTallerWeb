@@ -33,6 +33,12 @@ public class Mascota {
 
     public Mascota() {}
 
+    public Mascota(String nombre, Tipo tipo, Estado estado) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.estado = estado;
+    }
+
     public Long getId() {
         return id;
     }
