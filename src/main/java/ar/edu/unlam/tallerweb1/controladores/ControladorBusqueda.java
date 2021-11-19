@@ -38,7 +38,6 @@ public class ControladorBusqueda {
         return new ModelAndView("buscar-publicacion", model);
     }
 
-
     @RequestMapping(method = RequestMethod.GET, path = "/buscar-publicaciones")
     public ModelAndView buscarPublicaciones(@ModelAttribute("datosMascota") DatosRegistroMascota mascota){
         ModelMap model = new ModelMap();
