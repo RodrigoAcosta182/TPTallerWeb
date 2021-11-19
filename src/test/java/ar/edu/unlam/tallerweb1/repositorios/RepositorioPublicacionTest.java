@@ -12,7 +12,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -20,8 +19,8 @@ public class RepositorioPublicacionTest extends SpringTest {
 
     private static final Usuario USUARIO = new Usuario();
     private static final Publicacion PUBLICACION = new Publicacion();
-    private static final Estado PERDIDO = new Estado();
-    private static final Estado ENCONTRADO = new Estado();
+    private static final Mascota MASCOTAPERDIDA = new Mascota("Scooby",new Tipo(1L,"Perro"), new Estado(1L,"perdido"));
+    private static final Mascota MASCOTAENCONTRADA = new Mascota("Rintintin",new Tipo(1L,"Perro"), new Estado(1L,"encontrado"));
 
     @Autowired
     private RepositorioPublicacion repositorioPublicacion;
@@ -34,7 +33,7 @@ public class RepositorioPublicacionTest extends SpringTest {
         List<Publicacion> listaPublicaciones = new LinkedList<>();
         listaPublicaciones.add(new Publicacion());
 
-        givenExistePublicacionConId(1L,listaPublicaciones);
+        givenExistePublicacionConId(1L, listaPublicaciones);
         Publicacion publicacion = whenObtengoLaPublicacionPorId(1L);
         thenObtengoPublicacion(publicacion);
     }
@@ -54,63 +53,62 @@ public class RepositorioPublicacionTest extends SpringTest {
         thenEncuentro(misPublicaciones.size(), publicaciones);
     }
 
-//    @Test
-//    @Transactional
-//    @Rollback
-//    public void obtengoTodasLasPublicacionesDeMascotasPerdidas() {
-//        List<Publicacion> listaPublicaciones = new LinkedList<>();
-//        listaPublicaciones.add(new Publicacion());
-//        listaPublicaciones.add(new Publicacion());
-//        listaPublicaciones.add(new Publicacion());
-//
-//        givenExistenPublicacionesDeMascotas(listaPublicaciones, PERDIDO);
-//        List<Publicacion> publicacionesDeMascotasPerdidas = whenObtengoTodasLasPublicacionesDeMascotasPerdidas();
-//        thenEncuentro(listaPublicaciones.size(), publicacionesDeMascotasPerdidas);
-//    }
-//
-//    @Test
-//    @Transactional
-//    @Rollback
-//    public void obtengoTodasLasPublicacionesDeMascotasEncontradas() {
-//        List<Publicacion> listaPublicaciones = new LinkedList<>();
-//        listaPublicaciones.add(new Publicacion());
-//        listaPublicaciones.add(new Publicacion());
-//        listaPublicaciones.add(new Publicacion());
-//        listaPublicaciones.add(new Publicacion());
-//
-//        givenExistenPublicacionesDeMascotas(listaPublicaciones, ENCONTRADO);
-//        List<Publicacion> publicacionesDeMascotasEncontradas = whenObtengoTodasLasPublicacionesDeMascotasEncontradas();
-//        thenEncuentro(listaPublicaciones.size(), publicacionesDeMascotasEncontradas);
-//    }
-
-    @Test(expected = Exception.class)
+    @Test
     @Transactional
     @Rollback
-    public void finalizoPublicacionCorrectamente(){
+    public void obtengoTodasLasPublicacionesDeMascotasPerdidas() {
         List<Publicacion> listaPublicaciones = new LinkedList<>();
         listaPublicaciones.add(new Publicacion());
-        givenExistenMisPublicaciones(listaPublicaciones);
-        whenFinalizoUnaPublicacion(PUBLICACION);
-        thenFinalizoPublicacion(1L,true);
+        listaPublicaciones.add(new Publicacion());
+        listaPublicaciones.add(new Publicacion());
+        givenExistenPublicacionesDeMascotas(listaPublicaciones, MASCOTAPERDIDA);
+        List<Publicacion> publicacionesDeMascotasPerdidas = whenObtengoTodasLasPublicacionesDeMascotasPerdidas();
+        thenEncuentro(listaPublicaciones.size(), publicacionesDeMascotasPerdidas);
     }
 
     @Test
     @Transactional
     @Rollback
-    public void obtengoTodasLasLocalidades(){
+    public void obtengoTodasLasPublicacionesDeMascotasEncontradas() {
+        List<Publicacion> listaPublicaciones = new LinkedList<>();
+        listaPublicaciones.add(new Publicacion());
+        listaPublicaciones.add(new Publicacion());
+        listaPublicaciones.add(new Publicacion());
+        listaPublicaciones.add(new Publicacion());
+
+        givenExistenPublicacionesDeMascotas(listaPublicaciones, MASCOTAENCONTRADA);
+        List<Publicacion> publicacionesDeMascotasEncontradas = whenObtengoTodasLasPublicacionesDeMascotasEncontradas();
+        thenEncuentro(listaPublicaciones.size(), publicacionesDeMascotasEncontradas);
+    }
+
+    @Test(expected = Exception.class)
+    @Transactional
+    @Rollback
+    public void finalizoPublicacionCorrectamente() {
+        List<Publicacion> listaPublicaciones = new LinkedList<>();
+        listaPublicaciones.add(new Publicacion());
+        givenExistenMisPublicaciones(listaPublicaciones);
+        whenFinalizoUnaPublicacion(PUBLICACION);
+        thenFinalizoPublicacion(1L, true);
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void obtengoTodasLasLocalidades() {
         List<Localidad> localidades = new ArrayList<>();
         localidades.add(new Localidad("Mataderos"));
 
         givenExistenLocalidades(localidades);
         List<Localidad> localidadesObtenidas = whenObtengoTodasLasLocalidades();
-        thenObtengoTodasLaslocalidades(localidades.size(),localidadesObtenidas);
+        thenObtengoTodasLaslocalidades(localidades.size(), localidadesObtenidas);
     }
 
 
     @Test
     @Transactional
     @Rollback
-    public void obtengoLocalidadPorDescripcion(){
+    public void obtengoLocalidadPorDescripcion() {
         List<Localidad> localidades = new ArrayList<>();
         localidades.add(new Localidad("Mataderos"));
 
@@ -122,18 +120,18 @@ public class RepositorioPublicacionTest extends SpringTest {
     @Test
     @Transactional
     @Rollback
-    public void obtengoTodosLosTiposDeMascota(){
+    public void obtengoTodosLosTiposDeMascota() {
         List<Tipo> tiposDeMascota = new ArrayList<>();
-        tiposDeMascota.add(new Tipo(1L,"Perro"));
+        tiposDeMascota.add(new Tipo(1L, "Perro"));
         givenQueExistenTiposDeMascota(tiposDeMascota);
         List<Tipo> tiposDeMascotaObtenidos = whenObtengoTodosLosTiposDeMascota();
-        thenEncuentroTiposDeMascota(tiposDeMascota.size(),tiposDeMascotaObtenidos);
+        thenEncuentroTiposDeMascota(tiposDeMascota.size(), tiposDeMascotaObtenidos);
     }
 
     @Test
     @Transactional
     @Rollback
-    public void obtengoTodosLosEstadosDeMascota(){
+    public void obtengoTodosLosEstadosDeMascota() {
         List<Estado> estados = new ArrayList<>();
         estados.add(new Estado());
         estados.add(new Estado());
@@ -152,7 +150,7 @@ public class RepositorioPublicacionTest extends SpringTest {
     }
 
     private void givenQueExistenEstadosDeMascota(List<Estado> estados) {
-        for(Estado estadosDeMascota : estados){
+        for (Estado estadosDeMascota : estados) {
             session().save(estadosDeMascota);
         }
     }
@@ -161,13 +159,13 @@ public class RepositorioPublicacionTest extends SpringTest {
         assertThat(tiposDeMascotaObtenidos).hasSize(cantidadEsperada);
     }
 
-    private  List<Tipo> whenObtengoTodosLosTiposDeMascota() {
+    private List<Tipo> whenObtengoTodosLosTiposDeMascota() {
         return repositorioPublicacion.obtenerTodosLosTiposDeMascota();
     }
 
     private void givenQueExistenTiposDeMascota(List<Tipo> tiposDeMascota) {
 
-        for (Tipo tipoDeMascota : tiposDeMascota){
+        for (Tipo tipoDeMascota : tiposDeMascota) {
             session().save(tipoDeMascota);
         }
     }
@@ -182,7 +180,7 @@ public class RepositorioPublicacionTest extends SpringTest {
     }
 
     private void givenExistenLocalidades(List<Localidad> localidades) {
-        for (Localidad localidad : localidades){
+        for (Localidad localidad : localidades) {
             session().save(localidad);
         }
     }
@@ -190,17 +188,18 @@ public class RepositorioPublicacionTest extends SpringTest {
     private List<Localidad> whenObtengoTodasLasLocalidades() {
         return repositorioPublicacion.obtenerTodasLasLocalidades();
     }
+
     private void thenObtengoTodasLaslocalidades(int cantidadEsperada, List<Localidad> localidadesObtenidas) {
         assertThat(localidadesObtenidas).hasSize(cantidadEsperada);
     }
 
     private void thenFinalizoPublicacion(Long id, Boolean finalizado) {
-        Publicacion publicacion =  repositorioPublicacion.buscarPublicacionPorId(id);
+        Publicacion publicacion = repositorioPublicacion.buscarPublicacionPorId(id);
         assertThat(publicacion.getFinalizado()).isEqualTo(finalizado);
     }
 
-    private void givenExistenMisPublicaciones(List<Publicacion> listaPublicaciones ) {
-        for(Publicacion publicacion :listaPublicaciones ){
+    private void givenExistenMisPublicaciones(List<Publicacion> listaPublicaciones) {
+        for (Publicacion publicacion : listaPublicaciones) {
             session().save(publicacion);
         }
     }
@@ -209,15 +208,17 @@ public class RepositorioPublicacionTest extends SpringTest {
         repositorioPublicacion.finalizarPublicacion(publicacion);
     }
 
-    private void givenExistenPublicacionesDeMascotas(List<Publicacion> publicaciones, Estado estado) {
+    private void givenExistenPublicacionesDeMascotas(List<Publicacion> publicaciones, Mascota mascota) {
         for (Publicacion publicacion : publicaciones) {
-            //publicacion.getMascota().setEstado(estado);
+            session().save(mascota.getEstado());
+            session().save(mascota.getTipo());
+            publicacion.setMascota(mascota);
             session().save(publicacion);
         }
     }
 
     private void givenExistePublicacionConId(Long id, List<Publicacion> listaPublicaciones) {
-        for(Publicacion publicacion : listaPublicaciones){
+        for (Publicacion publicacion : listaPublicaciones) {
             publicacion.setId(id);
             session().save(publicacion);
         }
