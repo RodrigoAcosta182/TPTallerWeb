@@ -27,4 +27,8 @@ public interface RepositorioPublicacion {
     List<Estado> obtenerTodosLosEstadosDeMascota();
 
     Estado obtenerEstadoDeMascotaPorId(long id);
+
+    void modificarPublicacion(Publicacion publicacion);
+
+    void eliminarPublicacion(Publicacion publicacion);
 }

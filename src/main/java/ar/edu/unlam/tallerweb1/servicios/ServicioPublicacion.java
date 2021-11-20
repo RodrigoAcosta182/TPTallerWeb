@@ -33,4 +33,7 @@ public interface ServicioPublicacion {
 
     Estado obtenerEstadoDeMascotaPorId(long id);
 
+    void modificarPublicacion(DatosRegistroMascota mascota);
+
+    void eliminarPublicacion(Long id);
 }

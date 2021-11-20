@@ -110,5 +110,15 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
                 .add(Restrictions.eq("id",id))
                 .uniqueResult();
     }
+
+    @Override
+    public void modificarPublicacion(Publicacion publicacion) {
+        sessionFactory.getCurrentSession().update(publicacion);
+    }
+
+    @Override
+    public void eliminarPublicacion(Publicacion publicacion) {
+        sessionFactory.getCurrentSession().delete(publicacion);
+    }
 }
 
