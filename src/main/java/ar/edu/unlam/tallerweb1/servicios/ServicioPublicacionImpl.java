@@ -52,6 +52,28 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     }
 
     @Override
+    public void modificarPublicacion(DatosRegistroMascota mascota) {
+        Publicacion publicacion = repositorioPublicacion.buscarPublicacionPorId(mascota.getPublicacion().getId());
+        Mascota miMascota = mascota.toMascota();
+        Tipo tipoMascota = this.obtenerTipoDeMascotaPorId(mascota.getTipo().getId());
+        Estado estadoMascota = this.obtenerEstadoDeMascotaPorId(mascota.getEstado().getId());
+        Localidad localidad = this.getLocalidadPorDescripcion(mascota.getPublicacion().getLocalidad().getDescripcion());
+
+        miMascota.setTipo(tipoMascota);
+        miMascota.setEstado(estadoMascota);
+        publicacion.setMascota(miMascota);
+        publicacion.setLocalidad(localidad);
+
+        repositorioPublicacion.modificarPublicacion(publicacion);
+    }
+
+    @Override
+    public void eliminarPublicacion(Long id) {
+        Publicacion publicacion = repositorioPublicacion.buscarPublicacionPorId(id);
+        repositorioPublicacion.eliminarPublicacion(publicacion);
+    }
+
+    @Override
     public void finalizarPublicacion(Long id) {
         Publicacion publicacion = repositorioPublicacion.buscarPublicacionPorId(id);
         publicacion.setFinalizado(true);
