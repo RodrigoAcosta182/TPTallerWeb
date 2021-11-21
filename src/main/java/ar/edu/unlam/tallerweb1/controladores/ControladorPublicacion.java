@@ -162,12 +162,12 @@ public class ControladorPublicacion {
     }
 //
     @RequestMapping(method = RequestMethod.POST, path = "/modificarregistroMascota")
-    public ModelAndView modificarRegistroPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, HttpServletRequest request)  throws Exception {
+    public ModelAndView modificarRegistroPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, @ModelAttribute("publicacion") Publicacion publicacion, HttpServletRequest request)  throws Exception {
         ModelMap model = new ModelMap();
         try {
             validarRegistrarPublicacion(mascota, request);
 //            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-            servicioPublicacion.modificarPublicacion(mascota);
+            servicioPublicacion.modificarPublicacion(mascota, publicacion);
         } catch (Exception e) {
             List<Localidad> localidades =  servicioPublicacion.getLocalidades();
             List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
