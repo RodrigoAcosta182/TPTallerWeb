@@ -20,10 +20,10 @@
     <c:forEach items="${publicaciones}" var="publicacion" varStatus="status" step="1" begin="0">
         <div id="${status.index % 3 + 1}" class="tarjeta-publicacion-mascota">
 
-            <c:if test="${publicacion.mascota.estado == 1}">
+            <c:if test="${publicacion.mascota.estado.id == 1}">
                 <h2 style="text-align: center">Perdido</h2>
             </c:if>
-            <c:if test="${publicacion.mascota.estado == 2}">
+            <c:if test="${publicacion.mascota.estado.id == 2}">
                 <h2 style="text-align: center">Encontrado</h2>
             </c:if>
             <img src="${publicacion.mascota.imagen}" class="imagen-tarjeta" alt="">

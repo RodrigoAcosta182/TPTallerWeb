@@ -1,17 +1,11 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
-import ar.edu.unlam.tallerweb1.modelo.Localidad;
-import ar.edu.unlam.tallerweb1.modelo.Mascota;
-import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.Tipo;
+import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioBusqueda;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
-import org.junit.Test;
-import org.springframework.web.multipart.MultipartFile;
 
+import org.junit.Test;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,14 +18,8 @@ public class ServicioBusquedaTest {
     private ServicioBusqueda servicioBusqueda = new ServicioBusquedaImpl(repositorioBusqueda);
     private static final Publicacion PUBLICACION = new Publicacion(new Mascota(), new Localidad("Moron"));
     private static final DatosRegistroMascota MASCOTACOMPLETA = new DatosRegistroMascota
-            ("1", new Tipo(), PUBLICACION, "Pekines", "Blanco");
+            (new Estado(), new Tipo(), PUBLICACION, "Pekines", "Blanco");
 
-    @Test
-    public void obtengoTodasLasLocalidades() {
-        givenQueExistenLocalidades();
-        List<Localidad> localidades = whenObtengoLocalidades();
-        thenObtengoLocalidades(localidades);
-    }
 
     @Test
     public void buscoPublicacionesPorEstadoLocalidadYColor() throws Exception {
@@ -45,6 +33,58 @@ public class ServicioBusquedaTest {
         givenQueLasPublicacionesBuscadasNoExisten();
         List<Publicacion> publicaciones = whenBuscoPublicacionesConEstadoLocalidadYColor();
         thenNoEncuentroPublicaciones(publicaciones);
+    }
+
+    @Test
+    public void obtengoTodasLasLocalidades() {
+        givenQueExistenLocalidades();
+        List<Localidad> localidades = whenObtengoLocalidades();
+        thenObtengoLocalidades(localidades);
+    }
+
+    @Test
+    public void obtengoTodosLosTiposDeMascota() {
+        givenQueExistenTiposDeMascota();
+        List<Tipo> tipoDeMascota = whenObtengoTiposDeMascota();
+        thenEncuentroTiposDeMascota(tipoDeMascota);
+    }
+
+    @Test
+    public void obtengoTodosLosEstadosDeMascota() {
+        givenQueExistenEstadosDeMascota();
+        List<Estado> estados = whenObtengoEstadosDeMascota();
+        thenEncuentroEstadosDeMascota(estados);
+    }
+
+    private void givenQueExistenEstadosDeMascota() {
+        List<Estado> estados = new ArrayList<>();
+        estados.add(new Estado());
+        estados.add(new Estado());
+        when(repositorioBusqueda.obtenerTodosLosEstadosDeMascota()).thenReturn(estados);
+    }
+
+    private void thenEncuentroEstadosDeMascota(List<Estado> estados) {
+        assertThat(estados).isNotNull();
+        verify(repositorioBusqueda, times(1)).obtenerTodosLosEstadosDeMascota();
+    }
+
+    private List<Estado> whenObtengoEstadosDeMascota() {
+        return servicioBusqueda.getEstadosDeMascota();
+    }
+
+    private void givenQueExistenTiposDeMascota() {
+        List<Tipo> tiposDeMascota = new ArrayList<>();
+        tiposDeMascota.add(new Tipo("Perro"));
+        when(repositorioBusqueda.obtenerTodosLosTiposDeMascota()).thenReturn(tiposDeMascota);
+    }
+
+    private List<Tipo> whenObtengoTiposDeMascota() {
+        return servicioBusqueda.getTiposDeMascota();
+    }
+
+    private void thenEncuentroTiposDeMascota(List<Tipo> tipoDeMascota) {
+        assertThat(tipoDeMascota).isNotNull();
+        verify(repositorioBusqueda, times(1)).obtenerTodosLosTiposDeMascota();
     }
 
 

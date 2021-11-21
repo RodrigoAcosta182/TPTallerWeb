@@ -1,9 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import ar.edu.unlam.tallerweb1.modelo.Localidad;
-import ar.edu.unlam.tallerweb1.modelo.Mascota;
-import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.Tipo;
+import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.servicios.ServicioBusqueda;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -20,7 +17,7 @@ public class ControladorBusquedaTest {
 
     private ServicioBusqueda servicioBusqueda = mock(ServicioBusqueda.class);
     private ControladorBusqueda controladorBusqueda = new ControladorBusqueda(servicioBusqueda);
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Ramon", new Tipo(), "1", "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), null, "nashe");
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Ramon", new Tipo(), new Estado(), "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), null, "nashe");
 
     @Test
     public void irAVerPaginaDeBusqueda() {
@@ -48,6 +45,43 @@ public class ControladorBusquedaTest {
         ModelAndView mav = whenIrAVerPaginaDeBusqueda();
         thenEncuentroLocalidades(mav);
     }
+
+    @Test
+    public void obtengoTiposDeMascotaEnLaPaginaDeBusquedaDeMascota(){
+        givenQueExistenTiposDeMascota();
+        ModelAndView mav = whenIrAVerPaginaDeBusqueda();
+        thenEncuentroTiposDeMascota(mav);
+    }
+
+    @Test
+    public void obtengoEstadosEnLaPaginaDeBusquedaDeMascota(){
+        givenExistenEstadosDeMascota();
+        ModelAndView mav = whenIrAVerPaginaDeBusqueda();
+        thenEncuentroEstadosDeMascota(mav);
+    }
+
+    private void givenExistenEstadosDeMascota() {
+        List<Estado> estados = new ArrayList<>();
+        estados.add(new Estado());
+        when(servicioBusqueda.getEstadosDeMascota()).thenReturn(estados);
+    }
+
+    private void thenEncuentroEstadosDeMascota(ModelAndView mav) {
+        assertThat(mav.getModel().get("estadosMascota")).isNotNull();
+    }
+
+
+    private void givenQueExistenTiposDeMascota() {
+        List<Tipo> tiposDeMascota = new ArrayList<>();
+        tiposDeMascota.add(new Tipo("perro"));
+        when(servicioBusqueda.getTiposDeMascota()).thenReturn(tiposDeMascota);
+    }
+
+    private void thenEncuentroTiposDeMascota(ModelAndView mav) {
+        assertThat(mav.getModel().get("tiposDeMascota")).isNotNull();
+    }
+
+
 
     private void thenEncuentroLocalidades(ModelAndView mav) {
         assertThat(mav.getModel().get("localidades")).isNotNull();

@@ -50,17 +50,19 @@
                     <div class="w3-row flex-center">
                         <div class="w3-col l5">
                             <label style="float: left">Estado</label>
-                            <form:select path="estado" cssClass="w3-select">
-                                <form:option value="" disabled="true" selected="selected">${datosMascota.estado}</form:option>
-                                <form:option value="1">Perdido</form:option>
-                                <form:option value="2">Encontrado</form:option>
+                            <form:select path="estado.id"
+                                         id="estado.id" cssClass="w3-select">
+                                <form:option value="${publicacion.mascota.estado.descripcion}" disabled="true" selected="selected"></form:option>
+                                <form:options items="${estadosMascota}"
+                                              itemValue="id"
+                                              itemLabel="descripcion"/>
                             </form:select>
                         </div>
                         <div class="w3-col l5">
                             <label style="float: left; margin-bottom: 2px">Tipo</label>
                             <form:select path="tipo.id"
                                          id="tipo.id" cssClass="w3-select">
-                                <form:option value="${publicacion.mascota.tipo}" disabled="true" selected="selected">-- SELECCIONE --</form:option>
+                                <form:option value="${publicacion.mascota.tipo.descripcion}" disabled="true" selected="selected"></form:option>
                                 <form:options items="${tiposDeMascota}"
                                               itemValue="id"
                                               itemLabel="descripcion"/>
@@ -72,65 +74,67 @@
                             <label style="float: left; margin-bottom: 2px">Localidad</label>
                             <form:select path="publicacion.localidad.descripcion" required="true"
                                          id="publicacion.localidad.descripcion" cssClass="w3-select">
-                                <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
+                                <form:option value="${publicacion.localidad.descripcion}" disabled="true" selected="selected"></form:option>
                                 <form:options items="${localidades}"
                                               itemValue="descripcion"
-                                              itemLabel="${publicacion.localidad}"/>
+                                              itemLabel="descripcion"/>
                             </form:select>
                         </div>
                     </div>
                     <div class="w3-row flex-center" style=" margin-top: 6px">
                         <div class="w3-col l5">
                             <label style="float: left">Nombre</label>
-                            <form:input  cssClass="w3-input" path="nombre" type="text" value="${publicacion.mascota.nombre}" id="nombre" />
+                            <form:input value="${publicacion.mascota.nombre}"  cssClass="w3-input" path="nombre" type="text" id="publicacion" />
                         </div>
-<%--                        <div class="w3-col l5">--%>
-<%--                            <label style="float: left">Raza</label>--%>
-<%--                            <form:input cssClass="w3-input" path="raza" type="text" id="raza"/>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
+                        <div class="w3-col l5">
+                            <label style="float: left">Raza</label>
+                            <form:input value="${publicacion.mascota.raza}" cssClass="w3-input" path="raza" type="text" id="publicacion"/>
+                        </div>
+                    </div>
 
-<%--                    <div class="w3-row flex-center" style=" margin-top: 6px">--%>
-<%--                        <div class="w3-col l5">--%>
-<%--                            <label style="float: left">Detalles</label>--%>
-<%--                            <form:input cssClass="w3-input" path="detalle" type="text" id="detalle" />--%>
-<%--                        </div>--%>
-<%--                        <div class="w3-col l5">--%>
-<%--                            <label style="float: left">Color</label>--%>
-<%--                            <form:input cssClass="w3-input" path="color" type="text" id="color"/>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
+                    <div class="w3-row flex-center" style=" margin-top: 6px">
+                        <div class="w3-col l5">
+                            <label style="float: left">Detalles</label>
+                            <form:input value="${publicacion.mascota.detalle}" cssClass="w3-input" path="detalle" type="text" id="detalle" />
+                        </div>
+                        <div class="w3-col l5">
+                            <label style="float: left">Color</label>
+                            <form:input value="${publicacion.mascota.color}" cssClass="w3-input" path="color" type="text" id="color"/>
+                        </div>
+                    </div>
 
-<%--                    <div class="w3-row flex-center" style=" margin-top: 6px">--%>
-<%--                        <div class="w3-col l5">--%>
-<%--                            <label style="float: left; margin-top: 2px">Tama&ntilde;o</label>--%>
-<%--                            <form:input cssClass="w3-input" path="tamanio" type="text" id="tamanio"/>--%>
-<%--                        </div>--%>
+                    <div class="w3-row flex-center" style=" margin-top: 6px">
+                        <div class="w3-col l5">
+                            <label style="float: left; margin-top: 2px">Tama&ntilde;o</label>
+                            <form:input value="${publicacion.mascota.tamanio}" cssClass="w3-input" path="tamanio" type="text" id="tamanio"/>
+                        </div>
 
-<%--                        <div class="w3-col l5">--%>
-<%--                            <label style="float: left">Edad</label>--%>
-<%--                            <form:input cssClass="w3-input" path="edad" type="text" id="edad"/>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
+                        <div class="w3-col l5">
+                            <label style="float: left">Edad</label>
+                            <form:input value="${publicacion.mascota.edad}" cssClass="w3-input" path="edad" type="text" id="edad"/>
+                        </div>
+                    </div>
 
-<%--                    <div class="w3-row flex-center">--%>
-<%--                        <div class="w3-col" style="width: 100%">--%>
-<%--                            <label style="float: left">Agregar Foto </label>--%>
-<%--                            <form:input path="imagen" name="file" id="imagen" cssClass="w3-input" type="file"/>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
+                    <div class="w3-row flex-center">
+                        <div class="w3-col" style="width: 100%">
+                            <label style="float: left">Agregar Foto </label>
+                            <form:input value="${publicacion.mascota.imagen}" path="imagen" name="file" id="imagen" cssClass="w3-input" type="file"/>
+                        </div>
+                    </div>
 
-<%--                    &lt;%&ndash;Bloque que es visible si el elemento error no esta vacio	&ndash;%&gt;--%>
-<%--                    <c:if test="${not empty error}">--%>
-<%--                        <div class="w3-panel w3-red w3-round-xxlarge">--%>
-<%--                            <h4><span>${error}</span></h4>--%>
-<%--                        </div>--%>
-<%--                    </c:if>--%>
+                    <%--                    &lt;%&ndash;Bloque que es visible si el elemento error no esta vacio	&ndash;%&gt;--%>
+                    <c:if test="${not empty error}">
+                        <div class="w3-panel w3-red w3-round-xxlarge">
+                            <h4><span>${error}</span></h4>
+                        </div>
+                    </c:if>
 
-<%--                    <div class="w3-row l12 w3-center btn-login">--%>
-<%--                        <button class="w3-button w3-deep-purple" Type="Submit"/>--%>
-<%--                        Subir datos</button>--%>
-<%--                    </div>--%>
+                    <div class="w3-row l12 w3-center btn-login">
+                        <button class="w3-button w3-deep-purple" Type="Submit"/>Modificar datos</button>
+                    </div>
+                    <div class="w3-row l12 w3-center btn-login">
+                        <a class="w3-btn w3-red" style="width: 100%; margin-top: 10px" type="submit" href="/missingpets/eliminar-publicacion?id=${publicacion.id}">Eliminar</a>
+                    </div>
                 </form:form>
             </div>
         </div>

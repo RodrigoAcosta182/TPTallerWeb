@@ -72,11 +72,6 @@ import java.util.List;
                         producto.setCantidad(producto.getCantidad() - 1) ;
                         repositorioProducto.actualizarPuntosUsuario(usuario);
                         repositorioProducto.actualizarCantidadProducto(producto);
-
-                        if (producto.setCantidad(producto.getCantidad()) ==0){
-                            producto.setHayStock(false);
-                            repositorioProducto.actualizaSiNoHayStock(producto);
-                        }
                     }else {
                         throw new Exception();
                     }

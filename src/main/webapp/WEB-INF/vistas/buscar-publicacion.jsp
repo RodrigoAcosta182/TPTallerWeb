@@ -18,17 +18,26 @@
             <span style="font-size: 20px">Buscar Mascota</span>
         </div>
         <div>
+<%--            REVISAR BUSQUEDA DESDE VISTA HASTA REPOSITORIO--%>
             <form:form cssClass="w3-container" action="buscar-publicaciones" method="GET" modelAttribute="datosMascota" >
+                <label style="float: left; margin-bottom: 2px">Estado</label>
+                <form:select path="estado" id="estado" cssClass="w3-select">
+                    <form:option value="${null}" disabled="true" selected="selected">Seleccionar</form:option>
+                    <form:options items="${estadosMascota}"
+                                  itemValue="descripcion"
+                                  itemLabel="descripcion"/>
+                </form:select>
                 <label style="float: left; margin-bottom: 2px">Tipo</label>
-                <form:select path="tipo" cssClass="w3-select">
-                    <form:option value="" disabled="true" selected="selected">-- SELECCIONE --</form:option>
-                    <form:option value="1">Perro</form:option>
-                    <form:option value="2">Gato</form:option>
-                    <form:option value="3">Otro</form:option>
+                <form:select path="tipo" id="tipo" cssClass="w3-select">
+                    <form:option value="${null}" disabled="true" selected="selected">Seleccionar</form:option>
+                    <form:options items="${tiposDeMascota}"
+                                  itemValue="descripcion"
+                                  itemLabel="descripcion"/>
                 </form:select>
 
                 <label style="float: left; margin-bottom: 2px">Localidad</label>
                 <form:select path="publicacion.localidad.descripcion" id="publicacion.localidad.descripcion" cssClass="w3-select">
+                    <form:option value="${null}" disabled="true" selected="selected">Seleccionar</form:option>
                     <form:options items="${localidades}"
                                   itemValue="descripcion"
                                   itemLabel="descripcion"/>

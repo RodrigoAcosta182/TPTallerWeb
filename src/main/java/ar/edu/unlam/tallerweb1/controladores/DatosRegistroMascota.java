@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Estado;
 import ar.edu.unlam.tallerweb1.modelo.Mascota;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Tipo;
@@ -11,7 +12,7 @@ import java.util.Date;
 public class DatosRegistroMascota {
     private String nombre;
 
-    private String estado;
+
     private String edad;
     private String raza;
     private String detalle;
@@ -20,15 +21,17 @@ public class DatosRegistroMascota {
     private MultipartFile imagen;
     @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
     private Date fecha;
-    private Publicacion publicacion;
     private String email;
+
+    private Publicacion publicacion;
     private Tipo tipo;
+    private Estado estado;
 
 
     public DatosRegistroMascota() {
     }
 
-    public DatosRegistroMascota(String estado,Tipo tipo, Publicacion publicacion, String raza,String color) {
+    public DatosRegistroMascota(Estado estado,Tipo tipo, Publicacion publicacion, String raza,String color) {
         this.estado = estado;
         this.tipo = tipo;
         this.publicacion = publicacion;
@@ -36,7 +39,7 @@ public class DatosRegistroMascota {
         this.color = color;
     }
 
-    public DatosRegistroMascota(String nombre, Tipo tipo, String estado, String edad, String raza, String detalle,
+    public DatosRegistroMascota(String nombre, Tipo tipo, Estado estado, String edad, String raza, String detalle,
                                 String color, String tamanio, Date fecha, Publicacion publicacion, MultipartFile imagen, String email) {
         this.nombre = nombre;
         this.tipo = tipo;
@@ -124,11 +127,11 @@ public class DatosRegistroMascota {
         this.fecha = fecha;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 

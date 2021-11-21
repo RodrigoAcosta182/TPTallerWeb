@@ -17,10 +17,10 @@
                 <c:if test="${publicacion.finalizado == true}">
                     <h4 style="text-align: center; color: red">Finalizado</h4>
                 </c:if>
-                <c:if test="${publicacion.mascota.estado == 1}">
+                <c:if test="${publicacion.mascota.estado.descripcion == Perdido}">
                     <h2 style="text-align: center">Perdido</h2>
                 </c:if>
-                <c:if test="${publicacion.mascota.estado == 2}">
+                <c:if test="${publicacion.mascota.estado.descripcion == Encontrado}">
                     <h2 style="text-align: center">Encontrado</h2>
                 </c:if>
                 <img src="${publicacion.mascota.imagen}" class="imagen-tarjeta" alt="">
@@ -32,9 +32,11 @@
                 <p>Color: ${publicacion.mascota.color}</p>
                 <p>Edad: ${publicacion.mascota.edad}</p>
             </div>
+            <c:if test="${publicacion.finalizado == true}">
+                <a class="w3-btn w3-red" style="margin-top: 10px" href="/missingpets/eliminar-publicacion?id=${publicacion.id}">Eliminar</a>
+            </c:if>
     <c:if test="${publicacion.finalizado != true}">
             <div>
-                <form action=""></form>
                 <br>
                 <a class="w3-btn w3-green" style="width: 100%;" href="/missingpets/ir-al-sitio-modificar-mascota?id=${publicacion.id}">Modificar</a>
                 <br>
@@ -42,7 +44,7 @@
             </div>
         <br>
         <div class="w3-center">
-            <c:if test="${publicacion.mascota.estado == 1}">
+            <c:if test="${publicacion.mascota.estado.descripcion == Perdido}">
                 <form:form cssClass="w3-container" action="buscarUsuario" method="POST" modelAttribute="datosMascota">
                     <label style="float: left">Buscar Usuario</label>
                         <form:input cssClass="w3-input w3-border" path="email"  type="text" id="email"/>

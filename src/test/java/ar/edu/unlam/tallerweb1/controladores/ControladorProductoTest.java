@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ControladorProductoTest {
 
-    private static final Producto PRODUCTO_2 = new Producto( "Vaso", 500, 5, "img/tumama.png", true);
+    private static final Producto PRODUCTO_2 = new Producto( "Vaso", 500, 5, "img/tumama.png");
     private static final DatosRegistroProducto PRODUCTO = new DatosRegistroProducto("Cucha para Perro", 30, 6, null);
     private static final DatosRegistroProducto PRODUCTO_NEGATIVO = new DatosRegistroProducto("Cucha para Perro", 30, -5, null);
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123", 50);

@@ -25,7 +25,7 @@ public class RepositorioProductoImpl implements RepositorioProducto{
     @Override
     public List<Producto> buscarTodosMisProductos(Usuario usuario) {
         List<Producto> productos = sessionFactory.getCurrentSession().createCriteria(Producto.class)
-                .add(Restrictions.eq("hayStock", true))
+//                .add(Restrictions.eq("hayStock", true))
                 .list();
         return productos;
     }
@@ -39,7 +39,7 @@ public class RepositorioProductoImpl implements RepositorioProducto{
     @Override
     public List<Producto> buscarTodosLosProductos() {
         List<Producto> productos = sessionFactory.getCurrentSession().createCriteria(Producto.class)
-                .add(Restrictions.eq("hayStock", true))
+//                .add(Restrictions.eq("hayStock", true))
                 .list();
         return productos;
     }
