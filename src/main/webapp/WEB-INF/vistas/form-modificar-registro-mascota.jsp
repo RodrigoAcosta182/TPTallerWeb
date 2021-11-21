@@ -48,6 +48,7 @@
                            enctype="multipart/form-data">
                     <%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
                     <div class="w3-row flex-center">
+                        <form:input value="${publicacion.id}" cssClass="w3-input" path="id" type="hidden" id="id" />
                         <div class="w3-col l5">
                             <label style="float: left">Estado</label>
                             <form:select path="estado.id"
