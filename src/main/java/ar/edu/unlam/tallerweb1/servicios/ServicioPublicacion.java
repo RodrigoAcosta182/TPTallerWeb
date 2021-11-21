@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
 import ar.edu.unlam.tallerweb1.modelo.*;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface ServicioPublicacion {
@@ -33,7 +34,7 @@ public interface ServicioPublicacion {
 
     Estado obtenerEstadoDeMascotaPorId(long id);
 
-    void modificarPublicacion(DatosRegistroMascota mascota);
+    void modificarPublicacion(DatosRegistroMascota mascota, Publicacion publicacion) throws IOException;
 
     void eliminarPublicacion(Long id);
 }
