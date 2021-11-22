@@ -72,6 +72,19 @@ public class ControladorPublicacion {
         return new ModelAndView("home", model);
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/eliminar-publicacion")
+    public ModelAndView eliminarPublicacion(@RequestParam("id") Long id) {
+        ModelMap model = new ModelMap();
+        try{
+            servicioPublicacion.eliminarPublicacion(id);
+        }catch (Exception e){
+            model.put("error","No se pudo eliminar");
+        }
+        model.put("msg","Publicacion Eliminada");
+
+        return new ModelAndView("home", model);
+    }
+
     @RequestMapping(method = RequestMethod.GET, path = "/ir-a-publicacion-mascota-perdida")
     public ModelAndView irAPublicacionMascotaPerdida(HttpServletRequest request) {
         ModelMap model = new ModelMap();
@@ -148,20 +161,20 @@ public class ControladorPublicacion {
         return new ModelAndView("ver-publicacion", model);
     }
 //
-    @RequestMapping(method = RequestMethod.GET, path = "/modificarregistroMascota")
-    public ModelAndView modificarRegistroPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota , @RequestParam("id") Long id, HttpServletRequest request)  throws Exception {
+    @RequestMapping(method = RequestMethod.POST, path = "/modificarregistroMascota")
+    public ModelAndView modificarRegistroPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, @ModelAttribute("publicacion") Publicacion publicacion, HttpServletRequest request)  throws Exception {
         ModelMap model = new ModelMap();
-        Publicacion publicacion;
         try {
             validarRegistrarPublicacion(mascota, request);
-            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-//            publicacion = servicioPublicacion.modificarPublicacion(id);
-//            model.put("publicacion", publicacion);
+//            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+            servicioPublicacion.modificarPublicacion(mascota, publicacion);
         } catch (Exception e) {
             List<Localidad> localidades =  servicioPublicacion.getLocalidades();
             List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
+            List<Estado> tiposDeEstado = servicioPublicacion.getEstadosDeMascota();
             model.put("localidades",localidades);
             model.put("tiposDeMascota",tiposDeMascota);
+            model.put("tiposDeEstado",tiposDeEstado);
             model.put("error", e.getMessage());
             return new ModelAndView("form-modificar-registro-mascota", model);
         }
@@ -170,9 +183,15 @@ public class ControladorPublicacion {
     }
 //
     @RequestMapping(method = RequestMethod.GET, path = "/ir-al-sitio-modificar-mascota")
-    public ModelAndView irAlSitioModificarPublicacion(@RequestParam("id") Long id) {
+    public ModelAndView irAlSitioModificarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, @RequestParam("id") Long id) {
         ModelMap model = new ModelMap();
         Publicacion publicacion;
+        List<Localidad> localidades =  servicioPublicacion.getLocalidades();
+        List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
+        List<Estado> estadosMascota = servicioPublicacion.getEstadosDeMascota();
+        model.put("localidades",localidades);
+        model.put("tiposDeMascota",tiposDeMascota);
+        model.put("estadosMascota",estadosMascota);
         try {
             publicacion = servicioPublicacion.buscarPublicacion(id);
             model.put("publicacion", publicacion);

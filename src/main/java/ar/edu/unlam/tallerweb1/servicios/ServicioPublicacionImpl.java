@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.ServletContext;
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -49,6 +50,33 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         repositorioPublicacion.guardarPublicacion(nuevaPublicacion);
 
         return nuevaPublicacion;
+    }
+
+    @Override
+    public void modificarPublicacion(DatosRegistroMascota mascota, Publicacion publicacion) throws IOException {
+        Publicacion publi = repositorioPublicacion.buscarPublicacionPorId(publicacion.getId());
+        Mascota miMascota = mascota.toMascota();
+        Tipo tipoMascota = this.obtenerTipoDeMascotaPorId(mascota.getTipo().getId());
+        Estado estadoMascota = this.obtenerEstadoDeMascotaPorId(mascota.getEstado().getId());
+        Localidad localidad = this.getLocalidadPorDescripcion(mascota.getPublicacion().getLocalidad().getDescripcion());
+
+        String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
+        miMascota.setImagen(nombreConRuta);
+        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
+        mascota.getImagen().transferTo(new File(filename));
+
+        miMascota.setTipo(tipoMascota);
+        miMascota.setEstado(estadoMascota);
+        publi.setMascota(miMascota);
+        publi.setLocalidad(localidad);
+
+        repositorioPublicacion.modificarPublicacion(publi);
+    }
+
+    @Override
+    public void eliminarPublicacion(Long id) {
+        Publicacion publicacion = repositorioPublicacion.buscarPublicacionPorId(id);
+        repositorioPublicacion.eliminarPublicacion(publicacion);
     }
 
     @Override

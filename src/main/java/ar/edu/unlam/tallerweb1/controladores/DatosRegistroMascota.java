@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Date;
 
 public class DatosRegistroMascota {
+    private Long id;
     private String nombre;
 
 
@@ -163,5 +164,13 @@ public class DatosRegistroMascota {
         nuevaMascota.setTamanio(this.getTamanio());
         nuevaMascota.setFecha(this.getFecha());
         return nuevaMascota;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
