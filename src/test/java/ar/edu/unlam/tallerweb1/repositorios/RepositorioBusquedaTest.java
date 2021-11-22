@@ -21,16 +21,16 @@ public class RepositorioBusquedaTest extends SpringTest {
     private RepositorioBusqueda repositorioBusqueda;
 
 
-    @Test
-    @Transactional
-    @Rollback
-    public void buscoPublicacionesDeFormaExitosa(){
-        List<Publicacion> listaPublicaciones = new LinkedList<>();
-        listaPublicaciones.add(PUBLICACION);
-        givenQueExistenPublicaciones(listaPublicaciones);
-        List<Publicacion> publicacionesEncontradas = whenBuscoPublicaciones(PUBLICACION);
-        thenEncuentroPublicaciones(publicacionesEncontradas.size(),listaPublicaciones);
-    }
+//    @Test
+//    @Transactional
+//    @Rollback
+//    public void buscoPublicacionesDeFormaExitosa(){
+//        List<Publicacion> listaPublicaciones = new LinkedList<>();
+//        listaPublicaciones.add(PUBLICACION);
+//        givenQueExistenPublicaciones(listaPublicaciones);
+//        List<Publicacion> publicacionesEncontradas = whenBuscoPublicaciones(PUBLICACION);
+//        thenEncuentroPublicaciones(publicacionesEncontradas.size(),listaPublicaciones);
+//    }
     @Test
     @Transactional
     @Rollback

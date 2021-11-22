@@ -33,6 +33,7 @@
                 <p>Detalles: ${publicacion.mascota.detalle}</p>
                 <p>Tamanio: ${publicacion.mascota.tamanio}</p>
                 <p>Edad: ${publicacion.mascota.edad}</p>
+                <p>Localidad: ${publicacion.localidad.descripcion}</p>
             </div>
             <a href="/missingpets/publicacion?id=${publicacion.id}">
                 <button class="w3-btn w3-green" style="text-decoration: none">Ver publicacion</button>

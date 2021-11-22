@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `missingpets` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `missingpets`;
 -- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: missingpets
@@ -36,10 +38,9 @@ CREATE TABLE `publicacion` (
   CONSTRAINT `FKmgpby4kddnjf46wiahl18r2gi` FOREIGN KEY (`localidad_id`) REFERENCES `localidad` (`id`),
   CONSTRAINT `FKrfbxv3finr62x94rulf1mm5mp` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
   CONSTRAINT `FKsmafswujolnyojwb2rq31ax48` FOREIGN KEY (`mascota_id`) REFERENCES `mascota` (`id`),
-  CONSTRAINT `publicacion_localidad_id_fk` FOREIGN KEY (`localidad_id`) REFERENCES `localidad` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `publicacion_mascota_id_fk` FOREIGN KEY (`mascota_id`) REFERENCES `mascota` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `publicacion_usuario_id_fk` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `publicacion_usuario_id_fk` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +49,7 @@ CREATE TABLE `publicacion` (
 
 LOCK TABLES `publicacion` WRITE;
 /*!40000 ALTER TABLE `publicacion` DISABLE KEYS */;
-INSERT INTO `publicacion` VALUES (22,1,'2021-10-25',1,60,1),(23,1,'2021-10-25',1,61,1),(25,0,'2021-10-27',1,63,3),(26,0,'2021-11-10',1,64,NULL),(27,0,'2021-11-10',1,65,NULL),(28,0,'2021-11-11',1,66,NULL),(29,0,'2021-11-11',1,67,NULL),(30,0,'2021-11-11',1,68,NULL),(33,0,'2021-11-11',1,71,7),(34,0,'2021-11-11',1,72,NULL),(35,0,'2021-11-11',1,73,3),(36,0,'2021-11-11',1,74,1),(37,0,'2021-11-14',1,75,4),(38,0,'2021-11-17',1,76,1),(39,0,'2021-11-18',1,84,4),(40,0,'2021-11-18',1,78,6),(41,0,'2021-11-18',1,79,6),(42,0,'2021-11-20',1,80,3);
+INSERT INTO `publicacion` VALUES (45,0,'2021-11-21',1,87,3);
 /*!40000 ALTER TABLE `publicacion` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-21 15:46:01
+-- Dump completed on 2021-11-21 21:24:36
