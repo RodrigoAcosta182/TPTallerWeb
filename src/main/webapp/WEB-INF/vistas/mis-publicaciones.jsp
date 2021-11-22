@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix='spring' uri='http://www.springframework.org/tags'%>
 <!DOCTYPE html>
 <html>
 <title>Mis Publicaciones</title>
@@ -17,10 +18,10 @@
                 <c:if test="${publicacion.finalizado == true}">
                     <h4 style="text-align: center; color: red">Finalizado</h4>
                 </c:if>
-                <c:if test="${publicacion.mascota.estado.descripcion == Perdido}">
+                <c:if test="${publicacion.mascota.estado.id == 1}">
                     <h2 style="text-align: center">Perdido</h2>
                 </c:if>
-                <c:if test="${publicacion.mascota.estado.descripcion == Encontrado}">
+                <c:if test="${publicacion.mascota.estado.id == 2}">
                     <h2 style="text-align: center">Encontrado</h2>
                 </c:if>
                 <img src="${publicacion.mascota.imagen}" class="imagen-tarjeta" alt="">
@@ -40,33 +41,32 @@
                 <br>
                 <a class="w3-btn w3-green" style="width: 100%;" href="/missingpets/ir-al-sitio-modificar-mascota?id=${publicacion.id}">Modificar</a>
                 <br>
-                <a class="w3-btn w3-red" style="width: 100%; margin-top: 10px" type="submit" href="/missingpets/finalizar-publicacion?id=${publicacion.id}">Finalizar</a>
+
+                    <form:form  action="finalizar-publicacion" method="POST" modelAttribute="datosMascota">
+                        <form:input  value="${publicacion.id}" cssClass="w3-input" path="id" type="hidden" id="id" />
+                        <c:if test="${publicacion.mascota.estado.id == 1}">
+                            <h6>Quien encontro tu mascota?</h6>
+                            <form:input placeholder='Ingrese su mail' cssClass="w3-input w3-border" path="email"  type="text" id="email"/>
+                        </c:if>
+                        <button class="w3-btn w3-purple" style="width: 100%; margin-top: 10px;" Type="Submit"/>Finalizar</button>
+                    </form:form>
+
             </div>
         <br>
-        <div class="w3-center">
-            <c:if test="${publicacion.mascota.estado.descripcion == Perdido}">
-                <form:form cssClass="w3-container" action="buscarUsuario" method="POST" modelAttribute="datosMascota">
-                    <label style="float: left">Buscar Usuario</label>
-                        <form:input cssClass="w3-input w3-border" path="email"  type="text" id="email"/>
-                    <button class="w3-btn w3-blue" style="width: 100%;" type="submit">Buscar</button>
-                </form:form>
-            </c:if>
-        </div>
     </c:if>
         </div>
 
     </c:forEach>
-    <c:if test="${not empty busqueda}">
-        <div class="w3-container">
-            <div class="w3-panel w3-red w3-round-xxlarge">
-                <h4><span>${busqueda}</span></h4>
-            </div>
-            <div>
-                <a class="w3-btn w3-blue w3-round-xxlarge" style="width: 100%; margin-top: 10px" href="javascript: history.go(-1)">Volver a Mis Publicaciones</a>
-
-            </div>
+<c:if test="${not empty error}">
+    <div class="w3-container w3-center">
+        <div>
+            <p class="login-mensaje-error">${error}</p>
         </div>
-    </c:if>
+        <div>
+            <a class="w3-btn w3-blue w3-round-xxlarge" style="width: 100%; margin-top: 10px" type="submit" href="ir-a-mis-publicaciones">Volver a ver Mis Publicaciones</a>
+        </div>
+    </div>
+</c:if>
 </div>
 
 </body>

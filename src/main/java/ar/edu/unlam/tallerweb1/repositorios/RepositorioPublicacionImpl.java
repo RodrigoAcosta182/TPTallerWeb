@@ -69,7 +69,11 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     public List<Usuario> buscarUsuarioPorEmail(String email) {
         return sessionFactory.getCurrentSession().createCriteria(Usuario.class)
                 .add(Restrictions.eq("email", email)).list();
-
+    }
+    @Override
+    public Usuario buscarUsuarioPorEmailParaSumar(String email) {
+        return (Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
+                .add(Restrictions.eq("email", email)).uniqueResult();
     }
 
     @SuppressWarnings("unchecked")
@@ -119,6 +123,11 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     @Override
     public void eliminarPublicacion(Publicacion publicacion) {
         sessionFactory.getCurrentSession().delete(publicacion);
+    }
+
+    @Override
+    public void sumarPuntosAlUsuario(Usuario usuario) {
+        sessionFactory.getCurrentSession().update(usuario);
     }
 }
 

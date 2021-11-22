@@ -13,7 +13,7 @@ public interface RepositorioPublicacion {
     List<Publicacion> buscarTodasLasPublicacionesEncontradas();
     Publicacion buscarPublicacionPorId(Long id);
 
-
+    Usuario buscarUsuarioPorEmailParaSumar(String email);
     List<Usuario> buscarUsuarioPorEmail(String email);
 
     List<Localidad> obtenerTodasLasLocalidades();
@@ -31,4 +31,6 @@ public interface RepositorioPublicacion {
     void modificarPublicacion(Publicacion publicacion);
 
     void eliminarPublicacion(Publicacion publicacion);
+
+    void sumarPuntosAlUsuario(Usuario usuario);
 }

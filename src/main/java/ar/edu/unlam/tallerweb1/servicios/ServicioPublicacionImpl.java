@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -80,17 +81,29 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     }
 
     @Override
-    public void finalizarPublicacion(Long id) {
-        Publicacion publicacion = repositorioPublicacion.buscarPublicacionPorId(id);
-        publicacion.setFinalizado(true);
-        repositorioPublicacion.finalizarPublicacion(publicacion);
+    public void finalizarPublicacion(DatosRegistroMascota mascota,Publicacion publicacion, HttpServletRequest request) throws Exception {
+        Publicacion publi = repositorioPublicacion.buscarPublicacionPorId(publicacion.getId());
+        Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+        buscarUsuarioParaFinalizar(usuario, mascota.getEmail());
+        publi.setFinalizado(true);
+        repositorioPublicacion.finalizarPublicacion(publi);
     }
 
     @Override
     public void buscarUsuarioParaFinalizar(Usuario usuario, String email) throws Exception {
-        if (usuario.getEmail() != email) {
-            if (repositorioPublicacion.buscarUsuarioPorEmail(email).size() == 0) {
-                throw new Exception();
+        if (email != null){
+            if (email != ""){
+                if (!usuario.getEmail().equals(email)) {
+                    if (repositorioPublicacion.buscarUsuarioPorEmail(email).isEmpty()) {
+                        throw new Exception("El mail del usuario ingresado no existe");
+                    }else{
+                        Usuario user = repositorioPublicacion.buscarUsuarioPorEmailParaSumar(email);
+                        user.setPuntos(user.getPuntos() + 50);
+                        repositorioPublicacion.sumarPuntosAlUsuario(user);
+                    }
+                }else{
+                    throw new Exception("El mail ingresado no puede ser igual que el mail logueado");
+                }
             }
         }
     }
