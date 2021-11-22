@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
 import ar.edu.unlam.tallerweb1.modelo.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface ServicioPublicacion {
 
     Publicacion buscarPublicacion(Long id);
 
-    void finalizarPublicacion(Long id);
+    void finalizarPublicacion(DatosRegistroMascota mascota,Publicacion publicacion, HttpServletRequest request) throws Exception;
 
     void buscarUsuarioParaFinalizar(Usuario usuario, String email) throws Exception;
 
