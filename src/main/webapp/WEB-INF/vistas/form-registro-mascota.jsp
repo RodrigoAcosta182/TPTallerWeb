@@ -121,26 +121,7 @@
                             <label style="float: left">Edad</label>
                             <form:input cssClass="w3-input" path="edad" type="text" id="edad"/>
                         </div>
-
-                            <%--                        <div class="w3-col l5" >--%>
-                            <%--                            <label style="float: left">Fecha</label>--%>
-                            <%--                            <form:input cssClass="w3-input" path="fecha" type="date" id="fecha"/>--%>
-                            <%--                        </div>--%>
-
-
                     </div>
-
-                    <%--                    <!-- CUARTA FILA -->--%>
-                    <%--                    <div class="w3-row flex-center" style=" margin-top: 6px">--%>
-                    <%--                        <div class="w3-col l5">--%>
-                    <%--                            <label style="float: left">Provincia</label>--%>
-                    <%--                            <form:input cssClass="w3-input" path="provincia" type="text" id="provincia"/>--%>
-                    <%--                        </div>--%>
-                    <%--                        <div class="w3-col l5">--%>
-                    <%--                            <label style="float: left">Localidad</label>--%>
-                    <%--                            <form:input cssClass="w3-input" path="localidad" type="text" id="localidad"/>--%>
-                    <%--                        </div>--%>
-                    <%--                    </div>--%>
 
                     <!-- SEXTA FILA -->
                     <div class="w3-row flex-center">
