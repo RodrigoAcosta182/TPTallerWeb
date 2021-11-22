@@ -28,7 +28,6 @@ CREATE TABLE `producto` (
   `id` int NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(255) NOT NULL,
   `puntos` int NOT NULL,
-  `hayStock` tinyint(1) NOT NULL DEFAULT '1',
   `cantidad` int NOT NULL,
   `imgproducto` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -41,7 +40,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (1,'Cama para perro mediano',60,1,8,NULL),(2,'Bolson 15KG Royal Canin',250,1,4,NULL),(3,'Bolsa de 3kg de piedra para gatos',30,1,12,NULL),(4,'Collar + correa 1.50mts',30,1,2,NULL);
+INSERT INTO `producto` VALUES (1,'Cama para perro mediano',60,8,'imgProducto/camaperro.jpeg'),(2,'Bolson 15KG Royal Canin',250,4,'imgProducto/royalcanino.jpeg'),(3,'Bolsa de 3kg de piedra para gatos',30,12,'imgProducto/piedragato.jpeg'),(4,'Collar + correa 1.50mts',30,2,'imgProducto/piedragato.jpeg');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-18  0:27:23
+-- Dump completed on 2021-11-21 21:24:35
