@@ -45,27 +45,28 @@ public class ControladorPublicacion {
         return new ModelAndView("home", model);
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/buscarUsuario")
-    public ModelAndView buscarUsuario(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, HttpServletRequest request, String email) {
-        ModelMap model = new ModelMap();
-        try {
-            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-            servicioPublicacion.buscarUsuarioParaFinalizar(usuario, email);
-        } catch (Exception e) {
-            model.put("busqueda", "No existe usuario con ese email");
-            return new ModelAndView("mis-publicaciones", model);
-        }
-        model.put("busqueda", "Usuario Encontrado");
-        return new ModelAndView("mis-publicaciones", model);
-    }
+//    @RequestMapping(method = RequestMethod.POST, path = "/buscarUsuario")
+//    public ModelAndView buscarUsuario(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, HttpServletRequest request, String email) {
+//        ModelMap model = new ModelMap();
+//        try {
+//            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+//            servicioPublicacion.buscarUsuarioParaFinalizar(usuario, email);
+//        } catch (Exception e) {
+//            model.put("busqueda", "No existe usuario con ese email");
+//            return new ModelAndView("mis-publicaciones", model);
+//        }
+//        model.put("busqueda", "Usuario Encontrado");
+//        return new ModelAndView("mis-publicaciones", model);
+//    }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/finalizar-publicacion")
-    public ModelAndView finalizarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota,@RequestParam("id") Long id) {
+    @RequestMapping(method = RequestMethod.POST, path = "/finalizar-publicacion")
+    public ModelAndView finalizarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota,@ModelAttribute("publicacion") Publicacion publicacion,HttpServletRequest request) {
         ModelMap model = new ModelMap();
         try{
-            servicioPublicacion.finalizarPublicacion(id);
+            servicioPublicacion.finalizarPublicacion(mascota, publicacion,request);
         }catch (Exception e){
-            model.put("error","No se pudo finalizar");
+            model.put("error",e.getMessage());
+            return new ModelAndView("mis-publicaciones", model);
         }
         model.put("msg","Publicacion Finalizada");
 

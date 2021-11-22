@@ -25,7 +25,7 @@ public class Publicacion {
     private Mascota mascota;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Localidad localidad;
 
 
