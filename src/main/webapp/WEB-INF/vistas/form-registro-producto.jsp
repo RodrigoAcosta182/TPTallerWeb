@@ -56,14 +56,13 @@
                             <label style="float: left">Puntos</label>
                             <form:input cssClass="w3-input" path="puntos" type="number" id="puntos"/>
                         </div>
-                    </div>
-
-                    <div class="w3-row flex-center" style=" margin-top: 6px">
                         <div class="w3-col l5">
                             <label style="float: left">Cantidad</label>
                             <form:input cssClass="w3-input" path="cantidad" type="number" id="cantidad"/>
                         </div>
                     </div>
+
+
 
                     <!-- SEXTA FILA -->
                     <div class="w3-row flex-center">

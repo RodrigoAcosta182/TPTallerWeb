@@ -28,27 +28,41 @@ public class RepositorioBusquedaImpl implements RepositorioBusqueda {
     @Override
     public List<Publicacion> buscarPublicacionPor(Publicacion publicacion) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Publicacion.class);
-        criteria.createAlias("mascota", "m");
         criteria.createAlias("localidad", "l");
+        criteria.createAlias("mascota", "m");
+        criteria.createAlias("m.tipo", "t");
+        criteria.createAlias("m.estado", "e");
+
         if (publicacion.getMascota().getTipo() != null) {
-            criteria.add(Restrictions.eq("m.tipo", publicacion.getMascota().getTipo()));
+            criteria.add(Restrictions.eq("t.descripcion",
+                    publicacion.getMascota().getTipo().getDescripcion()));
         }
-        if (publicacion.getMascota().getColor() != null) {
-            criteria.add(Restrictions.like("m.color", "%" + publicacion.getMascota().getColor() + "%"));
+        if (publicacion.getMascota().getEstado() != null) {
+            criteria.add(Restrictions.eq("e.descripcion",
+                    publicacion.getMascota().getEstado().getDescripcion()));
         }
-        if (publicacion.getLocalidad().getDescripcion() != null) {
+        //revisar if cuando llegan datos null
+
+        if (publicacion.getLocalidad() != null) {
             criteria.add(Restrictions.eq("l.descripcion", publicacion.getLocalidad().getDescripcion()));
         }
-        if (publicacion.getMascota().getRaza() != null) {
-            criteria.add(Restrictions.like("m.raza", "%" + publicacion.getMascota().getRaza() + "%"));
-        }
+
+
+//        if (publicacion.getMascota().getColor() != "") {
+//            criteria.add(Restrictions.eq("m.color", publicacion.getMascota().getColor()));
+//        }
+
+
+//        if (publicacion.getMascota().getRaza() != null) {
+//            criteria.add(Restrictions.like("m.raza", "%" + publicacion.getMascota().getRaza() + "%"));
+//        }
         return criteria.list();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<Tipo> obtenerTodosLosTiposDeMascota() {
-        return sessionFactory.getCurrentSession().createCriteria(Tipo.class).list() ;
+        return sessionFactory.getCurrentSession().createCriteria(Tipo.class).list();
     }
 
     @SuppressWarnings("unchecked")

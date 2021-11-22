@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `missingpets` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `missingpets`;
 -- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: missingpets
@@ -38,7 +40,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (1,'Cama para perro mediano',60,8,NULL),(2,'Bolson 15KG Royal Canin',250,4,NULL),(3,'Bolsa de 3kg de piedra para gatos',30,12,NULL),(4,'Collar + correa 1.50mts',30,2,NULL);
+INSERT INTO `producto` VALUES (1,'Cama para perro mediano',60,8,'imgProducto/camaperro.jpeg'),(2,'Bolson 15KG Royal Canin',250,4,'imgProducto/royalcanino.jpeg'),(3,'Bolsa de 3kg de piedra para gatos',30,12,'imgProducto/piedragato.jpeg'),(4,'Collar + correa 1.50mts',30,2,'imgProducto/piedragato.jpeg');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-21 15:46:01
+-- Dump completed on 2021-11-21 21:24:35

@@ -24,14 +24,18 @@ public class ServicioBusquedaImpl implements ServicioBusqueda {
 
     @Override
     public List<Publicacion> buscarPublicaciones(DatosRegistroMascota mascota) throws Exception {
-        List<Publicacion> publicacionList = new ArrayList<>();
-            Publicacion buscarPublicacion = mascota.getPublicacion();
-            buscarPublicacion.setMascota(mascota.toMascota());
-            buscarPublicacion.setLocalidad(mascota.getPublicacion().getLocalidad());
-            publicacionList = repositorioBusqueda.buscarPublicacionPor(buscarPublicacion);
-            if (publicacionList.size() == 0) {
-                throw new Exception("No se encontro ninguna publicacion");
+
+        Publicacion nuevaPublicacion = new Publicacion();
+        nuevaPublicacion.setMascota(mascota.toMascota());
+        if (mascota.getPublicacion() != null) {
+            if (mascota.getPublicacion().getLocalidad().getDescripcion() != null) {
+                nuevaPublicacion.setLocalidad(mascota.getPublicacion().getLocalidad());
             }
+        }
+        List<Publicacion> publicacionList = repositorioBusqueda.buscarPublicacionPor(nuevaPublicacion);
+        if (publicacionList.size() == 0) {
+            throw new Exception("No se encontro ninguna publicacion");
+        }
         return publicacionList;
     }
 
@@ -50,3 +54,14 @@ public class ServicioBusquedaImpl implements ServicioBusqueda {
         return repositorioBusqueda.obtenerTodosLosEstadosDeMascota();
     }
 }
+
+
+////            Publicacion buscarPublicacion = mascota.getPublicacion();
+////            Publicacion buscarPublicacion = new Publicacion();
+////            buscarPublicacion.setMascota(mascota.toMascota());
+////            buscarPublicacion.setLocalidad(mascota.getPublicacion().getLocalidad());
+//            publicacionList = repositorioBusqueda.buscarPublicacionPor(buscarPublicacion);
+//            if (publicacionList.size() == 0) {
+//                throw new Exception("No se encontro ninguna publicacion");
+//            }
+//        return publicacionList;
