@@ -13,12 +13,15 @@ import java.util.List;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 
 public class RepositorioPublicacionTest extends SpringTest {
 
     private static final Usuario USUARIO = new Usuario();
-    private static final Publicacion PUBLICACION = new Publicacion();
+    private static final Publicacion PUBLICACION = new Publicacion(10L, new Mascota(), new Localidad());
     private static final Mascota MASCOTAPERDIDA = new Mascota("Scooby",new Tipo(1L,"Perro"), new Estado(1L,"perdido"));
     private static final Mascota MASCOTAENCONTRADA = new Mascota("Rintintin",new Tipo(1L,"Perro"), new Estado(1L,"encontrado"));
 
@@ -90,6 +93,25 @@ public class RepositorioPublicacionTest extends SpringTest {
         givenExistenMisPublicaciones(listaPublicaciones);
         whenFinalizoUnaPublicacion(PUBLICACION);
         thenFinalizoPublicacion(1L, true);
+    }
+
+    @Test(expected = Exception.class)
+    @Transactional
+    @Rollback
+    public void eliminoPublicacionCorrectamente() {
+        List<Publicacion> listaPublicaciones = new LinkedList<>();
+        listaPublicaciones.add(PUBLICACION);
+        whenEliminoUnaPublicacion(PUBLICACION);
+        thenEliminoPublicacion(PUBLICACION.getId());
+    }
+
+    private void thenEliminoPublicacion(Long id) {
+        Publicacion publicacion = repositorioPublicacion.buscarPublicacionPorId(id);
+        verify(repositorioPublicacion, times(any())).eliminarPublicacion(publicacion);
+    }
+
+    private void whenEliminoUnaPublicacion(Publicacion publicacion) {
+        repositorioPublicacion.eliminarPublicacion(publicacion);
     }
 
     @Test
