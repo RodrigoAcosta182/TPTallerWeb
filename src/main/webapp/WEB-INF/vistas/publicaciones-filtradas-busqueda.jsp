@@ -16,10 +16,10 @@
                 <%--            <img class="imagen-publicacion-mascota"--%>
                 <%--                 src="https://images.clarin.com/2021/06/20/el-caniche-arriba-en-las___6JQOYiC4y_340x340__1.jpg"--%>
                 <%--                 alt="Alps">--%>
-            <c:if test="${publicacion.mascota.estado == 1}">
+            <c:if test="${publicacion.mascota.estado.id == 1}">
                 <h2 style="text-align: center">Perdido</h2>
             </c:if>
-            <c:if test="${publicacion.mascota.estado == 2}">
+            <c:if test="${publicacion.mascota.estado.id == 2}">
                 <h2 style="text-align: center">Encontrado</h2>
             </c:if>
             <img src="${publicacion.mascota.imagen}" class="imagen-tarjeta" alt="">

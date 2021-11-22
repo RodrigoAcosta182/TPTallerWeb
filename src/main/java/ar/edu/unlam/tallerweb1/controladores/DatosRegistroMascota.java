@@ -166,6 +166,9 @@ public class DatosRegistroMascota {
         return nuevaMascota;
     }
 
+
+
+
     public Long getId() {
         return id;
     }

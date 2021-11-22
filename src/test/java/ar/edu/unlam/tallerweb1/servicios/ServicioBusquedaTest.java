@@ -22,16 +22,16 @@ public class ServicioBusquedaTest {
 
 
     @Test
-    public void buscoPublicacionesPorEstadoLocalidadYColor() throws Exception {
+    public void buscoPublicacionesYEncuentro() throws Exception {
         givenQueExistenPublicacionesConEsosDatos();
-        List<Publicacion> publicaciones = whenBuscoPublicacionesConEstadoLocalidadYColor();
+        List<Publicacion> publicaciones = whenBuscoPublicaciones();
         thenEncuentroPublicaciones(publicaciones);
     }
 
     @Test(expected = Exception.class)
     public void buscoPublicacionesYNoEncuentro() throws Exception {
         givenQueLasPublicacionesBuscadasNoExisten();
-        List<Publicacion> publicaciones = whenBuscoPublicacionesConEstadoLocalidadYColor();
+        List<Publicacion> publicaciones = whenBuscoPublicaciones();
         thenNoEncuentroPublicaciones(publicaciones);
     }
 
@@ -104,7 +104,7 @@ public class ServicioBusquedaTest {
         when(repositorioBusqueda.obtenerTodasLasLocalidades()).thenReturn(localidades);
     }
 
-    private List<Publicacion> whenBuscoPublicacionesConEstadoLocalidadYColor() throws Exception {
+    private List<Publicacion> whenBuscoPublicaciones() throws Exception {
         return servicioBusqueda.buscarPublicaciones(MASCOTACOMPLETA);
     }
 
