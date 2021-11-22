@@ -131,10 +131,7 @@
                     </c:if>
 
                     <div class="w3-row l12 w3-center btn-login">
-                        <button class="w3-button w3-deep-purple" Type="Submit"/>Modificar datos</button>
-                    </div>
-                    <div class="w3-row l12 w3-center btn-login">
-                        <a class="w3-btn w3-red" style="width: 100%; margin-top: 10px" type="submit" href="/missingpets/eliminar-publicacion?id=${publicacion.id}">Eliminar</a>
+                        <button class="w3-button w3-deep-purple" style=" margin: 5px" Type="Submit"/>Modificar datos</button>
                     </div>
                 </form:form>
             </div>
