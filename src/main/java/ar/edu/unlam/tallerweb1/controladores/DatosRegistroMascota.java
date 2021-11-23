@@ -56,6 +56,23 @@ public class DatosRegistroMascota {
         this.email = email;
     }
 
+    public DatosRegistroMascota(Long id, String nombre, Tipo tipo, Estado estado, String edad, String raza, String detalle,
+                                String color, String tamanio, Date fecha, Publicacion publicacion, MultipartFile imagen, String email) {
+        this.id = id;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.estado = estado;
+        this.edad = edad;
+        this.raza = raza;
+        this.detalle = detalle;
+        this.color = color;
+        this.tamanio = tamanio;
+        this.fecha = fecha;
+        this.imagen = imagen;
+        this.publicacion = publicacion;
+        this.email = email;
+    }
+
     public String getNombre() {
         return nombre;
     }

@@ -11,6 +11,7 @@ public interface RepositorioPublicacion {
     List<Publicacion> buscarTodasMisPublicaciones(Usuario usuario);
     List<Publicacion> buscarTodasLasPublicacionesPerdidas();
     List<Publicacion> buscarTodasLasPublicacionesEncontradas();
+    List<Publicacion> buscarTodasLasPublicaciones();
     Publicacion buscarPublicacionPorId(Long id);
 
     Usuario buscarUsuarioPorEmailParaSumar(String email);

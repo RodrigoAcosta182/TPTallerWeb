@@ -41,7 +41,22 @@ public class Publicacion {
         this.localidad = localidad;
     }
 
+    public Publicacion(Long id, Date fechaPublicacion, Boolean finalizado, Usuario usuario, Mascota mascota, Localidad localidad) {
+        this.id = id;
+        this.fechaPublicacion = fechaPublicacion;
+        this.finalizado = finalizado;
+        this.usuario = usuario;
+        this.mascota = mascota;
+        this.localidad = localidad;
+    }
+
     public Publicacion(Mascota mascota, Localidad localidad) {
+        this.mascota = mascota;
+        this.localidad = localidad;
+    }
+
+    public Publicacion(Long id, Mascota mascota, Localidad localidad) {
+        this.id = id;
         this.mascota = mascota;
         this.localidad = localidad;
     }
