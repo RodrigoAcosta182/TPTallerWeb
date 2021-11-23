@@ -47,15 +47,13 @@ public class RepositorioBusquedaImpl implements RepositorioBusqueda {
             criteria.add(Restrictions.eq("l.descripcion", publicacion.getLocalidad().getDescripcion()));
         }
 
+        if (publicacion.getMascota().getColor() != "") {
+            criteria.add(Restrictions.eq("m.color", publicacion.getMascota().getColor()));
+        }
 
-//        if (publicacion.getMascota().getColor() != "") {
-//            criteria.add(Restrictions.eq("m.color", publicacion.getMascota().getColor()));
-//        }
-
-
-//        if (publicacion.getMascota().getRaza() != null) {
-//            criteria.add(Restrictions.like("m.raza", "%" + publicacion.getMascota().getRaza() + "%"));
-//        }
+        if (publicacion.getMascota().getRaza() != "") {
+            criteria.add(Restrictions.like("m.raza", "%" + publicacion.getMascota().getRaza() + "%"));
+        }
         return criteria.list();
     }
 
