@@ -28,9 +28,9 @@ public class ServicioPublicacionTest {
     private static final Long ID = 22L;
     private static final Publicacion PUBLICACION = new Publicacion(10L, new Mascota(), new Localidad("Moron"));
     private static final Tipo TIPOMASCOTA = new Tipo(1L, "Perro");
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo", TIPOMASCOTA, new Estado(1L,"Perdido"), "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), PUBLICACION, mock(MultipartFile.class), "");
-
     private static final Usuario USUARIO_MAIL = new Usuario("emortiz@alumno.com", "459");
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo", TIPOMASCOTA, new Estado(1L,"Perdido"), "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), PUBLICACION, mock(MultipartFile.class), USUARIO_MAIL.getEmail());
+
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123");
 
     @Before
@@ -208,6 +208,10 @@ public class ServicioPublicacionTest {
 
 
     private void givenQueLaPublicacionExiste(Long id) {
+        List<Usuario> usuarios = new ArrayList<>();
+        usuarios.add(USUARIO_MAIL);
+        when(repositorioPublicacion.buscarUsuarioPorEmail(MASCOTA.getEmail())).thenReturn(usuarios);
+        when(repositorioPublicacion.buscarUsuarioPorEmailParaSumar(USUARIO_MAIL.getEmail())).thenReturn(USUARIO_MAIL);
         when(repositorioPublicacion.buscarPublicacionPorId(10L)).thenReturn(PUBLICACION);
     }
 

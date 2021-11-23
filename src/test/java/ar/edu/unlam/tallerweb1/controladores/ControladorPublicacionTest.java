@@ -77,7 +77,7 @@ public class ControladorPublicacionTest {
 
     @Test
     public void queLaPublicacionSeFinaliceCorrectamente() throws Exception {
-        givenQueLaPublicacionExiste(MASCOTA);
+        givenQueLaPublicacionExiste(10L);
         ModelAndView mav = whenFinalizarPublicacion(PUBLICACION);
         thenFinalizoPublicacionCorrectamente(mav, "Publicacion Finalizada");
     }
@@ -140,13 +140,12 @@ public class ControladorPublicacionTest {
         assertThat(mav.getModel().get("msg")).isEqualTo(mensaje);
     }
 
-    private void givenQueLaPublicacionExiste(DatosRegistroMascota mascota) throws Exception {
-        when(controladorPublicacion.registrarPublicacion(mascota, REQUEST));
-//        when(servicioPublicacion.buscarPublicacion(id));
+    private void givenQueLaPublicacionExiste(Long id) throws Exception {
+        when(servicioPublicacion.buscarPublicacion(id)).thenReturn(PUBLICACION);
     }
 
     private ModelAndView whenFinalizarPublicacion(Publicacion publicacion) {
-        return controladorPublicacion.finalizarPublicacion(MASCOTA,publicacion, REQUEST);
+        return controladorPublicacion.finalizarPublicacion(MASCOTA,publicacion,REQUEST);
     }
 
 

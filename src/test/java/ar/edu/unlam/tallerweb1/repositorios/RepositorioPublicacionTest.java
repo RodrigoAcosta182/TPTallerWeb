@@ -95,19 +95,23 @@ public class RepositorioPublicacionTest extends SpringTest {
         thenFinalizoPublicacion(1L, true);
     }
 
-    @Test(expected = Exception.class)
+    //Test para preguntar muy raro
+    @Test
     @Transactional
     @Rollback
     public void eliminoPublicacionCorrectamente() {
         List<Publicacion> listaPublicaciones = new LinkedList<>();
         listaPublicaciones.add(PUBLICACION);
+        listaPublicaciones.add(new Publicacion());
+        givenExistenMisPublicaciones(listaPublicaciones);
         whenEliminoUnaPublicacion(PUBLICACION);
-        thenEliminoPublicacion(PUBLICACION.getId());
+
+        List<Publicacion> publicacionesEcontradas = whenObtengoTodasLasPublicacionesDeMascotas();
+        thenEncuentroPublicacionesDespuesDeEliminar(publicacionesEcontradas.size(), listaPublicaciones.size()-1);
     }
 
-    private void thenEliminoPublicacion(Long id) {
-        Publicacion publicacion = repositorioPublicacion.buscarPublicacionPorId(id);
-        verify(repositorioPublicacion, times(any())).eliminarPublicacion(publicacion);
+    private List<Publicacion> whenObtengoTodasLasPublicacionesDeMascotas() {
+        return repositorioPublicacion.buscarTodasLasPublicaciones();
     }
 
     private void whenEliminoUnaPublicacion(Publicacion publicacion) {
@@ -277,6 +281,10 @@ public class RepositorioPublicacionTest extends SpringTest {
 
     private void thenEncuentro(int cantidadEsperada, List<Publicacion> publicaciones) {
         assertThat(publicaciones).hasSize(cantidadEsperada);
+    }
+
+    private void thenEncuentroPublicacionesDespuesDeEliminar(int cantidadEsperada, int publicaciones) {
+        assertThat(publicaciones).isEqualTo(cantidadEsperada);
     }
 
 }

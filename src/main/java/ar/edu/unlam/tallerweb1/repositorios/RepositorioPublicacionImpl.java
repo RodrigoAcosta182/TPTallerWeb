@@ -59,6 +59,11 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     }
 
     @Override
+    public List<Publicacion> buscarTodasLasPublicaciones() {
+        return sessionFactory.getCurrentSession().createCriteria(Publicacion.class).list();
+    }
+
+    @Override
     public Publicacion buscarPublicacionPorId(Long id) {
         return (Publicacion) sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
                 .add(Restrictions.eq("id", id)).uniqueResult();
