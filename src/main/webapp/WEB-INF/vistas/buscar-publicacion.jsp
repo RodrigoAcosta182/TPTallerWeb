@@ -44,6 +44,9 @@
                 </form:select>
                 <label style="float: left">Color</label>
                 <form:input  cssClass="w3-input" path="color" type="text" id="color"/>
+
+                <label style="float: left">Raza</label>
+                <form:input  cssClass="w3-input" path="raza" type="text" id="raza"/>
                 <div class="buscar-publicaciones-boton-container">
                     <button class="w3-button w3-deep-purple" Type="Submit"/>
                     Buscar</button>
