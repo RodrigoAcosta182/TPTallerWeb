@@ -15,7 +15,7 @@
             <span>Buscar a tu mascota</span>
         </a>
         <a class="homeBotonBox w3-col" href="ir-a-productos">
-            <span>Servicios</span>
+            <span>Canjea tus Puntos</span>
         </a>
 
     </div>
