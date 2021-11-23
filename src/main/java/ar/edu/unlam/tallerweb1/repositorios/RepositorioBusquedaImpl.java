@@ -41,7 +41,6 @@ public class RepositorioBusquedaImpl implements RepositorioBusqueda {
             criteria.add(Restrictions.eq("e.descripcion",
                     publicacion.getMascota().getEstado().getDescripcion()));
         }
-        //revisar if cuando llegan datos null
 
         if (publicacion.getLocalidad() != null) {
             criteria.add(Restrictions.eq("l.descripcion", publicacion.getLocalidad().getDescripcion()));

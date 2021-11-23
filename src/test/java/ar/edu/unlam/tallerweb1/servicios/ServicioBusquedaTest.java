@@ -21,12 +21,12 @@ public class ServicioBusquedaTest {
             (new Estado(), new Tipo(), PUBLICACION, "Pekines", "Blanco");
 
 //  a revisar, con errores luego de los cambios
-//    @Test
-//    public void buscoPublicacionesYEncuentro() throws Exception {
-//        givenQueExistenPublicacionesConEsosDatos();
-//        List<Publicacion> publicaciones = whenBuscoPublicaciones();
-//        thenEncuentroPublicaciones(publicaciones);
-//    }
+    @Test
+    public void buscoPublicacionesYEncuentro() throws Exception {
+        givenQueExistenPublicacionesConEsosDatos();
+        List<Publicacion> publicaciones = whenBuscoPublicaciones();
+        thenEncuentroPublicaciones(publicaciones);
+    }
 
     @Test(expected = Exception.class)
     public void buscoPublicacionesYNoEncuentro() throws Exception {

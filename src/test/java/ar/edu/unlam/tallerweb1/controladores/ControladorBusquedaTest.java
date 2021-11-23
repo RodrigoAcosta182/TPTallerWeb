@@ -3,7 +3,6 @@ package ar.edu.unlam.tallerweb1.controladores;
 import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.servicios.ServicioBusqueda;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
