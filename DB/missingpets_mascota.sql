@@ -44,7 +44,7 @@ CREATE TABLE `mascota` (
   CONSTRAINT `FKfxpnmoqu6mh0as8sxp3knvxkf` FOREIGN KEY (`estado_id`) REFERENCES `estado` (`id`),
   CONSTRAINT `mascota_estado_id_fk` FOREIGN KEY (`estado_id`) REFERENCES `estado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `mascota_tipo_id_fk` FOREIGN KEY (`tipo_id`) REFERENCES `tipo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +53,7 @@ CREATE TABLE `mascota` (
 
 LOCK TABLES `mascota` WRITE;
 /*!40000 ALTER TABLE `mascota` DISABLE KEYS */;
-INSERT INTO `mascota` VALUES (87,'Hellboy','30 años','bully','gordo y petizo','marron','Mediano',NULL,'img/5916hellboy.jpg',NULL,1,1);
+INSERT INTO `mascota` VALUES (87,'Hellboy','30 años','bully','gordo y petizo','marron','Mediano',NULL,'img/5916hellboy.jpg',NULL,1,1),(91,'','','','','','',NULL,'img/7c7ee4ad8c68c5dd6e7498b22f86356a.jpg',NULL,1,2);
 /*!40000 ALTER TABLE `mascota` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -66,4 +66,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-21 21:24:36
+-- Dump completed on 2021-11-23 20:14:27
