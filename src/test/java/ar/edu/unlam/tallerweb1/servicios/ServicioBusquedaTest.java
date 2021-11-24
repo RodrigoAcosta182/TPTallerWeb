@@ -17,16 +17,16 @@ public class ServicioBusquedaTest {
     private RepositorioBusqueda repositorioBusqueda = mock(RepositorioBusqueda.class);
     private ServicioBusqueda servicioBusqueda = new ServicioBusquedaImpl(repositorioBusqueda);
     private static final Publicacion PUBLICACION = new Publicacion(new Mascota(), new Localidad("Moron"));
-    private static final DatosRegistroMascota MASCOTACOMPLETA = new DatosRegistroMascota
+    private static final DatosRegistroMascota DATOSMASCOTACOMPLETA = new DatosRegistroMascota
             (new Estado(), new Tipo(), PUBLICACION, "Pekines", "Blanco");
 
-//  a revisar, con errores luego de los cambios
-//    @Test
-//    public void buscoPublicacionesYEncuentro() throws Exception {
-//        givenQueExistenPublicacionesConEsosDatos();
-//        List<Publicacion> publicaciones = whenBuscoPublicaciones();
-//        thenEncuentroPublicaciones(publicaciones);
-//    }
+
+    @Test
+    public void buscoPublicacionesYEncuentro() throws Exception {
+        givenQueExistenPublicacionesConEsosDatos();
+        List<Publicacion> publicaciones = whenBuscoPublicaciones();
+        thenEncuentroPublicaciones(publicaciones);
+    }
 
     @Test(expected = Exception.class)
     public void buscoPublicacionesYNoEncuentro() throws Exception {
@@ -95,7 +95,7 @@ public class ServicioBusquedaTest {
     }
 
     private void givenQueLasPublicacionesBuscadasNoExisten() {
-        when(repositorioBusqueda.buscarPublicacionPor(MASCOTACOMPLETA.getPublicacion())).thenReturn(null);
+        when(repositorioBusqueda.buscarPublicacionPor(DATOSMASCOTACOMPLETA.getPublicacion())).thenReturn(null);
     }
 
     private void givenQueExistenLocalidades() {
@@ -105,7 +105,7 @@ public class ServicioBusquedaTest {
     }
 
     private List<Publicacion> whenBuscoPublicaciones() throws Exception {
-        return servicioBusqueda.buscarPublicaciones(MASCOTACOMPLETA);
+        return servicioBusqueda.buscarPublicaciones(DATOSMASCOTACOMPLETA);
     }
 
     private List<Localidad> whenObtengoLocalidades() {

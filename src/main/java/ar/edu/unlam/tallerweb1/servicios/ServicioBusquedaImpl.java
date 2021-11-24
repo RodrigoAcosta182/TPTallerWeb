@@ -25,8 +25,7 @@ public class ServicioBusquedaImpl implements ServicioBusqueda {
     @Override
     public List<Publicacion> buscarPublicaciones(DatosRegistroMascota mascota) throws Exception {
 
-        Publicacion nuevaPublicacion = new Publicacion();
-        nuevaPublicacion.setMascota(mascota.toMascota());
+        Publicacion nuevaPublicacion = mascota.toPublicacion();
         if (mascota.getPublicacion() != null) {
             if (mascota.getPublicacion().getLocalidad().getDescripcion() != null) {
                 nuevaPublicacion.setLocalidad(mascota.getPublicacion().getLocalidad());

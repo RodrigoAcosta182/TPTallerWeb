@@ -160,10 +160,10 @@ public class ControladorPublicacion {
         } catch (Exception e) {
             List<Localidad> localidades =  servicioPublicacion.getLocalidades();
             List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
-            List<Estado> tiposDeEstado = servicioPublicacion.getEstadosDeMascota();
+            List<Estado> estadosMascota = servicioPublicacion.getEstadosDeMascota();
             model.put("localidades",localidades);
             model.put("tiposDeMascota",tiposDeMascota);
-            model.put("tiposDeEstado",tiposDeEstado);
+            model.put("estadosMascota",estadosMascota);
             model.put("error", e.getMessage());
             return new ModelAndView("form-modificar-registro-mascota", model);
         }

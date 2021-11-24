@@ -14,13 +14,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RepositorioBusquedaTest extends SpringTest {
 
-    private static final Mascota MASCOTA = new Mascota();
-    private static final Publicacion PUBLICACION = new Publicacion(MASCOTA,new Localidad("Moron"));
+
+    private static final Publicacion PUBLICACION = new Publicacion(new Mascota(),new Localidad("Moron"));
 
     @Autowired
     private RepositorioBusqueda repositorioBusqueda;
 
-
+// Este test se rompio luego de los cambios de tipo y estado, no lo pude resolver
 //    @Test
 //    @Transactional
 //    @Rollback
@@ -31,6 +31,7 @@ public class RepositorioBusquedaTest extends SpringTest {
 //        List<Publicacion> publicacionesEncontradas = whenBuscoPublicaciones(PUBLICACION);
 //        thenEncuentroPublicaciones(publicacionesEncontradas.size(),listaPublicaciones);
 //    }
+
     @Test
     @Transactional
     @Rollback
@@ -107,6 +108,7 @@ public class RepositorioBusquedaTest extends SpringTest {
 
     private void givenQueExistenPublicaciones(List<Publicacion> listaPublicaciones) {
             for(Publicacion publicacion: listaPublicaciones){
+                session().save(publicacion.getLocalidad());
                 session().save(publicacion);
             }
     }

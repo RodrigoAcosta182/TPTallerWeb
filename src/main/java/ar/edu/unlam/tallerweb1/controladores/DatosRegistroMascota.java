@@ -32,7 +32,7 @@ public class DatosRegistroMascota {
     public DatosRegistroMascota() {
     }
 
-    public DatosRegistroMascota(Estado estado,Tipo tipo, Publicacion publicacion, String raza,String color) {
+    public DatosRegistroMascota(Estado estado, Tipo tipo, Publicacion publicacion, String raza, String color) {
         this.estado = estado;
         this.tipo = tipo;
         this.publicacion = publicacion;
@@ -183,7 +183,14 @@ public class DatosRegistroMascota {
         return nuevaMascota;
     }
 
-
+    public Publicacion toPublicacion() {
+        Publicacion nuevaPublicacion = this.getPublicacion();
+        if (nuevaPublicacion == null) {
+            nuevaPublicacion = new Publicacion();
+            nuevaPublicacion.setMascota(toMascota());
+        }
+        return nuevaPublicacion;
+    }
 
 
     public Long getId() {
