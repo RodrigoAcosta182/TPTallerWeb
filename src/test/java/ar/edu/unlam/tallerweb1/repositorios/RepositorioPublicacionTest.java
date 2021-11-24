@@ -159,6 +159,19 @@ public class RepositorioPublicacionTest extends SpringTest {
         thenEncuentroEstadosDeMascota(estadosObtenidos.size(), estadosObtenidos);
     }
 
+    private void givenQueExistenEstadosDeMascota(List<Estado> estados) {
+        for (Estado estadosDeMascota : estados) {
+            session().save(estadosDeMascota);
+        }
+    }
+
+    private void givenQueExistenTiposDeMascota(List<Tipo> tiposDeMascota) {
+
+        for (Tipo tipoDeMascota : tiposDeMascota) {
+            session().save(tipoDeMascota);
+        }
+    }
+
     private List<Publicacion> whenObtengoTodasLasPublicacionesDeMascotas() {
         return repositorioPublicacion.buscarTodasLasPublicaciones();
     }
@@ -167,33 +180,20 @@ public class RepositorioPublicacionTest extends SpringTest {
         repositorioPublicacion.eliminarPublicacion(publicacion);
     }
 
-    private void thenEncuentroEstadosDeMascota(int cantidadEsperada, List<Estado> estadosObtenidos) {
-        assertThat(estadosObtenidos).hasSize(cantidadEsperada);
-    }
-
     private List<Estado> whenObtengoTodosLosEstadosDeMascota() {
         return repositorioPublicacion.obtenerTodosLosEstadosDeMascota();
-    }
-
-    private void givenQueExistenEstadosDeMascota(List<Estado> estados) {
-        for (Estado estadosDeMascota : estados) {
-            session().save(estadosDeMascota);
-        }
-    }
-
-    private void thenEncuentroTiposDeMascota(int cantidadEsperada, List<Tipo> tiposDeMascotaObtenidos) {
-        assertThat(tiposDeMascotaObtenidos).hasSize(cantidadEsperada);
     }
 
     private List<Tipo> whenObtengoTodosLosTiposDeMascota() {
         return repositorioPublicacion.obtenerTodosLosTiposDeMascota();
     }
 
-    private void givenQueExistenTiposDeMascota(List<Tipo> tiposDeMascota) {
+    private void thenEncuentroEstadosDeMascota(int cantidadEsperada, List<Estado> estadosObtenidos) {
+        assertThat(estadosObtenidos).hasSize(cantidadEsperada);
+    }
 
-        for (Tipo tipoDeMascota : tiposDeMascota) {
-            session().save(tipoDeMascota);
-        }
+    private void thenEncuentroTiposDeMascota(int cantidadEsperada, List<Tipo> tiposDeMascotaObtenidos) {
+        assertThat(tiposDeMascotaObtenidos).hasSize(cantidadEsperada);
     }
 
     private void thenEncuentroLocalidad(Localidad localidadObtenida) {
