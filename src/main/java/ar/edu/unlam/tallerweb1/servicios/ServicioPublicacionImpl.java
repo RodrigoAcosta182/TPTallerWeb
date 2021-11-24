@@ -83,29 +83,23 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     @Override
     public void finalizarPublicacion(DatosRegistroMascota mascota,Publicacion publicacion, HttpServletRequest request) throws Exception {
         Publicacion publi = repositorioPublicacion.buscarPublicacionPorId(publicacion.getId());
-        Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-        buscarUsuarioParaFinalizar(usuario, mascota.getEmail());
+        buscarUsuarioParaSumarYFinalizar(mascota.getEmail());
         publi.setFinalizado(true);
         repositorioPublicacion.finalizarPublicacion(publi);
     }
 
     @Override
-    public void buscarUsuarioParaFinalizar(Usuario usuario, String email) throws Exception {
-        if (email != null){
-            if (email != ""){
-                if (!usuario.getEmail().equals(email)) {
-                    if (repositorioPublicacion.buscarUsuarioPorEmail(email).isEmpty()) {
-                        throw new Exception("El mail del usuario ingresado no existe");
-                    }else{
-                        Usuario user = repositorioPublicacion.buscarUsuarioPorEmailParaSumar(email);
-                        user.setPuntos(user.getPuntos() + 50);
-                        repositorioPublicacion.sumarPuntosAlUsuario(user);
-                    }
-                }else{
-                    throw new Exception("El mail ingresado no puede ser igual que el mail logueado");
-                }
-            }
+    public void buscarUsuarioParaSumarYFinalizar( String email) throws Exception {
+        if (email != ""){
+            Usuario user = repositorioPublicacion.buscarUsuarioPorEmailParaSumar(email);
+            user.setPuntos(user.getPuntos() + 50);
+            repositorioPublicacion.sumarPuntosAlUsuario(user);
         }
+    }
+
+    @Override
+    public List<Usuario> buscarUsuarioPorEmail(String email) throws Exception{
+        return repositorioPublicacion.buscarUsuarioPorEmail(email);
     }
 
     @Override

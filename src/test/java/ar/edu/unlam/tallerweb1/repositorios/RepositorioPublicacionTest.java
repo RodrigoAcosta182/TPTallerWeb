@@ -110,14 +110,6 @@ public class RepositorioPublicacionTest extends SpringTest {
         thenEncuentroPublicacionesDespuesDeEliminar(publicacionesEcontradas.size(), listaPublicaciones.size()-1);
     }
 
-    private List<Publicacion> whenObtengoTodasLasPublicacionesDeMascotas() {
-        return repositorioPublicacion.buscarTodasLasPublicaciones();
-    }
-
-    private void whenEliminoUnaPublicacion(Publicacion publicacion) {
-        repositorioPublicacion.eliminarPublicacion(publicacion);
-    }
-
     @Test
     @Transactional
     @Rollback
@@ -165,6 +157,14 @@ public class RepositorioPublicacionTest extends SpringTest {
         givenQueExistenEstadosDeMascota(estados);
         List<Estado> estadosObtenidos = whenObtengoTodosLosEstadosDeMascota();
         thenEncuentroEstadosDeMascota(estadosObtenidos.size(), estadosObtenidos);
+    }
+
+    private List<Publicacion> whenObtengoTodasLasPublicacionesDeMascotas() {
+        return repositorioPublicacion.buscarTodasLasPublicaciones();
+    }
+
+    private void whenEliminoUnaPublicacion(Publicacion publicacion) {
+        repositorioPublicacion.eliminarPublicacion(publicacion);
     }
 
     private void thenEncuentroEstadosDeMascota(int cantidadEsperada, List<Estado> estadosObtenidos) {
