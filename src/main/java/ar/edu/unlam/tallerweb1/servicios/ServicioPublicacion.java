@@ -21,7 +21,9 @@ public interface ServicioPublicacion {
 
     void finalizarPublicacion(DatosRegistroMascota mascota,Publicacion publicacion, HttpServletRequest request) throws Exception;
 
-    void buscarUsuarioParaFinalizar(Usuario usuario, String email) throws Exception;
+    void buscarUsuarioParaSumarYFinalizar( String email) throws Exception;
+
+    List<Usuario> buscarUsuarioPorEmail(String email) throws Exception;
 
     List<Localidad> getLocalidades();
 

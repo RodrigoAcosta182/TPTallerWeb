@@ -29,6 +29,7 @@ public class ServicioPublicacionTest {
     private static final Publicacion PUBLICACION = new Publicacion(10L, new Mascota(), new Localidad("Moron"));
     private static final Tipo TIPOMASCOTA = new Tipo(1L, "Perro");
     private static final Usuario USUARIO_MAIL = new Usuario("emortiz@alumno.com", "459");
+    private static final Usuario USUARIO_MAIL_INEXISTENTE = new Usuario("falopa@falopa.com", "459");
     private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Rodrigo", TIPOMASCOTA, new Estado(1L,"Perdido"), "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), PUBLICACION, mock(MultipartFile.class), USUARIO_MAIL.getEmail());
 
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123");
@@ -48,7 +49,7 @@ public class ServicioPublicacionTest {
 
     @Test
     public void queSeEncuentraUnaPublicacionPorId() {
-        givenQueLaPublicacionExiste(10L);
+        givenQueLaPublicacionExiste();
         Publicacion publicacion = whenObtengoPublicacionPor(10L);
         thenEncuentroUnaPublicacion(publicacion);
     }
@@ -61,15 +62,22 @@ public class ServicioPublicacionTest {
     }
 
     @Test
-    public void queSeFinalizaLaPublicacionCorrectamente() throws Exception {
-        givenQueLaPublicacionExiste(10L);
-        whenFinalizoLaPublicacion(PUBLICACION, MASCOTA);
-        thenFinalizoLaPublicacionCorrectamente();
+    public void queSeFinalizaLaPublicacionConMailCorrecto() throws Exception {
+        givenQueLaPublicacionExiste();
+        whenFinalizoLaPublicacionConMailExistente(PUBLICACION, MASCOTA);
+        thenFinalizoLaPublicacionConMailExistenteCorrectamente();
+    }
+
+    @Test (expected = Exception.class)
+    public void queNoFinalizaLaPublicacionPorMailInexistente() throws Exception {
+        givenQueLaPublicacionExisteYFinalizoConMailIncorrecto();
+        whenFinalizoLaPublicacionConMailExistente(PUBLICACION, MASCOTA);
+        thenNoFinalizoLaPublicacionPorMailInexistente();
     }
 
     @Test
     public void queSeEliminaLaPublicacionCorrectamente() throws Exception {
-        givenQueLaPublicacionExiste(10L);
+        givenQueLaPublicacionExiste();
         whenEliminoLaPublicacion(PUBLICACION);
         thenEliminoLaPublicacionCorrectamente();
     }
@@ -207,7 +215,7 @@ public class ServicioPublicacionTest {
     }
 
 
-    private void givenQueLaPublicacionExiste(Long id) {
+    private void givenQueLaPublicacionExiste() {
         List<Usuario> usuarios = new ArrayList<>();
         usuarios.add(USUARIO_MAIL);
         when(repositorioPublicacion.buscarUsuarioPorEmail(MASCOTA.getEmail())).thenReturn(usuarios);
@@ -215,11 +223,18 @@ public class ServicioPublicacionTest {
         when(repositorioPublicacion.buscarPublicacionPorId(10L)).thenReturn(PUBLICACION);
     }
 
+    private void givenQueLaPublicacionExisteYFinalizoConMailIncorrecto() {
+        List<Usuario> usuarios = new ArrayList<>();
+        usuarios.add(USUARIO_MAIL_INEXISTENTE);
+        when(repositorioPublicacion.buscarPublicacionPorId(10L)).thenReturn(PUBLICACION);
+    }
+
+
     public void givenQueLaPublicacionNoExiste() {
         when(repositorioPublicacion.buscarTodasLasPublicacionesPerdidas()).thenReturn(null);
     }
 
-    private void whenFinalizoLaPublicacion(Publicacion publicacion, DatosRegistroMascota mascota) throws Exception {
+    private void whenFinalizoLaPublicacionConMailExistente(Publicacion publicacion, DatosRegistroMascota mascota) throws Exception {
         servicioPublicacion.finalizarPublicacion(mascota, publicacion, REQUEST);
     }
 
@@ -256,7 +271,11 @@ public class ServicioPublicacionTest {
         verify(repositorioPublicacion, times(1)).eliminarPublicacion(PUBLICACION);
     }
 
-    private void thenFinalizoLaPublicacionCorrectamente() {
+    private void thenFinalizoLaPublicacionConMailExistenteCorrectamente() {
+        verify(repositorioPublicacion, times(1)).finalizarPublicacion(PUBLICACION);
+    }
+
+    private void thenNoFinalizoLaPublicacionPorMailInexistente() {
         verify(repositorioPublicacion, times(1)).finalizarPublicacion(PUBLICACION);
     }
 

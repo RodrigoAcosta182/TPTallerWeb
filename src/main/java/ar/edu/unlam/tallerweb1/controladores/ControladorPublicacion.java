@@ -45,24 +45,12 @@ public class ControladorPublicacion {
         return new ModelAndView("home", model);
     }
 
-//    @RequestMapping(method = RequestMethod.POST, path = "/buscarUsuario")
-//    public ModelAndView buscarUsuario(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, HttpServletRequest request, String email) {
-//        ModelMap model = new ModelMap();
-//        try {
-//            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-//            servicioPublicacion.buscarUsuarioParaFinalizar(usuario, email);
-//        } catch (Exception e) {
-//            model.put("busqueda", "No existe usuario con ese email");
-//            return new ModelAndView("mis-publicaciones", model);
-//        }
-//        model.put("busqueda", "Usuario Encontrado");
-//        return new ModelAndView("mis-publicaciones", model);
-//    }
-
     @RequestMapping(method = RequestMethod.POST, path = "/finalizar-publicacion")
     public ModelAndView finalizarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota,@ModelAttribute("publicacion") Publicacion publicacion,HttpServletRequest request) {
         ModelMap model = new ModelMap();
         try{
+            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+            validarUsuarioParaFinalizarPublicacion(usuario, mascota.getEmail());
             servicioPublicacion.finalizarPublicacion(mascota, publicacion,request);
         }catch (Exception e){
             model.put("error",e.getMessage());
@@ -212,5 +200,17 @@ public class ControladorPublicacion {
         }
     } // el estado esta viniendo null desde el front
 
+    public void validarUsuarioParaFinalizarPublicacion(Usuario usuario, String email) throws Exception {
+        if (email != null){
+            if (email != ""){
+                if (!usuario.getEmail().equals(email)) {
+                    if (servicioPublicacion.buscarUsuarioPorEmail(email).isEmpty())
+                        throw new Exception("El mail del usuario ingresado no existe");
+                }else{
+                    throw new Exception("El mail ingresado no puede ser igual que el mail logueado");
+                }
+            }
+        }
+    }
 
 }

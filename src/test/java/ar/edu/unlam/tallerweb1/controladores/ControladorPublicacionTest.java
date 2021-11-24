@@ -22,8 +22,10 @@ import static org.mockito.Mockito.*;
 
 public class ControladorPublicacionTest {
 
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota(10L,"Rodrigo", new Tipo(), new Estado(1L,"Perdido"), "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), mock(MultipartFile.class), "nashe");
+    private static final Usuario USUARIO_MAIL = new Usuario("emortiz@alumno.com", "459");
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123");
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota(10L,"Rodrigo", new Tipo(), new Estado(1L,"Perdido"), "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), mock(MultipartFile.class), USUARIO_MAIL.getEmail());
+    private static final DatosRegistroMascota MASCOTA_MAIL_IGUAL = new DatosRegistroMascota(10L,"Rodrigo", new Tipo(), new Estado(1L,"Perdido"), "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), mock(MultipartFile.class), USUARIO.getEmail());
     private static final Publicacion PUBLICACION = new Publicacion(10L, new Date(), false, USUARIO, new Mascota(), new Localidad());
 
     private HttpServletRequest REQUEST = mock(HttpServletRequest.class);
@@ -83,6 +85,21 @@ public class ControladorPublicacionTest {
     }
 
     @Test
+    public void queLaPublicacionNoSeFinalicePorMailInexistente() throws Exception {
+        givenQueLaPublicacionExisteYSeFinaliceConMailInexistente(PUBLICACION.getId());
+        ModelAndView mav = whenFinalizarPublicacion(PUBLICACION);
+        thenNoFinalizoPublicacionPorMailInexistente(mav, "El mail del usuario ingresado no existe");
+    }
+
+    @Test
+    public void queLaPublicacionNoSeFinalicePorMailIgualAlLogueado() throws Exception {
+        givenQueLaPublicacionExisteYSeFinaliceConMailInexistente(PUBLICACION.getId());
+        ModelAndView mav = whenFinalizoPublicacionConMailIgual(PUBLICACION);
+        thenNoFinalizoPublicacionPorMailInexistente(mav, "El mail ingresado no puede ser igual que el mail logueado");
+    }
+
+
+    @Test
     public void obtengoLocalidadesEnLaPaginaDeRegistroDeMascota(){
         givenQueExistenLocalidades();
         ModelAndView mav = whenIrAlSitioRegistrarPublicacion();
@@ -140,12 +157,27 @@ public class ControladorPublicacionTest {
         assertThat(mav.getModel().get("msg")).isEqualTo(mensaje);
     }
 
+    private void thenNoFinalizoPublicacionPorMailInexistente(ModelAndView mav, String mensaje) {
+        assertThat(mav.getModel().get("error")).isEqualTo(mensaje);
+    }
+
     private void givenQueLaPublicacionExiste(Long id) throws Exception {
+        List<Usuario> usuarios = new ArrayList<>();
+        usuarios.add(USUARIO_MAIL);
+        when(servicioPublicacion.buscarUsuarioPorEmail(MASCOTA.getEmail())).thenReturn(usuarios);
         when(servicioPublicacion.buscarPublicacion(id)).thenReturn(PUBLICACION);
+    }
+
+    private void givenQueLaPublicacionExisteYSeFinaliceConMailInexistente(Long id) throws Exception {
+        doThrow(Exception.class).when(servicioPublicacion).finalizarPublicacion(MASCOTA, PUBLICACION, REQUEST);
     }
 
     private ModelAndView whenFinalizarPublicacion(Publicacion publicacion) {
         return controladorPublicacion.finalizarPublicacion(MASCOTA,publicacion,REQUEST);
+    }
+
+    private ModelAndView whenFinalizoPublicacionConMailIgual(Publicacion publicacion) {
+        return controladorPublicacion.finalizarPublicacion(MASCOTA_MAIL_IGUAL,publicacion,REQUEST);
     }
 
 
