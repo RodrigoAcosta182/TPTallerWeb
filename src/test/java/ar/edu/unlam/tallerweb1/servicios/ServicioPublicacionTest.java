@@ -76,6 +76,13 @@ public class ServicioPublicacionTest {
     }
 
     @Test
+    public void queSeSumePuntosAlFinalizaLaPublicacion() throws Exception {
+        givenQueLaPublicacionExiste();
+        whenFinalizoLaPublicacionConMailExistente(PUBLICACION, MASCOTA);
+        thenFinalizoLaPublicacionYSeSumanLosPuntos();
+    }
+
+    @Test
     public void queSeEliminaLaPublicacionCorrectamente() throws Exception {
         givenQueLaPublicacionExiste();
         whenEliminoLaPublicacion(PUBLICACION);
@@ -125,43 +132,9 @@ public class ServicioPublicacionTest {
         thenEncuentroEstadoDeMascotaPorId(tipoDeEstadoObtenido);
     }
 
-    private void thenEncuentroEstadoDeMascotaPorId(Estado tipoDeEstadoObtenido) {
-        assertThat(tipoDeEstadoObtenido).isNotNull();
-        verify(repositorioPublicacion, times(1)).obtenerEstadoDeMascotaPorId(1L);
-    }
-
-    private Estado whenObtengoEstadoDeMascotaPorId(long id) {
-        return servicioPublicacion.obtenerEstadoDeMascotaPorId(id);
-    }
-
     private void givenQueExistenEstadosDeMascotaConId() {
         Estado estadoDeMascota = new Estado(1L,"Perdido");
         when(repositorioPublicacion.obtenerEstadoDeMascotaPorId(1L)).thenReturn(estadoDeMascota);
-    }
-
-    private void thenEncuentroEstadosDeMascota(List<Estado> estados) {
-        assertThat(estados).isNotNull();
-        verify(repositorioPublicacion, times(1)).obtenerTodosLosEstadosDeMascota();
-    }
-
-    private List<Estado> whenObtengoEstadosDeMascota() {
-        return servicioPublicacion.getEstadosDeMascota();
-    }
-
-    private void givenQueExistenEstadosDeMascota() {
-        List<Estado> estados = new ArrayList<>();
-        estados.add(new Estado());
-        estados.add(new Estado());
-        when(repositorioPublicacion.obtenerTodosLosEstadosDeMascota()).thenReturn(estados);
-    }
-
-    private void thenEncuentroTipoDeMascotaPorId(Tipo tipoDeMascotaObtenido) {
-        assertThat(tipoDeMascotaObtenido).isNotNull();
-        verify(repositorioPublicacion, times(1)).obtenerTipoDeMascotaPorId(1L);
-    }
-
-    private Tipo whenObtengoTipoDeMascotaPorId(long id) {
-        return servicioPublicacion.obtenerTipoDeMascotaPorId(id);
     }
 
     private void givenQueExistenTiposDeMascotaConId() {
@@ -169,13 +142,11 @@ public class ServicioPublicacionTest {
         when(repositorioPublicacion.obtenerTipoDeMascotaPorId(1L)).thenReturn(tipoDeMascota);
     }
 
-    private void thenEncuentroTiposDeMascota(List<Tipo> tipoDeMascota) {
-        assertThat(tipoDeMascota).isNotNull();
-        verify(repositorioPublicacion, times(1)).obtenerTodosLosTiposDeMascota();
-    }
-
-    private List<Tipo> whenObtengoTiposDeMascota() {
-        return servicioPublicacion.getTiposDeMascota();
+    private void givenQueExistenEstadosDeMascota() {
+        List<Estado> estados = new ArrayList<>();
+        estados.add(new Estado());
+        estados.add(new Estado());
+        when(repositorioPublicacion.obtenerTodosLosEstadosDeMascota()).thenReturn(estados);
     }
 
     private void givenQueExistenTiposDeMascota() {
@@ -188,32 +159,6 @@ public class ServicioPublicacionTest {
         Localidad localidad = new Localidad();
         when(repositorioPublicacion.obtenerLocalidadPorDescripcion("San Justo")).thenReturn(localidad);
     }
-
-    private void thenEncuentroLaLocalidad(Localidad localidadObtenida) {
-        assertThat(localidadObtenida).isNotNull();
-        verify(repositorioPublicacion, times(1)).obtenerLocalidadPorDescripcion("San Justo");
-    }
-
-
-    private Localidad whenObtengoLocalidadPorDescripcion(String localidadDescripcion) {
-        return servicioPublicacion.getLocalidadPorDescripcion(localidadDescripcion);
-    }
-
-    private void givenQueExistenLocalidades() {
-        List<Localidad> localidades = new ArrayList<>();
-        localidades.add(new Localidad("San Justo"));
-        when(repositorioPublicacion.obtenerTodasLasLocalidades()).thenReturn(localidades);
-    }
-
-    private List<Localidad> whenObtengoLocalidades() {
-        return servicioPublicacion.getLocalidades();
-    }
-
-    private void thenObtengoLocalidades(List<Localidad> localidades) {
-        assertThat(localidades).isNotNull();
-        verify(repositorioPublicacion, times(1)).obtenerTodasLasLocalidades();
-    }
-
 
     private void givenQueLaPublicacionExiste() {
         List<Usuario> usuarios = new ArrayList<>();
@@ -229,9 +174,38 @@ public class ServicioPublicacionTest {
         when(repositorioPublicacion.buscarPublicacionPorId(10L)).thenReturn(PUBLICACION);
     }
 
-
     public void givenQueLaPublicacionNoExiste() {
         when(repositorioPublicacion.buscarTodasLasPublicacionesPerdidas()).thenReturn(null);
+    }
+
+    private void givenQueExistenLocalidades() {
+        List<Localidad> localidades = new ArrayList<>();
+        localidades.add(new Localidad("San Justo"));
+        when(repositorioPublicacion.obtenerTodasLasLocalidades()).thenReturn(localidades);
+    }
+
+    private Estado whenObtengoEstadoDeMascotaPorId(long id) {
+        return servicioPublicacion.obtenerEstadoDeMascotaPorId(id);
+    }
+
+    private List<Estado> whenObtengoEstadosDeMascota() {
+        return servicioPublicacion.getEstadosDeMascota();
+    }
+
+    private Tipo whenObtengoTipoDeMascotaPorId(long id) {
+        return servicioPublicacion.obtenerTipoDeMascotaPorId(id);
+    }
+
+    private List<Tipo> whenObtengoTiposDeMascota() {
+        return servicioPublicacion.getTiposDeMascota();
+    }
+
+    private Localidad whenObtengoLocalidadPorDescripcion(String localidadDescripcion) {
+        return servicioPublicacion.getLocalidadPorDescripcion(localidadDescripcion);
+    }
+
+    private List<Localidad> whenObtengoLocalidades() {
+        return servicioPublicacion.getLocalidades();
     }
 
     private void whenFinalizoLaPublicacionConMailExistente(Publicacion publicacion, DatosRegistroMascota mascota) throws Exception {
@@ -252,6 +226,36 @@ public class ServicioPublicacionTest {
 
     private Publicacion whenRegistroPublicacionCon() throws Exception {
         return servicioPublicacion.registrarPublicacion(MASCOTA, USUARIO);
+    }
+
+    private void thenEncuentroEstadoDeMascotaPorId(Estado tipoDeEstadoObtenido) {
+        assertThat(tipoDeEstadoObtenido).isNotNull();
+        verify(repositorioPublicacion, times(1)).obtenerEstadoDeMascotaPorId(1L);
+    }
+
+    private void thenEncuentroEstadosDeMascota(List<Estado> estados) {
+        assertThat(estados).isNotNull();
+        verify(repositorioPublicacion, times(1)).obtenerTodosLosEstadosDeMascota();
+    }
+
+    private void thenEncuentroTipoDeMascotaPorId(Tipo tipoDeMascotaObtenido) {
+        assertThat(tipoDeMascotaObtenido).isNotNull();
+        verify(repositorioPublicacion, times(1)).obtenerTipoDeMascotaPorId(1L);
+    }
+
+    private void thenEncuentroTiposDeMascota(List<Tipo> tipoDeMascota) {
+        assertThat(tipoDeMascota).isNotNull();
+        verify(repositorioPublicacion, times(1)).obtenerTodosLosTiposDeMascota();
+    }
+
+    private void thenEncuentroLaLocalidad(Localidad localidadObtenida) {
+        assertThat(localidadObtenida).isNotNull();
+        verify(repositorioPublicacion, times(1)).obtenerLocalidadPorDescripcion("San Justo");
+    }
+
+    private void thenObtengoLocalidades(List<Localidad> localidades) {
+        assertThat(localidades).isNotNull();
+        verify(repositorioPublicacion, times(1)).obtenerTodasLasLocalidades();
     }
 
     private void thenEncuentroUnaPublicacion(Publicacion publicacion) {
@@ -277,6 +281,10 @@ public class ServicioPublicacionTest {
 
     private void thenNoFinalizoLaPublicacionPorMailInexistente() {
         verify(repositorioPublicacion, times(1)).finalizarPublicacion(PUBLICACION);
+    }
+
+    private void thenFinalizoLaPublicacionYSeSumanLosPuntos() {
+        assertThat(100).isEqualTo(USUARIO_MAIL.getPuntos());
     }
 
 }

@@ -98,6 +98,12 @@ public class ControladorPublicacionTest {
         thenNoFinalizoPublicacionPorMailInexistente(mav, "El mail ingresado no puede ser igual que el mail logueado");
     }
 
+    @Test
+    public void queSeElimineLaPublicacion() throws Exception {
+        givenQueLaPublicacionExiste(10L);
+        ModelAndView mav = whenEliminoLaPublicacion(PUBLICACION.getId());
+        thenEliminoLaPublicacion(mav, "Publicacion Eliminada");
+    }
 
     @Test
     public void obtengoLocalidadesEnLaPaginaDeRegistroDeMascota(){
@@ -120,18 +126,10 @@ public class ControladorPublicacionTest {
         thenEncuentroEstadosDeMascota(mav);
     }
 
-    private void thenEncuentroEstadosDeMascota(ModelAndView mav) {
-        assertThat(mav.getModel().get("estadosMascota")).isNotNull();
-    }
-
     private void givenExistenEstadosDeMascota() {
         List<Estado> estados = new ArrayList<>();
         estados.add(new Estado());
         when(servicioPublicacion.getEstadosDeMascota()).thenReturn(estados);
-    }
-
-    private void thenEncuentroTiposDeMascota(ModelAndView mav) {
-        assertThat(mav.getModel().get("tiposDeMascota")).isNotNull();
     }
 
     private void givenQueExistenTiposDeMascota() {
@@ -146,21 +144,6 @@ public class ControladorPublicacionTest {
         when(servicioPublicacion.getLocalidades()).thenReturn(localidades);
     }
 
-
-
-    private void thenEncuentroLocalidades(ModelAndView mav) {
-        assertThat(mav.getModel().get("localidades")).isNotNull();
-    }
-
-
-    private void thenFinalizoPublicacionCorrectamente(ModelAndView mav, String mensaje) {
-        assertThat(mav.getModel().get("msg")).isEqualTo(mensaje);
-    }
-
-    private void thenNoFinalizoPublicacionPorMailInexistente(ModelAndView mav, String mensaje) {
-        assertThat(mav.getModel().get("error")).isEqualTo(mensaje);
-    }
-
     private void givenQueLaPublicacionExiste(Long id) throws Exception {
         List<Usuario> usuarios = new ArrayList<>();
         usuarios.add(USUARIO_MAIL);
@@ -172,15 +155,6 @@ public class ControladorPublicacionTest {
         doThrow(Exception.class).when(servicioPublicacion).finalizarPublicacion(MASCOTA, PUBLICACION, REQUEST);
     }
 
-    private ModelAndView whenFinalizarPublicacion(Publicacion publicacion) {
-        return controladorPublicacion.finalizarPublicacion(MASCOTA,publicacion,REQUEST);
-    }
-
-    private ModelAndView whenFinalizoPublicacionConMailIgual(Publicacion publicacion) {
-        return controladorPublicacion.finalizarPublicacion(MASCOTA_MAIL_IGUAL,publicacion,REQUEST);
-    }
-
-
     private void givenQueNoEncuentroPublicacionPorId(Long id) {
         doThrow(Exception.class).when(servicioPublicacion).buscarPublicacion(id);
     }
@@ -189,11 +163,22 @@ public class ControladorPublicacionTest {
         doThrow(Exception.class).when(servicioPublicacion).listarTodasLasPublicacionesPerdidas();
     }
 
+    private ModelAndView whenFinalizarPublicacion(Publicacion publicacion) {
+        return controladorPublicacion.finalizarPublicacion(MASCOTA,publicacion,REQUEST);
+    }
+
+    private ModelAndView whenFinalizoPublicacionConMailIgual(Publicacion publicacion) {
+        return controladorPublicacion.finalizarPublicacion(MASCOTA_MAIL_IGUAL,publicacion,REQUEST);
+    }
 
     private ModelAndView whenRegistroLaPublicacion(DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
         request.getSession().setAttribute("Usuario", USUARIO);
         //mascota.setImagen(mock(MultipartFile.class));
         return controladorPublicacion.registrarPublicacion(mascota, REQUEST);
+    }
+
+    private ModelAndView whenEliminoLaPublicacion(Long id) {
+        return controladorPublicacion.eliminarPublicacion(id);
     }
 
     private ModelAndView whenIrAlSitioPublicacionesPerdidas() {
@@ -237,5 +222,30 @@ public class ControladorPublicacionTest {
 
     private void thenNoEncuentroPublicaciones(ModelAndView mav, String mensaje) {
         assertThat(mav.getModel().get("publicacionesError")).isEqualTo(mensaje);
+    }
+
+    private void thenEncuentroEstadosDeMascota(ModelAndView mav) {
+        assertThat(mav.getModel().get("estadosMascota")).isNotNull();
+    }
+
+    private void thenEliminoLaPublicacion(ModelAndView mav, String mensaje) {
+        assertThat(mav.getModel().get("msg")).isEqualTo(mensaje);
+    }
+
+    private void thenEncuentroTiposDeMascota(ModelAndView mav) {
+        assertThat(mav.getModel().get("tiposDeMascota")).isNotNull();
+    }
+
+    private void thenEncuentroLocalidades(ModelAndView mav) {
+        assertThat(mav.getModel().get("localidades")).isNotNull();
+    }
+
+
+    private void thenFinalizoPublicacionCorrectamente(ModelAndView mav, String mensaje) {
+        assertThat(mav.getModel().get("msg")).isEqualTo(mensaje);
+    }
+
+    private void thenNoFinalizoPublicacionPorMailInexistente(ModelAndView mav, String mensaje) {
+        assertThat(mav.getModel().get("error")).isEqualTo(mensaje);
     }
 }
