@@ -58,6 +58,7 @@ public class ServicioProductoImpl implements ServicioProducto{
                 UsuarioProducto usuarioProducto = new UsuarioProducto();
                 usuarioProducto.setUsuario(usuario);
                 usuarioProducto.setProducto(producto);
+                usuarioProducto.setCantidad(1);
                 repositorioProducto.canjearProducto(usuarioProducto);
 
                 usuario.setPuntos(usuario.getPuntos() - producto.getPuntos());
