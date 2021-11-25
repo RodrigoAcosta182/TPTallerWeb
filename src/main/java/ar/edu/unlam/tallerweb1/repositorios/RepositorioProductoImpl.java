@@ -23,6 +23,26 @@ public class RepositorioProductoImpl implements RepositorioProducto{
     }
 
     @Override
+    public void canjearProducto(UsuarioProducto usuarioproducto) {
+        sessionFactory.getCurrentSession().save(usuarioproducto);
+    }
+
+    @Override
+    public void actualizarPuntosUsuario(Usuario usuario) {
+        sessionFactory.getCurrentSession().update(usuario);
+    }
+
+    @Override
+    public void actualizarCantidadProducto(Producto producto) {
+        sessionFactory.getCurrentSession().update(producto);
+    }
+
+    @Override
+    public void actualizaSiNoHayStock(Producto producto) {
+        sessionFactory.getCurrentSession().update(producto);
+    }
+
+    @Override
     public List<Producto> buscarTodosMisProductos(Usuario usuario) {
         List<Producto> productos = sessionFactory.getCurrentSession().createCriteria(Producto.class)
 //                .add(Restrictions.eq("hayStock", true))
@@ -42,25 +62,5 @@ public class RepositorioProductoImpl implements RepositorioProducto{
 //                .add(Restrictions.eq("hayStock", true))
                 .list();
         return productos;
-    }
-
-    @Override
-    public void canjearProducto(UsuarioProducto usuarioproducto) {
-        sessionFactory.getCurrentSession().save(usuarioproducto);
-    }
-
-    @Override
-    public void actualizarPuntosUsuario(Usuario usuario) {
-        sessionFactory.getCurrentSession().update(usuario);
-    }
-
-    @Override
-    public void actualizarCantidadProducto(Producto producto) {
-        sessionFactory.getCurrentSession().update(producto);
-    }
-
-    @Override
-    public void actualizaSiNoHayStock(Producto producto) {
-        sessionFactory.getCurrentSession().update(producto);
     }
 }

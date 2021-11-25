@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -62,7 +63,7 @@ public class ServicioPublicacionTest {
     }
 
     @Test
-    public void queSeFinalizaLaPublicacionConMailCorrecto() throws Exception {
+    public void queSeSumePuntosAlFinalizaLaPublicacionConMailCorrecto() throws Exception {
         givenQueLaPublicacionExiste();
         whenFinalizoLaPublicacionConMailExistente(PUBLICACION, MASCOTA);
         thenFinalizoLaPublicacionConMailExistenteCorrectamente();
@@ -76,17 +77,17 @@ public class ServicioPublicacionTest {
     }
 
     @Test
-    public void queSeSumePuntosAlFinalizaLaPublicacion() throws Exception {
-        givenQueLaPublicacionExiste();
-        whenFinalizoLaPublicacionConMailExistente(PUBLICACION, MASCOTA);
-        thenFinalizoLaPublicacionYSeSumanLosPuntos();
-    }
-
-    @Test
     public void queSeEliminaLaPublicacionCorrectamente() throws Exception {
         givenQueLaPublicacionExiste();
         whenEliminoLaPublicacion(PUBLICACION);
         thenEliminoLaPublicacionCorrectamente();
+    }
+
+    @Test
+    public void queSeModifiqueLaPublicacion() throws Exception {
+        givenQueLaPublicacionExiste();
+        whenModificoLaPublicacion(MASCOTA, PUBLICACION);
+        thenSeModificoLaPublicacion();
     }
 
     @Test
@@ -95,7 +96,6 @@ public class ServicioPublicacionTest {
         List<Localidad> localidades = whenObtengoLocalidades();
         thenObtengoLocalidades(localidades);
     }
-
 
     @Test
     public void obtenerLocalidadPorDescripcion() {
@@ -228,6 +228,14 @@ public class ServicioPublicacionTest {
         return servicioPublicacion.registrarPublicacion(MASCOTA, USUARIO);
     }
 
+    private void whenModificoLaPublicacion(DatosRegistroMascota mascota, Publicacion publicacion) throws Exception {
+        servicioPublicacion.modificarPublicacion(mascota, publicacion);
+    }
+
+    private void thenSeModificoLaPublicacion() {
+        verify(repositorioPublicacion, times(1)).modificarPublicacion(PUBLICACION);
+    }
+
     private void thenEncuentroEstadoDeMascotaPorId(Estado tipoDeEstadoObtenido) {
         assertThat(tipoDeEstadoObtenido).isNotNull();
         verify(repositorioPublicacion, times(1)).obtenerEstadoDeMascotaPorId(1L);
@@ -277,6 +285,7 @@ public class ServicioPublicacionTest {
 
     private void thenFinalizoLaPublicacionConMailExistenteCorrectamente() {
         verify(repositorioPublicacion, times(1)).finalizarPublicacion(PUBLICACION);
+        assertThat(50).isEqualTo(USUARIO_MAIL.getPuntos());
     }
 
     private void thenNoFinalizoLaPublicacionPorMailInexistente() {
@@ -284,9 +293,8 @@ public class ServicioPublicacionTest {
     }
 
     private void thenFinalizoLaPublicacionYSeSumanLosPuntos() {
-        assertThat(100).isEqualTo(USUARIO_MAIL.getPuntos());
+//        assertThat(50).isEqualTo(USUARIO_MAIL.getPuntos());
     }
-
 }
 
 

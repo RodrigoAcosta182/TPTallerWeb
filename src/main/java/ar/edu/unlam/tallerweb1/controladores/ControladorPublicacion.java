@@ -74,6 +74,27 @@ public class ControladorPublicacion {
         return new ModelAndView("home", model);
     }
 
+    @RequestMapping(method = RequestMethod.POST, path = "/modificarregistroMascota")
+    public ModelAndView modificarRegistroPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, @ModelAttribute("publicacion") Publicacion publicacion, HttpServletRequest request)  throws Exception {
+        ModelMap model = new ModelMap();
+        try {
+            validarRegistrarPublicacion(mascota, request);
+//            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+            servicioPublicacion.modificarPublicacion(mascota, publicacion);
+        } catch (Exception e) {
+            List<Localidad> localidades =  servicioPublicacion.getLocalidades();
+            List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
+            List<Estado> estadosMascota = servicioPublicacion.getEstadosDeMascota();
+            model.put("localidades",localidades);
+            model.put("tiposDeMascota",tiposDeMascota);
+            model.put("estadosMascota",estadosMascota);
+            model.put("error", e.getMessage());
+            return new ModelAndView("form-modificar-registro-mascota", model);
+        }
+        model.put("msg", "Mascota Registrada Exitosamente");
+        return new ModelAndView("home", model);
+    }
+
     @RequestMapping(method = RequestMethod.GET, path = "/ir-a-publicacion-mascota-perdida")
     public ModelAndView irAPublicacionMascotaPerdida(HttpServletRequest request) {
         ModelMap model = new ModelMap();
@@ -133,7 +154,6 @@ public class ControladorPublicacion {
         model.put("publicaciones", publicaciones);
         return new ModelAndView("mis-publicaciones", model);
     }
-
     @RequestMapping(method = RequestMethod.GET, path = "/publicacion")
     public ModelAndView irAVerPublicacion(@RequestParam("id") Long id) {
         ModelMap model = new ModelMap();
@@ -149,27 +169,7 @@ public class ControladorPublicacion {
         model.put("datosCorreo", datosCorreo);
         return new ModelAndView("ver-publicacion", model);
     }
-//
-    @RequestMapping(method = RequestMethod.POST, path = "/modificarregistroMascota")
-    public ModelAndView modificarRegistroPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, @ModelAttribute("publicacion") Publicacion publicacion, HttpServletRequest request)  throws Exception {
-        ModelMap model = new ModelMap();
-        try {
-            validarRegistrarPublicacion(mascota, request);
-//            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-            servicioPublicacion.modificarPublicacion(mascota, publicacion);
-        } catch (Exception e) {
-            List<Localidad> localidades =  servicioPublicacion.getLocalidades();
-            List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
-            List<Estado> estadosMascota = servicioPublicacion.getEstadosDeMascota();
-            model.put("localidades",localidades);
-            model.put("tiposDeMascota",tiposDeMascota);
-            model.put("estadosMascota",estadosMascota);
-            model.put("error", e.getMessage());
-            return new ModelAndView("form-modificar-registro-mascota", model);
-        }
-        model.put("msg", "Mascota Registrada Exitosamente");
-        return new ModelAndView("home", model);
-    }
+    //
 //
     @RequestMapping(method = RequestMethod.GET, path = "/ir-al-sitio-modificar-mascota")
     public ModelAndView irAlSitioModificarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, @RequestParam("id") Long id) {
@@ -198,7 +198,7 @@ public class ControladorPublicacion {
         }else if (mascota.getImagen().isEmpty()){
             throw new Exception("El campo Imagen es obligatorio");
         }
-    } // el estado esta viniendo null desde el front
+    }
 
     public void validarUsuarioParaFinalizarPublicacion(Usuario usuario, String email) throws Exception {
         if (email != null){
