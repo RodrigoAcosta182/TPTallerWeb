@@ -20,7 +20,7 @@
                 <div>
                     <form action=""></form>
                     <br>
-                    <a class="w3-btn w3-red" style="width: 100%; margin-top: 10px" type="submit" href="/missingpets/canjear-producto?id=${productos.id}">Canjear</a>
+                    <a class="w3-btn w3-purple w3-round-xxlarge" style="width: 100%; margin-top: 10px" type="submit" href="/missingpets/canjear-producto?id=${productos.id}">Canjear</a>
                 </div>
             </div>
         </c:forEach>

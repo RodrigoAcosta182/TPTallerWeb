@@ -24,6 +24,20 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         sessionFactory.getCurrentSession().update(publicacion);
     }
 
+    @Override
+    public void eliminarPublicacion(Publicacion publicacion) {
+        sessionFactory.getCurrentSession().delete(publicacion);
+    }
+
+    @Override
+    public void sumarPuntosAlUsuario(Usuario usuario) {
+        sessionFactory.getCurrentSession().update(usuario);
+    }
+
+    @Override
+    public void modificarPublicacion(Publicacion publicacion) {
+        sessionFactory.getCurrentSession().update(publicacion);
+    }
 
     @SuppressWarnings("unchecked")
     @Override
@@ -68,13 +82,13 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         return (Publicacion) sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
                 .add(Restrictions.eq("id", id)).uniqueResult();
     }
-
     @SuppressWarnings("unchecked")
     @Override
     public List<Usuario> buscarUsuarioPorEmail(String email) {
         return sessionFactory.getCurrentSession().createCriteria(Usuario.class)
                 .add(Restrictions.eq("email", email)).list();
     }
+
     @Override
     public Usuario buscarUsuarioPorEmailParaSumar(String email) {
         return (Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
@@ -118,21 +132,6 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         return (Estado) sessionFactory.getCurrentSession().createCriteria(Estado.class)
                 .add(Restrictions.eq("id",id))
                 .uniqueResult();
-    }
-
-    @Override
-    public void modificarPublicacion(Publicacion publicacion) {
-        sessionFactory.getCurrentSession().update(publicacion);
-    }
-
-    @Override
-    public void eliminarPublicacion(Publicacion publicacion) {
-        sessionFactory.getCurrentSession().delete(publicacion);
-    }
-
-    @Override
-    public void sumarPuntosAlUsuario(Usuario usuario) {
-        sessionFactory.getCurrentSession().update(usuario);
     }
 }
 

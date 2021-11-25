@@ -54,7 +54,21 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     }
 
     @Override
-    public void modificarPublicacion(DatosRegistroMascota mascota, Publicacion publicacion) throws IOException {
+    public void finalizarPublicacion(DatosRegistroMascota mascota,Publicacion publicacion, HttpServletRequest request) throws Exception {
+        Publicacion publi = repositorioPublicacion.buscarPublicacionPorId(publicacion.getId());
+        buscarUsuarioParaSumarYFinalizar(mascota.getEmail());
+        publi.setFinalizado(true);
+        repositorioPublicacion.finalizarPublicacion(publi);
+    }
+
+    @Override
+    public void eliminarPublicacion(Long id) {
+        Publicacion publicacion = repositorioPublicacion.buscarPublicacionPorId(id);
+        repositorioPublicacion.eliminarPublicacion(publicacion);
+    }
+
+    @Override
+    public void modificarPublicacion(DatosRegistroMascota mascota, Publicacion publicacion) throws Exception {
         Publicacion publi = repositorioPublicacion.buscarPublicacionPorId(publicacion.getId());
         Mascota miMascota = mascota.toMascota();
         Tipo tipoMascota = this.obtenerTipoDeMascotaPorId(mascota.getTipo().getId());
@@ -75,25 +89,13 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     }
 
     @Override
-    public void eliminarPublicacion(Long id) {
-        Publicacion publicacion = repositorioPublicacion.buscarPublicacionPorId(id);
-        repositorioPublicacion.eliminarPublicacion(publicacion);
-    }
-
-    @Override
-    public void finalizarPublicacion(DatosRegistroMascota mascota,Publicacion publicacion, HttpServletRequest request) throws Exception {
-        Publicacion publi = repositorioPublicacion.buscarPublicacionPorId(publicacion.getId());
-        buscarUsuarioParaSumarYFinalizar(mascota.getEmail());
-        publi.setFinalizado(true);
-        repositorioPublicacion.finalizarPublicacion(publi);
-    }
-
-    @Override
     public void buscarUsuarioParaSumarYFinalizar( String email) throws Exception {
         if (email != ""){
-            Usuario user = repositorioPublicacion.buscarUsuarioPorEmailParaSumar(email);
-            user.setPuntos(user.getPuntos() + 50);
-            repositorioPublicacion.sumarPuntosAlUsuario(user);
+            if (email != null){
+                Usuario user = repositorioPublicacion.buscarUsuarioPorEmailParaSumar(email);
+                user.setPuntos(user.getPuntos() + 50);
+                repositorioPublicacion.sumarPuntosAlUsuario(user);
+            }
         }
     }
 
@@ -121,8 +123,6 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     public Tipo obtenerTipoDeMascotaPorId(long id) {
         return repositorioPublicacion.obtenerTipoDeMascotaPorId(id);
     }
-
-
 
     @Override
     public List<Estado> getEstadosDeMascota() {

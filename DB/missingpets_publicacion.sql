@@ -31,6 +31,7 @@ CREATE TABLE `publicacion` (
   `usuario_id` bigint DEFAULT NULL,
   `mascota_id` bigint DEFAULT NULL,
   `localidad_id` bigint DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKsmafswujolnyojwb2rq31ax48` (`mascota_id`),
   KEY `FKrfbxv3finr62x94rulf1mm5mp` (`usuario_id`),
@@ -40,7 +41,7 @@ CREATE TABLE `publicacion` (
   CONSTRAINT `FKsmafswujolnyojwb2rq31ax48` FOREIGN KEY (`mascota_id`) REFERENCES `mascota` (`id`),
   CONSTRAINT `publicacion_mascota_id_fk` FOREIGN KEY (`mascota_id`) REFERENCES `mascota` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `publicacion_usuario_id_fk` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +50,7 @@ CREATE TABLE `publicacion` (
 
 LOCK TABLES `publicacion` WRITE;
 /*!40000 ALTER TABLE `publicacion` DISABLE KEYS */;
-INSERT INTO `publicacion` VALUES (45,0,'2021-11-21',1,87,3),(49,0,'2021-11-22',1,91,3);
+INSERT INTO `publicacion` VALUES (45,0,'2021-11-21',1,87,3,NULL),(50,0,'2021-11-25',1,95,5,NULL),(51,0,'2021-11-25',1,96,3,NULL);
 /*!40000 ALTER TABLE `publicacion` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-23 20:14:26
+-- Dump completed on 2021-11-24 22:33:43

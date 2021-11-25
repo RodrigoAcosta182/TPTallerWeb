@@ -37,6 +37,8 @@ CREATE TABLE `mascota` (
   `email` varchar(255) DEFAULT NULL,
   `tipo_id` bigint DEFAULT NULL,
   `estado_id` bigint DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  `tipo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKbqvtbhflbdlclgnnrrb08tth` (`tipo_id`),
   KEY `FKfxpnmoqu6mh0as8sxp3knvxkf` (`estado_id`),
@@ -44,7 +46,7 @@ CREATE TABLE `mascota` (
   CONSTRAINT `FKfxpnmoqu6mh0as8sxp3knvxkf` FOREIGN KEY (`estado_id`) REFERENCES `estado` (`id`),
   CONSTRAINT `mascota_estado_id_fk` FOREIGN KEY (`estado_id`) REFERENCES `estado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `mascota_tipo_id_fk` FOREIGN KEY (`tipo_id`) REFERENCES `tipo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +55,7 @@ CREATE TABLE `mascota` (
 
 LOCK TABLES `mascota` WRITE;
 /*!40000 ALTER TABLE `mascota` DISABLE KEYS */;
-INSERT INTO `mascota` VALUES (87,'Hellboy','30 años','bully','gordo y petizo','marron','Mediano',NULL,'img/5916hellboy.jpg',NULL,1,1),(91,'','','','','','',NULL,'img/7c7ee4ad8c68c5dd6e7498b22f86356a.jpg',NULL,1,2);
+INSERT INTO `mascota` VALUES (87,'Hellboy','30 años','bully','gordo y petizo','marron','Mediano',NULL,'img/5916hellboy.jpg',NULL,1,1,NULL,NULL),(91,'','','','','','',NULL,'img/7c7ee4ad8c68c5dd6e7498b22f86356a.jpg',NULL,1,2,NULL,NULL),(92,'Gatovich','8','Scalonista','Amigo de Messi','Rosa','Grande',NULL,'img/5c1bb4e2706c8332f1b41c10b350a300.jpg',NULL,1,2,NULL,NULL),(93,'Gatovicheano','87','Scalonista','Amigo de Messi','Rosa','Grande',NULL,'img/89b572573863f746470671299e346834.jpg',NULL,1,2,NULL,NULL),(95,'Chichi','2','Siames','Pata derecha delantera blanca','Gris','Pequeño',NULL,'img/gatardo.jpg',NULL,2,1,NULL,NULL),(96,'Pepe','3','Sapo','Ninguno','Naranja','Mediano',NULL,'img/png-transparent-gamakichi-digital-art-naruto-fox-mammal-photography-orange.png',NULL,3,2,NULL,NULL);
 /*!40000 ALTER TABLE `mascota` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -66,4 +68,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-23 20:14:27
+-- Dump completed on 2021-11-24 22:33:43

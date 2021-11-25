@@ -37,7 +37,7 @@ public interface ServicioPublicacion {
 
     Estado obtenerEstadoDeMascotaPorId(long id);
 
-    void modificarPublicacion(DatosRegistroMascota mascota, Publicacion publicacion) throws IOException;
+    void modificarPublicacion(DatosRegistroMascota mascota, Publicacion publicacion) throws Exception;
 
     void eliminarPublicacion(Long id);
 }

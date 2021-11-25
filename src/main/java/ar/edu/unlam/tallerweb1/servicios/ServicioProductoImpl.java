@@ -13,68 +13,68 @@ import javax.servlet.ServletContext;
 import java.io.File;
 import java.util.List;
 
-        @Service("servicioProducto")
-        @Transactional
-        public class ServicioProductoImpl implements ServicioProducto{
+@Service("servicioProducto")
+@Transactional
+public class ServicioProductoImpl implements ServicioProducto{
 
-            private final RepositorioProducto repositorioProducto;
+    private final RepositorioProducto repositorioProducto;
 
-            @Autowired
-            public ServicioProductoImpl(RepositorioProducto repositorioProducto) {
-                this.repositorioProducto = repositorioProducto;
+    @Autowired
+    public ServicioProductoImpl(RepositorioProducto repositorioProducto) {
+        this.repositorioProducto = repositorioProducto;
+    }
+
+    @Autowired
+    ServletContext servletContext;
+
+    @Override
+    public Producto registrarProducto(DatosRegistroProducto producto, Usuario usuario) throws Exception {
+
+        Producto nuevoProducto = producto.toProducto();
+
+        String nombreConRuta = "imgProducto/" + producto.getImgproducto().getOriginalFilename();
+        nuevoProducto.setImgproducto(nombreConRuta);
+
+        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\imgProducto\\" + producto.getImgproducto().getOriginalFilename();
+        producto.getImgproducto().transferTo(new File(filename));
+
+        repositorioProducto.guardarProducto(nuevoProducto);
+
+        return nuevoProducto;
+    }
+
+    @Override
+    public Producto buscarProducto(Long id) {
+        return repositorioProducto.buscarProductoPorId(id);
+
+    }
+
+    @Override
+    public void canjearProducto(Long id, Usuario usuario) throws Exception {
+        Producto producto = repositorioProducto.buscarProductoPorId(id);
+
+        if (producto.getCantidad() > 0) {
+            if (usuario.getPuntos() >= producto.getPuntos()) {
+                UsuarioProducto usuarioProducto = new UsuarioProducto();
+                usuarioProducto.setUsuario(usuario);
+                usuarioProducto.setProducto(producto);
+                usuarioProducto.setCantidad(1);
+                repositorioProducto.canjearProducto(usuarioProducto);
+
+                usuario.setPuntos(usuario.getPuntos() - producto.getPuntos());
+                producto.setCantidad(producto.getCantidad() - 1) ;
+                repositorioProducto.actualizarPuntosUsuario(usuario);
+                repositorioProducto.actualizarCantidadProducto(producto);
+            }else {
+                throw new Exception();
             }
+        }
+    }
 
-            @Autowired
-            ServletContext servletContext;
-
-            @Override
-            public Producto buscarProducto(Long id) {
-                return repositorioProducto.buscarProductoPorId(id);
-
-            }
-
-            @Override
-            public List<Producto> listarTodosLosProductos() throws Exception {
-                if (repositorioProducto.buscarTodosLosProductos().size() == 0)
-                    throw new Exception();
-                return repositorioProducto.buscarTodosLosProductos();
-            }
-
-            @Override
-            public Producto registrarProducto(DatosRegistroProducto producto, Usuario usuario) throws Exception {
-
-                Producto nuevoProducto = producto.toProducto();
-
-                String nombreConRuta = "imgProducto/" + producto.getImgproducto().getOriginalFilename();
-                nuevoProducto.setImgproducto(nombreConRuta);
-
-                String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\imgProducto\\" + producto.getImgproducto().getOriginalFilename();
-                producto.getImgproducto().transferTo(new File(filename));
-
-                repositorioProducto.guardarProducto(nuevoProducto);
-
-                return nuevoProducto;
-            }
-
-            @Override
-            public void canjearProducto(Long id, Usuario usuario) throws Exception {
-                Producto producto = repositorioProducto.buscarProductoPorId(id);
-                Integer stock = 0;
-
-                if (producto.getCantidad() > 0) {
-                    if (usuario.getPuntos() >= producto.getPuntos()) {
-                        UsuarioProducto usuarioProducto = new UsuarioProducto();
-                        usuarioProducto.setUsuario(usuario);
-                        usuarioProducto.setProducto(producto);
-                        repositorioProducto.canjearProducto(usuarioProducto);
-
-                        usuario.setPuntos(usuario.getPuntos() - producto.getPuntos());
-                        producto.setCantidad(producto.getCantidad() - 1) ;
-                        repositorioProducto.actualizarPuntosUsuario(usuario);
-                        repositorioProducto.actualizarCantidadProducto(producto);
-                    }else {
-                        throw new Exception();
-                    }
-                }
-            }
+    @Override
+    public List<Producto> listarTodosLosProductos() throws Exception {
+        if (repositorioProducto.buscarTodosLosProductos().size() == 0)
+            throw new Exception();
+        return repositorioProducto.buscarTodosLosProductos();
+    }
 }

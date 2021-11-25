@@ -8,6 +8,8 @@ public class UsuarioProducto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Integer cantidad;
+
     @OneToOne
     private Producto producto;
     @OneToOne
@@ -29,6 +31,15 @@ public class UsuarioProducto {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
     public Producto getProducto() {
         return producto;
     }

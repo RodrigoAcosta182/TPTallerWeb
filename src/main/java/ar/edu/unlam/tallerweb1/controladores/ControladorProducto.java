@@ -27,6 +27,38 @@ public class ControladorProducto {
         this.servicioProducto = servicioProducto;
     }
 
+    @RequestMapping(method = RequestMethod.POST, path = "/registrarProducto")
+    public ModelAndView registrarProducto(@ModelAttribute("producto") DatosRegistroProducto producto, HttpServletRequest request) throws Exception{
+        ModelMap model = new ModelMap();
+
+        try{
+            validarRegistroProducto(producto, request);
+            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+            servicioProducto.registrarProducto(producto, usuario);
+        }catch (Exception e){
+            model.put("error", e.getMessage());
+            return new ModelAndView("form-registro-producto", model);
+        }
+
+        model.put("msg", "Producto Registrado Exitosamente");
+        return new ModelAndView("Productos", model);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/canjear-producto")
+    public ModelAndView canjearProducto(@RequestParam("id") Long id,HttpServletRequest request) throws Exception{
+        ModelMap model = new ModelMap();
+        try{
+            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+            servicioProducto.canjearProducto(id,usuario);
+        }catch (Exception e){
+            model.put("error","Lo siento, no te alcanza para canjear este producto :(");
+            return new ModelAndView("Productos", model);
+        }
+        model.put("msg","Puntos Canjeados");
+
+        return new ModelAndView("Productos", model);
+    }
+
     @RequestMapping(method = RequestMethod.GET, path = "/ir-a-productos")
     public ModelAndView irAVistaDeProductos(HttpServletRequest request) {
         ModelMap model = new ModelMap();
@@ -49,38 +81,6 @@ public class ControladorProducto {
         DatosRegistroProducto datosProducto = new DatosRegistroProducto();
         model.put("producto", datosProducto);
         return new ModelAndView("form-registro-producto", model);
-    }
-
-    @RequestMapping(method = RequestMethod.GET, path = "/canjear-producto")
-    public ModelAndView canjearProducto(@RequestParam("id") Long id,HttpServletRequest request) throws Exception{
-        ModelMap model = new ModelMap();
-        try{
-            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-            servicioProducto.canjearProducto(id,usuario);
-        }catch (Exception e){
-            model.put("error","Lo siento, no te alcanza para canjear este producto :(");
-            return new ModelAndView("Productos", model);
-        }
-        model.put("msg","Puntos Canjeados");
-
-        return new ModelAndView("Productos", model);
-    }
-
-    @RequestMapping(method = RequestMethod.POST, path = "/registrarProducto")
-    public ModelAndView registrarProducto(@ModelAttribute("producto") DatosRegistroProducto producto, HttpServletRequest request) throws Exception{
-        ModelMap model = new ModelMap();
-
-        try{
-            validarRegistroProducto(producto, request);
-            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-            servicioProducto.registrarProducto(producto, usuario);
-        }catch (Exception e){
-            model.put("error", e.getMessage());
-            return new ModelAndView("form-registro-producto", model);
-        }
-
-        model.put("msg", "Producto Registrado Exitosamente");
-        return new ModelAndView("Productos", model);
     }
 
     public void validarRegistroProducto(DatosRegistroProducto producto, HttpServletRequest request) throws Exception {
