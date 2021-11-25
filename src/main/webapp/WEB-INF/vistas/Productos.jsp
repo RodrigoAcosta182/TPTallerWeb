@@ -6,9 +6,9 @@
 <%@ include file="partial/header.jsp" %>
 
 <div class="w3-container">
-    <div class="puntosDelUsuario">
+    <div class="puntosDelUsuario w3-center" style="margin-top: 100px;">
     <c:if test="${not empty usuario}">
-        <h2>Tus puntos actuales:${usuario.puntos}</h2>
+        <h2>MissingPets Points actuales: ${usuario.puntos}</h2>
     </c:if>
 
     </div>
