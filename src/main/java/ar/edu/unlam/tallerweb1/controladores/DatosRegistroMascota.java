@@ -187,8 +187,8 @@ public class DatosRegistroMascota {
         Publicacion nuevaPublicacion = this.getPublicacion();
         if (nuevaPublicacion == null) {
             nuevaPublicacion = new Publicacion();
-            nuevaPublicacion.setMascota(toMascota());
         }
+        nuevaPublicacion.setMascota(toMascota());
         return nuevaPublicacion;
     }
 
