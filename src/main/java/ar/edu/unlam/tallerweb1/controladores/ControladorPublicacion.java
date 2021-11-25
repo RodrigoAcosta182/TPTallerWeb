@@ -28,7 +28,7 @@ public class ControladorPublicacion {
     public ModelAndView registrarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
         ModelMap model = new ModelMap();
         try {
-            validarRegistrarPublicacion(mascota, request);
+            mascota.validar();
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
             servicioPublicacion.registrarPublicacion(mascota, usuario);
         } catch (Exception e) {
@@ -78,18 +78,11 @@ public class ControladorPublicacion {
     public ModelAndView modificarRegistroPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, @ModelAttribute("publicacion") Publicacion publicacion, HttpServletRequest request)  throws Exception {
         ModelMap model = new ModelMap();
         try {
-            validarRegistrarPublicacion(mascota, request);
-//            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
+            mascota.validar();
             servicioPublicacion.modificarPublicacion(mascota, publicacion);
         } catch (Exception e) {
-            List<Localidad> localidades =  servicioPublicacion.getLocalidades();
-            List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
-            List<Estado> estadosMascota = servicioPublicacion.getEstadosDeMascota();
-            model.put("localidades",localidades);
-            model.put("tiposDeMascota",tiposDeMascota);
-            model.put("estadosMascota",estadosMascota);
             model.put("error", e.getMessage());
-            return new ModelAndView("form-modificar-registro-mascota", model);
+            return new ModelAndView("redirect:/ir-al-sitio-modificar-mascota", model);
         }
         model.put("msg", "Mascota Registrada Exitosamente");
         return new ModelAndView("home", model);
@@ -188,16 +181,6 @@ public class ControladorPublicacion {
             model.put("msjError","Error al encontrar publicacion");
         }
         return new ModelAndView("form-modificar-registro-mascota", model);
-    }
-
-    public void validarRegistrarPublicacion(DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
-        if (mascota.getTipo() == null){
-            throw new Exception("El campo Tipo es obligatorio");
-        }else if (mascota.getEstado().getId() == null){
-            throw new Exception("El campo Estado es obligatorio");
-        }else if (mascota.getImagen().isEmpty()){
-            throw new Exception("El campo Imagen es obligatorio");
-        }
     }
 
     public void validarUsuarioParaFinalizarPublicacion(Usuario usuario, String email) throws Exception {
