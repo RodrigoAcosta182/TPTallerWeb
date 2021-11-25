@@ -24,8 +24,9 @@ public class ControladorPublicacionTest {
 
     private static final Usuario USUARIO_MAIL = new Usuario("emortiz@alumno.com", "459");
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123");
-    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota(10L,"Rodrigo", new Tipo(), new Estado(1L,"Perdido"), "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), mock(MultipartFile.class), USUARIO_MAIL.getEmail());
-    private static final DatosRegistroMascota MASCOTA_MAIL_IGUAL = new DatosRegistroMascota(10L,"Rodrigo", new Tipo(), new Estado(1L,"Perdido"), "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), mock(MultipartFile.class), USUARIO.getEmail());
+    private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota(10L, "Rodrigo", new Tipo(), new Estado(1L, "Perdido"), "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), mock(MultipartFile.class), USUARIO_MAIL.getEmail());
+    private static final DatosRegistroMascota MASCOTA_CON_TIPO_NULL = new DatosRegistroMascota(10L, "Rodrigo", null, new Estado(1L, "Perdido"), "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), mock(MultipartFile.class), USUARIO_MAIL.getEmail());
+    private static final DatosRegistroMascota MASCOTA_MAIL_IGUAL = new DatosRegistroMascota(10L, "Rodrigo", new Tipo(), new Estado(1L, "Perdido"), "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), mock(MultipartFile.class), USUARIO.getEmail());
     private static final Publicacion PUBLICACION = new Publicacion(10L, new Date(), false, USUARIO, new Mascota(), new Localidad());
 
     private HttpServletRequest REQUEST = mock(HttpServletRequest.class);
@@ -34,7 +35,7 @@ public class ControladorPublicacionTest {
     private ControladorPublicacion controladorPublicacion = new ControladorPublicacion(servicioPublicacion);
 
     @Before
-    public void setup(){
+    public void setup() {
         when(REQUEST.getSession()).thenReturn(session);
         when(session.getAttribute("Usuario")).thenReturn(USUARIO);
     }
@@ -43,19 +44,6 @@ public class ControladorPublicacionTest {
     public void irAlSitioDePublicaciones() {
         ModelAndView mav = whenIrAlSitioPublicacionesPerdidas();
         thenIrAlSitioPublicacionesPerdidas(mav);
-    }
-
-    @Test
-    public void registroPublicacionExitoso() throws Exception {
-        ModelAndView mav = whenRegistroLaPublicacion(MASCOTA, REQUEST);
-       thenElRegistroDePublicacionEsExitoso(mav);
-    }
-
-    @Test
-    public void noSeEncuentraNingunaPublicacion() throws Exception {
-        givenQueNoEncuentroPublicacion();
-        ModelAndView mav = whenObtengoPublicaciones();
-        thenNoEncuentroPublicaciones(mav, "No hay publicaciones");
     }
 
     @Test
@@ -75,6 +63,19 @@ public class ControladorPublicacionTest {
         givenQueNoEncuentroPublicacionPorId(10L);
         ModelAndView mav = whenIrAVerPublicacion(10L);
         thenIrAVerPublicacionFalla(mav, "Error al encontrar publicacion");
+    }
+
+    @Test
+    public void registroPublicacionExitoso() throws Exception {
+        ModelAndView mav = whenRegistroLaPublicacion(MASCOTA, REQUEST);
+        thenElRegistroDePublicacionEsExitoso(mav);
+    }
+
+    @Test
+    public void noSeEncuentraNingunaPublicacion() throws Exception {
+        givenQueNoEncuentroPublicacion();
+        ModelAndView mav = whenObtengoPublicaciones();
+        thenNoEncuentroPublicaciones(mav, "No hay publicaciones");
     }
 
     @Test
@@ -106,21 +107,35 @@ public class ControladorPublicacionTest {
     }
 
     @Test
-    public void obtengoLocalidadesEnLaPaginaDeRegistroDeMascota(){
+    public void queSeModifiqueLaPublicacion() throws Exception {
+        givenQueLaPublicacionExiste(10L);
+        ModelAndView mav = whenModificoLaPublicacion();
+        thenModificoLaPublicacion(mav, "Mascota Registrada Exitosamente");
+    }
+
+    @Test
+    public void queNoSeModifiqueLaPublicacionPorTipoNull() throws Exception {
+        givenQueLaPublicacionExisteYSeModifiqueConTipoNull(10L);
+        ModelAndView mav = whenModificoLaPublicacionConTipoNull();
+        thenNoSeModificaLaPublicacion(mav, "El campo Tipo es obligatorio");
+    }
+
+    @Test
+    public void obtengoLocalidadesEnLaPaginaDeRegistroDeMascota() {
         givenQueExistenLocalidades();
         ModelAndView mav = whenIrAlSitioRegistrarPublicacion();
         thenEncuentroLocalidades(mav);
     }
 
     @Test
-    public void obtengoTiposDeMascotaEnLaPaginaDeRegistroDeMascota(){
+    public void obtengoTiposDeMascotaEnLaPaginaDeRegistroDeMascota() {
         givenQueExistenTiposDeMascota();
         ModelAndView mav = whenIrAlSitioRegistrarPublicacion();
         thenEncuentroTiposDeMascota(mav);
     }
 
     @Test
-    public void obtengoEstadosEnLaPaginaDeRegistroDeMascota(){
+    public void obtengoEstadosEnLaPaginaDeRegistroDeMascota() {
         givenExistenEstadosDeMascota();
         ModelAndView mav = whenIrAlSitioRegistrarPublicacion();
         thenEncuentroEstadosDeMascota(mav);
@@ -163,12 +178,16 @@ public class ControladorPublicacionTest {
         doThrow(Exception.class).when(servicioPublicacion).listarTodasLasPublicacionesPerdidas();
     }
 
+    private void givenQueLaPublicacionExisteYSeModifiqueConTipoNull(Long id) throws Exception {
+        doThrow(Exception.class).when(servicioPublicacion).modificarPublicacion(MASCOTA_CON_TIPO_NULL, PUBLICACION);
+    }
+
     private ModelAndView whenFinalizarPublicacion(Publicacion publicacion) {
-        return controladorPublicacion.finalizarPublicacion(MASCOTA,publicacion,REQUEST);
+        return controladorPublicacion.finalizarPublicacion(MASCOTA, publicacion, REQUEST);
     }
 
     private ModelAndView whenFinalizoPublicacionConMailIgual(Publicacion publicacion) {
-        return controladorPublicacion.finalizarPublicacion(MASCOTA_MAIL_IGUAL,publicacion,REQUEST);
+        return controladorPublicacion.finalizarPublicacion(MASCOTA_MAIL_IGUAL, publicacion, REQUEST);
     }
 
     private ModelAndView whenRegistroLaPublicacion(DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
@@ -197,6 +216,21 @@ public class ControladorPublicacionTest {
         return controladorPublicacion.irAPublicacionMascotaPerdida(mock(HttpServletRequest.class));
     }
 
+    private ModelAndView whenModificoLaPublicacion() throws Exception {
+        return controladorPublicacion.modificarRegistroPublicacion(MASCOTA, PUBLICACION, REQUEST);
+    }
+
+    private ModelAndView whenModificoLaPublicacionConTipoNull() throws Exception {
+        return controladorPublicacion.modificarRegistroPublicacion(MASCOTA_CON_TIPO_NULL, PUBLICACION, REQUEST);
+    }
+
+    private void thenModificoLaPublicacion(ModelAndView mav, String mensaje) {
+        assertThat(mav.getModel().get("msg")).isEqualTo(mensaje);
+    }
+
+    private void thenNoSeModificaLaPublicacion(ModelAndView mav, String mensaje) {
+        assertThat(mav.getModel().get("error")).isEqualTo(mensaje);
+    }
 
     private void thenElRegistroDePublicacionEsExitoso(ModelAndView mav) {
         assertThat(mav.getViewName()).isEqualTo("home");
