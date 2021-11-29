@@ -18,7 +18,6 @@ public class Mascota {
     private String color;
     private String tamanio;
     private String imagen;
-    private String email;
     @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
     private Date fecha;
 
@@ -128,13 +127,6 @@ public class Mascota {
         this.imagen = imagen;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
 
 

@@ -35,7 +35,7 @@ public class ServicioProductoImpl implements ServicioProducto{
         String nombreConRuta = "imgProducto/" + producto.getImgproducto().getOriginalFilename();
         nuevoProducto.setImgproducto(nombreConRuta);
 
-        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\imgProducto\\" + producto.getImgproducto().getOriginalFilename();
+        String filename = "C:\\imgProducto\\" + producto.getImgproducto().getOriginalFilename();
         producto.getImgproducto().transferTo(new File(filename));
 
         repositorioProducto.guardarProducto(nuevoProducto);

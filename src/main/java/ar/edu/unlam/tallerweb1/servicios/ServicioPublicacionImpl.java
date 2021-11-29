@@ -39,7 +39,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         Localidad localidad = this.getLocalidadPorDescripcion(mascota.getPublicacion().getLocalidad().getDescripcion());
         String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
         nuevaMascota.setImagen(nombreConRuta);
-        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
+        String filename = "C:\\img\\" + mascota.getImagen().getOriginalFilename();
         mascota.getImagen().transferTo(new File(filename));
         nuevaMascota.setTipo(tipoMascota);
         nuevaMascota.setEstado(estadoMascota);
@@ -77,7 +77,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 
         String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
         miMascota.setImagen(nombreConRuta);
-        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
+        String filename = "C:\\img\\" + mascota.getImagen().getOriginalFilename();
         mascota.getImagen().transferTo(new File(filename));
 
         miMascota.setTipo(tipoMascota);
