@@ -1,14 +1,19 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.*;
+import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class ChatUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String mensaje ;
-    private String fecha;
+    private Date fecha;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
@@ -18,7 +23,7 @@ public class ChatUsuario {
 
     }
 
-    public ChatUsuario(Long id, String mensaje, String fecha, Usuario usuario) {
+    public ChatUsuario(Long id, String mensaje, Date fecha, Usuario usuario) {
         this.id = id;
         this.mensaje = mensaje;
         this.fecha = fecha;
@@ -41,11 +46,11 @@ public class ChatUsuario {
         this.mensaje = mensaje;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
@@ -56,4 +61,6 @@ public class ChatUsuario {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+
 }

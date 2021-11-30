@@ -18,39 +18,31 @@ USE `missingpets`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `publicacion`
+-- Table structure for table `chatusuario`
 --
 
-DROP TABLE IF EXISTS `publicacion`;
+DROP TABLE IF EXISTS `chatusuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `publicacion` (
+CREATE TABLE `chatusuario` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `finalizado` tinyint(1) DEFAULT NULL,
-  `fechaPublicacion` date DEFAULT NULL,
+  `mensaje` varchar(500) DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
   `usuario_id` bigint DEFAULT NULL,
-  `mascota_id` bigint DEFAULT NULL,
-  `localidad_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKsmafswujolnyojwb2rq31ax48` (`mascota_id`),
-  KEY `FKrfbxv3finr62x94rulf1mm5mp` (`usuario_id`),
-  KEY `FKmgpby4kddnjf46wiahl18r2gi` (`localidad_id`),
-  CONSTRAINT `FKmgpby4kddnjf46wiahl18r2gi` FOREIGN KEY (`localidad_id`) REFERENCES `localidad` (`id`),
-  CONSTRAINT `FKrfbxv3finr62x94rulf1mm5mp` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
-  CONSTRAINT `FKsmafswujolnyojwb2rq31ax48` FOREIGN KEY (`mascota_id`) REFERENCES `mascota` (`id`),
-  CONSTRAINT `publicacion_mascota_id_fk` FOREIGN KEY (`mascota_id`) REFERENCES `mascota` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `publicacion_usuario_id_fk` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FKgndrv8tnmbbi59r9okeyubu9s` (`usuario_id`),
+  CONSTRAINT `FKgndrv8tnmbbi59r9okeyubu9s` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `publicacion`
+-- Dumping data for table `chatusuario`
 --
 
-LOCK TABLES `publicacion` WRITE;
-/*!40000 ALTER TABLE `publicacion` DISABLE KEYS */;
-INSERT INTO `publicacion` VALUES (45,0,'2021-11-21',1,87,3),(50,0,'2021-11-25',1,95,5);
-/*!40000 ALTER TABLE `publicacion` ENABLE KEYS */;
+LOCK TABLES `chatusuario` WRITE;
+/*!40000 ALTER TABLE `chatusuario` DISABLE KEYS */;
+INSERT INTO `chatusuario` VALUES (6,'primer mensaje nasheee','2021-11-30 22:18:37',1);
+/*!40000 ALTER TABLE `chatusuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -62,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-30 19:45:40
+-- Dump completed on 2021-11-30 19:45:39

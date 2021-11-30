@@ -1,21 +1,36 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioMail;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 public class ControladorMailTest {
 
 
     private ServicioMail servicioMail = mock(ServicioMail.class);
     private ControladorMail controladorMail = new ControladorMail(servicioMail);
+    private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123");
     private static final DatosCorreo DATOSCORREO = new DatosCorreo("jracosta1991@gmail.com", "mensaje de prueba");
     private static final DatosCorreo DATOSCORREONULL = new DatosCorreo(null, null);
+
+    private HttpServletRequest REQUEST = mock(HttpServletRequest.class);
+    private HttpSession session = mock(HttpSession.class);
+
+    @Before
+    public void setup(){
+        when(REQUEST.getSession()).thenReturn(session);
+        when(session.getAttribute("Usuario")).thenReturn(USUARIO);
+    }
 
     @Test
     public void enviarMailCorrectamenteTest() throws Exception {
@@ -31,12 +46,12 @@ public class ControladorMailTest {
     }
 
     private void givenQueElEnvioDeMailFalla(DatosCorreo datosCorreo) throws Exception {
-        doThrow(Exception.class).when(servicioMail).enviarCorreo(datosCorreo.getReceptor(), datosCorreo.getComentario());
+        doThrow(Exception.class).when(servicioMail).enviarCorreo(datosCorreo.getReceptor(), datosCorreo.getComentario(),USUARIO);
     }
 
 
     private ModelAndView whenEnvioMail(DatosCorreo datosCorreo) throws Exception {
-        return controladorMail.enviarCorreo(datosCorreo);
+        return controladorMail.enviarCorreo(datosCorreo, REQUEST);
     }
 
     private void thenElEnvioFalla(ModelAndView mav, String mensaje) {
