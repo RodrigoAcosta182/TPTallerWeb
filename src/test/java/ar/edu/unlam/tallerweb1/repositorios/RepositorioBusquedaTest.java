@@ -28,7 +28,10 @@ public class RepositorioBusquedaTest extends SpringTest {
 //        List<Publicacion> listaPublicaciones = new LinkedList<>();
 //        listaPublicaciones.add(PUBLICACION);
 //        givenQueExistenPublicaciones(listaPublicaciones);
-//        List<Publicacion> publicacionesEncontradas = whenBuscoPublicaciones(PUBLICACION);
+//        Publicacion publicacionEjemplo = new Publicacion();
+//        publicacionEjemplo.setLocalidad(new Localidad("Moron"));
+//        session().flush();
+//        List<Publicacion> publicacionesEncontradas = whenBuscoPublicaciones(publicacionEjemplo);
 //        thenEncuentroPublicaciones(publicacionesEncontradas.size(),listaPublicaciones);
 //    }
 

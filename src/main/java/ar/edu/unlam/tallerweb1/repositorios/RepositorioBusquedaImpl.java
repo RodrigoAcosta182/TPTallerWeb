@@ -33,11 +33,12 @@ public class RepositorioBusquedaImpl implements RepositorioBusqueda {
         criteria.createAlias("m.tipo", "t");
         criteria.createAlias("m.estado", "e");
 
-        if (publicacion.getMascota().getTipo() != null) {
+
+        if (publicacion.getMascota() != null && publicacion.getMascota().getTipo() != null ) {
             criteria.add(Restrictions.eq("t.descripcion",
                     publicacion.getMascota().getTipo().getDescripcion()));
         }
-        if (publicacion.getMascota().getEstado() != null) {
+        if (publicacion.getMascota() != null && publicacion.getMascota().getEstado() != null) {
             criteria.add(Restrictions.eq("e.descripcion",
                     publicacion.getMascota().getEstado().getDescripcion()));
         }
@@ -46,11 +47,11 @@ public class RepositorioBusquedaImpl implements RepositorioBusqueda {
             criteria.add(Restrictions.eq("l.descripcion", publicacion.getLocalidad().getDescripcion()));
         }
 
-        if (publicacion.getMascota().getColor() != "") {
+        if (publicacion.getMascota() != null && publicacion.getMascota().getColor() != "") {
             criteria.add(Restrictions.eq("m.color", publicacion.getMascota().getColor()));
         }
 
-        if (publicacion.getMascota().getRaza() != "") {
+        if (publicacion.getMascota() != null && publicacion.getMascota().getRaza() != "") {
             criteria.add(Restrictions.like("m.raza", "%" + publicacion.getMascota().getRaza() + "%"));
         }
         return criteria.list();
