@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -10,6 +11,7 @@ public class ServicioMailTest {
     private ServicioMail servicioMail = mock(ServicioMail.class);
     private static final String RECEPTOR = "jracosta1991@gmail.com";
     private static final String COMENTARIO = "Comentario de prueba - Missing Pets";
+    private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123");
 
 
     @Test
@@ -29,7 +31,7 @@ public class ServicioMailTest {
     }
 
     private void whenEnvioMail(String receptor, String comentario) throws Exception {
-        servicioMail.enviarCorreo(receptor,comentario);
+        servicioMail.enviarCorreo(receptor,comentario,USUARIO );
     }
     private void thenEnvioDeMailCorrecto(String receptor, String comentario) {
         assertThat(receptor).isNotNull();
