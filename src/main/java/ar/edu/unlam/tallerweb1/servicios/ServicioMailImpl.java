@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.ChatUsuario;
+import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioChatUsuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
@@ -27,11 +28,9 @@ public class ServicioMailImpl implements ServicioMail{
     }
 
     @Override
-    public void enviarCorreo(String receptor, String comentario, Usuario usuario) throws Exception {
+    public void enviarCorreo(String receptor, String comentario, Usuario usuario, Long idPublicacion) throws Exception {
 
         if (!receptor.equals(usuario.getEmail())){
-            if(receptor == null || comentario == null)
-                throw new Exception();
             Properties properties = new Properties();
             properties.put("mail.smtp.auth", "true");
             properties.put("mail.smtp.starttls.enable", "true");
@@ -54,7 +53,8 @@ public class ServicioMailImpl implements ServicioMail{
         Usuario user = repositorioChatUsuario.buscarUsuarioPorEmail(usuario.getEmail());
         chatUsuario.setUsuario(user);
         chatUsuario.setMensaje(comentario);
-
+        Publicacion publicacionEncontrada = repositorioChatUsuario.buscarPublicacionPorId(idPublicacion);
+        chatUsuario.setPublicacion(publicacionEncontrada);
         chatUsuario.setFecha(new Date());
 
         repositorioChatUsuario.guardarMensaje(chatUsuario);

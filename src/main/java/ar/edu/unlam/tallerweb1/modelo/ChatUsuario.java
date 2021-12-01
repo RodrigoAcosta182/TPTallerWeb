@@ -19,15 +19,20 @@ public class ChatUsuario {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    @ManyToOne
+    @JoinColumn(name = "publicacion_id")
+    private Publicacion publicacion;
+
     public ChatUsuario(){
 
     }
 
-    public ChatUsuario(Long id, String mensaje, Date fecha, Usuario usuario) {
+    public ChatUsuario(Long id, String mensaje, Date fecha, Usuario usuario,Publicacion publicacion) {
         this.id = id;
         this.mensaje = mensaje;
         this.fecha = fecha;
         this.usuario = usuario;
+        this.publicacion = publicacion;
     }
 
     public Long getId() {
@@ -62,5 +67,11 @@ public class ChatUsuario {
         this.usuario = usuario;
     }
 
+    public Publicacion getPublicacion() {
+        return publicacion;
+    }
 
+    public void setPublicacion(Publicacion publicacion) {
+        this.publicacion = publicacion;
+    }
 }

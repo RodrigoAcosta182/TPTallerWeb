@@ -154,8 +154,10 @@ public class ControladorPublicacion {
         Publicacion publicacion;
         try {
         publicacion = servicioPublicacion.buscarPublicacion(id);
+        List<ChatUsuario> listaComentarios = servicioPublicacion.obtenerComentariosPorIdPublicacion(id);
         datosCorreo.setReceptor(publicacion.getUsuario().getEmail());
         model.put("publicacion", publicacion);
+        model.put("listaComentarios",listaComentarios);
         }catch (Exception e){
             model.put("msjError","Error al encontrar publicacion");
         }
@@ -182,6 +184,8 @@ public class ControladorPublicacion {
         }
         return new ModelAndView("form-modificar-registro-mascota", model);
     }
+
+    // Escucha la URL /home por GET, y redirige a una vista.
 
     public void validarUsuarioParaFinalizarPublicacion(Usuario usuario, String email) throws Exception {
         if (email != null){

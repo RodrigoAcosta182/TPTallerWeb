@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioMail;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
@@ -42,11 +43,11 @@ public class ControladorMailTest {
     public void enviarMailFallaPorAlgunParametroNull() throws Exception {
         givenQueElEnvioDeMailFalla(DATOSCORREONULL);
         ModelAndView mav = whenEnvioMail(DATOSCORREONULL);
-        thenElEnvioFalla(mav, "error al enviar el mensaje");
+        thenElEnvioFalla(mav, "La publicacion debe tener un mail asociado");
     }
 
     private void givenQueElEnvioDeMailFalla(DatosCorreo datosCorreo) throws Exception {
-        doThrow(Exception.class).when(servicioMail).enviarCorreo(datosCorreo.getReceptor(), datosCorreo.getComentario(),USUARIO);
+        doThrow(Exception.class).when(servicioMail).enviarCorreo(datosCorreo.getReceptor(), datosCorreo.getComentario(),USUARIO,datosCorreo.getIdPublicacion());
     }
 
 
