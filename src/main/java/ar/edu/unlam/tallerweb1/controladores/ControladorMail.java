@@ -35,7 +35,7 @@ public class ControladorMail {
             return new ModelAndView("redirect:/home", model);
         }
         model.put("mailOk", "Mensaje enviado correctamente");
-        return new ModelAndView("ver-publicacion", model);
+        return new ModelAndView("redirect:/home", model);
     }
 
 }

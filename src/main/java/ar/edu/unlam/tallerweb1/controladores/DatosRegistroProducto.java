@@ -58,4 +58,20 @@ public class DatosRegistroProducto {
         nuevoProducto.setPuntos(this.puntos);
         return nuevoProducto;
     }
+
+    public void validar() throws Exception {
+        if (this.getCantidad() != null)
+        {
+            if (this.getCantidad() < 0)
+            {
+                throw new RuntimeException("El stock no puede ser negativo");
+            }
+        }else if (this.getDescripcion() == null  || this.getDescripcion() == ""){
+            throw new RuntimeException("Tiene que ingresar la descripcion del producto");
+        } else if (this.getPuntos() == null || this.getPuntos() != this.getPuntos().intValue()) {
+            throw new RuntimeException("Los puntos tienen que ser numericos");
+        } else {
+            throw new RuntimeException("Tiene que ingresar una cantidad");
+        }
+    }
 }

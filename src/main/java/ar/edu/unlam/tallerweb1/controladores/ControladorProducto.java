@@ -32,7 +32,7 @@ public class ControladorProducto {
         ModelMap model = new ModelMap();
 
         try{
-            validarRegistroProducto(producto, request);
+            producto.validar();
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
             servicioProducto.registrarProducto(producto, usuario);
         }catch (Exception e){
@@ -83,19 +83,4 @@ public class ControladorProducto {
         return new ModelAndView("form-registro-producto", model);
     }
 
-    public void validarRegistroProducto(DatosRegistroProducto producto, HttpServletRequest request) throws Exception {
-            if (producto.getCantidad() != null)
-            {
-                if (producto.getCantidad() < 0)
-                {
-                    throw new RuntimeException("El stock no puede ser negativo");
-                }
-            }else if (producto.getDescripcion() == null  || producto.getDescripcion() == ""){
-                throw new RuntimeException("Tiene que ingresar la descripcion del producto");
-            } else if (producto.getPuntos() == null || producto.getPuntos() != producto.getPuntos().intValue()) {
-                throw new RuntimeException("Los puntos tienen que ser numericos");
-            } else {
-                throw new RuntimeException("Tiene que ingresar una cantidad");
-            }
-    }
 }

@@ -53,14 +53,3 @@ public class ServicioBusquedaImpl implements ServicioBusqueda {
         return repositorioBusqueda.obtenerTodosLosEstadosDeMascota();
     }
 }
-
-
-////            Publicacion buscarPublicacion = mascota.getPublicacion();
-////            Publicacion buscarPublicacion = new Publicacion();
-////            buscarPublicacion.setMascota(mascota.toMascota());
-////            buscarPublicacion.setLocalidad(mascota.getPublicacion().getLocalidad());
-//            publicacionList = repositorioBusqueda.buscarPublicacionPor(buscarPublicacion);
-//            if (publicacionList.size() == 0) {
-//                throw new Exception("No se encontro ninguna publicacion");
-//            }
-//        return publicacionList;
