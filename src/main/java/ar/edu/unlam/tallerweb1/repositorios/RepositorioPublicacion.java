@@ -34,4 +34,6 @@ public interface RepositorioPublicacion {
     void eliminarPublicacion(Publicacion publicacion);
 
     void sumarPuntosAlUsuario(Usuario usuario);
+
+    List<ChatUsuario> buscarComentariosPorIdPublicacion(Long id);
 }

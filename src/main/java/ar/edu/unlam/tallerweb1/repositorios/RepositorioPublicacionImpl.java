@@ -1,7 +1,9 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.*;
+import javassist.runtime.Desc;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,6 +34,16 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     @Override
     public void sumarPuntosAlUsuario(Usuario usuario) {
         sessionFactory.getCurrentSession().update(usuario);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<ChatUsuario> buscarComentariosPorIdPublicacion(Long id) {
+        return sessionFactory.getCurrentSession().createCriteria(ChatUsuario.class)
+                .createAlias("publicacion", "p")
+                .add(Restrictions.eq("p.id",id))
+                .addOrder(Order.asc("fecha"))
+                .list();
     }
 
     @Override

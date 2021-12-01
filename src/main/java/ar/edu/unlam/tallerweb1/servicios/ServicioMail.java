@@ -6,5 +6,5 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface ServicioMail {
 
-    void enviarCorreo(String receptor, String comentario, Usuario usuario) throws Exception;
+    void enviarCorreo(String receptor, String comentario, Usuario usuario, Long idPublicacion) throws Exception;
 }

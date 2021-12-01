@@ -40,4 +40,6 @@ public interface ServicioPublicacion {
     void modificarPublicacion(DatosRegistroMascota mascota, Publicacion publicacion) throws Exception;
 
     void eliminarPublicacion(Long id);
+
+    List<ChatUsuario> obtenerComentariosPorIdPublicacion(Long id);
 }

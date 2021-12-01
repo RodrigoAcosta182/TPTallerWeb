@@ -68,6 +68,11 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     }
 
     @Override
+    public List<ChatUsuario> obtenerComentariosPorIdPublicacion(Long id) {
+        return repositorioPublicacion.buscarComentariosPorIdPublicacion(id);
+    }
+
+    @Override
     public void modificarPublicacion(DatosRegistroMascota mascota, Publicacion publicacion) throws Exception {
         Publicacion publi = repositorioPublicacion.buscarPublicacionPorId(publicacion.getId());
         Mascota miMascota = mascota.toMascota();

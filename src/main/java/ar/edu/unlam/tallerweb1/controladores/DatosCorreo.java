@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 public class DatosCorreo {
     String receptor;
     String comentario;
+    Long idPublicacion;
 
 
     public DatosCorreo() {
@@ -27,5 +28,23 @@ public class DatosCorreo {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public Long getIdPublicacion() {
+        return idPublicacion;
+    }
+
+    public void setIdPublicacion(Long idPublicacion) {
+        this.idPublicacion = idPublicacion;
+    }
+
+    public void validar() throws Exception{
+        if (this.getReceptor() == null){
+            throw new Exception("La publicacion debe tener un mail asociado");
+        }
+        if (this.getComentario() == ""){
+            throw new Exception("El campo Comentario es obligatorio");
+        }
+
     }
 }

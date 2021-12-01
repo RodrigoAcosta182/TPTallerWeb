@@ -10,18 +10,19 @@ public class ServicioMailTest {
 
     private ServicioMail servicioMail = mock(ServicioMail.class);
     private static final String RECEPTOR = "jracosta1991@gmail.com";
+    private static final Long IDPUBLICACION = 10L;
     private static final String COMENTARIO = "Comentario de prueba - Missing Pets";
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123");
 
 
     @Test
     public void elMailSeEnviaCorrectamente() throws Exception {
-        whenEnvioMail(RECEPTOR,COMENTARIO);
+        whenEnvioMail(RECEPTOR,COMENTARIO,IDPUBLICACION);
         thenEnvioDeMailCorrecto(RECEPTOR,COMENTARIO);
     }
     @Test
     public void elEnvioDeMailFalla() throws Exception {
-        whenEnvioMail(RECEPTOR,COMENTARIO);
+        whenEnvioMail(RECEPTOR,COMENTARIO,IDPUBLICACION);
         thenEnvioDeMailFalla(null,null);
     }
 
@@ -30,8 +31,8 @@ public class ServicioMailTest {
         assertThat(comentario).isNull();
     }
 
-    private void whenEnvioMail(String receptor, String comentario) throws Exception {
-        servicioMail.enviarCorreo(receptor,comentario,USUARIO );
+    private void whenEnvioMail(String receptor, String comentario, Long idPublicacion) throws Exception {
+        servicioMail.enviarCorreo(receptor,comentario,USUARIO, idPublicacion);
     }
     private void thenEnvioDeMailCorrecto(String receptor, String comentario) {
         assertThat(receptor).isNotNull();
