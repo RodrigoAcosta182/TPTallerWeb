@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -75,14 +76,15 @@ public class ControladorPublicacion {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/modificarregistroMascota")
-    public ModelAndView modificarRegistroPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, @ModelAttribute("publicacion") Publicacion publicacion, HttpServletRequest request)  throws Exception {
+    public ModelAndView modificarRegistroPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, @ModelAttribute("publicacion") Publicacion publicacion, final RedirectAttributes redirectAttributes)  throws Exception {
         ModelMap model = new ModelMap();
         try {
             mascota.validar();
             servicioPublicacion.modificarPublicacion(mascota, publicacion);
         } catch (Exception e) {
             model.put("error", e.getMessage());
-            return new ModelAndView("redirect:/ir-al-sitio-modificar-mascota", model);
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return new ModelAndView("redirect:/ir-al-sitio-modificar-mascota" + "?id=" + mascota.getId(), model);
         }
         model.put("msg", "Mascota Registrada Exitosamente");
         return new ModelAndView("home", model);
@@ -170,12 +172,12 @@ public class ControladorPublicacion {
     public ModelAndView irAlSitioModificarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, @RequestParam("id") Long id) {
         ModelMap model = new ModelMap();
         Publicacion publicacion;
-        List<Localidad> localidades =  servicioPublicacion.getLocalidades();
+        List<Localidad> localidades = servicioPublicacion.getLocalidades();
         List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
         List<Estado> estadosMascota = servicioPublicacion.getEstadosDeMascota();
-        model.put("localidades",localidades);
-        model.put("tiposDeMascota",tiposDeMascota);
-        model.put("estadosMascota",estadosMascota);
+        model.put("localidades", localidades);
+        model.put("tiposDeMascota", tiposDeMascota);
+        model.put("estadosMascota", estadosMascota);
         try {
             publicacion = servicioPublicacion.buscarPublicacion(id);
             model.put("publicacion", publicacion);

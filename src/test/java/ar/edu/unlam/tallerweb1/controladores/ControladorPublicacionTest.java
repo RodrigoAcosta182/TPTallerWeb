@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,7 @@ public class ControladorPublicacionTest {
 
     private HttpServletRequest REQUEST = mock(HttpServletRequest.class);
     private HttpSession session = mock(HttpSession.class);
+    private RedirectAttributes REDIRECT = mock(RedirectAttributes.class);
     private ServicioPublicacion servicioPublicacion = mock(ServicioPublicacion.class);
     private ControladorPublicacion controladorPublicacion = new ControladorPublicacion(servicioPublicacion);
 
@@ -217,11 +219,11 @@ public class ControladorPublicacionTest {
     }
 
     private ModelAndView whenModificoLaPublicacion() throws Exception {
-        return controladorPublicacion.modificarRegistroPublicacion(MASCOTA, PUBLICACION, REQUEST);
+        return controladorPublicacion.modificarRegistroPublicacion(MASCOTA, PUBLICACION, REDIRECT);
     }
 
     private ModelAndView whenModificoLaPublicacionConTipoNull() throws Exception {
-        return controladorPublicacion.modificarRegistroPublicacion(MASCOTA_CON_TIPO_NULL, PUBLICACION, REQUEST);
+        return controladorPublicacion.modificarRegistroPublicacion(MASCOTA_CON_TIPO_NULL, PUBLICACION, REDIRECT);
     }
 
     private void thenModificoLaPublicacion(ModelAndView mav, String mensaje) {
