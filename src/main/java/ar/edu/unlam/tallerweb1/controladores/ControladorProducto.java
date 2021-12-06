@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -28,20 +29,21 @@ public class ControladorProducto {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/registrarProducto")
-    public ModelAndView registrarProducto(@ModelAttribute("producto") DatosRegistroProducto producto, HttpServletRequest request) throws Exception{
+    public ModelAndView registrarProducto(@ModelAttribute("producto") DatosRegistroProducto producto, HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception{
         ModelMap model = new ModelMap();
 
         try{
-            validarRegistroProducto(producto, request);
+            producto.validarRegistroProducto(producto, request);
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
             servicioProducto.registrarProducto(producto, usuario);
         }catch (Exception e){
             model.put("error", e.getMessage());
             return new ModelAndView("form-registro-producto", model);
         }
-
-        model.put("msg", "Producto Registrado Exitosamente");
-        return new ModelAndView("Productos", model);
+        String mensaje = "Producto Registrado Exitosamente";
+        model.put("msg",mensaje);
+        redirectAttributes.addFlashAttribute("msg", mensaje);
+        return new ModelAndView("redirect:/ir-a-productos", model);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/canjear-producto")
@@ -83,19 +85,4 @@ public class ControladorProducto {
         return new ModelAndView("form-registro-producto", model);
     }
 
-    public void validarRegistroProducto(DatosRegistroProducto producto, HttpServletRequest request) throws Exception {
-            if (producto.getCantidad() != null)
-            {
-                if (producto.getCantidad() < 0)
-                {
-                    throw new RuntimeException("El stock no puede ser negativo");
-                }
-            }else if (producto.getDescripcion() == null  || producto.getDescripcion() == ""){
-                throw new RuntimeException("Tiene que ingresar la descripcion del producto");
-            } else if (producto.getPuntos() == null || producto.getPuntos() != producto.getPuntos().intValue()) {
-                throw new RuntimeException("Los puntos tienen que ser numericos");
-            } else {
-                throw new RuntimeException("Tiene que ingresar una cantidad");
-            }
-    }
 }

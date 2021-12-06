@@ -205,11 +205,20 @@ public class DatosRegistroMascota {
         if (this.getTipo() == null){
             throw new Exception("El campo Tipo es obligatorio");
         }
-        if (this.getEstado().getId() == null){
+        if (this.getEstado() == null){
             throw new Exception("El campo Estado es obligatorio");
         }
         if (this.getImagen().isEmpty()){
             throw new Exception("El campo Imagen es obligatorio");
+        }
+    }
+
+    public void validarModificacion() throws Exception{
+        if (this.getTipo() == null){
+            throw new Exception("El campo Tipo es obligatorio");
+        }
+        if (this.getEstado().getId() == null){
+            throw new Exception("El campo Estado es obligatorio");
         }
     }
 }

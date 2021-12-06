@@ -6,6 +6,11 @@
 <title>Mis Publicaciones</title>
 <%@ include file="partial/header.jsp" %>
 
+    <c:if test="${not empty msg}">
+        <div class="w3-panel w3-green w3-round-xxlarge " style="margin-top: 60px; width: 30%">
+            <h4 style="text-align: center">${msg}</h4>
+        </div>
+    </c:if>
 <div class="container-publicaciones noselect">
     <c:if test="${not empty publicacionesError}">
         <div class="w3-panel w3-red w3-round-xxlarge">
