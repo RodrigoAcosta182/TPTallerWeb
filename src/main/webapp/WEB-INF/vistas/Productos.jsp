@@ -6,13 +6,19 @@
 <%@ include file="partial/header.jsp" %>
 
 <div class="w3-container">
-    <div class="puntosDelUsuario w3-center" style="margin-top: 100px;">
-    <c:if test="${not empty usuario}">
-        <h2>MissingPets Points actuales: ${usuario.puntos}</h2>
-    </c:if>
+    <div class="puntosDelUsuario w3-center" style="margin-top: 100px; display: flex">
+        <c:if test="${not empty usuario}">
+            <h2>MissingPets Points actuales: ${usuario.puntos}</h2>
+        </c:if>
 
-    </div>
-    <div class="container-publicaciones noselect">
+        <c:if test="${not empty msg}">
+            <div class="w3-panel w3-blue w3-round w3-round-xxlarge">
+                <h4 style="text-align: center">${msg}</h4>
+            </div>
+        </c:if>
+</div>
+
+    <div class="container-publicaciones noselect" style="max">
         <c:forEach items="${productos}" var="productos" varStatus="status" step="1" begin="0">
             <div id="${status.index % 3 + 1}" class="tarjeta-publicacion-mascota">
                 <h4>${productos.descripcion}</h4>
@@ -45,17 +51,17 @@
                 </div>
             </div>
         </c:if>
-        <c:if test="${not empty msg}">
-            <div class="w3-container w3-center">
-                <div>
-                    <p class="login-mensaje-error">${msg}</p>
-                </div>
-                <div>
-                    <a class="w3-btn w3-blue w3-round-xxlarge" style="width: 100%; margin-top: 10px" type="submit"
-                       href="ir-a-productos">Volver a ver Productos</a>
-                </div>
-            </div>
-        </c:if>
+<%--        <c:if test="${not empty msg}">--%>
+<%--            <div class="w3-container w3-center">--%>
+<%--                <div>--%>
+<%--                    <p class="login-mensaje-error">${msg}</p>--%>
+<%--                </div>--%>
+<%--                <div>--%>
+<%--                    <a class="w3-btn w3-blue w3-round-xxlarge" style="width: 100%; margin-top: 10px" type="submit"--%>
+<%--                       href="ir-a-productos">Volver a ver Productos</a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </c:if>--%>
     </div>
     <c:if test="${usuario.rol == 'admin'}">
         <a class="w3-btn w3-blue" style="margin-top: 20px; margin-left: 44%" type="submit"

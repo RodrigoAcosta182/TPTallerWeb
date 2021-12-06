@@ -7,6 +7,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,6 +27,7 @@ public class ControladorMailTest {
 
     private HttpServletRequest REQUEST = mock(HttpServletRequest.class);
     private HttpSession session = mock(HttpSession.class);
+    private RedirectAttributes REDIRECT = mock(RedirectAttributes.class);
 
     @Before
     public void setup(){
@@ -52,7 +54,7 @@ public class ControladorMailTest {
 
 
     private ModelAndView whenEnvioMail(DatosCorreo datosCorreo) throws Exception {
-        return controladorMail.enviarCorreo(datosCorreo, REQUEST);
+        return controladorMail.enviarCorreo(datosCorreo, REQUEST, REDIRECT);
     }
 
     private void thenElEnvioFalla(ModelAndView mav, String mensaje) {

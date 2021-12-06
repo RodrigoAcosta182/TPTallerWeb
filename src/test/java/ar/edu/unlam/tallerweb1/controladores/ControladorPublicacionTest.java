@@ -84,7 +84,7 @@ public class ControladorPublicacionTest {
     public void queLaPublicacionSeFinaliceCorrectamente() throws Exception {
         givenQueLaPublicacionExiste(10L);
         ModelAndView mav = whenFinalizarPublicacion(PUBLICACION);
-        thenFinalizoPublicacionCorrectamente(mav, "Publicacion Finalizada");
+        thenFinalizoPublicacionCorrectamente(mav, "Publicacion Finalizada Correctamente");
     }
 
     @Test
@@ -105,14 +105,14 @@ public class ControladorPublicacionTest {
     public void queSeElimineLaPublicacion() throws Exception {
         givenQueLaPublicacionExiste(10L);
         ModelAndView mav = whenEliminoLaPublicacion(PUBLICACION.getId());
-        thenEliminoLaPublicacion(mav, "Publicacion Eliminada");
+        thenEliminoLaPublicacion(mav, "Publicacion Eliminada Correctamente");
     }
 
     @Test
     public void queSeModifiqueLaPublicacion() throws Exception {
         givenQueLaPublicacionExiste(10L);
         ModelAndView mav = whenModificoLaPublicacion();
-        thenModificoLaPublicacion(mav, "Mascota Registrada Exitosamente");
+        thenModificoLaPublicacion(mav, "Mascota Modificada Exitosamente");
     }
 
     @Test
@@ -185,21 +185,21 @@ public class ControladorPublicacionTest {
     }
 
     private ModelAndView whenFinalizarPublicacion(Publicacion publicacion) {
-        return controladorPublicacion.finalizarPublicacion(MASCOTA, publicacion, REQUEST);
+        return controladorPublicacion.finalizarPublicacion(MASCOTA, publicacion, REQUEST, REDIRECT);
     }
 
     private ModelAndView whenFinalizoPublicacionConMailIgual(Publicacion publicacion) {
-        return controladorPublicacion.finalizarPublicacion(MASCOTA_MAIL_IGUAL, publicacion, REQUEST);
+        return controladorPublicacion.finalizarPublicacion(MASCOTA_MAIL_IGUAL, publicacion, REQUEST, REDIRECT);
     }
 
     private ModelAndView whenRegistroLaPublicacion(DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
         request.getSession().setAttribute("Usuario", USUARIO);
         //mascota.setImagen(mock(MultipartFile.class));
-        return controladorPublicacion.registrarPublicacion(mascota, REQUEST);
+        return controladorPublicacion.registrarPublicacion(mascota, REQUEST, REDIRECT);
     }
 
     private ModelAndView whenEliminoLaPublicacion(Long id) {
-        return controladorPublicacion.eliminarPublicacion(id);
+        return controladorPublicacion.eliminarPublicacion(id, REDIRECT);
     }
 
     private ModelAndView whenIrAlSitioPublicacionesPerdidas() {
@@ -235,7 +235,7 @@ public class ControladorPublicacionTest {
     }
 
     private void thenElRegistroDePublicacionEsExitoso(ModelAndView mav) {
-        assertThat(mav.getViewName()).isEqualTo("home");
+        assertThat(mav.getViewName()).isEqualTo("redirect:/ir-a-mis-publicaciones");
         assertThat(mav.getModel().get("msg")).isEqualTo("Mascota Registrada Exitosamente");
     }
 

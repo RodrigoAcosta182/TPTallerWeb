@@ -2,9 +2,9 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.controladores.DatosRegistroMascota;
 import ar.edu.unlam.tallerweb1.modelo.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.List;
 
 public interface ServicioPublicacion {
