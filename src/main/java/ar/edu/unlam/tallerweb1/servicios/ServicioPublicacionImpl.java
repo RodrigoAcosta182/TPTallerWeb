@@ -6,11 +6,11 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -37,10 +37,14 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         Tipo tipoMascota = this.obtenerTipoDeMascotaPorId(mascota.getTipo().getId());
         Estado estadoMascota = this.obtenerEstadoDeMascotaPorId(mascota.getEstado().getId());
         Localidad localidad = this.getLocalidadPorDescripcion(mascota.getPublicacion().getLocalidad().getDescripcion());
+
+        //Esto guarda en base
         String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
         nuevaMascota.setImagen(nombreConRuta);
-        String filename = "C:\\img\\" + mascota.getImagen().getOriginalFilename();
+        //Esto guarda en disco
+        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
         mascota.getImagen().transferTo(new File(filename));
+
         nuevaMascota.setTipo(tipoMascota);
         nuevaMascota.setEstado(estadoMascota);
         nuevaPublicacion.setFechaPublicacion(new Date());
@@ -79,11 +83,16 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         Tipo tipoMascota = this.obtenerTipoDeMascotaPorId(mascota.getTipo().getId());
         Estado estadoMascota = this.obtenerEstadoDeMascotaPorId(mascota.getEstado().getId());
         Localidad localidad = this.getLocalidadPorDescripcion(mascota.getPublicacion().getLocalidad().getDescripcion());
+        miMascota.setImagen(publi.getMascota().getImagen());
 
-        String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
-        miMascota.setImagen(nombreConRuta);
-        String filename = "C:\\img\\" + mascota.getImagen().getOriginalFilename();
-        mascota.getImagen().transferTo(new File(filename));
+        if (mascota.getImagen().isEmpty()){
+            miMascota.setImagen(publi.getMascota().getImagen());
+        }else{
+            String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
+            miMascota.setImagen(nombreConRuta);
+            String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
+            mascota.getImagen().transferTo(new File(filename));
+        }
 
         miMascota.setTipo(tipoMascota);
         miMascota.setEstado(estadoMascota);

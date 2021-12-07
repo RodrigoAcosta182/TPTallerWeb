@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 

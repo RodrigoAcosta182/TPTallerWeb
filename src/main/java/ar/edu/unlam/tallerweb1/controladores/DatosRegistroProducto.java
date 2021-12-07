@@ -3,6 +3,8 @@ package ar.edu.unlam.tallerweb1.controladores;
 import ar.edu.unlam.tallerweb1.modelo.Producto;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class DatosRegistroProducto {
     private String descripcion;
     private Integer puntos;
@@ -59,19 +61,20 @@ public class DatosRegistroProducto {
         return nuevoProducto;
     }
 
-    public void validar() throws Exception {
-        if (this.getCantidad() != null)
+
+    public void validarRegistroProducto(DatosRegistroProducto producto, HttpServletRequest request) throws Exception {
+        if (producto.getCantidad() != null)
         {
-            if (this.getCantidad() < 0)
+            if (producto.getCantidad() < 0)
             {
-                throw new RuntimeException("El stock no puede ser negativo");
+                throw new Exception("El stock no puede ser negativo");
             }
-        }else if (this.getDescripcion() == null  || this.getDescripcion() == ""){
-            throw new RuntimeException("Tiene que ingresar la descripcion del producto");
-        } else if (this.getPuntos() == null || this.getPuntos() != this.getPuntos().intValue()) {
-            throw new RuntimeException("Los puntos tienen que ser numericos");
+        }else if (producto.getDescripcion() == null  || producto.getDescripcion() == ""){
+            throw new Exception("Tiene que ingresar la descripcion del producto");
+        } else if (producto.getPuntos() == null || producto.getPuntos() != producto.getPuntos().intValue()) {
+            throw new Exception("Los puntos tienen que ser numericos");
         } else {
-            throw new RuntimeException("Tiene que ingresar una cantidad");
+            throw new Exception("Tiene que ingresar una cantidad");
         }
     }
 }

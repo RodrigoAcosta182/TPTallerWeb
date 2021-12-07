@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -25,28 +26,24 @@ public class ControladorPublicacion {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/registrarMascota")
-    public ModelAndView registrarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, HttpServletRequest request) throws Exception {
+    public ModelAndView registrarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
         ModelMap model = new ModelMap();
         try {
             mascota.validar();
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
             servicioPublicacion.registrarPublicacion(mascota, usuario);
         } catch (Exception e) {
-            List<Localidad> localidades =  servicioPublicacion.getLocalidades();
-            List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
-            List<Estado> estadosMascota = servicioPublicacion.getEstadosDeMascota();
-            model.put("localidades",localidades);
-            model.put("tiposDeMascota",tiposDeMascota);
             model.put("error", e.getMessage());
-            model.put("estadosMascota",estadosMascota);
-            return new ModelAndView("form-registro-mascota", model);
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return new ModelAndView("redirect:/ir-a-registrar-mascota", model);
         }
         model.put("msg", "Mascota Registrada Exitosamente");
-        return new ModelAndView("home", model);
+        redirectAttributes.addFlashAttribute("msg", "Mascota Registrada Exitosamente");
+        return new ModelAndView("redirect:/ir-a-mis-publicaciones", model);
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/finalizar-publicacion")
-    public ModelAndView finalizarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota,@ModelAttribute("publicacion") Publicacion publicacion,HttpServletRequest request) {
+    public ModelAndView finalizarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota,@ModelAttribute("publicacion") Publicacion publicacion,HttpServletRequest request, RedirectAttributes redirectAttributes) {
         ModelMap model = new ModelMap();
         try{
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
@@ -56,36 +53,40 @@ public class ControladorPublicacion {
             model.put("error",e.getMessage());
             return new ModelAndView("mis-publicaciones", model);
         }
-        model.put("msg","Publicacion Finalizada");
-
-        return new ModelAndView("home", model);
+        String mensaje = "Publicacion Finalizada Correctamente";
+        model.put("msg",mensaje);
+        redirectAttributes.addFlashAttribute("msg", mensaje);
+        return new ModelAndView("redirect:/ir-a-mis-publicaciones", model);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/eliminar-publicacion")
-    public ModelAndView eliminarPublicacion(@RequestParam("id") Long id) {
+    public ModelAndView eliminarPublicacion(@RequestParam("id") Long id, RedirectAttributes redirectAttributes) {
         ModelMap model = new ModelMap();
         try{
             servicioPublicacion.eliminarPublicacion(id);
         }catch (Exception e){
-            model.put("error","No se pudo eliminar");
+            model.put("error", "No se pudo eliminar");
         }
-        model.put("msg","Publicacion Eliminada");
-
-        return new ModelAndView("home", model);
+        String mensaje = "Publicacion Eliminada Correctamente";
+        model.put("msg",mensaje);
+        redirectAttributes.addFlashAttribute("msg", mensaje);
+        return new ModelAndView("redirect:/ir-a-mis-publicaciones", model);
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/modificarregistroMascota")
-    public ModelAndView modificarRegistroPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, @ModelAttribute("publicacion") Publicacion publicacion, HttpServletRequest request)  throws Exception {
+    public ModelAndView modificarRegistroPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, @ModelAttribute("publicacion") Publicacion publicacion, final RedirectAttributes redirectAttributes)  throws Exception {
         ModelMap model = new ModelMap();
         try {
-            mascota.validar();
+            mascota.validarModificacion();
             servicioPublicacion.modificarPublicacion(mascota, publicacion);
         } catch (Exception e) {
             model.put("error", e.getMessage());
-            return new ModelAndView("redirect:/ir-al-sitio-modificar-mascota", model);
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return new ModelAndView("redirect:/ir-al-sitio-modificar-mascota?id=" + mascota.getId(), model);
         }
-        model.put("msg", "Mascota Registrada Exitosamente");
-        return new ModelAndView("home", model);
+        model.put("msg", "Mascota Modificada Exitosamente");
+        redirectAttributes.addFlashAttribute("msg", "Mascota Modificada Exitosamente");
+        return new ModelAndView("redirect:/ir-a-mis-publicaciones", model);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/ir-a-publicacion-mascota-perdida")
@@ -170,12 +171,12 @@ public class ControladorPublicacion {
     public ModelAndView irAlSitioModificarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, @RequestParam("id") Long id) {
         ModelMap model = new ModelMap();
         Publicacion publicacion;
-        List<Localidad> localidades =  servicioPublicacion.getLocalidades();
+        List<Localidad> localidades = servicioPublicacion.getLocalidades();
         List<Tipo> tiposDeMascota = servicioPublicacion.getTiposDeMascota();
         List<Estado> estadosMascota = servicioPublicacion.getEstadosDeMascota();
-        model.put("localidades",localidades);
-        model.put("tiposDeMascota",tiposDeMascota);
-        model.put("estadosMascota",estadosMascota);
+        model.put("localidades", localidades);
+        model.put("tiposDeMascota", tiposDeMascota);
+        model.put("estadosMascota", estadosMascota);
         try {
             publicacion = servicioPublicacion.buscarPublicacion(id);
             model.put("publicacion", publicacion);

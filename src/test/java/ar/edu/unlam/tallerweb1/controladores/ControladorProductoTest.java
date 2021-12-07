@@ -10,6 +10,7 @@ import static org.mockito.Mockito.*;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -27,6 +28,7 @@ public class ControladorProductoTest {
 
     private HttpServletRequest REQUEST = mock(HttpServletRequest.class);
     private HttpSession session = mock(HttpSession.class);
+    private RedirectAttributes REDIRECT = mock(RedirectAttributes.class);
 
     @Before
     public void setup(){
@@ -95,7 +97,7 @@ public class ControladorProductoTest {
 
     private ModelAndView whenSuboUnProducto(DatosRegistroProducto producto, HttpServletRequest request) throws Exception {
         request.getSession().setAttribute("Usuario", USUARIO);
-        return controladorProducto.registrarProducto(producto, REQUEST);
+        return controladorProducto.registrarProducto(producto, REQUEST, REDIRECT);
     }
 
     private ModelAndView whenVoyAlSitioDeProductos() {
@@ -111,7 +113,7 @@ public class ControladorProductoTest {
     }
 
     private void thenElRegistroDeProductoEsExitoso(ModelAndView mav) {
-        assertThat(mav.getViewName()).isEqualTo("Productos");
+        assertThat(mav.getViewName()).isEqualTo("redirect:/ir-a-productos");
         assertThat(mav.getModel().get("msg")).isEqualTo("Producto Registrado Exitosamente");
     }
 
