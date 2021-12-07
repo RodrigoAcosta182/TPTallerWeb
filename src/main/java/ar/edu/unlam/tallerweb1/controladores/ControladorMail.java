@@ -29,7 +29,7 @@ public class ControladorMail {
         //ver que imprima mensaje error and success
         try {
             datosCorreo.validar();
-            Usuario usuario = (Usuario) request.SgetSession().getAttribute("Usuario");
+            Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
             servicioMail.enviarCorreo(datosCorreo.getReceptor(), datosCorreo.getComentario(),usuario, datosCorreo.getIdPublicacion());
         } catch (Exception e) {
             model.put("mailError", e.getMessage());
