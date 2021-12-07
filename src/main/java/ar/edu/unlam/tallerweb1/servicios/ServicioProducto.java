@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ServicioProducto {
 
-    List<Producto> listarTodosLosProductos() throws Exception;
+    List<Producto> listarTodosLosProductos(Usuario usuario) throws Exception;
 
     Producto registrarProducto(DatosRegistroProducto producto, Usuario usuario) throws Exception;
 

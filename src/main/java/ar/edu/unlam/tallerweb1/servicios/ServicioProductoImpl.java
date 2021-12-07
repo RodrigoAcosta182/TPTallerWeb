@@ -72,9 +72,9 @@ public class ServicioProductoImpl implements ServicioProducto{
     }
 
     @Override
-    public List<Producto> listarTodosLosProductos() throws Exception {
-        if (repositorioProducto.buscarTodosLosProductos().size() == 0)
+    public List<Producto> listarTodosLosProductos(Usuario usuario) throws Exception {
+        if (repositorioProducto.buscarTodosLosProductos(usuario).size() == 0)
             throw new Exception();
-        return repositorioProducto.buscarTodosLosProductos();
+        return repositorioProducto.buscarTodosLosProductos(usuario);
     }
 }

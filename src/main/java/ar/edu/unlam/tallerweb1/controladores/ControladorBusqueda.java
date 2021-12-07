@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,14 +40,16 @@ public class ControladorBusqueda {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/buscar-publicaciones")
-    public ModelAndView buscarPublicaciones(@ModelAttribute("datosMascota") DatosRegistroMascota mascota){
+    public ModelAndView buscarPublicaciones(@ModelAttribute("datosMascota") DatosRegistroMascota mascota, RedirectAttributes redirectAttributes){
         ModelMap model = new ModelMap();
         List<Publicacion> publicaciones = new ArrayList<>();
         try {
             publicaciones = servicioBusqueda.buscarPublicaciones(mascota);
         } catch (Exception e) {
-            model.put("publicacionesError", "No se encontraron publicaciones");
-            return new ModelAndView("publicaciones-filtradas-busqueda", model);
+            String mensaje = "No se encontraron publicaciones";
+            model.put("publicacionesError",mensaje);
+            redirectAttributes.addFlashAttribute("publicacionesError", mensaje);
+            return new ModelAndView("redirect:/ir-a-mis-publicaciones", model);
         }
         model.put("mensajeOK", "Se encontraron publicaciones");
         model.put("publicaciones", publicaciones);

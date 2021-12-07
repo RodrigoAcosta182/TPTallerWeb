@@ -26,11 +26,13 @@
             <div class="w3-container w3-center">
                     <%--                <c:set var="context" value="${pageContext.request.contextPath}" />--%>
                     <%--                <script src="${context}/themes/js/jquery.js"></script>--%>
-                <p>Nombre: ${publicacion.mascota.nombre}</p>
-                <p>Raza: ${publicacion.mascota.raza}</p>
-                <p>Detalles: ${publicacion.mascota.detalle}</p>
-                <p>Tamanio: ${publicacion.mascota.tamanio}</p>
-                <p>Edad: ${publicacion.mascota.edad}</p>
+                <p><b>Nombre:</b> ${publicacion.mascota.nombre}</p>
+                <p><b>Raza:</b> ${publicacion.mascota.raza}</p>
+                <p><b>Detalles:</b> ${publicacion.mascota.detalle}</p>
+                <p><b>Tamanio:</b> ${publicacion.mascota.tamanio}</p>
+                <p><b>Color:</b> ${publicacion.mascota.color}</p>
+                <p><b>Edad:</b> ${publicacion.mascota.edad}</p>
+                <p><b>Localidad:</b> ${publicacion.localidad.descripcion}</p>
             </div>
             <a href="/missingpets/publicacion?id=${publicacion.id}">
                 <button class="w3-btn w3-green" style="text-decoration: none">Ver publicacion</button>

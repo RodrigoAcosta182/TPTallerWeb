@@ -1,10 +1,12 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.controladores.DatosRegistroProducto;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioProducto;
 import ar.edu.unlam.tallerweb1.modelo.Producto;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -45,7 +47,6 @@ public class RepositorioProductoImpl implements RepositorioProducto{
     @Override
     public List<Producto> buscarTodosMisProductos(Usuario usuario) {
         List<Producto> productos = sessionFactory.getCurrentSession().createCriteria(Producto.class)
-//                .add(Restrictions.eq("hayStock", true))
                 .list();
         return productos;
     }
@@ -57,9 +58,11 @@ public class RepositorioProductoImpl implements RepositorioProducto{
     }
 
     @Override
-    public List<Producto> buscarTodosLosProductos() {
+    public List<Producto> buscarTodosLosProductos(Usuario usuario) {
         List<Producto> productos = sessionFactory.getCurrentSession().createCriteria(Producto.class)
-//                .add(Restrictions.eq("hayStock", true))
+                .add(Restrictions.le("puntos", usuario.getPuntos()))
+                .add(Restrictions.gt("cantidad",0))
+                .addOrder(Order.desc("puntos"))
                 .list();
         return productos;
     }
