@@ -18,7 +18,7 @@
         </c:if>
 </div>
 
-    <div class="container-publicaciones noselect" style="max">
+    <div class="container-publicaciones noselect">
         <c:forEach items="${productos}" var="productos" varStatus="status" step="1" begin="0">
             <div id="${status.index % 3 + 1}" class="tarjeta-publicacion-mascota">
                 <h4>${productos.descripcion}</h4>
@@ -26,8 +26,8 @@
                 <div class="w3-container w3-center">
                     <c:set var="context" value="${pageContext.request.contextPath}"/>
                     <script src="${context}/themes/js/jquery.js"></script>
-                    <p>Stock Disponible: ${productos.cantidad}</p>
-                    <p>Puntos: ${productos.puntos}</p>
+                    <p><b>Stock Disponible:</b> ${productos.cantidad}</p>
+                    <p><b>Puntos:</b> ${productos.puntos}</p>
                 </div>
                 <div>
                     <form action=""></form>

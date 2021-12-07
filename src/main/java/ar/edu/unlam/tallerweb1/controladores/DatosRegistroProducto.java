@@ -63,18 +63,18 @@ public class DatosRegistroProducto {
 
 
     public void validarRegistroProducto(DatosRegistroProducto producto, HttpServletRequest request) throws Exception {
-        if (producto.getCantidad() != null)
-        {
-            if (producto.getCantidad() < 0)
-            {
+        if (this.getCantidad() != null) {
+            if (this.getCantidad() < 0) {
                 throw new Exception("El stock no puede ser negativo");
             }
-        }else if (producto.getDescripcion() == null  || producto.getDescripcion() == ""){
-            throw new Exception("Tiene que ingresar la descripcion del producto");
-        } else if (producto.getPuntos() == null || producto.getPuntos() != producto.getPuntos().intValue()) {
-            throw new Exception("Los puntos tienen que ser numericos");
-        } else {
+        }else {
             throw new Exception("Tiene que ingresar una cantidad");
+        }if ((this.getDescripcion() == null) || (this.getDescripcion().equals(""))){
+            throw new Exception("Tiene que ingresar la descripcion del producto");
+        }if ((this.getPuntos() == null) || !(this.getPuntos().equals(this.getPuntos().intValue())) || (this.getPuntos() < 0) ){
+            throw new Exception("Los puntos tienen que ser numericos y no puede ser negativo");
+        }if (this.getImgproducto().isEmpty()){
+            throw new Exception("El campo Imagen es obligatorio");
         }
     }
 }

@@ -4,6 +4,7 @@ import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.servicios.ServicioBusqueda;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +18,8 @@ public class ControladorBusquedaTest {
     private ServicioBusqueda servicioBusqueda = mock(ServicioBusqueda.class);
     private ControladorBusqueda controladorBusqueda = new ControladorBusqueda(servicioBusqueda);
     private static final DatosRegistroMascota MASCOTA = new DatosRegistroMascota("Ramon", new Tipo(), new Estado(), "3 Anios", "American Bully", "Le falta una pata", "Blanco", "Chico", new Date(), new Publicacion(), null, "nashe");
+
+    private RedirectAttributes REDIRECT = mock(RedirectAttributes.class);
 
     @Test
     public void irAVerPaginaDeBusqueda() {
@@ -104,7 +107,7 @@ public class ControladorBusquedaTest {
     }
 
     private ModelAndView whenBuscoPublicacion() throws Exception {
-        return controladorBusqueda.buscarPublicaciones(MASCOTA);
+        return controladorBusqueda.buscarPublicaciones(MASCOTA, REDIRECT);
     }
 
     private ModelAndView whenIrAVerPaginaDeBusqueda() {
@@ -113,7 +116,7 @@ public class ControladorBusquedaTest {
 
     private void thenNoEncuentroPublicaciones(ModelAndView mav) {
         assertThat(mav.getModel().get("publicacionesError")).isEqualTo("No se encontraron publicaciones");
-        assertThat(mav.getViewName()).isEqualTo("publicaciones-filtradas-busqueda");
+        assertThat(mav.getViewName()).isEqualTo("redirect:/ir-a-mis-publicaciones");
     }
     private void thenEncuentroPublicaciones(ModelAndView mav) {
         assertThat(mav.getModel().get("mensajeOK")).isEqualTo("Se encontraron publicaciones");

@@ -18,10 +18,12 @@
                     <p><span style="font-weight: bold">Nombre:</span> ${publicacion.mascota.nombre}</p>
                     <p><span style="font-weight: bold">Raza:</span> ${publicacion.mascota.raza}</p>
                     <p><span style="font-weight: bold">Detalles:</span> ${publicacion.mascota.detalle}</p>
+                    <p><span style="font-weight: bold">Tamanio:</span> ${publicacion.mascota.tamanio}</p>
                 </div>
                 <div class="w3-col">
-                    <p><span style="font-weight: bold">Tamanio:</span> ${publicacion.mascota.tamanio}</p>
                     <p><span style="font-weight: bold">Edad:</span> ${publicacion.mascota.edad}</p>
+                    <p><span style="font-weight: bold">Color:</span> ${publicacion.mascota.color}</p>
+                    <p><span style="font-weight: bold">Localidad:</span> ${publicacion.localidad.descripcion}</p>
                 </div>
             </div>
             <form:form action="enviarCorreo" method="POST" modelAttribute="datosCorreo">
