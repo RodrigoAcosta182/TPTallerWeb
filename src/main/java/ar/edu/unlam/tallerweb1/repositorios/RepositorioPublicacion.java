@@ -40,5 +40,5 @@ public interface RepositorioPublicacion {
 
     List<ChatUsuario> buscarChatUsuarioPorPublicacion(Long id);
 
-    void eliminarChatUsuarioPorPublicacion(List<ChatUsuario> chatUsuario);
+    void eliminarChatUsuarioPorPublicacion(ChatUsuario chatUsuario);
 }

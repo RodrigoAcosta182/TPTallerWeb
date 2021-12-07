@@ -18,27 +18,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RepositorioProductoTest extends SpringTest {
 
-    private static final Boolean STOCK_DISPONIBLE = true;
-    private static final Producto PRODUCTO = new Producto();
+    private static final Producto PRODUCTO = new Producto("Arena", 50, 5, "img/gato.jpg");
+    private static final Producto PRODUCTO2 = new Producto("Cucha", 50, 5, "img/perro.jpg");
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123", 505);
 
     @Autowired
     private RepositorioProducto repositorioProducto;
 
-//    @Test
-//    @Transactional
-//    @Rollback
-//    public void obtengoTodosLosProductos() {
-//        List<Producto> listaProductos = new LinkedList<>();
-//        listaProductos.add(new Producto());
-//        listaProductos.add(new Producto());
-//        listaProductos.add(new Producto());
-//
-//        givenExistenProductos(listaProductos, STOCK_DISPONIBLE);
-//        List<Producto> productos = whenObtengoTodasLosProductos();
-//
-//        thenEncuentro(listaProductos.size(), productos);
-//    }
+    @Test
+    @Transactional
+    @Rollback
+    public void obtengoTodosLosProductos() {
+        List<Producto> listaProductos = new LinkedList<>();
+        listaProductos.add(PRODUCTO);
+        listaProductos.add(PRODUCTO2);
+
+        givenExistenProductos(listaProductos);
+        List<Producto> productos = whenObtengoTodasLosProductos();
+
+        thenEncuentro(listaProductos.size(), productos);
+    }
 
     @Test(expected = Exception.class)
     @Transactional
@@ -58,7 +57,7 @@ public class RepositorioProductoTest extends SpringTest {
     public void canjeoProductoCorrectamente(){
         List<Producto> listaProducto = new LinkedList<>();
         listaProducto.add(new Producto());
-        givenExistenProductos(listaProducto, STOCK_DISPONIBLE);
+        givenExistenProductos(listaProducto);
         whenCanjeoUnProducto(PRODUCTO);
         thenCanjeoProducto(1L);
 
@@ -71,7 +70,7 @@ public class RepositorioProductoTest extends SpringTest {
         }
     }
 
-    private void givenExistenProductos(List<Producto> listaProductos, Boolean stockDisponible) {
+    private void givenExistenProductos(List<Producto> listaProductos) {
         for (Producto producto : listaProductos) {
             session().save(producto);
         }

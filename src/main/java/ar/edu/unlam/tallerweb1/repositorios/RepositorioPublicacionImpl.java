@@ -32,12 +32,6 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         sessionFactory.getCurrentSession().delete(publicacion);
     }
 
-//    @Override
-//    public void eliminarChatDePublicacion(Publicacion publicacion) {
-//        sessionFactory.getCurrentSession().createCriteria(ChatUsuario.class)
-//                .add(Restrictions.eq("publicacion_id", publicacion.getId()));
-//    }
-
     @Override
     public void sumarPuntosAlUsuario(Usuario usuario) {
         sessionFactory.getCurrentSession().update(usuario);
@@ -112,7 +106,7 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     }
 
     @Override
-    public void eliminarChatUsuarioPorPublicacion(List<ChatUsuario> chatUsuario) {
+    public void eliminarChatUsuarioPorPublicacion(ChatUsuario chatUsuario) {
         sessionFactory.getCurrentSession().delete(chatUsuario);
     }
 
