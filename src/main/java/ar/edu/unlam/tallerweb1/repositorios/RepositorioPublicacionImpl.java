@@ -32,6 +32,12 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         sessionFactory.getCurrentSession().delete(publicacion);
     }
 
+//    @Override
+//    public void eliminarChatDePublicacion(Publicacion publicacion) {
+//        sessionFactory.getCurrentSession().createCriteria(ChatUsuario.class)
+//                .add(Restrictions.eq("publicacion_id", publicacion.getId()));
+//    }
+
     @Override
     public void sumarPuntosAlUsuario(Usuario usuario) {
         sessionFactory.getCurrentSession().update(usuario);
@@ -95,6 +101,21 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         return (Publicacion) sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
                 .add(Restrictions.eq("id", id)).uniqueResult();
     }
+
+    @Override
+    public List<ChatUsuario> buscarChatUsuarioPorPublicacion(Long id) {
+        return sessionFactory.getCurrentSession().createCriteria(ChatUsuario.class)
+                .createAlias("publicacion", "p")
+                .add(Restrictions.eq("p.id",id))
+                .list();
+
+    }
+
+    @Override
+    public void eliminarChatUsuarioPorPublicacion(List<ChatUsuario> chatUsuario) {
+        sessionFactory.getCurrentSession().delete(chatUsuario);
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public List<Usuario> buscarUsuarioPorEmail(String email) {

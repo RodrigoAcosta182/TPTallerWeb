@@ -31,7 +31,6 @@ public class ControladorProducto {
     @RequestMapping(method = RequestMethod.POST, path = "/registrarProducto")
     public ModelAndView registrarProducto(@ModelAttribute("producto") DatosRegistroProducto producto, HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception{
         ModelMap model = new ModelMap();
-
         try{
             producto.validarRegistroProducto(producto, request);
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
@@ -47,7 +46,7 @@ public class ControladorProducto {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/canjear-producto")
-    public ModelAndView canjearProducto(@RequestParam("id") Long id,HttpServletRequest request) throws Exception{
+    public ModelAndView canjearProducto(@RequestParam("id") Long id,HttpServletRequest request,RedirectAttributes redirectAttributes) throws Exception{
         ModelMap model = new ModelMap();
         try{
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
@@ -56,9 +55,10 @@ public class ControladorProducto {
             model.put("error","Lo siento, no te alcanza para canjear este producto :(");
             return new ModelAndView("Productos", model);
         }
-        model.put("msg","Puntos Canjeados");
-
-        return new ModelAndView("Productos", model);
+        String mensaje = "Puntos Canjeados";
+        model.put("msg",mensaje);
+        redirectAttributes.addFlashAttribute("msg", mensaje);
+        return new ModelAndView("redirect:/ir-a-productos", model);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/ir-a-productos")
@@ -68,7 +68,7 @@ public class ControladorProducto {
         try {
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
             model.put("usuario", usuario);
-            productos = servicioProducto.listarTodosLosProductos();
+            productos = servicioProducto.listarTodosLosProductos(usuario);
         } catch (Exception e) {
             model.put("productoError", "No hay productos");
             return new ModelAndView("Productos", model);

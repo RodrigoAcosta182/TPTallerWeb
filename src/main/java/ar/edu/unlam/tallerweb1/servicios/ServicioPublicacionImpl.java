@@ -39,10 +39,11 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         Localidad localidad = this.getLocalidadPorDescripcion(mascota.getPublicacion().getLocalidad().getDescripcion());
 
         //Esto guarda en base
-        String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
+        Integer randomNumber = (int)Math.random() * 10 + 1;
+        String nombreConRuta = "img/"+ randomNumber + mascota.getImagen().getOriginalFilename();
         nuevaMascota.setImagen(nombreConRuta);
         //Esto guarda en disco
-        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
+        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\"+ randomNumber + mascota.getImagen().getOriginalFilename();
         mascota.getImagen().transferTo(new File(filename));
 
         nuevaMascota.setTipo(tipoMascota);
@@ -68,6 +69,8 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     @Override
     public void eliminarPublicacion(Long id) {
         Publicacion publicacion = repositorioPublicacion.buscarPublicacionPorId(id);
+        List<ChatUsuario> chatUsuario = repositorioPublicacion.buscarChatUsuarioPorPublicacion(id);
+        repositorioPublicacion.eliminarChatUsuarioPorPublicacion(chatUsuario);
         repositorioPublicacion.eliminarPublicacion(publicacion);
     }
 
@@ -88,9 +91,10 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         if (mascota.getImagen().isEmpty()){
             miMascota.setImagen(publi.getMascota().getImagen());
         }else{
-            String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
+            Integer randomNumber = (int)Math.random() * 10 + 1;
+            String nombreConRuta = "img/"+ randomNumber + mascota.getImagen().getOriginalFilename();
             miMascota.setImagen(nombreConRuta);
-            String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\" + mascota.getImagen().getOriginalFilename();
+            String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\"+ randomNumber + mascota.getImagen().getOriginalFilename();
             mascota.getImagen().transferTo(new File(filename));
         }
 
