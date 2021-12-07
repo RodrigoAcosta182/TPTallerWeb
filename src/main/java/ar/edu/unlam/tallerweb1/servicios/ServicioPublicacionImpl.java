@@ -70,7 +70,10 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     public void eliminarPublicacion(Long id) {
         Publicacion publicacion = repositorioPublicacion.buscarPublicacionPorId(id);
         List<ChatUsuario> chatUsuario = repositorioPublicacion.buscarChatUsuarioPorPublicacion(id);
-        repositorioPublicacion.eliminarChatUsuarioPorPublicacion(chatUsuario);
+        for (ChatUsuario chat: chatUsuario) {
+            repositorioPublicacion.eliminarChatUsuarioPorPublicacion(chat);
+        }
+//        repositorioPublicacion.eliminarChatUsuarioPorPublicacion(chatUsuario);
         repositorioPublicacion.eliminarPublicacion(publicacion);
     }
 
