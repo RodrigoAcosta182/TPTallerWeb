@@ -42,8 +42,8 @@
                             <c:if test="${publicacion.mascota.estado.id == 2 && publicacion.usuario.id != sessionScope.Usuario.id}">
                                     <h6>Quien encontro tu mascota?</h6>
                                     <form:input placeholder='Ingrese su mail' cssClass="w3-input w3-border" path="email"  type="text" id="email"/>
+                                <button class="w3-btn w3-purple" style="width: 100%; margin-top: 10px;" Type="Submit"/>Finalizar</button>
                             </c:if>
-                        <button class="w3-btn w3-purple" style="width: 100%; margin-top: 10px;" Type="Submit"/>Finalizar</button>
                     </form:form>
         </div>
     </c:forEach>
