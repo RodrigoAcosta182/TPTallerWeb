@@ -61,6 +61,7 @@ public class DatosRegistroProducto {
         return nuevoProducto;
     }
 
+
     public void validarRegistroProducto(DatosRegistroProducto producto, HttpServletRequest request) throws Exception {
         if (this.getCantidad() != null) {
             if (this.getCantidad() < 0) {

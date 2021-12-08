@@ -40,7 +40,6 @@ public class ControladorMail {
         model.put("mailOk",mensaje);
         redirectAttributes.addFlashAttribute("mailOk", mensaje);
         return new ModelAndView("redirect:/publicacion?id=" + datosCorreo.getIdPublicacion(), model);
-
     }
 
 }
