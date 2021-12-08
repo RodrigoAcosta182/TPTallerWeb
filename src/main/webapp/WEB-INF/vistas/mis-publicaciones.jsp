@@ -49,11 +49,20 @@
                 <br>
 
                     <form:form  action="finalizar-publicacion" method="POST" modelAttribute="datosMascota">
+<%--                        <form:input  value="${publicacion.id}" cssClass="w3-input" path="id" type="hidden" id="id" />--%>
+<%--                        <c:if test="${publicacion.mascota.estado.id == 1}">--%>
+<%--                            <h6>Quien encontro tu mascota?</h6>--%>
+<%--                            <form:input placeholder='Ingrese su mail' cssClass="w3-input w3-border" path="email"  type="text" id="email"/>--%>
+<%--                        </c:if>--%>
+
                         <form:input  value="${publicacion.id}" cssClass="w3-input" path="id" type="hidden" id="id" />
                         <c:if test="${publicacion.mascota.estado.id == 1}">
-                            <h6>Quien encontro tu mascota?</h6>
-                            <form:input placeholder='Ingrese su mail' cssClass="w3-input w3-border" path="email"  type="text" id="email"/>
+                            <c:if test="${publicacion.mascota.estado.id == 1 && publicacion.usuario.id != request.getParameter('Usuario')}">
+                                <h6>Quien encontro tu mascota?</h6>
+                                <form:input placeholder='Ingrese su mail' cssClass="w3-input w3-border" path="email"  type="text" id="email"/>
+                            </c:if>
                         </c:if>
+
                         <button class="w3-btn w3-purple" style="width: 100%; margin-top: 10px;" Type="Submit"/>Finalizar</button>
                     </form:form>
 
