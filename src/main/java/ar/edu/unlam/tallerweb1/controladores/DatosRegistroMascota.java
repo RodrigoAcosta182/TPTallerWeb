@@ -183,6 +183,19 @@ public class DatosRegistroMascota {
         return nuevaMascota;
     }
 
+    public Mascota toMascotaModificar(Mascota mascotaModificada) {
+        mascotaModificada.setEstado(this.getEstado());
+        mascotaModificada.setTipo(this.getTipo());
+        mascotaModificada.setNombre(this.getNombre());
+        mascotaModificada.setEdad(this.getEdad());
+        mascotaModificada.setRaza(this.getRaza());
+        mascotaModificada.setColor(this.getColor());
+        mascotaModificada.setDetalle(this.getDetalle());
+        mascotaModificada.setTamanio(this.getTamanio());
+        mascotaModificada.setFecha(this.getFecha());
+        return mascotaModificada;
+    }
+
     public Publicacion toPublicacion() {
         Publicacion nuevaPublicacion = this.getPublicacion();
         if (nuevaPublicacion == null) {
@@ -205,11 +218,20 @@ public class DatosRegistroMascota {
         if (this.getTipo() == null){
             throw new Exception("El campo Tipo es obligatorio");
         }
-        if (this.getEstado().getId() == null){
+        if (this.getEstado() == null){
             throw new Exception("El campo Estado es obligatorio");
         }
         if (this.getImagen().isEmpty()){
             throw new Exception("El campo Imagen es obligatorio");
+        }
+    }
+
+    public void validarModificacion() throws Exception{
+        if (this.getTipo() == null){
+            throw new Exception("El campo Tipo es obligatorio");
+        }
+        if (this.getEstado().getId() == null){
+            throw new Exception("El campo Estado es obligatorio");
         }
     }
 }

@@ -6,11 +6,11 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -37,10 +37,15 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         Tipo tipoMascota = this.obtenerTipoDeMascotaPorId(mascota.getTipo().getId());
         Estado estadoMascota = this.obtenerEstadoDeMascotaPorId(mascota.getEstado().getId());
         Localidad localidad = this.getLocalidadPorDescripcion(mascota.getPublicacion().getLocalidad().getDescripcion());
-        String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
+
+        //Esto guarda en base
+        Integer randomNumber = (int)Math.random() * 10 + 1;
+        String nombreConRuta = "img/"+ randomNumber + mascota.getImagen().getOriginalFilename();
         nuevaMascota.setImagen(nombreConRuta);
-        String filename = "C:\\img\\" + mascota.getImagen().getOriginalFilename();
+        //Esto guarda en disco
+        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\"+ randomNumber + mascota.getImagen().getOriginalFilename();
         mascota.getImagen().transferTo(new File(filename));
+
         nuevaMascota.setTipo(tipoMascota);
         nuevaMascota.setEstado(estadoMascota);
         nuevaPublicacion.setFechaPublicacion(new Date());
@@ -64,6 +69,10 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     @Override
     public void eliminarPublicacion(Long id) {
         Publicacion publicacion = repositorioPublicacion.buscarPublicacionPorId(id);
+        List<ChatUsuario> chatUsuario = repositorioPublicacion.buscarChatUsuarioPorPublicacion(id);
+        for (ChatUsuario chat: chatUsuario) {
+            repositorioPublicacion.eliminarChatUsuarioPorPublicacion(chat);
+        }
         repositorioPublicacion.eliminarPublicacion(publicacion);
     }
 
@@ -75,15 +84,21 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     @Override
     public void modificarPublicacion(DatosRegistroMascota mascota, Publicacion publicacion) throws Exception {
         Publicacion publi = repositorioPublicacion.buscarPublicacionPorId(publicacion.getId());
-        Mascota miMascota = mascota.toMascota();
+        Mascota miMascota = mascota.toMascotaModificar(publi.getMascota());
         Tipo tipoMascota = this.obtenerTipoDeMascotaPorId(mascota.getTipo().getId());
         Estado estadoMascota = this.obtenerEstadoDeMascotaPorId(mascota.getEstado().getId());
         Localidad localidad = this.getLocalidadPorDescripcion(mascota.getPublicacion().getLocalidad().getDescripcion());
+        miMascota.setImagen(publi.getMascota().getImagen());
 
-        String nombreConRuta = "img/" + mascota.getImagen().getOriginalFilename();
-        miMascota.setImagen(nombreConRuta);
-        String filename = "C:\\img\\" + mascota.getImagen().getOriginalFilename();
-        mascota.getImagen().transferTo(new File(filename));
+        if (mascota.getImagen().isEmpty()){
+            miMascota.setImagen(publi.getMascota().getImagen());
+        }else{
+            Integer randomNumber = (int)Math.random() * 10 + 1;
+            String nombreConRuta = "img/"+ randomNumber + mascota.getImagen().getOriginalFilename();
+            miMascota.setImagen(nombreConRuta);
+            String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\img\\"+ randomNumber + mascota.getImagen().getOriginalFilename();
+            mascota.getImagen().transferTo(new File(filename));
+        }
 
         miMascota.setTipo(tipoMascota);
         miMascota.setEstado(estadoMascota);

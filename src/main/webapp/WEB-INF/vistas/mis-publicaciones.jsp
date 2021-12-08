@@ -6,12 +6,17 @@
 <title>Mis Publicaciones</title>
 <%@ include file="partial/header.jsp" %>
 
-<div class="container-publicaciones noselect">
-    <c:if test="${not empty publicacionesError}">
-        <div class="w3-panel w3-red w3-round-xxlarge">
-            <h4><span>${publicacionesError}</span></h4>
+    <c:if test="${not empty msg}">
+        <div class="w3-panel w3-green w3-round-xxlarge " style="margin-top: 60px; width: 30%">
+            <h4 style="text-align: center">${msg}</h4>
         </div>
     </c:if>
+    <c:if test="${not empty publicacionesError}">
+        <div class="w3-panel w3-red w3-round-xxlarge" style="margin-top: 60px; width: 30%">
+            <h4 style="text-align: center">${publicacionesError}</h4>
+        </div>
+    </c:if>
+<div class="container-publicaciones noselect">
     <c:forEach items="${publicaciones}" var="publicacion" varStatus="status" step="1" begin="0">
 
         <div id="${status.index % 3 + 1}" class="tarjeta-publicacion-mascota">
@@ -26,12 +31,13 @@
                 </c:if>
                 <img src="${publicacion.mascota.imagen}" class="imagen-tarjeta" alt="">
             <div class="w3-container w3-center">
-                <p>Nombre: ${publicacion.mascota.nombre}</p>
-                <p>Raza: ${publicacion.mascota.raza}</p>
-                <p>Detalles: ${publicacion.mascota.detalle}</p>
-                <p>Tamanio: ${publicacion.mascota.tamanio}</p>
-                <p>Color: ${publicacion.mascota.color}</p>
-                <p>Edad: ${publicacion.mascota.edad}</p>
+                <p><b>Nombre:</b> ${publicacion.mascota.nombre}</p>
+                <p><b>Raza:</b> ${publicacion.mascota.raza}</p>
+                <p><b>Detalles:</b> ${publicacion.mascota.detalle}</p>
+                <p><b>Tamanio:</b> ${publicacion.mascota.tamanio}</p>
+                <p><b>Color:</b> ${publicacion.mascota.color}</p>
+                <p><b>Edad:</b> ${publicacion.mascota.edad}</p>
+                <p><b>Localidad:</b> ${publicacion.localidad.descripcion}</p>
             </div>
             <c:if test="${publicacion.finalizado == true}">
                 <a class="w3-btn w3-red" style="margin-top: 10px" href="/missingpets/eliminar-publicacion?id=${publicacion.id}">Eliminar</a>

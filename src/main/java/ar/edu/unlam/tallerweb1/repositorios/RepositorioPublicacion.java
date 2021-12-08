@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -36,4 +37,8 @@ public interface RepositorioPublicacion {
     void sumarPuntosAlUsuario(Usuario usuario);
 
     List<ChatUsuario> buscarComentariosPorIdPublicacion(Long id);
+
+    List<ChatUsuario> buscarChatUsuarioPorPublicacion(Long id);
+
+    void eliminarChatUsuarioPorPublicacion(ChatUsuario chatUsuario);
 }

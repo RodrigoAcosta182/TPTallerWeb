@@ -12,16 +12,18 @@
 <div class="container-publicaciones noselect">
     <div class="tarjeta-publicacion-ver-publicacion">
         <div>
-            <%--            <img src="${publicacion.mascota.imagen}" style="width: 400px; height: 400px;border-radius: 12px" alt="">--%>
+            <img src="${publicacion.mascota.imagen}" style="width: 400px; height: 400px;border-radius: 12px" alt="">
             <div class="w3-row" style="display: flex;justify-content: space-around;padding: 12px 0">
                 <div class="w3-col">
                     <p><span style="font-weight: bold">Nombre:</span> ${publicacion.mascota.nombre}</p>
                     <p><span style="font-weight: bold">Raza:</span> ${publicacion.mascota.raza}</p>
                     <p><span style="font-weight: bold">Detalles:</span> ${publicacion.mascota.detalle}</p>
+                    <p><span style="font-weight: bold">Tamanio:</span> ${publicacion.mascota.tamanio}</p>
                 </div>
                 <div class="w3-col">
-                    <p><span style="font-weight: bold">Tamanio:</span> ${publicacion.mascota.tamanio}</p>
                     <p><span style="font-weight: bold">Edad:</span> ${publicacion.mascota.edad}</p>
+                    <p><span style="font-weight: bold">Color:</span> ${publicacion.mascota.color}</p>
+                    <p><span style="font-weight: bold">Localidad:</span> ${publicacion.localidad.descripcion}</p>
                 </div>
             </div>
             <form:form action="enviarCorreo" method="POST" modelAttribute="datosCorreo">
@@ -37,14 +39,14 @@
 
                 <c:if test="${not empty mailError}">
                     <div class="w3-panel w3-red w3-round">
-                        <h4><span>${mailError}</span></h4>
+                        <h4 style="text-align: center"><span>${mailError}</span></h4>
                     </div>
                 </c:if>
 
 
                 <c:if test="${not empty mailOk}">
-                    <div class="w3-panel w3-green w3-round">
-                        <h4><span>${mailOk}</span></h4>
+                    <div class="w3-panel w3-blue w3-round">
+                        <h4 style="text-align: center">${mailOk}</h4>
                     </div>
                 </c:if>
             </form:form>

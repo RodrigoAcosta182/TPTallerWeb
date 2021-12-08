@@ -7,6 +7,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -94,6 +95,21 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         return (Publicacion) sessionFactory.getCurrentSession().createCriteria(Publicacion.class)
                 .add(Restrictions.eq("id", id)).uniqueResult();
     }
+
+    @Override
+    public List<ChatUsuario> buscarChatUsuarioPorPublicacion(Long id) {
+        return sessionFactory.getCurrentSession().createCriteria(ChatUsuario.class)
+                .createAlias("publicacion", "p")
+                .add(Restrictions.eq("p.id",id))
+                .list();
+
+    }
+
+    @Override
+    public void eliminarChatUsuarioPorPublicacion(ChatUsuario chatUsuario) {
+        sessionFactory.getCurrentSession().delete(chatUsuario);
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public List<Usuario> buscarUsuarioPorEmail(String email) {

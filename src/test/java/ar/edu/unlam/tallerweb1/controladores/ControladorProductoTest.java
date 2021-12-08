@@ -10,6 +10,7 @@ import static org.mockito.Mockito.*;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ControladorProductoTest {
 
     private static final Producto PRODUCTO_2 = new Producto( "Vaso", 500, 5, "img/tumama.png");
-    private static final DatosRegistroProducto PRODUCTO = new DatosRegistroProducto("Cucha para Perro", 30, 6, null);
+    private static final DatosRegistroProducto PRODUCTO = new DatosRegistroProducto("Cucha para Perro", 30, 6, mock(MultipartFile.class));
     private static final DatosRegistroProducto PRODUCTO_NEGATIVO = new DatosRegistroProducto("Cucha para Perro", 30, -5, null);
     private static final Usuario USUARIO = new Usuario("emiortiz1992@gmail.com", "123", 50);
     private ServicioProducto servicioProducto = mock(ServicioProducto.class);
@@ -27,6 +28,7 @@ public class ControladorProductoTest {
 
     private HttpServletRequest REQUEST = mock(HttpServletRequest.class);
     private HttpSession session = mock(HttpSession.class);
+    private RedirectAttributes REDIRECT = mock(RedirectAttributes.class);
 
     @Before
     public void setup(){
@@ -82,11 +84,11 @@ public class ControladorProductoTest {
     }
 
     private void givenQueNoEncuentroProducto() throws Exception {
-        doThrow(Exception.class).when(servicioProducto).listarTodosLosProductos();
+        doThrow(Exception.class).when(servicioProducto).listarTodosLosProductos(USUARIO);
     }
 
     private ModelAndView whenCanjeoUnProducto(Producto producto, HttpServletRequest request) throws Exception {
-        return controladorProducto.canjearProducto(producto.getId(), REQUEST);
+        return controladorProducto.canjearProducto(producto.getId(), REQUEST, REDIRECT);
     }
 
     private ModelAndView whenObtengoProductos() {
@@ -95,7 +97,7 @@ public class ControladorProductoTest {
 
     private ModelAndView whenSuboUnProducto(DatosRegistroProducto producto, HttpServletRequest request) throws Exception {
         request.getSession().setAttribute("Usuario", USUARIO);
-        return controladorProducto.registrarProducto(producto, REQUEST);
+        return controladorProducto.registrarProducto(producto, REQUEST, REDIRECT);
     }
 
     private ModelAndView whenVoyAlSitioDeProductos() {
@@ -111,7 +113,7 @@ public class ControladorProductoTest {
     }
 
     private void thenElRegistroDeProductoEsExitoso(ModelAndView mav) {
-        assertThat(mav.getViewName()).isEqualTo("Productos");
+        assertThat(mav.getViewName()).isEqualTo("redirect:/ir-a-productos");
         assertThat(mav.getModel().get("msg")).isEqualTo("Producto Registrado Exitosamente");
     }
 

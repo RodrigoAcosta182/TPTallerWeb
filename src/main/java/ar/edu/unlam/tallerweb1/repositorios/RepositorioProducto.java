@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.controladores.DatosRegistroProducto;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioProducto;
 import ar.edu.unlam.tallerweb1.modelo.Producto;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -10,7 +11,7 @@ public interface RepositorioProducto {
 
     List<Producto> buscarTodosMisProductos(Usuario usuario);
 
-    List<Producto> buscarTodosLosProductos();
+    List<Producto> buscarTodosLosProductos(Usuario usuario);
 
     Producto buscarProductoPorId(Long id);
 
