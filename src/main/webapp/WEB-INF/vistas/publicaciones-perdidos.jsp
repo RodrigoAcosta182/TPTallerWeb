@@ -26,8 +26,7 @@
             <c:if test="${publicacion.mascota.estado.id == 2}">
                 <h2 style="text-align: center">Encontrado</h2>
             </c:if>
-<%--            <img src="${publicacion.mascota.imagen}" class="imagen-tarjeta" alt="">--%>
-            <img src="../../../../../../../images/Pluto.png" class="imagen-tarjeta" alt="">
+            <img src="${publicacion.mascota.imagen}" class="imagen-tarjeta" alt="">
             <div class="w3-container w3-center">
                 <p><b>Nombre:</b> ${publicacion.mascota.nombre}</p>
                 <p><b>Raza:</b> ${publicacion.mascota.raza}</p>

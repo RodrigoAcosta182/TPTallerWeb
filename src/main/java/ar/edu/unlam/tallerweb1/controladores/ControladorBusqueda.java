@@ -48,8 +48,8 @@ public class ControladorBusqueda {
         } catch (Exception e) {
             String mensaje = "No se encontraron publicaciones";
             model.put("publicacionesError",mensaje);
-            redirectAttributes.addFlashAttribute("publicacionesError", mensaje);
-            return new ModelAndView("redirect:/ir-a-mis-publicaciones", model);
+//            redirectAttributes.addFlashAttribute("publicacionesError", mensaje);
+            return new ModelAndView("publicaciones-filtradas-busqueda", model);
         }
         model.put("mensajeOK", "Se encontraron publicaciones");
         model.put("publicaciones", publicaciones);
