@@ -58,6 +58,18 @@
                         <button class="w3-btn w3-green" style="text-decoration: none;width: 100%;margin-top: 4px">Ver publicacion</button>
                     </a>
             </div>
+            <a href="/missingpets/publicacion?id=${publicacion.id}">
+                <button class="w3-btn w3-green" style="text-decoration: none">Ver publicacion</button>
+            </a>
+                    <form:form  action="finalizar-publicacion" method="POST" modelAttribute="datosMascota">
+                        <form:input  value="${publicacion.id}" cssClass="w3-input" path="id" type="hidden" id="id" />
+                            <c:if test="${publicacion.mascota.estado.id == 2 && publicacion.usuario.id != sessionScope.Usuario.id}">
+                                    <h6>Quien encontro tu mascota?</h6>
+                                    <form:input placeholder='Ingrese su mail' cssClass="w3-input w3-border" path="email"  type="text" id="email"/>
+                                <button class="w3-btn w3-purple" style="width: 100%; margin-top: 10px;" Type="Submit"/>Finalizar</button>
+                            </c:if>
+                    </form:form>
+
         </div>
     </c:forEach>
 </div>

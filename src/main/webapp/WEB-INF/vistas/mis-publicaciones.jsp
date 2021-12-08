@@ -76,9 +76,7 @@
                 <p class="login-mensaje-error">${error}</p>
             </div>
             <div>
-                <a class="w3-btn w3-blue w3-round-xxlarge" style="width: 100%; margin-top: 10px" type="submit"
-                   href="ir-a-mis-publicaciones">Volver a ver Mis Publicaciones</a>
-            </div>
+                <a class="w3-btn w3-blue w3-round-xxlarge" style="width: 100%; margin-top: 10px" href="javascript:history.back(-1);" title="Ir la página anterior">Volver</a>            </div>
         </div>
     </c:if>
 </div>
