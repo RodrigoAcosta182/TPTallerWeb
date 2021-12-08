@@ -5,11 +5,12 @@
 <title>Mis Publicaciones</title>
 <%@ include file="partial/header.jsp" %>
 
-<link href="${pageContext.request.contextPath}/css/w3s.css" rel="stylesheet">
+<%--<link href="${pageContext.request.contextPath}/css/w3s.css" rel="stylesheet">--%>
+<%--&lt;%&ndash;<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">&ndash;%&gt;--%>
+<%--&lt;%&ndash;<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">&ndash;%&gt;--%>
+<%--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">--%>
+
 <link href="../css/estilos.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <div class="container-publicaciones noselect">
     <c:if test="${not empty publicacionesError}">
@@ -27,7 +28,7 @@
                 <h2 style="text-align: center">Encontrado</h2>
             </c:if>
             <img src="${publicacion.mascota.imagen}" class="imagen-tarjeta" alt="">
-            <div class="w3-container w3-center">
+            <div class="w3-container w3-center" style="margin-top: 30px;">
                 <p><b>Nombre:</b> ${publicacion.mascota.nombre}</p>
                 <p><b>Raza:</b> ${publicacion.mascota.raza}</p>
                 <p><b>Detalles:</b> ${publicacion.mascota.detalle}</p>
@@ -38,7 +39,7 @@
                 <p><b>Publicacion de:</b> ${publicacion.usuario.email}</p>
             </div>
             <a href="/missingpets/publicacion?id=${publicacion.id}">
-                <button class="w3-btn w3-green" style="text-decoration: none">Ver publicacion</button>
+                <button class="w3-btn w3-green" style="text-decoration: none;margin-top: 20px">Ver publicacion</button>
             </a>
         </div>
     </c:forEach>

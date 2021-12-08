@@ -7,6 +7,8 @@
 <title>Mis Publicaciones</title>
 <%@ include file="partial/header.jsp" %>
 
+
+
 <div class="container-publicaciones noselect">
     <c:if test="${not empty publicacionesError}">
         <div class="w3-panel w3-red w3-round-xxlarge">
@@ -50,5 +52,3 @@
 
 </body>
 </html>
-
-<%-- src="<spring:url value='webapp/images'${savedUser.profileImage.originalFilename}'  --%>
