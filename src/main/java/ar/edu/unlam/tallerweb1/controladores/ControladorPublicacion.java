@@ -43,7 +43,7 @@ public class ControladorPublicacion {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/finalizar-publicacion")
-    public ModelAndView finalizarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota,@ModelAttribute("publicacion") Publicacion publicacion,@ModelAttribute("request") HttpServletRequest request, RedirectAttributes redirectAttributes) {
+    public ModelAndView finalizarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota,@ModelAttribute("publicacion") Publicacion publicacion,HttpServletRequest request, RedirectAttributes redirectAttributes) {
         ModelMap model = new ModelMap();
         try{
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");

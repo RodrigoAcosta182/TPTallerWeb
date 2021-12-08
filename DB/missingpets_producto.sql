@@ -31,7 +31,7 @@ CREATE TABLE `producto` (
   `cantidad` int NOT NULL,
   `imgproducto` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (1,'Cama para perro mediano',60,8,'imgProducto/camaperro.jpeg'),(2,'Bolson 15KG Royal Canin',250,4,'imgProducto/royalcanino.jpeg'),(3,'Bolsa de 3kg de piedra para gatos',30,8,'imgProducto/piedragato.jpeg'),(4,'Collar + correa 1.50mts',30,10,'imgProducto/piedragato.jpeg'),(5,'Comida para Gatos',100,50,'imgProducto/Alimento-Para-Gatos-Whiskas-Pasta-Sardina-85-Gr-1-42084.jpg');
+INSERT INTO `producto` VALUES (1,'Cama para perro mediano',60,0,'imgProducto/camaperro.jpeg'),(2,'Bolson 15KG Royal Canin',270,3,'imgProducto/royalcanino.jpeg'),(3,'Bolsa de 3kg de piedra para gatos',300,8,'imgProducto/piedragato.jpeg'),(4,'Collar + correa 1.50mts',300,9,'imgProducto/piedragato.jpeg'),(5,'Comida para Gatos',100,47,'imgProducto/Alimento-Para-Gatos-Whiskas-Pasta-Sardina-85-Gr-1-42084.jpg'),(18,'Comida para Negros',50,0,'imgProducto/1piedragato.jpeg');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-07 22:41:50
+-- Dump completed on 2021-12-08 11:55:14
