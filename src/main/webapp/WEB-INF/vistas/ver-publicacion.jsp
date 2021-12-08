@@ -12,16 +12,21 @@
 <div class="container-publicaciones noselect">
     <div class="tarjeta-publicacion-ver-publicacion">
         <div>
-            <img src="${publicacion.mascota.imagen}" style="width: 400px; height: 400px;border-radius: 12px" alt="">
-            <div class="w3-row" style="display: flex;justify-content: space-around;padding: 12px 0">
+            <div style="display: flex;justify-content: center;align-items: center">
+                <img src="${publicacion.mascota.imagen}" style="width: 400px; height: 400px;border-radius: 12px" alt="">
+
+            </div>
+            <div class="w3-row" style="display: flex;justify-content: space-around;padding: 12px 0;margin-left: 64px">
                 <div class="w3-col">
                     <p><span style="font-weight: bold">Nombre:</span> ${publicacion.mascota.nombre}</p>
                     <p><span style="font-weight: bold">Raza:</span> ${publicacion.mascota.raza}</p>
                     <p><span style="font-weight: bold">Detalles:</span> ${publicacion.mascota.detalle}</p>
-                    <p><span style="font-weight: bold">Tamanio:</span> ${publicacion.mascota.tamanio}</p>
                 </div>
                 <div class="w3-col">
+                    <p><span style="font-weight: bold">Tamanio:</span> ${publicacion.mascota.tamanio}</p>
                     <p><span style="font-weight: bold">Edad:</span> ${publicacion.mascota.edad}</p>
+                </div>
+                <div class="w3-col">
                     <p><span style="font-weight: bold">Color:</span> ${publicacion.mascota.color}</p>
                     <p><span style="font-weight: bold">Localidad:</span> ${publicacion.localidad.descripcion}</p>
                 </div>
@@ -31,10 +36,9 @@
                 <label class="w3-left">Enviar mensaje a:</label>
                 <form:input cssClass="w3-input" path="receptor" id="receptor" readonly="true"/>
                 <form:textarea cssClass="ver-publicacion-escribir-comentario" path="comentario" id="receptor"/>
-                <div>
-                    <button class="w3-btn w3-purple" type="submit" style="width: 100%">Enviar mensaje</button>
-                    <br> <br>
+                <div style="display: flex;justify-content: center;align-items: center;gap: 8px">
                     <input type="button" id="myBtn" class="w3-btn w3-green" value="Ver Chat" style="width: 100%">
+                    <button class="w3-btn w3-purple" type="submit" style="width: 100%">Enviar mensaje</button>
                 </div>
 
                 <c:if test="${not empty mailError}">
@@ -60,13 +64,15 @@
                         <span class="close">&times;</span>
                         <h2>Conversacion</h2>
                     </div>
-                    <div  class="modal-body">
+                    <div class="modal-body">
                         <c:forEach items="${listaComentarios}" var="comentario" varStatus="status" step="1" begin="0">
                             <div id="${status.index % 3 + 1}">
                                 <c:if test="${publicacion.usuario.email == comentario.usuario.email}">
                                     <div class="container">
 
-                                        <h5 style="text-align: right"><i style="color: cornflowerblue" class="fa fa-check-circle login-icono-tilde"></i>${comentario.usuario.email}:</h5>
+                                        <h5 style="text-align: right"><i style="color: cornflowerblue"
+                                                                         class="fa fa-check-circle login-icono-tilde"></i>${comentario.usuario.email}:
+                                        </h5>
                                         <h5 style="text-align: right;font-weight: bold">${comentario.mensaje}</h5>
                                         <span class="time-right">${comentario.fecha}</span>
                                     </div>

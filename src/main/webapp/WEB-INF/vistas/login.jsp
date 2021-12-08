@@ -63,7 +63,7 @@
 		<h3><i class="fa fa-check-circle login-icono-tilde"></i>Es simple, f&aacute;cil de usar</h3>
 		<h3><i class="fa fa-check-circle login-icono-tilde"></i>Encontr&aacute; a tu mascota de la manera m&aacute;s rapida</h3>
 		<h3><i class="fa fa-check-circle login-icono-tilde"></i>M&aacute;s de 5000 mascotas volvieron a su hogar</h3>
-		<h3><i class="fa fa-check-circle login-icono-tilde"></i>Miles de descuentos en servicios para tu mascota</h3>
+		<h3><i class="fa fa-check-circle login-icono-tilde"></i>Gan&aacute; puntos y canjealo por muchos productos</h3>
 		</div>
 	</div>
 	<div class="w3-display-bottomleft w3-padding-large">

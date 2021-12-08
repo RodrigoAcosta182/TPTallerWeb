@@ -28,16 +28,20 @@
                 <h2 style="text-align: center">Encontrado</h2>
             </c:if>
             <img src="${publicacion.mascota.imagen}" class="imagen-tarjeta" alt="">
-            <div class="w3-container w3-center" style="margin-top: 30px;">
-                <p><b>Nombre:</b> ${publicacion.mascota.nombre}</p>
-                <p><b>Raza:</b> ${publicacion.mascota.raza}</p>
-                <p><b>Detalles:</b> ${publicacion.mascota.detalle}</p>
-                <p><b>Tamanio:</b> ${publicacion.mascota.tamanio}</p>
-                <p><b>Color:</b> ${publicacion.mascota.color}</p>
-                <p><b>Edad:</b> ${publicacion.mascota.edad}</p>
-                <p><b>Localidad:</b> ${publicacion.localidad.descripcion}</p>
-                <p><b>Publicacion de:</b> ${publicacion.usuario.email}</p>
+            <div style="display: flex;justify-content: space-around;padding: 12px 0;width: 350px;">
+                <div style="width: 190px">
+                    <p class="text-elipsis"><span style="font-weight: bold">Nombre:</span> ${publicacion.mascota.nombre}</p>
+                    <p class="text-elipsis"><span style="font-weight: bold">Raza:</span> ${publicacion.mascota.raza}</p>
+                    <p class="text-elipsis"><span style="font-weight: bold">Detalles:</span> ${publicacion.mascota.detalle}</p>
+                    <p class="text-elipsis"><span style="font-weight: bold">Tamanio:</span> ${publicacion.mascota.tamanio}</p>
+                </div>
+                <div style="width: 130px">
+                    <p class="text-elipsis"><span style="font-weight: bold">Edad:</span> ${publicacion.mascota.edad}</p>
+                    <p class="text-elipsis"><span style="font-weight: bold">Color:</span> ${publicacion.mascota.color}</p>
+                    <p class="text-elipsis"><span style="font-weight: bold">Localidad:</span> ${publicacion.localidad.descripcion}</p>
+                </div>
             </div>
+            <p class="text-elipsis"><b>Publicacion de:</b> ${publicacion.usuario.email}</p>
             <a href="/missingpets/publicacion?id=${publicacion.id}">
                 <button class="w3-btn w3-green" style="text-decoration: none;margin-top: 20px">Ver publicacion</button>
             </a>
