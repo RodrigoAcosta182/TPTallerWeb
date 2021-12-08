@@ -25,17 +25,18 @@ DROP TABLE IF EXISTS `chatusuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chatusuario` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `mensaje` varchar(500) DEFAULT NULL,
-  `fecha` datetime DEFAULT NULL,
-  `usuario_id` bigint DEFAULT NULL,
   `publicacion_id` int DEFAULT NULL,
+  `usuario_id` bigint DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
+  `mensaje` varchar(500) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   KEY `FKgndrv8tnmbbi59r9okeyubu9s` (`usuario_id`),
   KEY `chatusuario_publicacion_id_fk` (`publicacion_id`),
+  CONSTRAINT `chatusuario_publicacion_id_fk` FOREIGN KEY (`publicacion_id`) REFERENCES `publicacion` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FKgndrv8tnmbbi59r9okeyubu9s` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
   CONSTRAINT `FKs72vmai9b141v3qda7a2jhy0u` FOREIGN KEY (`publicacion_id`) REFERENCES `publicacion` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +45,7 @@ CREATE TABLE `chatusuario` (
 
 LOCK TABLES `chatusuario` WRITE;
 /*!40000 ALTER TABLE `chatusuario` DISABLE KEYS */;
-INSERT INTO `chatusuario` VALUES (6,'primer mensaje nasheee','2021-11-30 22:18:37',1,45),(9,'qweqw','2021-12-01 23:15:18',3,45);
+INSERT INTO `chatusuario` VALUES (45,1,'2021-12-08 00:42:16','Hola a todos, ese es mi perro, Se me perdio el dia 07 de diciembre por la zona de Castelar, si alguno lo ve por favor aviseme en esta publicacion.\nMuchas Gracias!',23),(45,3,'2021-12-08 00:43:39','Buenas, lo encontre cerca de mi casa. Vivo en la calle French 454, Moron, si queres pasame tu contacto asi hablamos por WhatsApp',24),(45,1,'2021-12-10 00:46:17','Perfecto, mi numero es 01159489724, nos hablamos por ahi, muchas gracias!',25),(45,3,'2021-12-10 00:48:45','Buenisimo, por favor no te olvides de poner mi mail al finalizar para que me sume los puntos',26),(67,1,'2021-12-08 14:45:45','Buenas Tardes! Ayer me encontre a este gato solo en la calle. Quien sea el dueÃ±o por favor escribame en la publicacion  asi nos contactamos para devolverlo',27),(67,3,'2021-12-08 14:45:47','Ese gatito es mio, muchas gracias por publicarlo, ahora te paso mi numero asi lo voy a buscar',28);
 /*!40000 ALTER TABLE `chatusuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-07 22:41:48
+-- Dump completed on 2021-12-08 11:55:11
