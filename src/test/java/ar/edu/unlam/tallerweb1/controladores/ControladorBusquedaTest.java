@@ -116,7 +116,7 @@ public class ControladorBusquedaTest {
 
     private void thenNoEncuentroPublicaciones(ModelAndView mav) {
         assertThat(mav.getModel().get("publicacionesError")).isEqualTo("No se encontraron publicaciones");
-        assertThat(mav.getViewName()).isEqualTo("redirect:/ir-a-mis-publicaciones");
+        assertThat(mav.getViewName()).isEqualTo("publicaciones-filtradas-busqueda");
     }
     private void thenEncuentroPublicaciones(ModelAndView mav) {
         assertThat(mav.getModel().get("mensajeOK")).isEqualTo("Se encontraron publicaciones");

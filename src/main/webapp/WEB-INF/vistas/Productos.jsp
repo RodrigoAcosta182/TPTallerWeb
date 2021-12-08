@@ -6,21 +6,27 @@
 <%@ include file="partial/header.jsp" %>
 
 <div class="w3-container">
-    <div class="puntosDelUsuario w3-center" style="margin-top: 100px; display: flex">
+    <c:if test="${not empty msg}">
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: 40px">
+            <div class="w3-panel w3-green w3-round w3-round-xxlarge">
+                <h4 style="text-align: center">${msg}</h4>
+            </div>
+        </div>
+    </c:if>
+    <div class="puntosDelUsuario w3-center" style="margin-top: 30px; display: flex">
         <c:if test="${not empty usuario}">
             <h2>MissingPets Points actuales: ${usuario.puntos}</h2>
         </c:if>
-
-        <c:if test="${not empty msg}">
-            <div class="w3-panel w3-blue w3-round w3-round-xxlarge">
-                <h4 style="text-align: center">${msg}</h4>
-            </div>
-        </c:if>
-</div>
-
+    </div>
+    <c:if test="${usuario.rol == 'admin'}">
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: 10px">
+            <a class="w3-btn w3-blue" type="submit"
+               href="ir-a-registrar-producto">Subir nuevo Producto</a>
+        </div>
+    </c:if>
     <div class="container-publicaciones noselect">
         <c:forEach items="${productos}" var="productos" varStatus="status" step="1" begin="0">
-            <div id="${status.index % 3 + 1}" class="tarjeta-publicacion-mascota">
+            <div id="${status.index % 3 + 1}" class="tarjeta-publicacion-producto">
                 <h4>${productos.descripcion}</h4>
                 <img src="${productos.imgproducto}" class="imagen-tarjeta" alt="">
                 <div class="w3-container w3-center">
@@ -51,26 +57,8 @@
                 </div>
             </div>
         </c:if>
-<%--        <c:if test="${not empty msg}">--%>
-<%--            <div class="w3-container w3-center">--%>
-<%--                <div>--%>
-<%--                    <p class="login-mensaje-error">${msg}</p>--%>
-<%--                </div>--%>
-<%--                <div>--%>
-<%--                    <a class="w3-btn w3-blue w3-round-xxlarge" style="width: 100%; margin-top: 10px" type="submit"--%>
-<%--                       href="ir-a-productos">Volver a ver Productos</a>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </c:if>--%>
     </div>
-    <c:if test="${usuario.rol == 'admin'}">
-        <a class="w3-btn w3-blue" style="margin-top: 20px; margin-left: 44%" type="submit"
-           href="ir-a-registrar-producto">Subir nuevo Producto</a>
-    </c:if>
+
 </div>
-
-
 </body>
 </html>
-
-<%-- src="<spring:url value='webapp/images'${savedUser.profileImage.originalFilename}'  --%>
