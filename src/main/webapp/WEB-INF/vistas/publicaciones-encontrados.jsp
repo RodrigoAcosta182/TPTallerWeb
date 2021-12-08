@@ -1,3 +1,5 @@
+<%@ page import="ar.edu.unlam.tallerweb1.modelo.Usuario" %>
+<%@ page import="ar.edu.unlam.tallerweb1.modelo.Publicacion" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -13,19 +15,14 @@
     </c:if>
     <c:forEach items="${publicaciones}" var="publicacion" varStatus="status" step="1" begin="0">
         <div id="${status.index % 3 + 1}" class="tarjeta-publicacion-mascota">
-                <%--            <img class="imagen-publicacion-mascota"--%>
-                <%--                 src="https://images.clarin.com/2021/06/20/el-caniche-arriba-en-las___6JQOYiC4y_340x340__1.jpg"--%>
-                <%--                 alt="Alps">--%>
-            <c:if test="${publicacion.mascota.estado == 1}">
+            <c:if test="${publicacion.mascota.estado.id == 1}">
                 <h2 style="text-align: center">Perdido</h2>
             </c:if>
-            <c:if test="${publicacion.mascota.estado == 2}">
+            <c:if test="${publicacion.mascota.estado.id == 2}">
                 <h2 style="text-align: center">Encontrado</h2>
             </c:if>
             <img src="${publicacion.mascota.imagen}" class="imagen-tarjeta" alt="">
             <div class="w3-container w3-center">
-                    <%--                <c:set var="context" value="${pageContext.request.contextPath}" />--%>
-                    <%--                <script src="${context}/themes/js/jquery.js"></script>--%>
                 <p><b>Nombre:</b> ${publicacion.mascota.nombre}</p>
                 <p><b>Raza:</b> ${publicacion.mascota.raza}</p>
                 <p><b>Detalles:</b> ${publicacion.mascota.detalle}</p>
@@ -37,6 +34,14 @@
             <a href="/missingpets/publicacion?id=${publicacion.id}">
                 <button class="w3-btn w3-green" style="text-decoration: none">Ver publicacion</button>
             </a>
+                    <form:form  action="finalizar-publicacion" method="POST" modelAttribute="datosMascota">
+                        <form:input  value="${publicacion.id}" cssClass="w3-input" path="id" type="hidden" id="id" />
+                            <c:if test="${publicacion.mascota.estado.id == 2 && publicacion.usuario.id != sessionScope.Usuario.id}">
+                                    <h6>Quien encontro tu mascota?</h6>
+                                    <form:input placeholder='Ingrese su mail' cssClass="w3-input w3-border" path="email"  type="text" id="email"/>
+                            </c:if>
+                        <button class="w3-btn w3-purple" style="width: 100%; margin-top: 10px;" Type="Submit"/>Finalizar</button>
+                    </form:form>
         </div>
     </c:forEach>
 </div>

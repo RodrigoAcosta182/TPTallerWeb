@@ -33,7 +33,8 @@ public class ControladorMail {
             servicioMail.enviarCorreo(datosCorreo.getReceptor(), datosCorreo.getComentario(),usuario, datosCorreo.getIdPublicacion());
         } catch (Exception e) {
             model.put("mailError", e.getMessage());
-            return new ModelAndView("ver-publicacion", model);
+            redirectAttributes.addFlashAttribute("mailError", e.getMessage());
+            return new ModelAndView("redirect:/publicacion?id=" + datosCorreo.getIdPublicacion(), model);
         }
         String mensaje = "Mensaje enviado correctamente";
         model.put("mailOk",mensaje);

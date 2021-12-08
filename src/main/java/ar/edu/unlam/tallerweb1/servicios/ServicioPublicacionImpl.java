@@ -73,7 +73,6 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
         for (ChatUsuario chat: chatUsuario) {
             repositorioPublicacion.eliminarChatUsuarioPorPublicacion(chat);
         }
-//        repositorioPublicacion.eliminarChatUsuarioPorPublicacion(chatUsuario);
         repositorioPublicacion.eliminarPublicacion(publicacion);
     }
 
@@ -85,7 +84,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
     @Override
     public void modificarPublicacion(DatosRegistroMascota mascota, Publicacion publicacion) throws Exception {
         Publicacion publi = repositorioPublicacion.buscarPublicacionPorId(publicacion.getId());
-        Mascota miMascota = mascota.toMascota();
+        Mascota miMascota = mascota.toMascotaModificar(publi.getMascota());
         Tipo tipoMascota = this.obtenerTipoDeMascotaPorId(mascota.getTipo().getId());
         Estado estadoMascota = this.obtenerEstadoDeMascotaPorId(mascota.getEstado().getId());
         Localidad localidad = this.getLocalidadPorDescripcion(mascota.getPublicacion().getLocalidad().getDescripcion());

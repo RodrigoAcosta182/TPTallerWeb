@@ -29,10 +29,13 @@ CREATE TABLE `chatusuario` (
   `mensaje` varchar(500) DEFAULT NULL,
   `fecha` datetime DEFAULT NULL,
   `usuario_id` bigint DEFAULT NULL,
+  `publicacion_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKgndrv8tnmbbi59r9okeyubu9s` (`usuario_id`),
-  CONSTRAINT `FKgndrv8tnmbbi59r9okeyubu9s` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `chatusuario_publicacion_id_fk` (`publicacion_id`),
+  CONSTRAINT `FKgndrv8tnmbbi59r9okeyubu9s` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
+  CONSTRAINT `FKs72vmai9b141v3qda7a2jhy0u` FOREIGN KEY (`publicacion_id`) REFERENCES `publicacion` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +44,7 @@ CREATE TABLE `chatusuario` (
 
 LOCK TABLES `chatusuario` WRITE;
 /*!40000 ALTER TABLE `chatusuario` DISABLE KEYS */;
-INSERT INTO `chatusuario` VALUES (6,'primer mensaje nasheee','2021-11-30 22:18:37',1);
+INSERT INTO `chatusuario` VALUES (6,'primer mensaje nasheee','2021-11-30 22:18:37',1,45),(9,'qweqw','2021-12-01 23:15:18',3,45);
 /*!40000 ALTER TABLE `chatusuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-30 19:45:39
+-- Dump completed on 2021-12-07 22:41:48
