@@ -53,7 +53,6 @@
                     <a class="w3-btn w3-green" style="width: 100%;"
                        href="/missingpets/ir-al-sitio-modificar-mascota?id=${publicacion.id}">Modificar</a>
                     <br>
-
                     <form:form action="finalizar-publicacion" method="POST" modelAttribute="datosMascota">
                         <form:input value="${publicacion.id}" cssClass="w3-input" path="id" type="hidden" id="id"/>
                         <c:if test="${publicacion.mascota.estado.id == 1}">
@@ -64,7 +63,6 @@
                         <button class="w3-btn w3-purple" style="width: 100%; margin-top: 10px;" Type="Submit"/>
                         Finalizar</button>
                     </form:form>
-
                 </div>
                 <br>
             </c:if>

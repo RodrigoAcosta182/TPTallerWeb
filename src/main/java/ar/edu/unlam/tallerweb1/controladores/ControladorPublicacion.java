@@ -43,7 +43,7 @@ public class ControladorPublicacion {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/finalizar-publicacion")
-    public ModelAndView finalizarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota,@ModelAttribute("publicacion") Publicacion publicacion,HttpServletRequest request, RedirectAttributes redirectAttributes) {
+    public ModelAndView finalizarPublicacion(@ModelAttribute("datosMascota") DatosRegistroMascota mascota,@ModelAttribute("publicacion") Publicacion publicacion,@ModelAttribute("request") HttpServletRequest request, RedirectAttributes redirectAttributes) {
         ModelMap model = new ModelMap();
         try{
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
@@ -105,7 +105,7 @@ public class ControladorPublicacion {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/ir-a-publicacion-mascota-encontrada")
-    public ModelAndView irAPublicacionMascotaEncontrada(HttpServletRequest request) {
+    public ModelAndView irAPublicacionMascotaEncontrada(HttpServletRequest request, @ModelAttribute("datosMascota") DatosRegistroMascota mascota) {
         ModelMap model = new ModelMap();
         List<Publicacion> publicaciones = new ArrayList<>();
         try {
@@ -114,10 +114,10 @@ public class ControladorPublicacion {
             publicaciones = servicioPublicacion.listarTodasLasPublicacionesEncontradas();
         } catch (Exception e) {
             model.put("publicacionesError", "No hay publicaciones");
-            return new ModelAndView("publicaciones-perdidos", model);
+            return new ModelAndView("publicaciones-encontrados", model);
         }
         model.put("publicaciones", publicaciones);
-        return new ModelAndView("publicaciones-perdidos", model);
+        return new ModelAndView("publicaciones-encontrados", model);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/ir-a-registrar-mascota")
