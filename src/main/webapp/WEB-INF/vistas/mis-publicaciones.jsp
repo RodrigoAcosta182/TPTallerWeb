@@ -42,6 +42,7 @@
                 <p><b>Color:</b> ${publicacion.mascota.color}</p>
                 <p><b>Edad:</b> ${publicacion.mascota.edad}</p>
                 <p><b>Localidad:</b> ${publicacion.localidad.descripcion}</p>
+                <p><b>Publicacion de:</b> ${publicacion.usuario.email}</p>
             </div>
             <c:if test="${publicacion.finalizado == true}">
                 <a class="w3-btn w3-red" style="margin-top: 10px"

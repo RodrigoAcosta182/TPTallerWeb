@@ -35,6 +35,7 @@
                 <p><b>Color:</b> ${publicacion.mascota.color}</p>
                 <p><b>Edad:</b> ${publicacion.mascota.edad}</p>
                 <p><b>Localidad:</b> ${publicacion.localidad.descripcion}</p>
+                <p><b>Publicacion de:</b> ${publicacion.usuario.email}</p>
             </div>
             <a href="/missingpets/publicacion?id=${publicacion.id}">
                 <button class="w3-btn w3-green" style="text-decoration: none">Ver publicacion</button>
