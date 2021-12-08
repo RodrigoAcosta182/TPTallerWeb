@@ -32,10 +32,11 @@ public class ServicioProductoImpl implements ServicioProducto{
 
         Producto nuevoProducto = producto.toProducto();
 
-        String nombreConRuta = "imgProducto/" + producto.getImgproducto().getOriginalFilename();
+        Integer randomNumber = (int)Math.random() * 10 + 1;
+        String nombreConRuta = "imgProducto/"+ randomNumber + producto.getImgproducto().getOriginalFilename();
         nuevoProducto.setImgproducto(nombreConRuta);
 
-        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\imgProducto\\" + producto.getImgproducto().getOriginalFilename();
+        String filename = "C:\\Taller WEB\\TPTallerWeb\\src\\main\\webapp\\imgProducto\\"+ randomNumber + producto.getImgproducto().getOriginalFilename();
         producto.getImgproducto().transferTo(new File(filename));
 
         repositorioProducto.guardarProducto(nuevoProducto);

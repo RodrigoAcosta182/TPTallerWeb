@@ -39,7 +39,7 @@
 
                 <c:if test="${not empty mailError}">
                     <div class="w3-panel w3-red w3-round">
-                        <h4><span>${mailError}</span></h4>
+                        <h4 style="text-align: center"><span>${mailError}</span></h4>
                     </div>
                 </c:if>
 
