@@ -40,7 +40,7 @@ CREATE TABLE `publicacion` (
   CONSTRAINT `FKsmafswujolnyojwb2rq31ax48` FOREIGN KEY (`mascota_id`) REFERENCES `mascota` (`id`),
   CONSTRAINT `publicacion_mascota_id_fk` FOREIGN KEY (`mascota_id`) REFERENCES `mascota` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `publicacion_usuario_id_fk` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +49,7 @@ CREATE TABLE `publicacion` (
 
 LOCK TABLES `publicacion` WRITE;
 /*!40000 ALTER TABLE `publicacion` DISABLE KEYS */;
-INSERT INTO `publicacion` VALUES (45,0,'2021-11-21',1,87,3),(67,0,'2021-12-07',1,120,7),(68,0,'2021-12-07',3,122,5);
+INSERT INTO `publicacion` VALUES (81,0,'2021-12-09',6,135,9),(82,0,'2021-12-09',6,136,8),(83,0,'2021-12-09',7,137,12),(84,0,'2021-12-09',7,138,5),(85,0,'2021-12-09',8,139,11),(86,0,'2021-12-09',8,140,3);
 /*!40000 ALTER TABLE `publicacion` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-08 11:55:11
+-- Dump completed on 2021-12-08 22:44:55

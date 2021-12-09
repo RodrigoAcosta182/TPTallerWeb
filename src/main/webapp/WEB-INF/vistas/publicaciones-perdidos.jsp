@@ -27,7 +27,9 @@
             <c:if test="${publicacion.mascota.estado.id == 2}">
                 <h2 style="text-align: center">Encontrado</h2>
             </c:if>
-            <img src="${publicacion.mascota.imagen}" class="imagen-tarjeta" alt="">
+            <div style="width: 200px;height: 200px">
+                <img src="${publicacion.mascota.imagen}" class="imagen-tarjeta" alt="">
+            </div>
             <div style="display: flex;justify-content: space-around;padding: 12px 0;width: 350px;">
                 <div style="width: 190px">
                     <p class="text-elipsis"><span style="font-weight: bold">Nombre:</span> ${publicacion.mascota.nombre}</p>

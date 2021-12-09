@@ -28,7 +28,7 @@ CREATE TABLE `localidad` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(90) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `localidad` (
 
 LOCK TABLES `localidad` WRITE;
 /*!40000 ALTER TABLE `localidad` DISABLE KEYS */;
-INSERT INTO `localidad` VALUES (3,'Moron'),(5,'Moreno'),(7,'Mataderos');
+INSERT INTO `localidad` VALUES (3,'Moron'),(5,'Moreno'),(7,'Mataderos'),(8,'Laferrere'),(9,'San Justo'),(10,'Ramos Mejia'),(11,'Haedo'),(12,'Palomar');
 /*!40000 ALTER TABLE `localidad` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-08 11:55:13
+-- Dump completed on 2021-12-08 22:44:55

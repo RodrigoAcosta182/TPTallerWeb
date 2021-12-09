@@ -6,6 +6,7 @@ import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Tipo;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,7 +22,9 @@ public class RepositorioBusquedaImpl implements RepositorioBusqueda {
     @SuppressWarnings("unchecked")
     @Override
     public List<Localidad> obtenerTodasLasLocalidades() {
-        return sessionFactory.getCurrentSession().createCriteria(Localidad.class).list();
+        return sessionFactory.getCurrentSession().createCriteria(Localidad.class)
+                .addOrder(Order.asc("descripcion"))
+                .list();
     }
 
     @SuppressWarnings("unchecked")
