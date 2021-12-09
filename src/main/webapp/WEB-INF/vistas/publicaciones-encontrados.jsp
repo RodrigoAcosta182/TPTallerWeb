@@ -22,8 +22,10 @@
             <c:if test="${publicacion.mascota.estado.id == 2}">
                 <h2 style="text-align: center">Encontrado</h2>
             </c:if>
-            <img src="${publicacion.mascota.imagen}" class="imagen-tarjeta" alt="">
-            <div style="display: flex;justify-content: space-around;padding: 12px 0;width: 350px;">
+            <div style="width: 200px;height: 200px">
+                <img src="${publicacion.mascota.imagen}" class="imagen-tarjeta" alt="">
+            </div>
+            <div style="display: flex;justify-content: space-around;padding: 12px 0 0 0 ;width: 350px;">
                 <div style="width: 190px">
                     <p class="text-elipsis"><span style="font-weight: bold">Nombre:</span> ${publicacion.mascota.nombre}
                     </p>
@@ -41,17 +43,17 @@
                             style="font-weight: bold">Localidad:</span> ${publicacion.localidad.descripcion}</p>
                 </div>
             </div>
-            <p class="text-elipsis"><b>Publicacion de:</b> ${publicacion.usuario.email}</p>
+            <p><b>Publicacion de:</b> ${publicacion.usuario.email}</p>
             <div>
 
                 <form:form action="finalizar-publicacion" method="POST" modelAttribute="datosMascota">
                     <form:input value="${publicacion.id}" cssClass="w3-input" path="id" type="hidden" id="id"/>
                     <c:if test="${publicacion.mascota.estado.id == 2 && publicacion.usuario.id != sessionScope.Usuario.id}">
-                        <h6>Quien encontro tu mascota?</h6>
+                        <h6 style="margin: 4px 0 4px 0  ">Quien encontro tu mascota?</h6>
                         <form:input placeholder='Ingrese su mail' cssClass="w3-input w3-border" path="email" type="text"
                                     id="email"/>
                     </c:if>
-                    <button class="w3-btn w3-purple" style="width: 100%;margin-top: 10px" Type="Submit"/>
+                    <button class="w3-btn w3-purple" style="width: 100%;margin-top: 4px" Type="Submit"/>
                     Finalizar</button>
                 </form:form>
                 <a href="/missingpets/publicacion?id=${publicacion.id}">

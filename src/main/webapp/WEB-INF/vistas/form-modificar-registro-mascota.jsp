@@ -36,7 +36,7 @@
         <div class="w3-jumbo w3-animate-top ">
             <div class="registroMascotaBox w3-text-black">
                 <div class="noselect" style="height: 20px">
-                    <a href="home" style="float: right; cursor: pointer;text-decoration: none">X</a>
+                    <a href="ir-a-mis-publicaciones" style="float: right; cursor: pointer;text-decoration: none">X</a>
                 </div>
                 <div class="titulo-registrar-mascota-perdida">
                     <span style="font-size: 22px">Datos de la mascota</span>

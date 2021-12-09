@@ -126,7 +126,9 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     @SuppressWarnings("unchecked")
     @Override
     public List<Localidad> obtenerTodasLasLocalidades() {
-        return sessionFactory.getCurrentSession().createCriteria(Localidad.class).list();
+        return sessionFactory.getCurrentSession().createCriteria(Localidad.class)
+                .addOrder(Order.asc("descripcion"))
+                .list();
     }
 
     @SuppressWarnings("unchecked")

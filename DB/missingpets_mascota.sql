@@ -43,7 +43,7 @@ CREATE TABLE `mascota` (
   CONSTRAINT `FKfxpnmoqu6mh0as8sxp3knvxkf` FOREIGN KEY (`estado_id`) REFERENCES `estado` (`id`),
   CONSTRAINT `mascota_estado_id_fk` FOREIGN KEY (`estado_id`) REFERENCES `estado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `mascota_tipo_id_fk` FOREIGN KEY (`tipo_id`) REFERENCES `tipo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,7 +52,7 @@ CREATE TABLE `mascota` (
 
 LOCK TABLES `mascota` WRITE;
 /*!40000 ALTER TABLE `mascota` DISABLE KEYS */;
-INSERT INTO `mascota` VALUES (87,'Hellboy','30 años','bully','gordo y petizo','marron','Mediano',NULL,'img/5916hellboy.jpg',1,1),(120,'Michi','3 años','Romano','Ojos verdes','Marron','Pequeño',NULL,'img/1gato-romano.jpg',2,2),(122,'Chipi Varijo','6 años','Canario','Pata lastimada','Azul','Pequeño',NULL,'img/1pajaro.jpg',3,2);
+INSERT INTO `mascota` VALUES (135,'Carlita','8','Salchicha','Larga y Petiza','marron','chico',NULL,'img/1salchi3.jpg',1,1),(136,'Tirri','7','Dogo','Sin detalles','Blanco','Grande',NULL,'img/1dogo.jpg',1,2),(137,'Hellboy','4','Dalmata','Oreja lastimada','Blanco','Normal',NULL,'img/1dalmata2.jpg',1,1),(138,'Michi','5','Comun','Petiso','Gris','chico',NULL,'img/1gato2.jpeg',2,2),(139,'Toy','5','Caniche','Nervioso','Blanco','chico',NULL,'img/1caniche.jpg',3,1),(140,'Fatiga','8','Argento','Perezoso','marron','Normal',NULL,'img/1fatiga.jpg',1,2);
 /*!40000 ALTER TABLE `mascota` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -65,4 +65,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-08 11:55:13
+-- Dump completed on 2021-12-08 22:44:56
